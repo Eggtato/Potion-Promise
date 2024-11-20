@@ -3,7 +3,11 @@ using UnityEngine;
 
 public struct PlayerEvent
 {
-    // Input Events
+    // Player Input Events
+    public Action<GameObject, Vector3> OnMouseDown;
+    public Action<Vector3> OnMouseUp;
+
+    // UI Input Events
     public Action OnAnyUIClosed;
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpnened;
