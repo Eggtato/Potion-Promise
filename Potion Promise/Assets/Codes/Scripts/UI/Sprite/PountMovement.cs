@@ -7,7 +7,6 @@ public class PountMovement : MonoBehaviour
     [SerializeField] private float minYPosition = 0f; // Minimum Y boundary
     [SerializeField] private float maxYPosition = 2f; // Maximum Y boundary
     [SerializeField] private float fixedXPosition = 0f; // Fixed X position to lock horizontal movement
-    [SerializeField] private float dragSmoothness = 10f; // Smoothing factor for dragging
 
     private Vector3 offset;
     private bool isDragging = false;
@@ -68,7 +67,7 @@ public class PountMovement : MonoBehaviour
         desiredPosition.y = Mathf.Clamp(desiredPosition.y, minYPosition, maxYPosition);
 
         // Smoothly move the object to the desired position
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * dragSmoothness);
+        transform.position = desiredPosition;
     }
 
     /// <summary>
