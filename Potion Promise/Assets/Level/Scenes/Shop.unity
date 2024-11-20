@@ -34807,8 +34807,9 @@ GameObject:
   - component: {fileID: 1951374876}
   - component: {fileID: 1951374877}
   - component: {fileID: 1951374881}
+  - component: {fileID: 1951374882}
   m_Layer: 0
-  m_Name: Craft_Stick
+  m_Name: Craft_Stir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34823,7 +34824,7 @@ Transform:
   m_GameObject: {fileID: 1951374875}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.13571563, w: 0.99074787}
-  m_LocalPosition: {x: -5.7200003, y: -2.6399999, z: -1}
+  m_LocalPosition: {x: -4.9, y: -2.6399999, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34930,6 +34931,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.52, y: 7.16}
   m_EdgeRadius: 0
+--- !u!114 &1951374882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951374875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836675c23e5e02044a89ada565e7ad91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 0.1
+  minZRotation: -15.6
+  maxZRotation: 15.6
 --- !u!1 &1952893072
 GameObject:
   m_ObjectHideFlags: 0
