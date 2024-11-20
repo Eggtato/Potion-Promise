@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private InventoryMaterialData assignedInventoryMaterial;
+    [SerializeField] private MaterialData assignedInventoryMaterial;
     [SerializeField] private Transform rootcanvasParent;
     [SerializeField] private TMP_Text quantitytxt;
 
@@ -56,12 +56,12 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     void ReduceSelf()
     {
-        assignedInventoryMaterial.Quantity--;
-        if (assignedInventoryMaterial.Quantity <= 0)
-        {
-            transform.parent.gameObject.SetActive(false);
-        }
-        quantitytxt.text = "x " + assignedInventoryMaterial.Quantity;
+        // assignedInventoryMaterial.Quantity--;
+        // if (assignedInventoryMaterial.Quantity <= 0)
+        // {
+        //     transform.parent.gameObject.SetActive(false);
+        // }
+        // quantitytxt.text = "x " + assignedInventoryMaterial.Quantity;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

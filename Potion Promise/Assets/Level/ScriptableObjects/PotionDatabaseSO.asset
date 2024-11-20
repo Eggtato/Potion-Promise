@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cf3f5b12d9d1f42906c557709379a1, type: 3}
+  m_Name: PotionDatabaseSO
+  m_EditorClassIdentifier: 
+  PotionDataList:
+  - Sprite: {fileID: 21300000, guid: e7bf9ca911096415287f569290bb4ac5, type: 3}
+    Name: Healing Potion
+    PotionType: 0
+    Rarity: 0
+    Price: 25
+    MaterialRecipes: 0000000003000000
+    Description: This essential potion swiftly heals wounds, providing quick relief
+      and recovery for adventurers.
+  - Sprite: {fileID: 21300000, guid: fafc58d73e5e142a09dadde17d09bf67, type: 3}
+    Name: Cold Brew
+    PotionType: 1
+    Rarity: 0
+    Price: 27
+    MaterialRecipes: 0100000005000000
+    Description: This refreshing potion cools the body, perfect for combating heat.
+      However, beware of overuse as it can lead to unintended chills.
+  - Sprite: {fileID: 21300000, guid: 2d7a9835bd8b246a5bf89f408ef940b0, type: 3}
+    Name: Warming Potion
+    PotionType: 2
+    Rarity: 0
+    Price: 29
+    MaterialRecipes: 030000000400000007000000
+    Description: This potion provides effective defense against the cold, keeping
+      you warm and comfortable in frigid environments.
+  - Sprite: {fileID: 21300000, guid: 310ff29d6673c45a98d890717a632746, type: 3}
+    Name: Armor Skin Potion
+    PotionType: 3
+    Rarity: 0
+    Price: 32
+    MaterialRecipes: 020000000300000008000000
+    Description: This potion fortifies your body, providing enhanced protection against
+      physical harm and reducing damage from attacks.
+  - Sprite: {fileID: 21300000, guid: 790f7fe425f7f4bd997c5c7d6e1022c6, type: 3}
+    Name: Sleep Potion
+    PotionType: 4
+    Rarity: 1
+    Price: 45
+    MaterialRecipes: 010000000600000008000000
+    Description: This potion induces a deep restful sleep, but overuse can be hazardous
+      and lead to prolonged unconsciousness.

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627ed1906303d174e93423d27a739098, type: 3}
+  m_Name: MaterialDatabaseSO
+  m_EditorClassIdentifier: 
+  MaterialDataList:
+  - Sprite: {fileID: 21300000, guid: dcc711a73a2034f69835bfff1f40044f, type: 3}
+    Name: Red Hatted Mushroom
+    MaterialType: 0
+    Rarity: 0
+    Price: 3
+    Description: A small fungus flourishing in the shaded areas <b>under trees</b>.
+      Grows in colonies, making them easy to find and gather.
+  - Sprite: {fileID: 21300000, guid: acd9791062a3d46cbb03bfe2d37c2f12, type: 3}
+    Name: Cold Holo Mushroom
+    MaterialType: 1
+    Rarity: 0
+    Price: 6
+    Description: Thrive <b>near riversides</b> and are easily identifiable by their
+      ice-like color and the cold mist they release.
+  - Sprite: {fileID: 21300000, guid: 14d0fc136bad141948b6ec29297ee363, type: 3}
+    Name: Hard Spike Shroom
+    MaterialType: 2
+    Rarity: 0
+    Price: 10
+    Description: This unique mushroom features a hard shell on top. It thrives in
+      <b>sandy areas</b>.
+  - Sprite: {fileID: 21300000, guid: c008153bbe1c1411daaeaefda0c2f815, type: 3}
+    Name: Sun Bloom
+    MaterialType: 3
+    Rarity: 0
+    Price: 3
+    Description: A vibrant flower that thrives in broad daylight, <b>often spotted
+      in grasslands</b>. Though easily found, it typically stands alone.
+  - Sprite: {fileID: 21300000, guid: 727f06e4900584360b268ab707fc985b, type: 3}
+    Name: Slimy Moss
+    MaterialType: 4
+    Rarity: 0
+    Price: 3
+    Description: It grows on <b>large rocks</b> and can be gathered by simply pushing
+      the rock, yielding two samples per collection.
+  - Sprite: {fileID: 21300000, guid: 95b672785893344b087c89bc94864939, type: 3}
+    Name: Wet Cover Plant
+    MaterialType: 5
+    Rarity: 0
+    Price: 4
+    Description: Found <b>near water sources</b>, this plant thrives in colonies,
+      creating a lush, blue carpet in its damp habitat.
+  - Sprite: {fileID: 21300000, guid: 5c35e79855a26564887b0248695882b9, type: 3}
+    Name: Night Shade Ivy
+    MaterialType: 6
+    Rarity: 1
+    Price: 10
+    Description: Thrives in large quantities <b>around rocks</b>. It can be gathered
+      by pushing the rock once, yielding two samples per collection.
+  - Sprite: {fileID: 21300000, guid: 717780c6ffa8c4a09a61e54288aa9373, type: 3}
+    Name: Crude Topaz
+    MaterialType: 7
+    Rarity: 0
+    Price: 4
+    Description: This unrefined gem is easily found <b>near rock formations</b>,
+      adding a touch of sparkle to the rugged landscape.
+  - Sprite: {fileID: 21300000, guid: 54b406a7fa9fb4cd0ba1a2873ab9f332, type: 3}
+    Name: Sapphire Crystal
+    MaterialType: 8
+    Rarity: 0
+    Price: 6
+    Description: These crystals are commonly found <b>near water sources</b>, shimmering
+      with the beauty of clear, cool waters.
