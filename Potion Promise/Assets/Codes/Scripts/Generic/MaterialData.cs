@@ -4,10 +4,10 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public class MaterialData
 {
-    [PreviewField(Alignment = ObjectFieldAlignment.Left, Height = 50)] public Sprite Sprite;
-    public string Name;
-    [EnumPaging] public MaterialType MaterialType;
-    [EnumPaging] public Rarity Rarity;
-    public int Price;
-    [Multiline(5)] public string Description;
+    [PreviewField(60), HideLabel][HorizontalGroup("Split", 60)] public Sprite Sprite;
+    [VerticalGroup("Split/Right")] public string Name;
+    [VerticalGroup("Split/Right")][EnumPaging] public MaterialType MaterialType;
+    [VerticalGroup("Split/Right")][EnumPaging] public Rarity Rarity;
+    [VerticalGroup("Split/Right")][Range(1, 10)] public int Price;
+    [VerticalGroup("Split/Right")][Multiline(5)] public string Description;
 }
