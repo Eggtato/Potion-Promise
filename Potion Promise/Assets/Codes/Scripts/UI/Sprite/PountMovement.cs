@@ -8,9 +8,13 @@ public class PountMovement : MonoBehaviour
     [SerializeField] private float maxYPosition = 2f; // Maximum Y boundary
     [SerializeField] private float fixedXPosition = 0f; // Fixed X position to lock horizontal movement
 
+    [SerializeField] private MortarHandler mortarHandler;
+
     private Vector3 offset;
     private bool isDragging = false;
     private float zDistanceToCamera;
+    private bool directionChanged = false;
+    private bool movedDown = false;
 
     private void Start()
     {
@@ -68,6 +72,27 @@ public class PountMovement : MonoBehaviour
 
         // Smoothly move the object to the desired position
         transform.position = desiredPosition;
+
+        HandlePoundSmashMovement(desiredPosition.y);
+    }
+
+    private void HandlePoundSmashMovement(float desiredPosition)
+    {
+        if (desiredPosition <= minYPosition && !directionChanged)
+        {
+            directionChanged = true;
+
+            if (movedDown)
+            {
+                mortarHandler.SmashMaterial();
+                movedDown = false;
+            }
+        }
+        else if (desiredPosition >= maxYPosition && directionChanged)
+        {
+            directionChanged = false;
+            movedDown = true;
+        }
     }
 
     /// <summary>

@@ -11,4 +11,5 @@ public class MaterialData
     [VerticalGroup("Split/Right")][Range(1, 10)] public int Price;
     [VerticalGroup("Split/Right")][Multiline(5)] public string Description;
     [VerticalGroup("Split/Right")] public Color32 Color;
+    [VerticalGroup("Split/Right")] public int SmashedTimes = 3;
 }

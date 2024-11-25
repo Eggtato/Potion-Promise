@@ -4683,6 +4683,7 @@ MonoBehaviour:
   minYPosition: 0.2
   maxYPosition: 2.5
   fixedXPosition: 0
+  mortarHandler: {fileID: 1686173877}
 --- !u!50 &317130270
 Rigidbody2D:
   serializedVersion: 5
@@ -32423,6 +32424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981753824c3b104459ebd042933c3711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameAssetSO: {fileID: 11400000, guid: ec9fe56c0c645b7469ee47bcdba3ca6b, type: 2}
   droppedMaterialSprite: {fileID: 617533083}
 --- !u!1 &1698752890
 GameObject:

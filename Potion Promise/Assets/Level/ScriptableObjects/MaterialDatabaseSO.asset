@@ -23,6 +23,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4280428953
+    SmashedTimes: 3
   - Sprite: {fileID: 21300000, guid: acd9791062a3d46cbb03bfe2d37c2f12, type: 3}
     Name: Cold Holo Mushroom
     MaterialType: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4292774711
+    SmashedTimes: 5
   - Sprite: {fileID: 21300000, guid: 14d0fc136bad141948b6ec29297ee363, type: 3}
     Name: Hard Spike Shroom
     MaterialType: 2
@@ -43,6 +45,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4292002543
+    SmashedTimes: 5
   - Sprite: {fileID: 21300000, guid: c008153bbe1c1411daaeaefda0c2f815, type: 3}
     Name: Sun Bloom
     MaterialType: 3
@@ -53,6 +56,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4282432503
+    SmashedTimes: 3
   - Sprite: {fileID: 21300000, guid: 727f06e4900584360b268ab707fc985b, type: 3}
     Name: Slimy Moss
     MaterialType: 4
@@ -63,6 +67,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4281907873
+    SmashedTimes: 3
   - Sprite: {fileID: 21300000, guid: 95b672785893344b087c89bc94864939, type: 3}
     Name: Wet Cover Plant
     MaterialType: 5
@@ -73,6 +78,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4294765199
+    SmashedTimes: 3
   - Sprite: {fileID: 21300000, guid: 5c35e79855a26564887b0248695882b9, type: 3}
     Name: Night Shade Ivy
     MaterialType: 6
@@ -83,6 +89,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4293562568
+    SmashedTimes: 7
   - Sprite: {fileID: 21300000, guid: 717780c6ffa8c4a09a61e54288aa9373, type: 3}
     Name: Crude Topaz
     MaterialType: 7
@@ -93,6 +100,7 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4284136679
+    SmashedTimes: 3
   - Sprite: {fileID: 21300000, guid: 54b406a7fa9fb4cd0ba1a2873ab9f332, type: 3}
     Name: Sapphire Crystal
     MaterialType: 8
@@ -103,3 +111,4 @@ MonoBehaviour:
     Color:
       serializedVersion: 2
       rgba: 4291081403
+    SmashedTimes: 3
