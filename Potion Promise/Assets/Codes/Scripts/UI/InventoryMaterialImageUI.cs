@@ -1,32 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
 public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private MaterialData assignedInventoryMaterial;
-    [SerializeField] private Transform rootcanvasParent;
-    [SerializeField] private TMP_Text quantitytxt;
+    public MaterialData MaterialData { get; private set; }
 
-    private Vector3 originalPosition;
+    [SerializeField] private Transform rootcanvasParent;
+
+    private Image icon;
     private Transform parentAfterDrag;
 
-    void Start()
+    private void Awake()
     {
-        originalPosition = GetComponent<RectTransform>().anchoredPosition;
+        icon = GetComponent<Image>();
     }
 
-    // public void OnPointerEnter(PointerEventData eventData)
-    // {
-    //     if(cursorcontroller.Instance != null)
-    //         cursorcontroller.Instance.mouseGrabStartUI();
-    // }
-
-    // public void OnPointerExit(PointerEventData eventData)
-    // {
-    //     if(cursorcontroller.Instance != null)
-    //         cursorcontroller.Instance.defaultCursor();
-    // }
+    public void Initialize(MaterialData materialData)
+    {
+        MaterialData = materialData;
+        icon.sprite = materialData.Sprite;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -43,15 +38,13 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // if(transform.parent.parent.name == "CRAFTINGGRID"){
-        //     if(eventData.pointerCurrentRaycast.gameObject.name == "SLOT" && assignedInventoryMaterial != null && eventData.pointerCurrentRaycast.gameObject.GetComponent<PoundInitiator>().pm.haveMaterial==false && eventData.pointerCurrentRaycast.gameObject.GetComponent<PoundInitiator>().stage == 1){
-        //         eventData.pointerCurrentRaycast.gameObject.GetComponent<PoundInitiator>().GetMaterial(assignedInventoryMaterial.ID);
-        //         ReduceSelf();
-        //     }
-        //     GetComponent<RectTransform>().anchoredPosition = originalPosition;
-        // }
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
+
+        var mortarDropAreaUI = eventData.pointerCurrentRaycast.gameObject.GetComponent<MortarDropAreaUI>();
+        if (mortarDropAreaUI == null) return;
+
+        mortarDropAreaUI.SetDroppedMaterial(MaterialData);
     }
 
     void ReduceSelf()

@@ -20,6 +20,9 @@ MonoBehaviour:
     Price: 3
     Description: A small fungus flourishing in the shaded areas <b>under trees</b>.
       Grows in colonies, making them easy to find and gather.
+    Color:
+      serializedVersion: 2
+      rgba: 4280428953
   - Sprite: {fileID: 21300000, guid: acd9791062a3d46cbb03bfe2d37c2f12, type: 3}
     Name: Cold Holo Mushroom
     MaterialType: 1
@@ -27,6 +30,9 @@ MonoBehaviour:
     Price: 6
     Description: Thrive <b>near riversides</b> and are easily identifiable by their
       ice-like color and the cold mist they release.
+    Color:
+      serializedVersion: 2
+      rgba: 4292774711
   - Sprite: {fileID: 21300000, guid: 14d0fc136bad141948b6ec29297ee363, type: 3}
     Name: Hard Spike Shroom
     MaterialType: 2
@@ -34,6 +40,9 @@ MonoBehaviour:
     Price: 10
     Description: This unique mushroom features a hard shell on top. It thrives in
       <b>sandy areas</b>.
+    Color:
+      serializedVersion: 2
+      rgba: 4292002543
   - Sprite: {fileID: 21300000, guid: c008153bbe1c1411daaeaefda0c2f815, type: 3}
     Name: Sun Bloom
     MaterialType: 3
@@ -41,6 +50,9 @@ MonoBehaviour:
     Price: 3
     Description: A vibrant flower that thrives in broad daylight, <b>often spotted
       in grasslands</b>. Though easily found, it typically stands alone.
+    Color:
+      serializedVersion: 2
+      rgba: 4282432503
   - Sprite: {fileID: 21300000, guid: 727f06e4900584360b268ab707fc985b, type: 3}
     Name: Slimy Moss
     MaterialType: 4
@@ -48,6 +60,9 @@ MonoBehaviour:
     Price: 3
     Description: It grows on <b>large rocks</b> and can be gathered by simply pushing
       the rock, yielding two samples per collection.
+    Color:
+      serializedVersion: 2
+      rgba: 4281907873
   - Sprite: {fileID: 21300000, guid: 95b672785893344b087c89bc94864939, type: 3}
     Name: Wet Cover Plant
     MaterialType: 5
@@ -55,6 +70,9 @@ MonoBehaviour:
     Price: 4
     Description: Found <b>near water sources</b>, this plant thrives in colonies,
       creating a lush, blue carpet in its damp habitat.
+    Color:
+      serializedVersion: 2
+      rgba: 4294765199
   - Sprite: {fileID: 21300000, guid: 5c35e79855a26564887b0248695882b9, type: 3}
     Name: Night Shade Ivy
     MaterialType: 6
@@ -62,6 +80,9 @@ MonoBehaviour:
     Price: 10
     Description: Thrives in large quantities <b>around rocks</b>. It can be gathered
       by pushing the rock once, yielding two samples per collection.
+    Color:
+      serializedVersion: 2
+      rgba: 4293562568
   - Sprite: {fileID: 21300000, guid: 717780c6ffa8c4a09a61e54288aa9373, type: 3}
     Name: Crude Topaz
     MaterialType: 7
@@ -69,6 +90,9 @@ MonoBehaviour:
     Price: 4
     Description: This unrefined gem is easily found <b>near rock formations</b>,
       adding a touch of sparkle to the rugged landscape.
+    Color:
+      serializedVersion: 2
+      rgba: 4284136679
   - Sprite: {fileID: 21300000, guid: 54b406a7fa9fb4cd0ba1a2873ab9f332, type: 3}
     Name: Sapphire Crystal
     MaterialType: 8
@@ -76,3 +100,6 @@ MonoBehaviour:
     Price: 6
     Description: These crystals are commonly found <b>near water sources</b>, shimmering
       with the beauty of clear, cool waters.
+    Color:
+      serializedVersion: 2
+      rgba: 4291081403

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class InventoryMaterialSlotUI : MonoBehaviour
 {
-    [SerializeField] private Image icon;
+    [SerializeField] private InventoryMaterialImageUI inventoryMaterialImageUI;
     [SerializeField] private TMP_Text quantityText;
 
-    public void Initialize(ObtainedMaterialData obtainedMaterialData, Sprite obtainedMaterialSprite)
+    public void Initialize(ObtainedMaterialData obtainedMaterialData, MaterialData materialData)
     {
-        icon.sprite = obtainedMaterialSprite;
+        inventoryMaterialImageUI.Initialize(materialData);
         quantityText.text = "x" + obtainedMaterialData.Quantity;
     }
 }

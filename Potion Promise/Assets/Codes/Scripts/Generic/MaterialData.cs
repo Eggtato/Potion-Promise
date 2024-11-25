@@ -10,4 +10,5 @@ public class MaterialData
     [VerticalGroup("Split/Right")][EnumPaging] public Rarity Rarity;
     [VerticalGroup("Split/Right")][Range(1, 10)] public int Price;
     [VerticalGroup("Split/Right")][Multiline(5)] public string Description;
+    [VerticalGroup("Split/Right")] public Color32 Color;
 }

@@ -22,4 +22,10 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         Data.Save();
     }
 
+    public void ClearAllData()
+    {
+        PlayerPrefs.DeleteAll();
+        Save();
+    }
+
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AlchemyRoomUI : BaseUI
+public class CraftingRoomUI : BaseUI
 {
     [Header("Database Reference")]
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
@@ -31,7 +31,7 @@ public class AlchemyRoomUI : BaseUI
             MaterialData materialData = materialDatabaseSO.MaterialDataList.First(i => i.MaterialType == item.MaterialType);
             var slotUI = Instantiate(inventorySlotTemplate, parent);
             slotUI.gameObject.SetActive(true);
-            slotUI.Initialize(item, materialData.Sprite);
+            slotUI.Initialize(item, materialData);
         }
     }
 
