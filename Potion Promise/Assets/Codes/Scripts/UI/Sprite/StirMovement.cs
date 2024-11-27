@@ -7,9 +7,13 @@ public class StirMovement : MonoBehaviour
     [SerializeField] private float minZRotation = -15.6f; // Minimum allowed Z rotation
     [SerializeField] private float maxZRotation = 15.6f;  // Maximum allowed Z rotation
 
+    [SerializeField] private CauldronHandler caulronHandler;
+
     private bool isDragging = false;
     private Vector3 initialMousePosition; // Mouse position at the start of dragging
     private float initialZRotation;      // Object's Z rotation at the start of dragging
+    private bool directionChanged = false;
+    private bool wentLeft = false;
 
     private void Update()
     {
@@ -52,6 +56,27 @@ public class StirMovement : MonoBehaviour
 
         // Apply the rotation to the object
         transform.rotation = Quaternion.Euler(0, 0, targetZRotation);
+
+        CheckForDirectionChange(targetZRotation);
+    }
+
+    void CheckForDirectionChange(float currentZRotation)
+    {
+        if (currentZRotation >= maxZRotation && directionChanged)
+        {
+            directionChanged = false;
+
+            if (wentLeft)
+            {
+                caulronHandler.StirMaterial();
+                wentLeft = false;
+            }
+        }
+        else if (currentZRotation <= minZRotation && !directionChanged)
+        {
+            directionChanged = true;
+            wentLeft = true;
+        }
     }
 
     /// <summary>

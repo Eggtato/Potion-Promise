@@ -4,6 +4,7 @@ public class MortarHandler : MonoBehaviour
 {
     [SerializeField] private GameAssetSO gameAssetSO;
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
+    [SerializeField] private SpriteRenderer smashedMaterialSprite;
 
     private MaterialData materialData;
     private int currentSmashedCount = 0;
@@ -11,6 +12,7 @@ public class MortarHandler : MonoBehaviour
     private void Start()
     {
         droppedMaterialSprite.gameObject.SetActive(false);
+        smashedMaterialSprite.gameObject.SetActive(false);
     }
 
     public void SetDroppedMaterial(MaterialData materialData)
@@ -18,6 +20,7 @@ public class MortarHandler : MonoBehaviour
         this.materialData = materialData;
         currentSmashedCount = 0;
         droppedMaterialSprite.gameObject.SetActive(true);
+        smashedMaterialSprite.gameObject.SetActive(false);
         UpdateSmashedSprite();
         droppedMaterialSprite.color = materialData.Color;
     }
@@ -28,6 +31,11 @@ public class MortarHandler : MonoBehaviour
         {
             currentSmashedCount++;
             UpdateSmashedSprite();
+        }
+        else
+        {
+            smashedMaterialSprite.GetComponent<SmashedMaterialMovement>().Initialize(materialData);
+            DisplayFinalSmashedSprite();
         }
     }
 
@@ -42,5 +50,12 @@ public class MortarHandler : MonoBehaviour
         int spriteIndex = Mathf.Min(currentSmashedCount / rangePerSprite, totalSprites - 1);
 
         droppedMaterialSprite.sprite = gameAssetSO.SmashedMaterialSprites[spriteIndex];
+    }
+
+    private void DisplayFinalSmashedSprite()
+    {
+        droppedMaterialSprite.gameObject.SetActive(false);
+        smashedMaterialSprite.gameObject.SetActive(true);
+        smashedMaterialSprite.color = materialData.Color;
     }
 }
