@@ -10,6 +10,6 @@ public struct PlayerEvent
     // UI Input Events
     public Action OnAnyUIClosed;
     public Action OnCustomerRoomOpened;
-    public Action OnAlchemyRoomOpnened;
+    public Action OnAlchemyRoomOpened;
     public Action<MaterialData> OnMaterialCrafted;
 }

@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class SmashedMaterialMovement : MonoBehaviour
 {
-    [Header("Drag Settings")]
-    [SerializeField] private float fixedXPosition = 0f; // Fixed X position to lock horizontal movement
-
-    [SerializeField] private MortarHandler mortarHandler;
-
     private Vector3 offset;
     private bool isDragging = false;
     private float zDistanceToCamera;
-    private bool directionChanged = false;
-    private bool movedDown = false;
     private Rigidbody2D myRigidbody2D;
     private MaterialData materialData;
     private SpriteRenderer spriteRenderer;

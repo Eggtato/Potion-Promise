@@ -2995,7 +2995,7 @@ MonoBehaviour:
   fadeTransitionTime: 0.3
   materialDatabaseSO: {fileID: 11400000, guid: 716c6783d4d291d42ac8679f938fa452, type: 2}
   inventorySlotTemplate: {fileID: 1041570106}
-  parent: {fileID: 13490340}
+  inventoryParent: {fileID: 13490340}
   craftedMaterialImages:
   - {fileID: 49562729}
   - {fileID: 904120391}
@@ -8466,7 +8466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &617533081
 Transform:
   m_ObjectHideFlags: 0
@@ -12765,7 +12765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
-  lastYDroppedSpritePosition: 2.3
+  raisedSpriteYPosition: 2.3
   droppedMaterialSprite: {fileID: 722187101}
 --- !u!61 &924836923
 BoxCollider2D:

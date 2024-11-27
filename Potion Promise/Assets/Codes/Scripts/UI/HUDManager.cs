@@ -43,6 +43,6 @@ public class HUDManager : Singleton<HUDManager>
         rightButton.gameObject.SetActive(false);
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
-        playerEventSO.Event.OnAlchemyRoomOpnened?.Invoke();
+        playerEventSO.Event.OnAlchemyRoomOpened?.Invoke();
     }
 }

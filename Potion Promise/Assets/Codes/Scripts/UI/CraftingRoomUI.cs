@@ -10,70 +10,110 @@ public class CraftingRoomUI : BaseUI
 
     [Header("UI References")]
     [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
-    [SerializeField] private Transform parent;
+    [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();
 
-    private int currentCraftedMaterialCount = 0;
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
 
     private void Start()
     {
-        inventorySlotTemplate.gameObject.SetActive(false);
+        // Ensure the inventory slot template is inactive by default
+        if (inventorySlotTemplate != null)
+            inventorySlotTemplate.gameObject.SetActive(false);
 
-        InitializeInventorySlots(GameDataManager.Instance.ObtainedMaterialDataList);
+        // Initialize inventory slots based on the obtained materials
+        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
+        InitializeInventorySlots(obtainedMaterials);
 
-        foreach (var item in craftedMaterialImages)
+        // Hide crafted material images initially
+        foreach (var craftedImage in craftedMaterialImages)
         {
-            item.gameObject.SetActive(false);
+            craftedImage.gameObject.SetActive(false);
         }
     }
 
+    /// <summary>
+    /// Initializes the inventory slots based on the obtained materials.
+    /// </summary>
+    /// <param name="obtainedMaterialDataList">List of obtained materials.</param>
     private void InitializeInventorySlots(List<ObtainedMaterialData> obtainedMaterialDataList)
     {
-        foreach (Transform child in parent)
+        // Clear existing slots except the template
+        foreach (Transform child in inventoryParent)
         {
-            if (child.GetComponent<InventoryMaterialSlotUI>() == inventorySlotTemplate) continue;
+            if (child.gameObject == inventorySlotTemplate.gameObject) continue;
             Destroy(child.gameObject);
         }
 
-        foreach (var item in obtainedMaterialDataList)
+        // Create a slot for each obtained material
+        foreach (var obtainedMaterial in obtainedMaterialDataList)
         {
-            MaterialData materialData = materialDatabaseSO.MaterialDataList.First(i => i.MaterialType == item.MaterialType);
-            var slotUI = Instantiate(inventorySlotTemplate, parent);
+            var materialData = materialDatabaseSO.MaterialDataList
+                .FirstOrDefault(m => m.MaterialType == obtainedMaterial.MaterialType);
+
+            if (materialData == null)
+            {
+                Debug.LogWarning($"MaterialData not found for type: {obtainedMaterial.MaterialType}");
+                continue;
+            }
+
+            var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
             slotUI.gameObject.SetActive(true);
-            slotUI.Initialize(item, materialData);
+            slotUI.Initialize(obtainedMaterial, materialData);
         }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        playerEventSO.Event.OnAlchemyRoomOpnened += HandleAlchemyRoomOpened;
-        playerEventSO.Event.OnMaterialCrafted += HandleMaterialCrafted;
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialCrafted += HandleMaterialCrafted;
+        }
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        playerEventSO.Event.OnAlchemyRoomOpnened -= HandleAlchemyRoomOpened;
-        playerEventSO.Event.OnMaterialCrafted -= HandleMaterialCrafted;
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialCrafted -= HandleMaterialCrafted;
+        }
     }
 
+    /// <summary>
+    /// Handles the event when the Alchemy Room is opened.
+    /// </summary>
     private void HandleAlchemyRoomOpened()
     {
         Show();
     }
 
+    /// <summary>
+    /// Handles the event when a material is crafted.
+    /// </summary>
+    /// <param name="materialData">Data of the crafted material.</param>
     private void HandleMaterialCrafted(MaterialData materialData)
     {
-        currentCraftedMaterialCount++;
+        if (materialData == null)
+        {
+            Debug.LogWarning("Crafted material data is null.");
+            return;
+        }
+
+        if (craftedMaterialDataList.Count >= craftedMaterialImages.Count)
+        {
+            Debug.LogWarning("Crafted material limit reached. Cannot add more.");
+            return;
+        }
 
         craftedMaterialDataList.Add(materialData);
 
-        for (int i = 0; i < craftedMaterialDataList.Count; i++)
-        {
-            craftedMaterialImages[i].gameObject.SetActive(true);
-            craftedMaterialImages[i].sprite = craftedMaterialDataList[i].Sprite;
-        }
+        // Update crafted material images
+        var craftedImage = craftedMaterialImages[craftedMaterialDataList.Count - 1];
+        craftedImage.gameObject.SetActive(true);
+        craftedImage.sprite = materialData.Sprite;
     }
 }
