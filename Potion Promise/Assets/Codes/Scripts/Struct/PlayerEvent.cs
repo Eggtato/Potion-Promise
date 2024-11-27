@@ -11,4 +11,5 @@ public struct PlayerEvent
     public Action OnAnyUIClosed;
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpnened;
+    public Action<MaterialData> OnMaterialCrafted;
 }

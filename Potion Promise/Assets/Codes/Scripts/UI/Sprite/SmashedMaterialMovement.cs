@@ -14,12 +14,14 @@ public class SmashedMaterialMovement : MonoBehaviour
     private bool movedDown = false;
     private Rigidbody2D myRigidbody2D;
     private MaterialData materialData;
+    private SpriteRenderer spriteRenderer;
 
     public MaterialData MaterialData => materialData;
 
     private void Awake()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -39,6 +41,7 @@ public class SmashedMaterialMovement : MonoBehaviour
     public void Initialize(MaterialData materialData)
     {
         this.materialData = materialData;
+        spriteRenderer.color = materialData.Color;
     }
 
     private void OnMouseDown()

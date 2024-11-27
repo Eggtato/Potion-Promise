@@ -25,8 +25,17 @@ public class MortarHandler : MonoBehaviour
         droppedMaterialSprite.color = materialData.Color;
     }
 
+    private void ResetMortar()
+    {
+        materialData = null;
+        currentSmashedCount = 0;
+        smashedMaterialSprite.gameObject.SetActive(false);
+    }
+
     public void SmashMaterial()
     {
+        if (materialData == null) return;
+
         if (materialData != null && currentSmashedCount < materialData.SmashedTimes - 1)
         {
             currentSmashedCount++;
@@ -34,8 +43,16 @@ public class MortarHandler : MonoBehaviour
         }
         else
         {
-            smashedMaterialSprite.GetComponent<SmashedMaterialMovement>().Initialize(materialData);
+            GameObject spawnedGameObject = Instantiate(smashedMaterialSprite.gameObject, smashedMaterialSprite.transform.position, Quaternion.identity, transform);
+            spawnedGameObject.gameObject.SetActive(true);
+
+            SmashedMaterialMovement smashedMaterialMovement = spawnedGameObject.GetComponent<SmashedMaterialMovement>();
+            smashedMaterialMovement.Initialize(materialData);
+
             DisplayFinalSmashedSprite();
+
+            ResetMortar();
+
         }
     }
 
