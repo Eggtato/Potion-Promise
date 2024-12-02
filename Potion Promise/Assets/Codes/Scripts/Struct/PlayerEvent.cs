@@ -12,6 +12,9 @@ public struct PlayerEvent
     public Action OnAnyUIClosed;
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;
+    public Action OnMaterialSmashed;
+    public Action OnMaterialStirred;
+    public Action OnMaterialGetInCauldron;
     public Action<MaterialData> OnMaterialCrafted;
     public Action<Vector3> OnSmashedMaterialDragging;
     public Action<List<MaterialType>> OnCraftPotionButtonClicked;

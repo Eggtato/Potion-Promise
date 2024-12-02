@@ -3,12 +3,15 @@ using DG.Tweening;
 
 public class CauldronHandler : MonoBehaviour
 {
-    [Header("Configuration")]
+    [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO; // Reference to player events
-    [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
 
-    [Header("References")]
+    [Header("Scene References")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite; // Sprite representing the dropped material
+
+
+    [Header("Configs")]
+    [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
 
     private MaterialData materialData; // Current material in the cauldron
     private int currentSmashedCount; // Number of times the material has been stirred
@@ -25,6 +28,17 @@ public class CauldronHandler : MonoBehaviour
 
         initialSpritePosition = droppedMaterialSprite.transform.localPosition;
         ResetCauldron();
+    }
+
+    private void OnEnable()
+    {
+        playerEventSO.Event.OnMaterialStirred += StirMaterial;
+    }
+
+    private void OnDisable()
+    {
+        playerEventSO.Event.OnMaterialStirred -= StirMaterial;
+
     }
 
     /// <summary>
@@ -110,6 +124,7 @@ public class CauldronHandler : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out SmashedMaterialMovement materialMovement))
         {
+            playerEventSO.Event.OnMaterialGetInCauldron?.Invoke();
             SetDroppedMaterial(materialMovement.MaterialData);
             Destroy(collision.gameObject);
         }

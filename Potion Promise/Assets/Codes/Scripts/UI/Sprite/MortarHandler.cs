@@ -3,16 +3,17 @@ using DG.Tweening;
 
 public class MortarHandler : MonoBehaviour
 {
-    [Header("Asset References")]
+    [Header("Project Reference")]
     [SerializeField] private GameAssetSO gameAssetSO;
     [SerializeField] private PlayerEventSO playerEventSO;
 
-    [Header("Configs")]
-    [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
 
-    [Header("UI Components")]
+    [Header("Scene Reference")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
     [SerializeField] private SpriteRenderer smashedMaterialSprite;
+
+    [Header("Configs")]
+    [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
 
     private MaterialData materialData;
     private int currentSmashedCount;
@@ -24,6 +25,17 @@ public class MortarHandler : MonoBehaviour
     {
         initialSpritePosition = droppedMaterialSprite.transform.localPosition;
         ResetMortarUI();
+    }
+
+    private void OnEnable()
+    {
+        playerEventSO.Event.OnMaterialSmashed += SmashMaterial;
+    }
+
+    private void OnDisable()
+    {
+        playerEventSO.Event.OnMaterialSmashed -= SmashMaterial;
+
     }
 
     /// <summary>

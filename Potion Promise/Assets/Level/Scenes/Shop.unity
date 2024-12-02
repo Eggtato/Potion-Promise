@@ -1403,7 +1403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &62519334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4788,7 +4788,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: cb8e5db78631f4a219ee8c4faf864ad7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4858,10 +4858,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c839326f8a696244a0126e2ac30b882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   minYPosition: 0.2
   maxYPosition: 2.5
   fixedXPosition: 0
-  mortarHandler: {fileID: 1686173877}
+  fadeOffset: 0.4
+  fadeDuration: 0.3
 --- !u!50 &317130270
 Rigidbody2D:
   serializedVersion: 5
@@ -7076,9 +7078,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 81530538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 227.5, y: -37.5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516593389
@@ -12838,8 +12840,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
-  raisedSpriteYPosition: 2.3
   droppedMaterialSprite: {fileID: 722187101}
+  raisedSpriteYPosition: 2.3
 --- !u!61 &924836923
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27713,7 +27715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1264868736
 Transform:
   m_ObjectHideFlags: 0
@@ -27723,7 +27725,7 @@ Transform:
   m_GameObject: {fileID: 1264868735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 1.08, z: 0}
+  m_LocalPosition: {x: -0.03, y: 1.08, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27772,7 +27774,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5a71700970b669e448d5ef6ffd515979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -32836,9 +32838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameAssetSO: {fileID: 11400000, guid: ec9fe56c0c645b7469ee47bcdba3ca6b, type: 2}
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
-  raisedSpriteYPosition: 1.4
   droppedMaterialSprite: {fileID: 617533083}
   smashedMaterialSprite: {fileID: 1264868737}
+  raisedSpriteYPosition: 1.4
 --- !u!61 &1686173878
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34914,9 +34916,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 81530538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.5, y: -37.5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860668010
@@ -35279,9 +35281,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 81530538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.5, y: -37.5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910359893
@@ -35895,7 +35897,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: d0b77b831a3724df2aee2fdf0591cc57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -35965,6 +35967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836675c23e5e02044a89ada565e7ad91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   sensitivity: 0.1
   minZRotation: -15.6
   maxZRotation: 15.6

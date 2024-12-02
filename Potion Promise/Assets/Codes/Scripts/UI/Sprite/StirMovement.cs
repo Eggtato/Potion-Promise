@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class StirMovement : MonoBehaviour
 {
+    [Header("Project Reference")]
+    [SerializeField] private PlayerEventSO playerEventSO;
+
     [Header("Rotation Settings")]
     [SerializeField] private float sensitivity = 0.1f; // Sensitivity for rotation based on mouse movement
     [SerializeField] private float minZRotation = -15.6f; // Minimum allowed Z rotation
@@ -68,7 +71,7 @@ public class StirMovement : MonoBehaviour
 
             if (wentLeft)
             {
-                caulronHandler.StirMaterial();
+                playerEventSO.Event.OnMaterialStirred?.Invoke();
                 wentLeft = false;
             }
         }

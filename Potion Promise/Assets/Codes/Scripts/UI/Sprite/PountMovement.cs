@@ -4,12 +4,15 @@ using DG.Tweening;
 
 public class PountMovement : MonoBehaviour
 {
+    [Header("Project References")]
+    [SerializeField] private PlayerEventSO playerEventSO;
+
     [Header("Drag Settings")]
     [SerializeField] private float minYPosition = 0f; // Minimum Y boundary
     [SerializeField] private float maxYPosition = 2f; // Maximum Y boundary
     [SerializeField] private float fixedXPosition = 0f; // Fixed X position to lock horizontal movement
-
-    [SerializeField] private MortarHandler mortarHandler;
+    [SerializeField] private float fadeOffset = 0.4f; // Offset for fading calculations
+    [SerializeField] private float fadeDuration = 0.3f; // Duration for fade effects
 
     private Vector3 offset;
     private bool isDragging = false;
@@ -17,25 +20,24 @@ public class PountMovement : MonoBehaviour
     private bool directionChanged = false;
     private bool movedDown = false;
     private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider2D;
 
     private void Start()
     {
-        // Cache the initial Z distance from the camera
+        // Cache the Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable()
     {
-        mortarHandler.PlayerEventSO.Event.OnSmashedMaterialDragging += HandleSmashedMaterialDragging;
+        playerEventSO.Event.OnSmashedMaterialDragging += HandleSmashedMaterialDragging;
+        playerEventSO.Event.OnMaterialGetInCauldron += ResetColor;
     }
 
     private void OnDisable()
     {
-        mortarHandler.PlayerEventSO.Event.OnSmashedMaterialDragging -= HandleSmashedMaterialDragging;
-
+        playerEventSO.Event.OnSmashedMaterialDragging -= HandleSmashedMaterialDragging;
+        playerEventSO.Event.OnMaterialGetInCauldron -= ResetColor;
     }
 
     private void Update()
@@ -58,8 +60,14 @@ public class PountMovement : MonoBehaviour
 
     private void HandleSmashedMaterialDragging(Vector3 smashedMaterialPosition)
     {
-        float distanceBetween = Vector3.Distance(transform.position, smashedMaterialPosition) / 5;
-        spriteRenderer.DOFade(distanceBetween - 0.3f, 0);
+        float distanceFactor = Vector3.Distance(transform.position, smashedMaterialPosition) / 5f; // Divisor could be adjusted via a constant or serialized field
+        float targetAlpha = Mathf.Clamp01(distanceFactor - fadeOffset);
+        spriteRenderer.DOFade(targetAlpha, 0); // Instant fade
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.DOFade(1f, fadeDuration);
     }
 
     /// <summary>
@@ -92,25 +100,25 @@ public class PountMovement : MonoBehaviour
         desiredPosition.x = fixedXPosition; // Lock X position to the specified value
         desiredPosition.y = Mathf.Clamp(desiredPosition.y, minYPosition, maxYPosition);
 
-        // Smoothly move the object to the desired position
+        // Move the object to the desired position
         transform.position = desiredPosition;
 
         HandlePoundSmashMovement(desiredPosition.y);
     }
 
-    private void HandlePoundSmashMovement(float desiredPosition)
+    private void HandlePoundSmashMovement(float currentYPosition)
     {
-        if (desiredPosition <= minYPosition && !directionChanged)
+        if (currentYPosition <= minYPosition && !directionChanged)
         {
             directionChanged = true;
 
             if (movedDown)
             {
-                mortarHandler.SmashMaterial();
+                playerEventSO.Event.OnMaterialSmashed?.Invoke();
                 movedDown = false;
             }
         }
-        else if (desiredPosition >= maxYPosition && directionChanged)
+        else if (currentYPosition >= maxYPosition && directionChanged)
         {
             directionChanged = false;
             movedDown = true;
@@ -124,7 +132,7 @@ public class PountMovement : MonoBehaviour
     private Vector3 GetWorldMousePosition()
     {
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = zDistanceToCamera;
+        mousePosition.z = zDistanceToCamera; // Maintain the initial Z distance from the camera
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
 }
