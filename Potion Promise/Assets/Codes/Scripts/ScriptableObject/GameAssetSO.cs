@@ -6,4 +6,7 @@ using Sirenix.OdinInspector;
 public class GameAssetSO : ScriptableObject
 {
     [PreviewField(60)] public List<Sprite> SmashedMaterialSprites = new List<Sprite>();
+    [PreviewField(60)] public Sprite ActivePotionStar;
+    [PreviewField(60)] public Sprite InActivePotionStar;
+    [PreviewField(60)] public Sprite FailedCraftedPotion;
 }

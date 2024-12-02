@@ -8,6 +8,7 @@ public class SmashedMaterialMovement : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private MaterialData materialData;
     private SpriteRenderer spriteRenderer;
+    private PlayerEventSO playerEventSO;
 
     public MaterialData MaterialData => materialData;
 
@@ -15,6 +16,7 @@ public class SmashedMaterialMovement : MonoBehaviour
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerEventSO = GetComponentInParent<MortarHandler>().PlayerEventSO;
     }
 
     private void Start()
@@ -25,6 +27,8 @@ public class SmashedMaterialMovement : MonoBehaviour
 
     private void Update()
     {
+        playerEventSO.Event.OnSmashedMaterialDragging?.Invoke(transform.position);
+
         if (isDragging)
         {
             DragObject();

@@ -12,8 +12,14 @@ public class CraftingRoomUI : BaseUI
     [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
     [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();
+    [SerializeField] private Button craftButton;
 
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
+
+    private void Awake()
+    {
+        craftButton.onClick.AddListener(HandleCraftButtonClick);
+    }
 
     private void Start()
     {
@@ -80,6 +86,22 @@ public class CraftingRoomUI : BaseUI
         {
             playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
             playerEventSO.Event.OnMaterialCrafted -= HandleMaterialCrafted;
+        }
+    }
+
+    private void HandleCraftButtonClick()
+    {
+        List<MaterialType> materialTypeList = new List<MaterialType>();
+        foreach (var item in craftedMaterialDataList)
+        {
+            materialTypeList.Add(item.MaterialType);
+        }
+        playerEventSO.Event.OnCraftPotionButtonClicked?.Invoke(materialTypeList);
+
+        craftedMaterialDataList.Clear();
+        foreach (var item in craftedMaterialImages)
+        {
+            item.gameObject.SetActive(false);
         }
     }
 

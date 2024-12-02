@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public struct PlayerEvent
@@ -12,4 +13,6 @@ public struct PlayerEvent
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;
     public Action<MaterialData> OnMaterialCrafted;
+    public Action<Vector3> OnSmashedMaterialDragging;
+    public Action<List<MaterialType>> OnCraftPotionButtonClicked;
 }

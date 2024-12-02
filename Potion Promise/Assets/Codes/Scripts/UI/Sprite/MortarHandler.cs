@@ -1,9 +1,14 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class MortarHandler : MonoBehaviour
 {
     [Header("Asset References")]
     [SerializeField] private GameAssetSO gameAssetSO;
+    [SerializeField] private PlayerEventSO playerEventSO;
+
+    [Header("Configs")]
+    [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
 
     [Header("UI Components")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
@@ -11,9 +16,13 @@ public class MortarHandler : MonoBehaviour
 
     private MaterialData materialData;
     private int currentSmashedCount;
+    private Vector3 initialSpritePosition; // Initial position of the sprite
+
+    public PlayerEventSO PlayerEventSO => playerEventSO;
 
     private void Start()
     {
+        initialSpritePosition = droppedMaterialSprite.transform.localPosition;
         ResetMortarUI();
     }
 
@@ -37,6 +46,17 @@ public class MortarHandler : MonoBehaviour
 
         droppedMaterialSprite.color = materialData.Color;
         UpdateSmashedSprite();
+        RaiseDroppedMaterialSprite();
+    }
+
+    private void RaiseDroppedMaterialSprite()
+    {
+        droppedMaterialSprite.transform.DOLocalMoveY(raisedSpriteYPosition, 0.5f);
+    }
+
+    private void LowerDroppedMaterialSprite()
+    {
+        droppedMaterialSprite.transform.DOLocalMoveY(initialSpritePosition.y, 0.5f);
     }
 
     /// <summary>
@@ -57,8 +77,8 @@ public class MortarHandler : MonoBehaviour
         else
         {
             SpawnSmashedMaterial();
-            DisplayFinalSmashedSprite();
             ResetMortar();
+            LowerDroppedMaterialSprite();
         }
     }
 
@@ -78,16 +98,6 @@ public class MortarHandler : MonoBehaviour
 
         int spriteIndex = Mathf.Clamp(currentSmashedCount / rangePerSprite, 0, totalSprites - 1);
         droppedMaterialSprite.sprite = gameAssetSO.SmashedMaterialSprites[spriteIndex];
-    }
-
-    /// <summary>
-    /// Displays the final smashed material sprite and updates the UI.
-    /// </summary>
-    private void DisplayFinalSmashedSprite()
-    {
-        droppedMaterialSprite.gameObject.SetActive(false);
-        smashedMaterialSprite.gameObject.SetActive(true);
-        smashedMaterialSprite.color = materialData.Color;
     }
 
     /// <summary>

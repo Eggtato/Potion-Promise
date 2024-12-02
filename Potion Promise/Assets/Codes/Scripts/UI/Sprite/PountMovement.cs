@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class PountMovement : MonoBehaviour
 {
@@ -15,11 +16,26 @@ public class PountMovement : MonoBehaviour
     private float zDistanceToCamera;
     private bool directionChanged = false;
     private bool movedDown = false;
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider2D;
 
     private void Start()
     {
         // Cache the initial Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
+
+    private void OnEnable()
+    {
+        mortarHandler.PlayerEventSO.Event.OnSmashedMaterialDragging += HandleSmashedMaterialDragging;
+    }
+
+    private void OnDisable()
+    {
+        mortarHandler.PlayerEventSO.Event.OnSmashedMaterialDragging -= HandleSmashedMaterialDragging;
+
     }
 
     private void Update()
@@ -38,6 +54,12 @@ public class PountMovement : MonoBehaviour
     private void OnMouseUp()
     {
         StopDragging();
+    }
+
+    private void HandleSmashedMaterialDragging(Vector3 smashedMaterialPosition)
+    {
+        float distanceBetween = Vector3.Distance(transform.position, smashedMaterialPosition) / 5;
+        spriteRenderer.DOFade(distanceBetween - 0.3f, 0);
     }
 
     /// <summary>

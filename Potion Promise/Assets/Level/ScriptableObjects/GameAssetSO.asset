@@ -16,3 +16,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1ce1c6d3fada0d5469c3fddab1e2d045, type: 3}
   - {fileID: 21300000, guid: fa6f7bcc5a8258d4aa054aff504f711e, type: 3}
   - {fileID: 21300000, guid: 741733294e78aad4b871d765bce56199, type: 3}
+  ActivePotionStar: {fileID: 21300000, guid: ddf11f690c26e4f4fba1b49da14cc951, type: 3}
+  InActivePotionStar: {fileID: 21300000, guid: 09519757b71b34ea59118e9076ef7d2f, type: 3}
+  FailedCraftedPotion: {fileID: 21300000, guid: 53da710b2c6544bbc97a50cdbde74433, type: 3}
