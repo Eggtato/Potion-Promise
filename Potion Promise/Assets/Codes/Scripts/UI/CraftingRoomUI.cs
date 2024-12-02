@@ -29,7 +29,8 @@ public class CraftingRoomUI : BaseUI
 
         // Initialize inventory slots based on the obtained materials
         var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
-        InitializeInventorySlots(obtainedMaterials);
+
+        GenerateInventory(obtainedMaterials);
 
         // Hide crafted material images initially
         foreach (var craftedImage in craftedMaterialImages)
@@ -42,7 +43,7 @@ public class CraftingRoomUI : BaseUI
     /// Initializes the inventory slots based on the obtained materials.
     /// </summary>
     /// <param name="obtainedMaterialDataList">List of obtained materials.</param>
-    private void InitializeInventorySlots(List<ObtainedMaterialData> obtainedMaterialDataList)
+    private void GenerateInventory(List<ObtainedMaterialData> obtainedMaterialDataList)
     {
         // Clear existing slots except the template
         foreach (Transform child in inventoryParent)

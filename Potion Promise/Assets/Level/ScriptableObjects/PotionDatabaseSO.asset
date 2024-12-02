@@ -16,7 +16,7 @@ MonoBehaviour:
   - Sprite: {fileID: 21300000, guid: e7bf9ca911096415287f569290bb4ac5, type: 3}
     Name: Healing Potion
     PotionType: 0
-    Rarity: 0
+    Rarity: 2
     MaterialRecipes: 0000000003000000
     Price: 25
     Description: This essential potion swiftly heals wounds, providing quick relief

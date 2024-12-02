@@ -9,6 +9,7 @@ public class HUDManager : Singleton<HUDManager>
     [Header("Buttons")]
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
+    [SerializeField] private Button recipeBook;
 
     public new void Awake()
     {
@@ -16,6 +17,7 @@ public class HUDManager : Singleton<HUDManager>
 
         leftButton.onClick.AddListener(HandleCustomerRoomOpened);
         rightButton.onClick.AddListener(HandleAlchemyRoomOpened);
+        recipeBook.onClick.AddListener(HandleRecipeBookOpened);
     }
 
     private void Start()
@@ -44,5 +46,10 @@ public class HUDManager : Singleton<HUDManager>
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
         playerEventSO.Event.OnAlchemyRoomOpened?.Invoke();
+    }
+
+    private void HandleRecipeBookOpened()
+    {
+        playerEventSO.Event.OnRecipeBookOpened?.Invoke();
     }
 }

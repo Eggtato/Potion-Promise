@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 741733294e78aad4b871d765bce56199, type: 3}
   ActivePotionStar: {fileID: 21300000, guid: ddf11f690c26e4f4fba1b49da14cc951, type: 3}
   InActivePotionStar: {fileID: 21300000, guid: 09519757b71b34ea59118e9076ef7d2f, type: 3}
+  PotionCommmonCard: {fileID: 21300000, guid: c0fab158b21384de48f6a748a85a68ca, type: 3}
+  PotionRareCard: {fileID: 21300000, guid: 777c9cb69b5ad468ba19f4fde22830db, type: 3}
+  PotionEpicCard: {fileID: 21300000, guid: 777c9cb69b5ad468ba19f4fde22830db, type: 3}
   FailedCraftedPotion: {fileID: 21300000, guid: 53da710b2c6544bbc97a50cdbde74433, type: 3}
