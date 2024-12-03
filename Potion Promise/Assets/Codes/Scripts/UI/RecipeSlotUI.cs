@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class RecipeSlotUI : MonoBehaviour
 {
+    public static event Action<RecipeSlotUI> OnSlotSelected;
+
     [SerializeField] private Image slotCardImage;
     [SerializeField] private Image potionImage;
     [SerializeField] private TMP_Text potionName;
@@ -12,9 +15,32 @@ public class RecipeSlotUI : MonoBehaviour
     [SerializeField] private HorizontalLayoutGroup starLayoutGroup;
     [SerializeField] private float layoutSpacingAmountForTwoStars = -70;
 
-    public void Initialize(PotionData potionData, Sprite activePotionStar, Sprite slotCardSprite)
+    private Button cardSlotButton;
+    private Sprite unselectedSlotCardSprite;
+    private Sprite selectedSlotCardSprite;
+
+    private void Awake()
     {
-        slotCardImage.sprite = slotCardSprite;
+        cardSlotButton = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
+        OnSlotSelected += UnSelect;
+    }
+
+    public void Initialize(PotionData potionData, Sprite activePotionStar, Sprite unselectedSlotCardSprite, Sprite selectedSlotCardSprite, Action<PotionData> onButtonClicked)
+    {
+        cardSlotButton.onClick.AddListener(() =>
+        {
+            onButtonClicked(potionData);
+            Select();
+        });
+
+        this.unselectedSlotCardSprite = unselectedSlotCardSprite;
+        this.selectedSlotCardSprite = selectedSlotCardSprite;
+
+        slotCardImage.sprite = unselectedSlotCardSprite;
         potionImage.sprite = potionData.Sprite;
         potionName.text = potionData.Name;
 
@@ -34,5 +60,18 @@ public class RecipeSlotUI : MonoBehaviour
         {
             starLayoutGroup.spacing = layoutSpacingAmountForTwoStars;
         }
+    }
+
+    private void Select()
+    {
+        slotCardImage.sprite = selectedSlotCardSprite;
+        OnSlotSelected?.Invoke(this);
+    }
+
+    private void UnSelect(RecipeSlotUI recipeSlotUI)
+    {
+        if (recipeSlotUI == this) return;
+
+        slotCardImage.sprite = unselectedSlotCardSprite;
     }
 }
