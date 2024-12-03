@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RecipeBookPotionInventoryUI : MonoBehaviour
+public class RecipeBookMaterialInventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform inventoryContent;
     [SerializeField] private RecipeSlotUI recipeSlotUI;
@@ -12,7 +12,7 @@ public class RecipeBookPotionInventoryUI : MonoBehaviour
             recipeSlotUI.gameObject.SetActive(false);
     }
 
-    public void GenerateInventorySlot(PotionDatabaseSO potionDatabaseSO, GameAssetSO gameAssetSO, PlayerEventSO playerEventSO)
+    public void GenerateInventorySlot(MaterialDatabaseSO materialDatabaseSO, GameAssetSO gameAssetSO, PlayerEventSO playerEventSO)
     {
         // Clear existing slots except the template
         foreach (Transform child in inventoryContent)
@@ -21,7 +21,7 @@ public class RecipeBookPotionInventoryUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var item in potionDatabaseSO.PotionDataList)
+        foreach (var item in materialDatabaseSO.MaterialDataList)
         {
             RecipeSlotUI slot = Instantiate(recipeSlotUI, inventoryContent);
             slot.gameObject.SetActive(true);
@@ -31,28 +31,28 @@ public class RecipeBookPotionInventoryUI : MonoBehaviour
                 case 0:
                     slot.Initialize(
                         item,
-                        gameAssetSO.ActivePotionStar,
-                        gameAssetSO.PotionCommmonCard,
-                        gameAssetSO.SelectedPotionCommmonCard,
-                        playerEventSO.Event.OnPotionSlotClicked
+                        playerEventSO,
+                        gameAssetSO.ActiveStar,
+                        gameAssetSO.MaterialCommmonCard,
+                        gameAssetSO.SelectedMaterialCommmonCard
                     );
                     break;
                 case 1:
                     slot.Initialize(
                         item,
-                        gameAssetSO.ActivePotionStar,
-                        gameAssetSO.PotionRareCard,
-                        gameAssetSO.SelectedPotionRareCard,
-                        playerEventSO.Event.OnPotionSlotClicked
+                        playerEventSO,
+                        gameAssetSO.ActiveStar,
+                        gameAssetSO.MaterialRareCard,
+                        gameAssetSO.SelectedMaterialRareCard
                     );
                     break;
                 case 2:
                     slot.Initialize(
                         item,
-                        gameAssetSO.ActivePotionStar,
-                        gameAssetSO.PotionEpicCard,
-                        gameAssetSO.SelectedPotionEpicCard,
-                        playerEventSO.Event.OnPotionSlotClicked
+                        playerEventSO,
+                        gameAssetSO.ActiveStar,
+                        gameAssetSO.MaterialEpicCard,
+                        gameAssetSO.SelectedMaterialEpicCard
                     );
                     break;
             }

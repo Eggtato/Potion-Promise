@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c3d15befaac20499e76a8792657312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 4866944105901849805}
+  inventoryMaterialImageUI: {fileID: 0}
   quantityText: {fileID: 2482301644250288174}
 --- !u!1 &4788656844150318594
 GameObject:
@@ -362,12 +362,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0c713417db3c4abf96bb9df0167b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedInventoryMaterial:
-    Sprite: {fileID: 0}
-    Name: 
-    MaterialType: 0
-    Rarity: 0
-    Price: 0
-    Description: 
   rootcanvasParent: {fileID: 0}
-  quantitytxt: {fileID: 2482301644250288174}

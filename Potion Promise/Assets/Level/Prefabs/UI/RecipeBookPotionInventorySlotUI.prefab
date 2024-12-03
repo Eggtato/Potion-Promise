@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 2860263405628720374}
   - component: {fileID: 9002733799533898625}
   m_Layer: 5
-  m_Name: star
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 7209956909935312581}
   - component: {fileID: 6866731489828009953}
   m_Layer: 5
-  m_Name: star
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 793705259815467224}
   - component: {fileID: 4009459792813705239}
   m_Layer: 5
-  m_Name: star
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 2300994001783021075}
   - component: {fileID: 8601854678475766264}
   m_Layer: 5
-  m_Name: RecipeSlotUI
+  m_Name: RecipeBookPotionInventorySlotUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,9 +716,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotCardImage: {fileID: 8217961976275536424}
-  potionImage: {fileID: 2824829325288989051}
-  potionName: {fileID: 8300058015405744926}
-  potionStarImages:
+  itemIcon: {fileID: 2824829325288989051}
+  itemName: {fileID: 8300058015405744926}
+  itemStarImages:
   - {fileID: 4009459792813705239}
   - {fileID: 6866731489828009953}
   - {fileID: 9002733799533898625}

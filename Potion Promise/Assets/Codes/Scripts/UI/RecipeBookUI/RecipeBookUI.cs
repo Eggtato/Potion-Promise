@@ -16,7 +16,6 @@ public class RecipeBookUI : BaseUI
     [SerializeField] private Button closeButton;
     [SerializeField] private Button potionTabButton;
     [SerializeField] private Button materialTabButton;
-    [SerializeField] private RecipeBookPotionPageUI recipeBookPotionPageUI;
 
     public GameAssetSO GameAssetSO => gameAssetSO;
     public PlayerEventSO PlayerEventSO => playerEventSO;
@@ -28,19 +27,22 @@ public class RecipeBookUI : BaseUI
 
         potionTabButton.onClick.AddListener(() =>
         {
+            playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
         });
 
         materialTabButton.onClick.AddListener(() =>
         {
+            playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnMaterialTabButtonClicked?.Invoke();
         });
 
-        recipeBookPotionPageUI.Initialize(potionDatabaseSO, materialDatabaseSO, gameAssetSO);
+        playerEventSO.Event.OnRecipeBookPageInitialized.Invoke(potionDatabaseSO, materialDatabaseSO, gameAssetSO);
     }
 
     private void Start()
     {
+        playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
         InstantHide();
     }
 
@@ -66,6 +68,7 @@ public class RecipeBookUI : BaseUI
     {
         playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
         pageTitleText.text = "POTIONS";
+        potionTabButton.animator.Play("Pressed");
     }
 
     private void HandleOnClose()

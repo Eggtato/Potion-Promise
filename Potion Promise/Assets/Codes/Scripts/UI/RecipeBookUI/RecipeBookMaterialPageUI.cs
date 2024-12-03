@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class RecipeBookPotionPageUI : BaseUI
+public class RecipeBookMaterialPageUI : BaseUI
 {
-    [SerializeField] private RecipeBookPotionInventoryUI potionInventoryUI;
-    [SerializeField] private RecipeBookPotionDetailUI potionDetailUI;
+    [SerializeField] private RecipeBookMaterialInventoryUI materialInventoryUI;
 
     private PotionDatabaseSO potionDatabaseSO;
     private MaterialDatabaseSO materialDatabaseSO;
@@ -11,12 +10,15 @@ public class RecipeBookPotionPageUI : BaseUI
 
     public PlayerEventSO PlayerEventSO => playerEventSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
+    public PotionDatabaseSO PotionDatabaseSO => potionDatabaseSO;
 
     protected override void OnEnable()
     {
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnPotionPageTabButtonClicked += ShowPage;
+            playerEventSO.Event.OnRecipeBookPageInitialized += Initialize;
+            playerEventSO.Event.OnMaterialTabButtonClicked += ShowPage;
+            playerEventSO.Event.OnAnyPageUIClosed += InstantHide;
         }
     }
 
@@ -24,7 +26,9 @@ public class RecipeBookPotionPageUI : BaseUI
     {
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnPotionPageTabButtonClicked -= ShowPage;
+            playerEventSO.Event.OnRecipeBookPageInitialized -= Initialize;
+            playerEventSO.Event.OnMaterialTabButtonClicked -= ShowPage;
+            playerEventSO.Event.OnAnyPageUIClosed -= InstantHide;
         }
     }
 
@@ -33,11 +37,12 @@ public class RecipeBookPotionPageUI : BaseUI
         this.potionDatabaseSO = potionDatabaseSO;
         this.materialDatabaseSO = materialDatabaseSO;
         this.gameAssetSO = gameAssetSO;
+
     }
 
     private void ShowPage()
     {
         Show();
-        potionInventoryUI.GenerateInventorySlot(potionDatabaseSO, gameAssetSO, playerEventSO);
+        materialInventoryUI.GenerateInventorySlot(materialDatabaseSO, gameAssetSO, playerEventSO);
     }
 }

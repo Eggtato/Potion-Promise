@@ -17,9 +17,12 @@ public struct PlayerEvent
     public Action OnMaterialStirred;
     public Action OnMaterialGetInCauldron;
 
+    public Action<PotionDatabaseSO, MaterialDatabaseSO, GameAssetSO> OnRecipeBookPageInitialized;
+    public Action OnAnyPageUIClosed;
     public Action OnPotionPageTabButtonClicked;
     public Action OnMaterialTabButtonClicked;
     public Action<PotionData> OnPotionSlotClicked;
+    public Action<MaterialData> OnMaterialSlotClicked;
 
     public Action<MaterialData> OnMaterialCrafted;
     public Action<Vector3> OnSmashedMaterialDragging;
