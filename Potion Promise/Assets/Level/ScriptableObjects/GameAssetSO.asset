@@ -16,6 +16,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1ce1c6d3fada0d5469c3fddab1e2d045, type: 3}
   - {fileID: 21300000, guid: fa6f7bcc5a8258d4aa054aff504f711e, type: 3}
   - {fileID: 21300000, guid: 741733294e78aad4b871d765bce56199, type: 3}
+  StirredMaterialSprites:
+  - {fileID: 21300000, guid: 02aaee7d089404025876e32cbb2235bb, type: 3}
+  - {fileID: 21300000, guid: 9efba5df9e53541f88248f8f34b347e5, type: 3}
+  - {fileID: 21300000, guid: 5638887efc73341149a9309feaa56237, type: 3}
   ActiveStar: {fileID: 21300000, guid: ddf11f690c26e4f4fba1b49da14cc951, type: 3}
   InActiveStar: {fileID: 21300000, guid: 09519757b71b34ea59118e9076ef7d2f, type: 3}
   PotionCommmonCard: {fileID: 21300000, guid: c0fab158b21384de48f6a748a85a68ca, type: 3}

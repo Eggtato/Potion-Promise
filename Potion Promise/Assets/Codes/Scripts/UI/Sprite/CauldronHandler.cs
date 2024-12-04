@@ -4,6 +4,7 @@ using DG.Tweening;
 public class CauldronHandler : MonoBehaviour
 {
     [Header("Project Reference")]
+    [SerializeField] private GameAssetSO gameAssetSO;
     [SerializeField] private PlayerEventSO playerEventSO; // Reference to player events
 
     [Header("Scene References")]
@@ -71,8 +72,12 @@ public class CauldronHandler : MonoBehaviour
     {
         if (materialData == null) return;
 
-        currentSmashedCount++;
-        if (currentSmashedCount >= materialData.SmashedTimes)
+        if (currentSmashedCount < materialData.SmashedTimes - 1)
+        {
+            currentSmashedCount++;
+            UpdateSmashedSprite();
+        }
+        else
         {
             CraftMaterial();
             ResetCauldron();
@@ -87,6 +92,24 @@ public class CauldronHandler : MonoBehaviour
     private void UpdateDroppedMaterialSprite(Color color)
     {
         droppedMaterialSprite.color = color;
+    }
+
+    /// <summary>
+    /// Updates the sprite to reflect the current smashed state.
+    /// </summary>
+    private void UpdateSmashedSprite()
+    {
+        if (gameAssetSO.StirredMaterialSprites == null || gameAssetSO.StirredMaterialSprites.Count == 0)
+        {
+            Debug.LogWarning("No smashed material sprites available in GameAssetSO.");
+            return;
+        }
+
+        int totalSprites = gameAssetSO.StirredMaterialSprites.Count;
+        int rangePerSprite = Mathf.CeilToInt((float)materialData.SmashedTimes / totalSprites);
+
+        int spriteIndex = Mathf.Clamp(currentSmashedCount / rangePerSprite, 0, totalSprites - 1);
+        droppedMaterialSprite.sprite = gameAssetSO.StirredMaterialSprites[spriteIndex];
     }
 
     /// <summary>
