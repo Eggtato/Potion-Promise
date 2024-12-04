@@ -24,13 +24,12 @@ public class RecipeBookPotionDetailUI : MonoBehaviour
             Debug.LogError("RecipeBookUI is missing in the parent hierarchy.");
             return;
         }
+        playerEventSO = recipeBookPotionPageUI.PlayerEventSO;
+        materialDatabaseSO = recipeBookPotionPageUI.MaterialDatabaseSO;
     }
 
     private void Start()
     {
-        playerEventSO = recipeBookPotionPageUI.PlayerEventSO;
-        materialDatabaseSO = recipeBookPotionPageUI.MaterialDatabaseSO;
-
         BuildMaterialSpriteLookup();
 
         HideAllUI();

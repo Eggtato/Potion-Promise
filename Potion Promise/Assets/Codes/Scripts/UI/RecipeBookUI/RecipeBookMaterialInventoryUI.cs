@@ -3,7 +3,7 @@ using UnityEngine;
 public class RecipeBookMaterialInventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform inventoryContent;
-    [SerializeField] private RecipeSlotUI recipeSlotUI;
+    [SerializeField] private MaterialRecipeSlotUI recipeSlotUI;
 
     private void Start()
     {
@@ -23,39 +23,9 @@ public class RecipeBookMaterialInventoryUI : MonoBehaviour
 
         foreach (var item in materialDatabaseSO.MaterialDataList)
         {
-            RecipeSlotUI slot = Instantiate(recipeSlotUI, inventoryContent);
+            MaterialRecipeSlotUI slot = Instantiate(recipeSlotUI, inventoryContent);
             slot.gameObject.SetActive(true);
-
-            switch ((int)item.Rarity)
-            {
-                case 0:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.MaterialCommmonCard,
-                        gameAssetSO.SelectedMaterialCommmonCard
-                    );
-                    break;
-                case 1:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.MaterialRareCard,
-                        gameAssetSO.SelectedMaterialRareCard
-                    );
-                    break;
-                case 2:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.MaterialEpicCard,
-                        gameAssetSO.SelectedMaterialEpicCard
-                    );
-                    break;
-            }
+            slot.Initialize(item, playerEventSO, gameAssetSO);
         }
     }
 }

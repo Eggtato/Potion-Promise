@@ -3,7 +3,7 @@ using UnityEngine;
 public class RecipeBookPotionInventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform inventoryContent;
-    [SerializeField] private RecipeSlotUI recipeSlotUI;
+    [SerializeField] private PotionRecipeSlotUI recipeSlotUI;
 
     private void Start()
     {
@@ -23,39 +23,9 @@ public class RecipeBookPotionInventoryUI : MonoBehaviour
 
         foreach (var item in potionDatabaseSO.PotionDataList)
         {
-            RecipeSlotUI slot = Instantiate(recipeSlotUI, inventoryContent);
+            PotionRecipeSlotUI slot = Instantiate(recipeSlotUI, inventoryContent);
             slot.gameObject.SetActive(true);
-
-            switch ((int)item.Rarity)
-            {
-                case 0:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.PotionCommmonCard,
-                        gameAssetSO.SelectedPotionCommmonCard
-                    );
-                    break;
-                case 1:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.PotionRareCard,
-                        gameAssetSO.SelectedPotionRareCard
-                    );
-                    break;
-                case 2:
-                    slot.Initialize(
-                        item,
-                        playerEventSO,
-                        gameAssetSO.ActiveStar,
-                        gameAssetSO.PotionEpicCard,
-                        gameAssetSO.SelectedPotionEpicCard
-                    );
-                    break;
-            }
+            slot.Initialize(item, playerEventSO, gameAssetSO);
         }
     }
 }

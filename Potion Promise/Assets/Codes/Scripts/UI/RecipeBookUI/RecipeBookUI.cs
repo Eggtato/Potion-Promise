@@ -42,7 +42,6 @@ public class RecipeBookUI : BaseUI
 
     private void Start()
     {
-        playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
         InstantHide();
     }
 
@@ -66,6 +65,7 @@ public class RecipeBookUI : BaseUI
 
     private void OpenPotionPage()
     {
+        playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
         playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
         pageTitleText.text = "POTIONS";
         potionTabButton.animator.Play("Pressed");
