@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class GameDataManager : PersistentSingleton<GameDataManager>
 {
+    public int CurrentDay;
     public Action OnAllDataLoaded;
+    public Action<int> OnCurrentDayChanged;
     public List<ObtainedMaterialData> ObtainedMaterialDataList;
+
+    private GameData gameData;
 
     public new void Awake()
     {
         base.Awake();
 
-        var gameData = Data.Get<GameData>();
+        gameData = Data.Get<GameData>();
 
+        CurrentDay = gameData.CurrentDay;
         ObtainedMaterialDataList = gameData.ObtainedMaterialDataList;
     }
 
@@ -25,6 +30,15 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     public void ClearAllData()
     {
         PlayerPrefs.DeleteAll();
+        Save();
+    }
+
+    public void IncreaseCurrentDay()
+    {
+        gameData.CurrentDay++;
+        CurrentDay = gameData.CurrentDay;
+        OnCurrentDayChanged?.Invoke(CurrentDay);
+
         Save();
     }
 
