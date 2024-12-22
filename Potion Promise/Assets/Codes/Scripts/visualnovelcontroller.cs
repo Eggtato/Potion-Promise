@@ -113,7 +113,7 @@ public class visualnovelcontroller : MonoBehaviour
             foreach (lineclass line in dc.dialoglist)
             {
 
-                Instantiate(logdialog, logcontainer).GetComponent<logdialogcontroller>().init(dc.name, line.dialog);
+                // Instantiate(logdialog, logcontainer).GetComponent<logdialogcontroller>().init(dc.name, line.dialog);
 
                 if (line.audioClip != null)
                 {

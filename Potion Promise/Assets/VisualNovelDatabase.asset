@@ -195,7 +195,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 30
+        y: 27.714294
         width: 160
         height: 30
     - id: 1
@@ -221,7 +221,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: What . In . Goddess . Name
+        value: What..in..goddess..name..
         type: 0
         typeString: 
       - title: Sequence
@@ -250,7 +250,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 80
+        y: 78.85713
         width: 160
         height: 30
     - id: 2
@@ -504,6 +504,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: 
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -718,8 +722,7 @@ MonoBehaviour:
         typeString: 
       - title: Dialogue Text
         value: I'll take that as a compliment. Anyway, I have come here to give you
-          a hand with your troubles.I'll take that as a compliment. Anyway, I have
-          come here to give you a hand with your troubles.
+          a hand with your troubles.
         type: 0
         typeString: 
       - title: Sequence
