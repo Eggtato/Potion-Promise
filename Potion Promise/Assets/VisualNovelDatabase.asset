@@ -54,9 +54,18 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: fabeaade577b0f747b65acd3914c7de6, type: 3}
     alternatePortraits: []
-    spritePortraits: []
+    spritePortraits:
+    - {fileID: 21300000, guid: 4d0529ef34416294db61c55d96439097, type: 3}
+    - {fileID: 21300000, guid: 12a63d45875651c44a739072aec6fd18, type: 3}
+    - {fileID: 21300000, guid: 9a18ba6e9a69a4a41987e777f96d41ef, type: 3}
+    - {fileID: 21300000, guid: 48353081b0b6a8a4abb8dbf475f69b75, type: 3}
+    - {fileID: 21300000, guid: dbfa3be8140057947a0af98a489e4973, type: 3}
+    - {fileID: 21300000, guid: fd30b611b08af424488b2c4d9059ed88, type: 3}
+    - {fileID: 21300000, guid: 94a26c547499ae347b290ccb49c0952b, type: 3}
+    - {fileID: 21300000, guid: f8c6fb3eead08fc46b575e6da6269d22, type: 3}
+    - {fileID: 21300000, guid: eb6b23cded640654a939866ae52c7c69, type: 3}
   - id: 2
     fields:
     - title: Name
@@ -76,9 +85,11 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 0fde25b3322553d4296da30d835e9158, type: 3}
     alternatePortraits: []
-    spritePortraits: []
+    spritePortraits:
+    - {fileID: 21300000, guid: 7ab3fbfa79c30c94e9080907fd6c99c7, type: 3}
+    - {fileID: 21300000, guid: 0bf31a3d4e42cdc43b7288693d266125, type: 3}
   items: []
   locations: []
   variables:
@@ -221,7 +232,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: What..in..goddess..name..
+        value: 'What..in..goddess..name..[pic=10]'
         type: 0
         typeString: 
       - title: Sequence
@@ -276,8 +287,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'After all this years avoiding. I can''t believe i have to learn to
-          be an alchemist '
+        value: After all this years avoiding. I can't believe i have to learn to
+          be an alchemist.
         type: 0
         typeString: 
       - title: Sequence
@@ -332,7 +343,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: I thought learning how to make a bee raccoon was challenging
+        value: 'I thought learning how to make a bee raccoon was challenging. [pic=9]'
         type: 0
         typeString: 
       - title: Sequence
@@ -361,7 +372,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 180
+        y: 177.7143
         width: 160
         height: 30
     - id: 4
@@ -387,7 +398,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: But this, not even my ancestor could finish all of this
+        value: 'But this, not even my ancestor could finish all of this. [pic=10]'
         type: 0
         typeString: 
       - title: Sequence
@@ -405,7 +416,7 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 4
         destinationConversationID: 1
-        destinationDialogueID: 5
+        destinationDialogueID: 22
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -416,7 +427,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 230
+        y: 228.04877
         width: 160
         height: 30
     - id: 5
@@ -442,7 +453,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Who could that be?
+        value: '?...Who could that be? [pic=2]'
         type: 0
         typeString: 
       - title: Sequence
@@ -460,7 +471,7 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 5
         destinationConversationID: 1
-        destinationDialogueID: 6
+        destinationDialogueID: 23
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -470,8 +481,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160
-        y: 280
+        x: 159.9761
+        y: 344.23825
         width: 160
         height: 30
     - id: 6
@@ -479,11 +490,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 2
         type: 5
@@ -495,19 +506,19 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: So this is the little rascal who continue this shop
+        value: 'So this is the little rascal who continue this shop. [pic=2]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: EventGuid
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -529,8 +540,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 385.1428
-        y: 79.71442
+        x: 378.90906
+        y: 132.70135
         width: 160
         height: 30
     - id: 7
@@ -556,7 +567,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: ... Who are you?
+        value: '... Who are you? [pic=2]'
         type: 0
         typeString: 
       - title: Sequence
@@ -584,8 +595,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 382.8571
-        y: 129.71442
+        x: 376.62335
+        y: 182.70135
         width: 160
         height: 30
     - id: 8
@@ -639,8 +650,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 382.8571
-        y: 179.71442
+        x: 376.62335
+        y: 230.62344
         width: 160
         height: 30
     - id: 9
@@ -666,7 +677,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Great another weirdo acquaintance from my lovely mother then?
+        value: 'Great another weirdo acquaintance from my lovely mother then? [pic=1]'
         type: 0
         typeString: 
       - title: Sequence
@@ -694,8 +705,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 382.8571
-        y: 229.71442
+        x: 376.62335
+        y: 282.70135
         width: 160
         height: 30
     - id: 10
@@ -750,8 +761,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 382.8571
-        y: 279.71442
+        x: 376.62335
+        y: 332.70135
         width: 160
         height: 30
     - id: 11
@@ -833,8 +844,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Are you sure, judging from your face and those piles of books, you
-          seems rather...conflicted
+        value: 'Are you sure, judging from your face and those piles of books, you
+          seems rather...conflicted [pic=3]'
         type: 0
         typeString: 
       - title: Sequence
@@ -889,8 +900,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: If only your trusty friends could not have created this mess in my
-          life
+        value: 'If only your trusty friends could not have created this mess in my
+          life. [pic=5]'
         type: 0
         typeString: 
       - title: Sequence
@@ -945,8 +956,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: That's why I am here! Your father sent me to help you. I'm here help
-          with my Infinite Genius!
+        value: 'That''s why I am here! Your father sent me to help you. I''m here
+          help with my Infinite Genius! [pic=2]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1001,7 +1012,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: ....Fine , I'm all ears.
+        value: '....Fine , I''m all ears. [pic=9]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1056,7 +1067,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Then i think its a time for you to open the store.
+        value: 'Then i think its a time for you to open the store. [pic=3]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1111,7 +1122,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Wait hold on, i haven't collected any ingredients yet!
+        value: 'Wait hold on, i haven''t collected any ingredients yet! [pic=4]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1166,7 +1177,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: The good news is I prepared it all! right over here my child.
+        value: 'The good news is I prepared it all! right over here my child. [pic=2]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1184,7 +1195,7 @@ MonoBehaviour:
       - originConversationID: 1
         originDialogueID: 18
         destinationConversationID: 1
-        destinationDialogueID: 19
+        destinationDialogueID: 24
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -1221,8 +1232,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: This...ingredient...how did you get it fresh when its location is
-          far away?
+        value: 'These ingredients... How are they still so fresh when the place is
+          so far away? [pic=9]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1251,7 +1262,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 801.8043
-        y: 229.71454
+        y: 296.00018
         width: 160
         height: 30
     - id: 20
@@ -1277,7 +1288,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: I'll explain how i got it later, for now, let's open the store!
+        value: 'I''ll explain how i got them later, for now, let''s open the store!
+          [pic=3] '
         type: 0
         typeString: 
       - title: Sequence
@@ -1306,7 +1318,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 801.8043
-        y: 279.71454
+        y: 348.2859
         width: 160
         height: 30
     - id: 21
@@ -1359,12 +1371,188 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 801.8043
-        y: 329.71454
+        y: 398.2859
+        width: 160
+        height: 30
+    - id: 22
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: (Knock knock knock)
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'AudioWait(Door Knock);
+
+          SetActive(SubtitlePanel_0, false);
+
+          SetActive(SubtitlePanel_1,
+          false)'
+        type: 0
+        typeString: 
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 22
+        destinationConversationID: 1
+        destinationDialogueID: 5
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 158.07314
+        y: 284.76672
+        width: 160
+        height: 30
+    - id: 23
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '(Door opened) [pic=2]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'AudioWait(Open Door);
+
+          SetActive(SubtitlePanel_0, false);'
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 23
+        destinationConversationID: 1
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 380.2355
+        y: 77.35559
+        width: 160
+        height: 30
+    - id: 24
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: (The scientist puts down something)
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: AudioWait(Dropping Stuff);
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 24
+        destinationConversationID: 1
+        destinationDialogueID: 19
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 798.6874
+        y: 236.98727
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 123.94001, y: 31.061775}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 123.212006, y: 38.719616}
+    canvasZoom: 0.71000123
   syncInfo:
     syncActors: 0
     syncItems: 0
