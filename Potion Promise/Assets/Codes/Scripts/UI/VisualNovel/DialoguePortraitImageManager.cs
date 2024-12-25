@@ -6,7 +6,7 @@ public class DialoguePortraitImageManager : MonoBehaviour
 {
     [SerializeField] private Image portraitImage;
     [SerializeField] private Color deactivateColor;
-    [SerializeField] private bool isSetInactiveOnStart;
+    [SerializeField] private float fadeTime = 0.3f;
 
     private void Start()
     {
@@ -21,5 +21,15 @@ public class DialoguePortraitImageManager : MonoBehaviour
     public void Deactive()
     {
         portraitImage.DOColor(deactivateColor, 0.2f);
+    }
+
+    public void Hide()
+    {
+        portraitImage.DOFade(0, fadeTime);
+    }
+
+    public void Show()
+    {
+        portraitImage.DOFade(1, fadeTime);
     }
 }
