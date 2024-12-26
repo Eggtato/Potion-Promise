@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using PixelCrushers;
 
-public class DialogueStartManager : MonoBehaviour
+public class DialoguePlayManager : MonoBehaviour
 {
     [SerializeField] private DialogueSystemTrigger dialogueStarter;
     [SerializeField] private float dialogueStartDelay = 1f;
