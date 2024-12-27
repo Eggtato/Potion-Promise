@@ -9,8 +9,6 @@ TagManager:
   - PANELDIALOG
   - NPCCUSTOMER
   - NPCSPRITE
-  - material
-  - portal
   layers:
   - Default
   - TransparentFX
@@ -20,8 +18,8 @@ TagManager:
   - UI
   - IngredientMaterial
   - CraftingTool
-  - Ground
-  - MaterialDetection
+  - 
+  - 
   - 
   - 
   - 
