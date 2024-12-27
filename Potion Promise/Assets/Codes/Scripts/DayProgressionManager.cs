@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class DayProgressionManager : MonoBehaviour
 {
-    public GameObject endGame;
-
     private GameDataManager gameDataManager;
 
     private void Awake()
@@ -26,11 +24,6 @@ public class DayProgressionManager : MonoBehaviour
 
     public void ProgressCurrentDay(int currentDay)
     {
-        // if (InventoryMaterialUI.Instance != null)
-        // {
-        //     InventoryMaterialUI.Instance.bookbtn.SetActive(true);
-        // }
-
         switch (currentDay)
         {
             case 1:
@@ -76,11 +69,11 @@ public class DayProgressionManager : MonoBehaviour
                 GameSceneManager.Instance.LoadGatheringScene();
                 break;
             case 15:
-                endGame.SetActive(true);
                 Time.timeScale = 1;
-                // Destroy(InventoryMaterialUI.Instance.gameObject);
-                // Destroy(NPCManager.Instance.gameObject);
                 break;
         }
+
+
+        GameDataManager.Instance.IncreaseCurrentDay();
     }
 }
