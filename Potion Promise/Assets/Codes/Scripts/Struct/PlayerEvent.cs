@@ -18,6 +18,9 @@ public struct PlayerEvent
     public Action OnSettingButtonClicked;
     public Action OnExitButtonClicked;
 
+    // UI Input Events : Main Menu > Setting
+    public Action<SettingTabUI> OnSettingTabButtonClicked;
+
     // UI Input Events : Shop
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;

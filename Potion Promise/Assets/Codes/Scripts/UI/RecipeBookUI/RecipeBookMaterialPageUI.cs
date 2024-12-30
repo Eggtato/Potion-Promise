@@ -8,7 +8,6 @@ public class RecipeBookMaterialPageUI : BaseUI
     private MaterialDatabaseSO materialDatabaseSO;
     private GameAssetSO gameAssetSO;
 
-    public PlayerEventSO PlayerEventSO => playerEventSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
     public PotionDatabaseSO PotionDatabaseSO => potionDatabaseSO;
 
