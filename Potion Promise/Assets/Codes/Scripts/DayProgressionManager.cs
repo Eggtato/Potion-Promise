@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Eggtato.Utility;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class DayProgressionManager : MonoBehaviour
 {
+    [SerializeField] private PlayerEventSO playerEventSO;
     private GameDataManager gameDataManager;
 
     private void Awake()
@@ -14,12 +16,17 @@ public class DayProgressionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        gameDataManager.OnCurrentDayChanged += ProgressCurrentDay;
+        playerEventSO.Event.OnGoToNextScene += CheckForCurrentProgressionDay;
     }
 
     private void OnDisable()
     {
-        gameDataManager.OnCurrentDayChanged -= ProgressCurrentDay;
+        playerEventSO.Event.OnGoToNextScene -= CheckForCurrentProgressionDay;
+    }
+
+    private void CheckForCurrentProgressionDay()
+    {
+        ProgressCurrentDay(gameDataManager.CurrentDay);
     }
 
     public void ProgressCurrentDay(int currentDay)
