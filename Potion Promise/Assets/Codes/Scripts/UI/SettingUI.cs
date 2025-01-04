@@ -38,7 +38,7 @@ public class SettingUI : BaseUI
             item.InstantHide();
         }
 
-        settingTabUIs[0].Show();
+        settingTabUIs[0].Select();
     }
 
     private void OnSettingButtonClicked()

@@ -1,12 +1,15 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 
 public class SettingTabUI : MonoBehaviour
 {
     [SerializeField] private Button tabButton;
     [SerializeField] private CanvasGroup page;
     [SerializeField] protected float fadeTransitionTime = 0.1f;
+    [SerializeField] private MMFeedbacks buttonPressedFeedbacks;
+    [SerializeField] private MMFeedbacks buttonUnpressedFeedbacks;
 
     private PlayerEventSO playerEventSO;
 
@@ -17,15 +20,16 @@ public class SettingTabUI : MonoBehaviour
         tabButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnSettingTabButtonClicked?.Invoke(this);
+            buttonPressedFeedbacks.PlayFeedbacks();
         });
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         playerEventSO.Event.OnSettingTabButtonClicked += OnSettingTabButtonClicked;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         playerEventSO.Event.OnSettingTabButtonClicked -= OnSettingTabButtonClicked;
     }
@@ -46,18 +50,22 @@ public class SettingTabUI : MonoBehaviour
         }
     }
 
-    public void Show()
+    public void Select()
     {
         // AudioManager.Instance.PlayClickSound();
+
+        buttonPressedFeedbacks.PlayFeedbacks();
 
         page.gameObject.SetActive(true);
         page.alpha = 0;
         page.DOFade(1, fadeTransitionTime);
     }
 
-    public void Hide()
+    public void Deselect()
     {
         // AudioManager.Instance.PlayClickSound();
+
+        buttonUnpressedFeedbacks.PlayFeedbacks();
 
         page.alpha = 1;
         page.DOFade(0, fadeTransitionTime).OnComplete(() =>
