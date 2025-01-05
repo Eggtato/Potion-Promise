@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Eggtato.Utility;
 using UnityEngine;
 
-public class CrossSceneMessage : Singleton<CrossSceneMessage>
+public class CrossSceneMessage : PersistentSingleton<CrossSceneMessage>
 {
     private Dictionary<string, object> message = new Dictionary<string, object>();
 
@@ -27,9 +27,12 @@ public class CrossSceneMessage : Singleton<CrossSceneMessage>
 
     public static int GetInt(string key) => Instance.getInt(key);
 
+    public static ProgressionType GetProgressionType(string key) => Instance.getProgressionType(key);
+
     private void send(string key, object value)
     {
         message[key] = value;
+        Debug.Log(message[key]);
     }
 
     private bool has(params string[] keys)
@@ -68,5 +71,10 @@ public class CrossSceneMessage : Singleton<CrossSceneMessage>
     private int getInt(string key)
     {
         return (int)message[key];
+    }
+
+    private ProgressionType getProgressionType(string key)
+    {
+        return (ProgressionType)message[key];
     }
 }

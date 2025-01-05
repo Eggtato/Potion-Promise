@@ -55,6 +55,8 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
             {
                 Day = day
             };
+
+            newProgressionData.ProgressionTypes.Clear();
             newProgressionData.ProgressionTypes.Add(progressionType);
 
             progressionData.ProgressionDataList.Add(newProgressionData);

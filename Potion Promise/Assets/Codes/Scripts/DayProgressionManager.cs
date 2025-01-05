@@ -30,6 +30,14 @@ public class DayProgressionManager : MonoBehaviour
         playerEventSO.Event.OnGoToNextScene -= CheckForCurrentProgressionDay;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CheckForCurrentProgressionDay();
+        }
+    }
+
     private void CheckForCurrentProgressionDay()
     {
         DoProgress(gameDataManager.CurrentDay);
@@ -42,6 +50,34 @@ public class DayProgressionManager : MonoBehaviour
 
         ProgressionData data = dataList.Find(i => i.Day == currentDay);
         ProgressionData savedData = savedDataList.Find(i => i.Day == currentDay);
+
+        if (savedData == null)
+        {
+            // First Time
+            GameDataManager.Instance.AddNewProgression(currentDay, data.ProgressionTypes[0]);
+            switch (data.ProgressionTypes[0])
+            {
+                case ProgressionType.EarlyVisualNovel:
+                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
+                    gameSceneManager.LoadVisualNovelScene();
+                    break;
+                case ProgressionType.Shop:
+                    gameSceneManager.LoadShopScene();
+                    break;
+                case ProgressionType.MiddleVisualNovel:
+                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
+                    gameSceneManager.LoadVisualNovelScene();
+                    break;
+                case ProgressionType.Gathering:
+                    gameSceneManager.LoadGatheringScene();
+                    break;
+                case ProgressionType.EndVisualNovel:
+                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
+                    gameSceneManager.LoadVisualNovelScene();
+                    break;
+            }
+            return;
+        }
 
         bool isAllPartInDayHasBeenDone = true;
         for (int i = 0; i < data.ProgressionTypes.Count; i++)
@@ -56,25 +92,27 @@ public class DayProgressionManager : MonoBehaviour
 
                 GameDataManager.Instance.AddNewProgression(currentDay, data.ProgressionTypes[i]);
 
-                CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
-
                 switch (data.ProgressionTypes[i])
                 {
                     case ProgressionType.EarlyVisualNovel:
+                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
                         gameSceneManager.LoadVisualNovelScene();
-                        break;
+                        return;
                     case ProgressionType.Shop:
+                        Debug.Log("Load Shop");
                         gameSceneManager.LoadShopScene();
-                        break;
+                        return;
                     case ProgressionType.MiddleVisualNovel:
+                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
                         gameSceneManager.LoadVisualNovelScene();
-                        break;
+                        return;
                     case ProgressionType.Gathering:
                         gameSceneManager.LoadGatheringScene();
-                        break;
+                        return;
                     case ProgressionType.EndVisualNovel:
+                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
                         gameSceneManager.LoadVisualNovelScene();
-                        break;
+                        return;
                 }
             }
         }
