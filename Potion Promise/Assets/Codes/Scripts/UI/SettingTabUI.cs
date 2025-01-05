@@ -21,6 +21,7 @@ public class SettingTabUI : MonoBehaviour
         {
             playerEventSO.Event.OnSettingTabButtonClicked?.Invoke(this);
             buttonPressedFeedbacks.PlayFeedbacks();
+            AudioManager.Instance.PlayClickSound();
         });
     }
 
@@ -50,10 +51,8 @@ public class SettingTabUI : MonoBehaviour
         }
     }
 
-    public void Select()
+    public void Show()
     {
-        // AudioManager.Instance.PlayClickSound();
-
         buttonPressedFeedbacks.PlayFeedbacks();
 
         page.gameObject.SetActive(true);
@@ -61,10 +60,8 @@ public class SettingTabUI : MonoBehaviour
         page.DOFade(1, fadeTransitionTime);
     }
 
-    public void Deselect()
+    public void Hide()
     {
-        // AudioManager.Instance.PlayClickSound();
-
         buttonUnpressedFeedbacks.PlayFeedbacks();
 
         page.alpha = 1;

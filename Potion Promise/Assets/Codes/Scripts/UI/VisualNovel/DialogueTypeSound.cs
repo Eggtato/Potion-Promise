@@ -30,7 +30,7 @@ public class DialogueTypeSound : MonoBehaviour
         if (Time.time - latestTimePlayed <= minSoundDelay)
             return; //Early return if not enough time passed yet
 
-        AudioManager.Instance.PlayTypeFeedbacks();
+        AudioManager.Instance.PlayTypeSound();
 
         latestTimePlayed = Time.time;
     }

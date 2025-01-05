@@ -9,12 +9,12 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private MMFeedbacks uiClickFeedbacks;
     [SerializeField] private MMFeedbacks typeSoundFeedbacks;
 
-    public void PlayClickFeedbacks()
+    public void PlayClickSound()
     {
         uiClickFeedbacks.PlayFeedbacks();
     }
 
-    public void PlayTypeFeedbacks()
+    public void PlayTypeSound()
     {
         typeSoundFeedbacks.PlayFeedbacks();
     }

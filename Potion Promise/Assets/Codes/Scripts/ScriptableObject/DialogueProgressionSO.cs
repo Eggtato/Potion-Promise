@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DialogueProgressionSO", menuName = "Eggtato/Dialogue Progression")]
-public class DialogueProgressionSO : ScriptableObject
+[CreateAssetMenu(fileName = "DayProgressionSO", menuName = "Eggtato/Day Progression")]
+public class DayProgressionSO : ScriptableObject
 {
-    public List<DialogueProgressionData> DialogueProgressionDataList = new List<DialogueProgressionData>();
+    public List<ProgressionData> DayProgressionDataList = new List<ProgressionData>();
 }

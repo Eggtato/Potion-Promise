@@ -1,10 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DialogueProgressionData
+public class ProgressionData
 {
     public int Day;
-    public bool EarlyDayDialogue;
-    public bool MiddleDayDialogue;
-    public bool EndDayDialogue;
+    public List<ProgressionType> ProgressionTypes = new List<ProgressionType> { ProgressionType.Shop, ProgressionType.Gathering };
+}
+
+public enum ProgressionType
+{
+    EarlyVisualNovel,
+    Shop,
+    MiddleVisualNovel,
+    Gathering,
+    EndVisualNovel,
 }

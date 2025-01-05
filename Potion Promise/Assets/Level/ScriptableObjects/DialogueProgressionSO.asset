@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2e4adc1bba25548a0d3c4f63795fd2, type: 3}
   m_Name: DialogueProgressionSO
   m_EditorClassIdentifier: 
-  DialogueProgressionDataList:
+  DayProgressionDataList:
   - Day: 1
-    EarlyDayDialogue: 1
-    MiddleDayDialogue: 1
-    EndDayDialogue: 0
+    ProgressionTypes: 0000000001000000020000000300000004000000
+  - Day: 2
+    ProgressionTypes: 0100000003000000
+  - Day: 3
+    ProgressionTypes: 0100000003000000
   - Day: 4
-    EarlyDayDialogue: 0
-    MiddleDayDialogue: 1
-    EndDayDialogue: 0
+    ProgressionTypes: 010000000200000003000000
   - Day: 5
-    EarlyDayDialogue: 0
-    MiddleDayDialogue: 1
-    EndDayDialogue: 0
+    ProgressionTypes: 010000000200000003000000
