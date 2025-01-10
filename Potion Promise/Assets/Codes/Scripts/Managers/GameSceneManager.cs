@@ -9,6 +9,7 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private MMFeedbacks loadVisualNovelSceneFeedbacks;
     [SerializeField] private MMFeedbacks loadShopSceneFeedbacks;
     [SerializeField] private MMFeedbacks loadGatheringSceneFeedbacks;
+    [SerializeField] private MMFeedbacks loadCreditSceneFeedbacks;
 
     public void LoadMainMenuScene()
     {
@@ -33,5 +34,10 @@ public class GameSceneManager : MonoBehaviour
     public void LoadGatheringScene()
     {
         loadGatheringSceneFeedbacks.PlayFeedbacks();
+    }
+
+    public void LoadCreditScene()
+    {
+        loadCreditSceneFeedbacks.PlayFeedbacks();
     }
 }

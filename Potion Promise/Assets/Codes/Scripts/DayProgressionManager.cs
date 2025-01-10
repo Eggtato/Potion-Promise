@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Eggtato.Utility;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(GameSceneManager))]
@@ -40,90 +40,85 @@ public class DayProgressionManager : MonoBehaviour
 
     private void CheckForCurrentProgressionDay()
     {
-        DoProgress(gameDataManager.CurrentDay);
+        HandleDayProgression(gameDataManager.CurrentDay);
     }
 
-    public void DoProgress(int currentDay)
+    public void HandleDayProgression(int currentDay)
     {
         List<ProgressionData> dataList = dayProgressionSO.DayProgressionDataList;
-        List<ProgressionData> savedDataList = GameDataManager.Instance.ProgressionDataList;
+        List<ProgressionData> savedDataList = gameDataManager.ProgressionDataList;
 
-        ProgressionData data = dataList.Find(i => i.Day == currentDay);
-        ProgressionData savedData = savedDataList.Find(i => i.Day == currentDay);
-
-        if (savedData == null)
+        ProgressionData data = dataList.FirstOrDefault(i => i.Day == currentDay);
+        if (data == null)
         {
-            // First Time
-            GameDataManager.Instance.AddNewProgression(currentDay, data.ProgressionTypes[0]);
-            switch (data.ProgressionTypes[0])
-            {
-                case ProgressionType.EarlyVisualNovel:
-                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
-                    gameSceneManager.LoadVisualNovelScene();
-                    break;
-                case ProgressionType.Shop:
-                    gameSceneManager.LoadShopScene();
-                    break;
-                case ProgressionType.MiddleVisualNovel:
-                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
-                    gameSceneManager.LoadVisualNovelScene();
-                    break;
-                case ProgressionType.Gathering:
-                    gameSceneManager.LoadGatheringScene();
-                    break;
-                case ProgressionType.EndVisualNovel:
-                    CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[0]);
-                    gameSceneManager.LoadVisualNovelScene();
-                    break;
-            }
+            Debug.LogError($"No progression data found for day {currentDay}.");
             return;
         }
 
-        bool isAllPartInDayHasBeenDone = true;
-        for (int i = 0; i < data.ProgressionTypes.Count; i++)
+        ProgressionData savedData = savedDataList.FirstOrDefault(i => i.Day == currentDay);
+
+        if (savedData == null)
         {
-            if (savedData.ProgressionTypes.Contains(data.ProgressionTypes[i]))
-            {
-                continue;
-            }
-            else
-            {
-                isAllPartInDayHasBeenDone = false;
-
-                GameDataManager.Instance.AddNewProgression(currentDay, data.ProgressionTypes[i]);
-
-                switch (data.ProgressionTypes[i])
-                {
-                    case ProgressionType.EarlyVisualNovel:
-                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
-                        gameSceneManager.LoadVisualNovelScene();
-                        return;
-                    case ProgressionType.Shop:
-                        Debug.Log("Load Shop");
-                        gameSceneManager.LoadShopScene();
-                        return;
-                    case ProgressionType.MiddleVisualNovel:
-                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
-                        gameSceneManager.LoadVisualNovelScene();
-                        return;
-                    case ProgressionType.Gathering:
-                        gameSceneManager.LoadGatheringScene();
-                        return;
-                    case ProgressionType.EndVisualNovel:
-                        CrossSceneMessage.Send(currentDay.ToString(), data.ProgressionTypes[i]);
-                        gameSceneManager.LoadVisualNovelScene();
-                        return;
-                }
-            }
+            StartNewProgression(currentDay, data.ProgressionTypes[0]);
+            return;
         }
 
-        if (isAllPartInDayHasBeenDone)
+        bool allPartsCompleted = ProcessIncompleteParts(currentDay, data, savedData);
+
+        if (allPartsCompleted)
         {
-            GameDataManager.Instance.IncreaseCurrentDay();
+            gameDataManager.IncreaseCurrentDay();
             CheckForCurrentProgressionDay();
         }
-
     }
 
+    private void StartNewProgression(int currentDay, ProgressionType progressionType)
+    {
+        gameDataManager.AddNewProgression(currentDay, progressionType);
+        LoadSceneForProgression(currentDay, progressionType);
+    }
 
+    private bool ProcessIncompleteParts(int currentDay, ProgressionData data, ProgressionData savedData)
+    {
+        foreach (var progressionType in data.ProgressionTypes)
+        {
+            if (!savedData.ProgressionTypes.Contains(progressionType))
+            {
+                gameDataManager.AddNewProgression(currentDay, progressionType);
+                LoadSceneForProgression(currentDay, progressionType);
+                return false;
+            }
+        }
+
+        return true; // All parts for the day are completed.
+    }
+
+    private void LoadSceneForProgression(int currentDay, ProgressionType progressionType)
+    {
+        CrossSceneMessage.Send(currentDay.ToString(), progressionType);
+
+        switch (progressionType)
+        {
+            case ProgressionType.CutScene:
+                gameSceneManager.LoadCutsceneScene();
+                break;
+            case ProgressionType.EarlyVisualNovel:
+            case ProgressionType.MiddleVisualNovel:
+            case ProgressionType.EndVisualNovel:
+                gameSceneManager.LoadVisualNovelScene();
+                break;
+            case ProgressionType.Shop:
+                gameSceneManager.LoadShopScene();
+                break;
+            case ProgressionType.Gathering:
+                gameSceneManager.LoadGatheringScene();
+                break;
+            case ProgressionType.Credit:
+                gameSceneManager.LoadCreditScene();
+                break;
+            default:
+                Debug.LogError($"Unhandled ProgressionType: {progressionType}");
+                break;
+        }
+    }
 }

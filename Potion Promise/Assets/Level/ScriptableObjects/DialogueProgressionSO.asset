@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DayProgressionDataList:
   - Day: 1
-    ProgressionTypes: 00000000010000000200000003000000
+    ProgressionTypes: 01000000020000000300000004000000
   - Day: 2
-    ProgressionTypes: 0100000003000000
+    ProgressionTypes: 0200000004000000
   - Day: 3
-    ProgressionTypes: 0100000003000000
+    ProgressionTypes: 0200000004000000
   - Day: 4
-    ProgressionTypes: 010000000200000003000000
+    ProgressionTypes: 020000000300000004000000
   - Day: 5
-    ProgressionTypes: 010000000200000003000000
+    ProgressionTypes: 020000000300000004000000

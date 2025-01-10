@@ -303,6 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1336891714125895080}
+  - component: {fileID: 4353814056772153550}
   m_Layer: 0
   m_Name: SceneManagers
   m_TagString: Untagged
@@ -326,6 +327,19 @@ Transform:
   - {fileID: 418562578579658933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4353814056772153550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995846929172523342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39282de834eaf6e4d89201a198473ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoUnparentOnAwake: 1
 --- !u!1 &2400476299875562420
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   dayProgressionSO: {fileID: 11400000, guid: 3622c025e7d5b424aa3d2087d15b4893, type: 2}
-  gameSceneManager: {fileID: 0}
 --- !u!114 &7845309419445757649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,6 +703,7 @@ MonoBehaviour:
   loadVisualNovelSceneFeedbacks: {fileID: 8487491850015650128}
   loadShopSceneFeedbacks: {fileID: 2682442145859951557}
   loadGatheringSceneFeedbacks: {fileID: 8600194131029939635}
+  loadCreditSceneFeedbacks: {fileID: 7777901396884172698}
 --- !u!1 &7777448257581567902
 GameObject:
   m_ObjectHideFlags: 0

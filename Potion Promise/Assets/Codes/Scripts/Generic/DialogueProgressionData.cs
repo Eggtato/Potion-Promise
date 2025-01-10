@@ -10,9 +10,11 @@ public class ProgressionData
 
 public enum ProgressionType
 {
+    CutScene,
     EarlyVisualNovel,
     Shop,
     MiddleVisualNovel,
     Gathering,
     EndVisualNovel,
+    Credit
 }

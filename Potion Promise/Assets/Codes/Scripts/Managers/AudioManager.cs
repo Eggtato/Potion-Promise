@@ -4,7 +4,7 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 using Eggtato.Utility;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : PersistentSingleton<AudioManager>
 {
     [SerializeField] private MMFeedbacks uiClickFeedbacks;
     [SerializeField] private MMFeedbacks typeSoundFeedbacks;
