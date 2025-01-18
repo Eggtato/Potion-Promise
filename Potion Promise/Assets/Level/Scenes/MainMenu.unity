@@ -13373,7 +13373,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 513590243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38dabb2f29fe70143a67fdbe38227aec, type: 3}
+  m_Script: {fileID: 11500000, guid: 694a78cb6cdd8e04599d475583a5d519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AutoUnparentOnAwake: 1
