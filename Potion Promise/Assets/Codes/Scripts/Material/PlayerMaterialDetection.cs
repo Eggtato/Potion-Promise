@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMaterialDetection : MonoBehaviour
 {
-    public List<GameObject> materialShowList = new List<GameObject>();
+    [SerializeField] private List<GameObject> materialShowList = new List<GameObject>();
 
     public GameObject materialShowPrefab;
 
@@ -12,6 +12,8 @@ public class PlayerMaterialDetection : MonoBehaviour
 
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
+
+    public Animator anim;
 
     void Update()
     {
@@ -55,13 +57,24 @@ public class PlayerMaterialDetection : MonoBehaviour
     {
         if (materialShowList.Count <= 0) return;
 
+        StartCoroutine(takingItemAnim());
+            
         GameObject materialObject = materialShowList[0];
         MaterialShowData materialShowData = materialObject.GetComponent<MaterialShowData>();
 
         //add material
 
+        Destroy(materialShowData.getMaterialObject());
+
         materialShowList.Remove(materialObject);
         Destroy(materialObject);
+    }
+
+    IEnumerator takingItemAnim()
+    {
+        anim.SetBool("takingitem", true);
+        yield return new WaitForSeconds(1);
+        anim.SetBool("takingitem", false);
     }
 
     void OnTriggerEnter(Collider collision)

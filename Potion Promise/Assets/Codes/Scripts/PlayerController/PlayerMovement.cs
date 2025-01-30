@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
         if (movX != 0 || movZ != 0)
         {
             rb.linearVelocity = (transform.forward * movZ + transform.right * movX).normalized * MovementSpeed + new Vector3(0, rb.linearVelocity.y, 0);
-            //playermesh.rotation = Quaternion.Lerp(playermesh.rotation, Quaternion.LookRotation(new Vector3(rb.velocity.x, 0 ,rb.velocity.z)), 1);
-            playermesh.rotation = Quaternion.LookRotation(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z));
+
+            playermesh.rotation = Quaternion.Lerp(playermesh.rotation, Quaternion.LookRotation(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z)), 0.2f);
             anim.SetFloat("speed", 1);
         }
         else
@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.1f, rb.linearVelocity.y, rb.linearVelocity.z * 0.1f);
             anim.SetFloat("speed", 0);
         }
+
+        playermesh.position = Vector3.Lerp(playermesh.position, transform.position + new Vector3(0, -0.9f, 0), 0.1f);
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 4f, groundMask))
