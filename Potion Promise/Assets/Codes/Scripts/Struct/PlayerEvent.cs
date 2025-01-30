@@ -10,6 +10,18 @@ public struct PlayerEvent
 
     // UI Input Events
     public Action OnAnyUIClosed;
+
+    // UI Input Events : Main Menu
+    public Action OnGoToNextScene;
+    public Action OnNewGameButtonClicked;
+    public Action OnContinueGameButtonClicked;
+    public Action OnSettingButtonClicked;
+    public Action OnExitButtonClicked;
+
+    // UI Input Events : Main Menu > Setting
+    public Action<SettingTabUI> OnSettingTabButtonClicked;
+
+    // UI Input Events : Shop
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;
     public Action OnRecipeBookOpened;
@@ -17,6 +29,7 @@ public struct PlayerEvent
     public Action OnMaterialStirred;
     public Action OnMaterialGetInCauldron;
 
+    // UI Input Events : Shop > Book Recipe
     public Action<PotionDatabaseSO, MaterialDatabaseSO, GameAssetSO> OnRecipeBookPageInitialized;
     public Action OnAnyPageUIClosed;
     public Action OnPotionPageTabButtonClicked;

@@ -20,18 +20,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 02aaee7d089404025876e32cbb2235bb, type: 3}
   - {fileID: 21300000, guid: 9efba5df9e53541f88248f8f34b347e5, type: 3}
   - {fileID: 21300000, guid: 5638887efc73341149a9309feaa56237, type: 3}
-  ActiveStar: {fileID: 21300000, guid: ddf11f690c26e4f4fba1b49da14cc951, type: 3}
-  InActiveStar: {fileID: 21300000, guid: 09519757b71b34ea59118e9076ef7d2f, type: 3}
-  PotionCommmonCard: {fileID: 21300000, guid: c0fab158b21384de48f6a748a85a68ca, type: 3}
-  SelectedPotionCommmonCard: {fileID: 21300000, guid: 21cd6a0b706e243e38fbe7b05eaca036, type: 3}
-  PotionRareCard: {fileID: 21300000, guid: 777c9cb69b5ad468ba19f4fde22830db, type: 3}
-  SelectedPotionRareCard: {fileID: 21300000, guid: 50a1e4fb0630a48fe96da5abdf2338d4, type: 3}
-  PotionEpicCard: {fileID: 21300000, guid: 777c9cb69b5ad468ba19f4fde22830db, type: 3}
-  SelectedPotionEpicCard: {fileID: 21300000, guid: 50a1e4fb0630a48fe96da5abdf2338d4, type: 3}
-  MaterialCommmonCard: {fileID: 21300000, guid: e041da8e7e64a446eb341156e957a90d, type: 3}
-  SelectedMaterialCommmonCard: {fileID: 21300000, guid: 2cfcfc1b0d0ae483eb3c36cd3375b8eb, type: 3}
-  MaterialRareCard: {fileID: 21300000, guid: c6e76e202a93045a6a47cb2df3a6a66f, type: 3}
-  SelectedMaterialRareCard: {fileID: 21300000, guid: 4b23e0e55281841d19867b2be770388f, type: 3}
-  MaterialEpicCard: {fileID: 21300000, guid: c6e76e202a93045a6a47cb2df3a6a66f, type: 3}
-  SelectedMaterialEpicCard: {fileID: 21300000, guid: 4b23e0e55281841d19867b2be770388f, type: 3}
+  ActiveStar: {fileID: 21300000, guid: 7d946f3c17ca98d4aa58f9e613457bd7, type: 3}
+  InActiveStar: {fileID: 21300000, guid: 2ee4b28019a58dc479251d5f5b2a128d, type: 3}
+  PotionCommmonCard: {fileID: 21300000, guid: bce3d05096df45b4fa580b3bd054ae20, type: 3}
+  SelectedPotionCommmonCard: {fileID: 21300000, guid: c9fc8dea33393644c98f6e35945dc305, type: 3}
+  PotionRareCard: {fileID: 21300000, guid: b9368afa986f6e24aa07226567ee7000, type: 3}
+  SelectedPotionRareCard: {fileID: 21300000, guid: 3720521af67868e4ebb609cb4e0115ff, type: 3}
+  PotionEpicCard: {fileID: 21300000, guid: 07442141ccb545841a4dfda09073f96a, type: 3}
+  SelectedPotionEpicCard: {fileID: 21300000, guid: babe29ca976fab341905bd0f99c1798e, type: 3}
+  MaterialCommmonCard: {fileID: 21300000, guid: a140bbb3e72830545a7c3f34d120e9d2, type: 3}
+  SelectedMaterialCommmonCard: {fileID: 21300000, guid: 7b88337c71446ac46a52828ed4878156, type: 3}
+  MaterialRareCard: {fileID: 21300000, guid: f1920172c852f944e9117786103b171e, type: 3}
+  SelectedMaterialRareCard: {fileID: 21300000, guid: 2a6c1909729ad294b86e5a02cebebd9f, type: 3}
+  MaterialEpicCard: {fileID: 21300000, guid: 05cc4b7074e14db4daadd6748d82ddbd, type: 3}
+  SelectedMaterialEpicCard: {fileID: 21300000, guid: 84734187e4aa7f8418beaf676a2a378d, type: 3}
   FailedCraftedPotion: {fileID: 21300000, guid: 53da710b2c6544bbc97a50cdbde74433, type: 3}

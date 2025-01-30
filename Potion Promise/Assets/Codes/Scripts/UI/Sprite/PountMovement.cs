@@ -20,12 +20,20 @@ public class PountMovement : MonoBehaviour
     private bool directionChanged = false;
     private bool movedDown = false;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigidBody;
+    private float initialGravityScale;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
         // Cache the Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        initialGravityScale = rigidBody.gravityScale;
     }
 
     private void OnEnable()
@@ -85,6 +93,7 @@ public class PountMovement : MonoBehaviour
     /// </summary>
     private void StopDragging()
     {
+        rigidBody.gravityScale = initialGravityScale;
         isDragging = false;
     }
 
@@ -93,6 +102,8 @@ public class PountMovement : MonoBehaviour
     /// </summary>
     private void DragObject()
     {
+        rigidBody.gravityScale = 0;
+
         Vector3 worldMousePosition = GetWorldMousePosition();
         Vector3 desiredPosition = worldMousePosition + offset;
 

@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c3d15befaac20499e76a8792657312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryMaterialImageUI: {fileID: 0}
+  inventoryMaterialImageUI: {fileID: 2662869665154016178}
   quantityText: {fileID: 2482301644250288174}
 --- !u!1 &4788656844150318594
 GameObject:

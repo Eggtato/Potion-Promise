@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Eggtato.Utility;
 using UnityEngine;
 
-public class CrossSceneMessage : Singleton<CrossSceneMessage>
+public class CrossSceneMessage : PersistentSingleton<CrossSceneMessage>
 {
     private Dictionary<string, object> message = new Dictionary<string, object>();
 
@@ -13,9 +13,26 @@ public class CrossSceneMessage : Singleton<CrossSceneMessage>
         base.Awake();
     }
 
+    public static void Send(string key, object value) => Instance.send(key, value);
+
+    public static bool Has(params string[] keys) => Instance.has(keys);
+
+    public static void Remove(params string[] keys) => Instance.remove(keys);
+
+    public static bool GetBoolean(string key) => Instance.getBoolean(key);
+
+    public static string GetString(string key) => Instance.getString(key);
+
+    public static float GetFloat(string key) => Instance.getFloat(key);
+
+    public static int GetInt(string key) => Instance.getInt(key);
+
+    public static ProgressionType GetProgressionType(string key) => Instance.getProgressionType(key);
+
     private void send(string key, object value)
     {
         message[key] = value;
+        Debug.Log(message[key]);
     }
 
     private bool has(params string[] keys)
@@ -56,17 +73,8 @@ public class CrossSceneMessage : Singleton<CrossSceneMessage>
         return (int)message[key];
     }
 
-    public static void Send(string key, object value) => Instance.send(key, value);
-
-    public static bool Has(params string[] keys) => Instance.has(keys);
-
-    public static void Remove(params string[] keys) => Instance.remove(keys);
-
-    public static bool GetBoolean(string key) => Instance.getBoolean(key);
-
-    public static string GetString(string key) => Instance.getString(key);
-
-    public static float GetFloat(string key) => Instance.getFloat(key);
-
-    public static int GetInt(string key) => Instance.getInt(key);
+    private ProgressionType getProgressionType(string key)
+    {
+        return (ProgressionType)message[key];
+    }
 }

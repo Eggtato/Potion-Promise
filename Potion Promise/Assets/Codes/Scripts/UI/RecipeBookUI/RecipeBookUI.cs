@@ -18,7 +18,6 @@ public class RecipeBookUI : BaseUI
     [SerializeField] private Button materialTabButton;
 
     public GameAssetSO GameAssetSO => gameAssetSO;
-    public PlayerEventSO PlayerEventSO => playerEventSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
     private void Awake()

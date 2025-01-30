@@ -7,6 +7,8 @@ public abstract class BaseUI : MonoBehaviour
     [SerializeField] protected CanvasGroup panel;
     [SerializeField] protected float fadeTransitionTime = 0.3f;
 
+    public PlayerEventSO PlayerEventSO => playerEventSO;
+
     protected virtual void OnEnable()
     {
         playerEventSO.Event.OnAnyUIClosed += HandleAnyUIClosed;
@@ -22,7 +24,7 @@ public abstract class BaseUI : MonoBehaviour
         InstantHide();
     }
 
-    protected void Show()
+    public void Show()
     {
         // AudioManager.Instance.PlayClickSound();
 
@@ -31,7 +33,7 @@ public abstract class BaseUI : MonoBehaviour
         panel.DOFade(1, fadeTransitionTime);
     }
 
-    protected void Hide()
+    public void Hide()
     {
         // AudioManager.Instance.PlayClickSound();
 
@@ -42,7 +44,7 @@ public abstract class BaseUI : MonoBehaviour
         });
     }
 
-    protected void InstantHide()
+    public void InstantHide()
     {
         panel.alpha = 0;
         panel.gameObject.SetActive(false);

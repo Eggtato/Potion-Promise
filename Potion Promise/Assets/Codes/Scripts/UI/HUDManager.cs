@@ -15,9 +15,9 @@ public class HUDManager : Singleton<HUDManager>
     {
         base.Awake();
 
-        leftButton.onClick.AddListener(HandleCustomerRoomOpened);
-        rightButton.onClick.AddListener(HandleAlchemyRoomOpened);
-        recipeBook.onClick.AddListener(HandleRecipeBookOpened);
+        leftButton.onClick.AddListener(ShowCustomerRoom);
+        rightButton.onClick.AddListener(ShowAlchemyRoom);
+        recipeBook.onClick.AddListener(ShowRecipeBook);
     }
 
     private void Start()
@@ -27,10 +27,10 @@ public class HUDManager : Singleton<HUDManager>
 
     private void SetDefaultSetting()
     {
-        HandleCustomerRoomOpened();
+        ShowCustomerRoom();
     }
 
-    private void HandleCustomerRoomOpened()
+    private void ShowCustomerRoom()
     {
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(true);
@@ -39,7 +39,7 @@ public class HUDManager : Singleton<HUDManager>
         playerEventSO.Event.OnCustomerRoomOpened?.Invoke();
     }
 
-    private void HandleAlchemyRoomOpened()
+    private void ShowAlchemyRoom()
     {
         leftButton.gameObject.SetActive(true);
         rightButton.gameObject.SetActive(false);
@@ -48,7 +48,7 @@ public class HUDManager : Singleton<HUDManager>
         playerEventSO.Event.OnAlchemyRoomOpened?.Invoke();
     }
 
-    private void HandleRecipeBookOpened()
+    private void ShowRecipeBook()
     {
         playerEventSO.Event.OnRecipeBookOpened?.Invoke();
     }

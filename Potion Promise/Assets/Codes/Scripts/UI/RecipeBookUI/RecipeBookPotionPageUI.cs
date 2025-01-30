@@ -8,7 +8,6 @@ public class RecipeBookPotionPageUI : BaseUI
     private MaterialDatabaseSO materialDatabaseSO;
     private GameAssetSO gameAssetSO;
 
-    public PlayerEventSO PlayerEventSO => playerEventSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
     protected override void OnEnable()

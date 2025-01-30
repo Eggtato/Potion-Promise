@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class MortarHandler : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class MortarHandler : MonoBehaviour
     private MaterialData materialData;
     private int currentSmashedCount;
     private Vector3 initialSpritePosition; // Initial position of the sprite
+    private bool hasSmashedMaterial = false;
 
     public PlayerEventSO PlayerEventSO => playerEventSO;
 
@@ -44,12 +46,9 @@ public class MortarHandler : MonoBehaviour
     /// <param name="materialData">The material data to set.</param>
     public void SetDroppedMaterial(MaterialData materialData)
     {
-        if (materialData == null)
-        {
-            Debug.LogWarning("SetDroppedMaterial called with null MaterialData.");
-            return;
-        }
+        if (hasSmashedMaterial) return;
 
+        hasSmashedMaterial = true;
         this.materialData = materialData;
         currentSmashedCount = 0;
 
@@ -76,7 +75,7 @@ public class MortarHandler : MonoBehaviour
     /// </summary>
     public void SmashMaterial()
     {
-        if (materialData == null)
+        if (!hasSmashedMaterial)
         {
             return;
         }
