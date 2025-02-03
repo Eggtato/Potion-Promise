@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,17 +14,23 @@ public class PlayerMaterialDetection : MonoBehaviour
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
+    public GameObject rewardMaterialShow;
+    [SerializeField] private List<GameObject> rewardMaterialShowList = new List<GameObject>();
+    public Transform rewardGrid;
+
     public Animator anim;
 
-    void Update()
+    [SerializeField] private List<InventoryMaterialSlotUI> InventoryMaterialSlotUIList = new List<InventoryMaterialSlotUI>();
+
+    private void Update()
     {
         if (Input.GetKeyDown("f"))
         {
-            getMaterial();
+            GetMaterial();
         }
     }
 
-    public void AddMaterialShow(GameObject materialObject)
+    private void AddMaterialShow(GameObject materialObject)
     {
         GameObject a = Instantiate(materialShowPrefab, gridShow);
 
@@ -40,7 +47,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    public void RemoveMaterialShow(GameObject materialObject)
+    private void RemoveMaterialShow(GameObject materialObject)
     {
         foreach (GameObject a in materialShowList)
         {
@@ -53,16 +60,33 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    public void getMaterial()
+    private void GetMaterial()
     {
         if (materialShowList.Count <= 0) return;
 
-        StartCoroutine(takingItemAnim());
+        StartCoroutine(TakingItemAnim());
             
         GameObject materialObject = materialShowList[0];
         MaterialShowData materialShowData = materialObject.GetComponent<MaterialShowData>();
+        MaterialType gatheredMaterialType = materialShowData.getMaterialData().MaterialType;
+
+        InventoryMaterialSlotUI ims = InventoryMaterialSlotUIList.Find(item => item.obtainedMaterialData.MaterialType == gatheredMaterialType);
 
         //add material
+        if (ims != null)
+        {
+            ims.AddQuantity();
+        }
+        else
+        {
+            GameObject a = Instantiate(rewardMaterialShow, rewardGrid);
+            ims = a.GetComponent<InventoryMaterialSlotUI>();
+            ObtainedMaterialData omd = new ObtainedMaterialData();
+            omd.Quantity = 1;
+            omd.MaterialType = gatheredMaterialType;
+            ims.Initialize(omd, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType));
+            InventoryMaterialSlotUIList.Add(ims);
+        }
 
         Destroy(materialShowData.getMaterialObject());
 
@@ -70,14 +94,14 @@ public class PlayerMaterialDetection : MonoBehaviour
         Destroy(materialObject);
     }
 
-    IEnumerator takingItemAnim()
+    private IEnumerator TakingItemAnim()
     {
         anim.SetBool("takingitem", true);
         yield return new WaitForSeconds(1);
         anim.SetBool("takingitem", false);
     }
 
-    void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "material")
         {
@@ -85,7 +109,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "material")
         {

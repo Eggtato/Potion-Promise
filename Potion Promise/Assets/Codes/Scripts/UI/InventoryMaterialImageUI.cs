@@ -12,14 +12,10 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
     private Image icon;
     private Transform parentAfterDrag;
 
-    private void Awake()
-    {
-        icon = GetComponent<Image>();
-    }
-
     public void Initialize(MaterialData materialData)
     {
         MaterialData = materialData;
+        icon = GetComponent<Image>();
         icon.sprite = materialData.Sprite;
     }
 

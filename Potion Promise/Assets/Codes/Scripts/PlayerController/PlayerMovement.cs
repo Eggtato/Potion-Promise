@@ -15,13 +15,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         movX = Input.GetAxisRaw("Horizontal");
         movZ = Input.GetAxisRaw("Vertical");

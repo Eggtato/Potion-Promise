@@ -23,4 +23,9 @@ public class MaterialShowData : MonoBehaviour
     {
         return materialObject;
     }
+
+    public MaterialData getMaterialData()
+    {
+        return materialData;
+    }
 }

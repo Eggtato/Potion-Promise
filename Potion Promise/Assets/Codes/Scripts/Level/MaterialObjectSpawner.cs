@@ -10,12 +10,12 @@ public class MaterialObjectSpawner : MonoBehaviour
 
     private List<int> spawnPositionPicked = new List<int>();
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(spawnMaterialObjects());
     }
 
-    IEnumerator spawnMaterialObjects()
+    private IEnumerator spawnMaterialObjects()
     {
         int spawnPositionSize = spawnPositions.Length;
         spawnPositionSize--;
