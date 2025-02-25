@@ -904,8 +904,8 @@
     "m_ObjectId": "230435efa8bc48cabb12e9b60e977b08",
     "m_Title": "WS Scene Position",
     "m_Position": {
-        "x": -432.0,
-        "y": -120.0
+        "x": -431.9998779296875,
+        "y": -120.00006103515625
     }
 }
 
@@ -3140,8 +3140,8 @@
     "m_ObjectId": "dde069e75e8142e38cf3098b4623a10a",
     "m_Title": "Camera Relative depth",
     "m_Position": {
-        "x": -562.0,
-        "y": 479.0
+        "x": -561.999755859375,
+        "y": 479.0001220703125
     }
 }
 
@@ -3437,8 +3437,8 @@
     "m_ObjectId": "fc399d4421e84e4488db671cf9b21b59",
     "m_Title": "WS water position",
     "m_Position": {
-        "x": -213.0,
-        "y": -373.0
+        "x": -212.99998474121095,
+        "y": -372.9999694824219
     }
 }
 
