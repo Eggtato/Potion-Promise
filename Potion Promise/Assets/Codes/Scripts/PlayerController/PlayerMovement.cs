@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private float movX, movZ;
+    private float magnitude;
 
     public Animator anim;
 
@@ -36,13 +37,15 @@ public class PlayerMovement : MonoBehaviour
 
             playermesh.rotation = Quaternion.Lerp(playermesh.rotation, Quaternion.LookRotation(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z)), 0.2f);
             playermesh.position = Vector3.Lerp(playermesh.position, transform.position + new Vector3(0, -0.9f, 0), 0.1f);
-            anim.SetFloat("speed", 1);
         }
         else
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.1f, rb.linearVelocity.y, rb.linearVelocity.z * 0.1f);
-            anim.SetFloat("speed", 0);
         }
+
+        magnitude = Mathf.MoveTowards(magnitude, rb.linearVelocity.magnitude, 1f);
+
+        anim.SetFloat("speed", magnitude);
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 2f, groundMask))

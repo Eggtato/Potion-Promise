@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2375035616393213707}
   - component: {fileID: 5156267173761694479}
   - component: {fileID: 7312556654051337411}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: SM_Saphire Crystal New
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 5279263686374846707}
   - component: {fileID: 4576032889401102858}
   - component: {fileID: 5900917959411129657}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: SM_Saphire Crystal New (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.02, y: 1.02, z: 1.02}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2375035616393213707}
