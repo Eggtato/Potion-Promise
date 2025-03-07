@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private float movX, movZ;
     private float magnitude;
+    private Vector3 speedMagnitude;
 
     public Animator anim;
 
@@ -43,14 +44,18 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.1f, rb.linearVelocity.y, rb.linearVelocity.z * 0.1f);
         }
 
-        magnitude = Mathf.MoveTowards(magnitude, rb.linearVelocity.magnitude, 1f);
+        speedMagnitude = rb.linearVelocity;
+        speedMagnitude.y = 0;
+        magnitude = Mathf.MoveTowards(magnitude, speedMagnitude.magnitude, 2);
+
+        Debug.Log(magnitude);
 
         anim.SetFloat("speed", magnitude);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, 2f, groundMask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 2, 0), transform.TransformDirection(-Vector3.up), out hit, 4f, groundMask))
         {
-            transform.position = hit.point + new Vector3(0, PlayerHeight / 1.95f, 0);
+            transform.position = Vector3.MoveTowards(transform.position, hit.point + new Vector3(0, PlayerHeight / 1.95f, 0), 0.2f);
         }
         else
         {

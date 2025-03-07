@@ -19,6 +19,7 @@ public class PlayerMaterialDetection : MonoBehaviour
     public Transform rewardGrid;
 
     public Animator anim;
+    private bool canTakeMaterial = true;
 
     [SerializeField] private List<InventoryMaterialSlotUI> InventoryMaterialSlotUIList = new List<InventoryMaterialSlotUI>();
 
@@ -62,7 +63,7 @@ public class PlayerMaterialDetection : MonoBehaviour
 
     private void GetMaterial()
     {
-        if (materialShowList.Count <= 0) return;
+        if (materialShowList.Count <= 0 || !canTakeMaterial) return;
 
         StartCoroutine(TakingItemAnim());
             
@@ -96,9 +97,11 @@ public class PlayerMaterialDetection : MonoBehaviour
 
     private IEnumerator TakingItemAnim()
     {
+        canTakeMaterial = false;
         anim.SetBool("takingitem", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.05f);
         anim.SetBool("takingitem", false);
+        canTakeMaterial = true;
     }
 
     private void OnTriggerEnter(Collider collision)

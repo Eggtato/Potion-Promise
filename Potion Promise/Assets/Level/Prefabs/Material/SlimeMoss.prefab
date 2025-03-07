@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359811816407563330}
   - component: {fileID: 693778614494354536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SlimeMoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
