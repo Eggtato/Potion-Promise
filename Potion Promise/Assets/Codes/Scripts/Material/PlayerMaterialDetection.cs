@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMaterialDetection : MonoBehaviour
 {
-    public List<GameObject> materialShowList = new List<GameObject>();
+    [SerializeField] private List<GameObject> materialShowList = new List<GameObject>();
 
     public GameObject materialShowPrefab;
 
@@ -13,15 +14,24 @@ public class PlayerMaterialDetection : MonoBehaviour
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
-    void Update()
+    public GameObject rewardMaterialShow;
+    [SerializeField] private List<GameObject> rewardMaterialShowList = new List<GameObject>();
+    public Transform rewardGrid;
+
+    public Animator anim;
+    private bool canTakeMaterial = true;
+
+    [SerializeField] private List<InventoryMaterialSlotUI> InventoryMaterialSlotUIList = new List<InventoryMaterialSlotUI>();
+
+    private void Update()
     {
         if (Input.GetKeyDown("f"))
         {
-            getMaterial();
+            GetMaterial();
         }
     }
 
-    public void AddMaterialShow(GameObject materialObject)
+    private void AddMaterialShow(GameObject materialObject)
     {
         GameObject a = Instantiate(materialShowPrefab, gridShow);
 
@@ -38,7 +48,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    public void RemoveMaterialShow(GameObject materialObject)
+    private void RemoveMaterialShow(GameObject materialObject)
     {
         foreach (GameObject a in materialShowList)
         {
@@ -51,20 +61,50 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    public void getMaterial()
+    private void GetMaterial()
     {
-        if (materialShowList.Count <= 0) return;
+        if (materialShowList.Count <= 0 || !canTakeMaterial) return;
 
+        StartCoroutine(TakingItemAnim());
+            
         GameObject materialObject = materialShowList[0];
         MaterialShowData materialShowData = materialObject.GetComponent<MaterialShowData>();
+        MaterialType gatheredMaterialType = materialShowData.getMaterialData().MaterialType;
+
+        InventoryMaterialSlotUI ims = InventoryMaterialSlotUIList.Find(item => item.obtainedMaterialData.MaterialType == gatheredMaterialType);
 
         //add material
+        if (ims != null)
+        {
+            ims.AddQuantity();
+        }
+        else
+        {
+            GameObject a = Instantiate(rewardMaterialShow, rewardGrid);
+            ims = a.GetComponent<InventoryMaterialSlotUI>();
+            ObtainedMaterialData omd = new ObtainedMaterialData();
+            omd.Quantity = 1;
+            omd.MaterialType = gatheredMaterialType;
+            ims.Initialize(omd, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType));
+            InventoryMaterialSlotUIList.Add(ims);
+        }
+
+        Destroy(materialShowData.getMaterialObject());
 
         materialShowList.Remove(materialObject);
         Destroy(materialObject);
     }
 
-    void OnTriggerEnter(Collider collision)
+    private IEnumerator TakingItemAnim()
+    {
+        canTakeMaterial = false;
+        anim.SetBool("takingitem", true);
+        yield return new WaitForSeconds(1.05f);
+        anim.SetBool("takingitem", false);
+        canTakeMaterial = true;
+    }
+
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "material")
         {
@@ -72,7 +112,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "material")
         {

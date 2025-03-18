@@ -1,0 +1,68 @@
+using UnityEngine;
+using System.Collections;
+
+public class PlayerSpellController : MonoBehaviour
+{
+    [SerializeField] private Animator anim;
+    [SerializeField] private Camera Camera;
+    [SerializeField] private Transform Body;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject magicWand;
+    [SerializeField] private GameObject[] effectGameObjects;
+
+    private bool canSpell = true;
+    private RaycastHit hit;
+    private Ray ray;
+    public LayerMask layerMask;
+
+    void Start()
+    {
+        magicWand.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && canSpell)
+        {
+            StartCoroutine(castingSpellAnim());
+        }
+    }
+
+    IEnumerator castingSpellAnim()
+    {
+        canSpell = false;
+
+        playerMovement.canMove = false;
+
+        effectGameObjects[0].SetActive(true);
+
+        magicWand.SetActive(true);
+
+        ray = Camera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            Vector3 b = (hit.point - Body.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(b);
+            Debug.Log(rotation);
+
+            while (Quaternion.Angle(Body.rotation, rotation) > 5)
+            {
+                Body.rotation = Quaternion.Lerp(Body.rotation, rotation, 0.5f);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+
+        anim.SetBool("castingspell", true);
+        yield return new WaitForSeconds(0.8f);
+        anim.SetBool("castingspell", false);
+
+        magicWand.SetActive(false);
+
+        playerMovement.canMove = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        canSpell = true;
+    }
+}
