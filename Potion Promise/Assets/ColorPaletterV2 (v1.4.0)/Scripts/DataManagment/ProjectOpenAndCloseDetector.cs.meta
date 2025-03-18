@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4fa560ec8951c4445836983c33823085
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259567
+  packageName: ColorPaletterV2
+  packageVersion: 1.4.0
+  assetPath: Assets/ColorPaletterV2 (v1.4.0)/Scripts/DataManagment/ProjectOpenAndCloseDetector.cs
+  uploadId: 621339

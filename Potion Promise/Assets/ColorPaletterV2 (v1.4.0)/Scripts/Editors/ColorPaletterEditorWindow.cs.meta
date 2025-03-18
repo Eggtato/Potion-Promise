@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6aee4c16d75a8d948ae79fd201952e90
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259567
+  packageName: ColorPaletterV2
+  packageVersion: 1.4.0
+  assetPath: Assets/ColorPaletterV2 (v1.4.0)/Scripts/Editors/ColorPaletterEditorWindow.cs
+  uploadId: 621339

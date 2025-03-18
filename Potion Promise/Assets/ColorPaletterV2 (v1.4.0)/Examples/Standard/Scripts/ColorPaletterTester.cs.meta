@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 65dc816723dc4c14c991e028f0cf9d3f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259567
+  packageName: ColorPaletterV2
+  packageVersion: 1.4.0
+  assetPath: Assets/ColorPaletterV2 (v1.4.0)/Examples/Standard/Scripts/ColorPaletterTester.cs
+  uploadId: 621339

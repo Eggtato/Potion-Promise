@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d98b61a9e4b46b842b4033cb05cdd12c
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259567
+  packageName: ColorPaletterV2
+  packageVersion: 1.4.0
+  assetPath: Assets/ColorPaletterV2 (v1.4.0)/README.txt
+  uploadId: 621339

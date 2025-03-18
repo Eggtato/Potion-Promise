@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f427dde52e6d7d94593c081a07c9a6e5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259567
+  packageName: ColorPaletterV2
+  packageVersion: 1.4.0
+  assetPath: Assets/ColorPaletterV2 (v1.4.0)/Scripts/DataManagment/ColorPaletterSettingsSaveData.cs
+  uploadId: 621339
