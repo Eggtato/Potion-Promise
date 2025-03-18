@@ -27,7 +27,6 @@ namespace PixelCrushers
             set { m_uiText = value; }
         }
 
-#if TMP_PRESENT
         [SerializeField]
         private TMPro.TextMeshProUGUI m_textMeshProUGUI;
 
@@ -39,7 +38,7 @@ namespace PixelCrushers
             get { return m_textMeshProUGUI; }
             set { m_textMeshProUGUI = value; }
         }
-#endif
+
 #if USE_STM
         [SerializeField]
         private SuperTextMesh m_superTextMesh;
