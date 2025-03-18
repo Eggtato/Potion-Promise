@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private float movX, movZ;
     private float magnitude;
+    private float speedValue = 1;
     private Vector3 speedMagnitude;
 
     public Animator anim;
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         if ((movX != 0 || movZ != 0) && canMove)
         {
-            rb.linearVelocity = (transform.forward * movZ + transform.right * movX).normalized * MovementSpeed + new Vector3(0, rb.linearVelocity.y, 0);
+            rb.linearVelocity = (transform.forward * movZ + transform.right * movX).normalized * MovementSpeed * speedValue + new Vector3(0, rb.linearVelocity.y, 0);
 
             playermesh.rotation = Quaternion.Lerp(playermesh.rotation, Quaternion.LookRotation(new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z)), 0.2f);
             playermesh.position = Vector3.Lerp(playermesh.position, transform.position + new Vector3(0, -0.9f, 0), 0.1f);
@@ -48,14 +49,20 @@ public class PlayerMovement : MonoBehaviour
         speedMagnitude.y = 0;
         magnitude = Mathf.MoveTowards(magnitude, speedMagnitude.magnitude, 2);
 
-        Debug.Log(magnitude);
-
         anim.SetFloat("speed", magnitude);
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position + new Vector3(0, 2, 0), transform.TransformDirection(-Vector3.up), out hit, 4f, groundMask))
         {
             transform.position = Vector3.MoveTowards(transform.position, hit.point + new Vector3(0, PlayerHeight / 1.95f, 0), 0.2f);
+            if (hit.collider.gameObject.layer == 9)
+            {
+                speedValue = 0.75f;
+            }
+            else
+            {
+                speedValue = 1;
+            }
         }
         else
         {

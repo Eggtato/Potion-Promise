@@ -10,6 +10,7 @@ public class GatheringTimerController : MonoBehaviour
     [SerializeField] private TMP_Text sanityTxt;
     [SerializeField] private Image sanityBar;
     [SerializeField] private GameObject rewardScreen;
+    [SerializeField] private FischlWorks_FogWar.csFogWar csFog;
 
     private void Start()
     {
@@ -18,21 +19,20 @@ public class GatheringTimerController : MonoBehaviour
 
     private IEnumerator SanityTimer()
     {
-        float kecepatanImage = (1 / sanityAmount) * 0.02f;
-        float kecepatanTxt = 1 * 0.02f;
         bool lowSanity = false;
         float thresholdSanityLow = sanityAmount / 3;
-        while (sanityBar.fillAmount > 0)
+
+        while (csFog.fogRevealers[0].sightRange > 0)
         {
-            sanityBar.fillAmount -= kecepatanImage;
-            sanityTxt.text = sanityAmount.ToString("###");
-            sanityAmount -= kecepatanTxt;
-            if (sanityAmount < thresholdSanityLow && lowSanity != true)
+            csFog.fogRevealers[0].sightRange -= 2;
+
+            if (csFog.fogRevealers[0].sightRange <= 5 && !lowSanity)
             {
                 lowSanity = true;
                 //play low sanity sound
             }
-            yield return new WaitForSeconds(0.02f);
+
+            yield return new WaitForSeconds(15f);
         }
 
         ShowRewardScreen();
