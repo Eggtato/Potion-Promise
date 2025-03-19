@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Level/Scenes/Gathering.unity
-    guid: e1bbb493ad866cc43aec0e1340b45887
-  - enabled: 1
     path: Assets/Level/Scenes/LoadingScreen.unity
     guid: df6d67bd757011f488eb4a0dd37c2413
   - enabled: 1
@@ -17,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Shop.unity
     guid: ab48e5b3c60e4034c916502f3a44406a
+  - enabled: 1
+    path: Assets/Level/Scenes/Gathering.unity
+    guid: e1bbb493ad866cc43aec0e1340b45887
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

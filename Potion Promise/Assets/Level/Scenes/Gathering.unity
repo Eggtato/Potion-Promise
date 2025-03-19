@@ -7197,6 +7197,7 @@ MonoBehaviour:
   sanityBar: {fileID: 516675490}
   rewardScreen: {fileID: 15276730}
   csFog: {fileID: 1170514808}
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
 --- !u!1 &237753447
 GameObject:
   m_ObjectHideFlags: 0
@@ -42653,7 +42654,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 812034711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 233619989}
+        m_TargetAssemblyTypeName: GatheringTimerController, Assembly-CSharp
+        m_MethodName: ToNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &812034711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60676,7 +60689,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1611066693}
   fogPlaneHeight: 2
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
-  fogColor: {r: 0.019607844, g: 0.05882353, b: 0.09803922, a: 1}
+  fogColor: {r: 0.032933608, g: 0, b: 0.18867922, a: 1}
   fogPlaneAlpha: 1
   fogLerpSpeed: 3
   keepRevealedTiles: 0
@@ -91714,7 +91727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1774580363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129139,7 +129152,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1584402398}
   m_HandleRect: {fileID: 1584402397}
   m_Direction: 2

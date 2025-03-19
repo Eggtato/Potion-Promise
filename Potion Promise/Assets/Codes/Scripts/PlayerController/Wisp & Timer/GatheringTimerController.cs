@@ -12,6 +12,8 @@ public class GatheringTimerController : MonoBehaviour
     [SerializeField] private GameObject rewardScreen;
     [SerializeField] private FischlWorks_FogWar.csFogWar csFog;
 
+    [SerializeField] private PlayerEventSO playerEventSO;
+
     private void Start()
     {
         StartCoroutine(SanityTimer());
@@ -44,5 +46,10 @@ public class GatheringTimerController : MonoBehaviour
     public void ShowRewardScreen()
     {
         rewardScreen.SetActive(true);
+    }
+
+    public void ToNextScene()
+    {
+        playerEventSO.Event.OnGoToNextScene?.Invoke();
     }
 }
