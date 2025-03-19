@@ -8,8 +8,8 @@ namespace MoreMountains.Tools
 	/// You can add this class to a slider in your UI and it'll let you control a target Track volume
 	/// via the MMSoundManager
 	/// </summary>
-	public class MMSoundManagerTrackVolumeSlider : MonoBehaviour,
-													MMEventListener<MMSoundManagerEvent>,
+	public class MMSoundManagerTrackVolumeSlider :  MonoBehaviour, 
+													MMEventListener<MMSoundManagerEvent>, 
 													MMEventListener<MMSoundManagerTrackEvent>,
 													MMEventListener<MMSoundManagerTrackFadeEvent>
 	{
@@ -22,7 +22,7 @@ namespace MoreMountains.Tools
 		/// when needed, to be always accurate
 		/// </summary>
 		public enum Modes { Read, Write }
-
+		
 		[Header("Track Volume Settings")]
 		/// The track to change volume on
 		[Tooltip("The track to change volume on")]
@@ -33,7 +33,7 @@ namespace MoreMountains.Tools
 		/// The volume to apply to the track when the slider is at its maximum
 		[Tooltip("The volume to apply to the track when the slider is at its maximum")]
 		public float MaxVolume = 1f;
-
+		
 		[Header("Read/Write Mode")]
 		/// in read mode, the value of the slider will be applied to the volume of the track. in read mode, the slider will move to reflect the volume of the track
 		[Tooltip("in read mode, the value of the slider will be applied to the volume of the track. in read mode, the slider will move to reflect the volume of the track")]
@@ -58,7 +58,7 @@ namespace MoreMountains.Tools
 		protected Modes _resetToMode;
 		protected bool _resetNeeded = false;
 		protected float _resetTimestamp;
-
+		
 		/// <summary>
 		/// On awake we cache our slider
 		/// </summary>
@@ -86,7 +86,7 @@ namespace MoreMountains.Tools
 			if (Mode == Modes.Read)
 			{
 				float trackVolume = MMSoundManager.Instance.GetTrackVolume(Track, false);
-				_slider.value = trackVolume;
+				_slider.value = trackVolume; 	
 			}
 
 			if (_resetNeeded && (Time.unscaledTime >= _resetTimestamp))
@@ -152,19 +152,19 @@ namespace MoreMountains.Tools
 				case MMSoundManagerTrackEventTypes.MuteTrack:
 					if (ChangeModeOnMute)
 					{
-						ChangeModeToRead(ModeSwitchBufferTime);
+						ChangeModeToRead(ModeSwitchBufferTime);	
 					}
 					break;
 				case MMSoundManagerTrackEventTypes.UnmuteTrack:
 					if (ChangeModeOnUnmute)
 					{
-						ChangeModeToRead(ModeSwitchBufferTime);
+						ChangeModeToRead(ModeSwitchBufferTime);	
 					}
 					break;
 				case MMSoundManagerTrackEventTypes.SetVolumeTrack:
 					if (ChangeModeOnTrackVolumeChange)
 					{
-						ChangeModeToRead(ModeSwitchBufferTime);
+						ChangeModeToRead(ModeSwitchBufferTime);	
 					}
 					break;
 			}
@@ -178,7 +178,7 @@ namespace MoreMountains.Tools
 		{
 			if (ChangeModeOnTrackFade)
 			{
-				ChangeModeToRead(fadeEvent.FadeDuration + ModeSwitchBufferTime);
+				ChangeModeToRead(fadeEvent.FadeDuration + ModeSwitchBufferTime);	
 			}
 		}
 
