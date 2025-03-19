@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float MovementSpeed = 5;
     [SerializeField] private Transform playermesh;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Transform cliffCheckTransform;
 
     [SerializeField] private float PlayerHeight = 1.5f;
 
@@ -64,9 +65,10 @@ public class PlayerMovement : MonoBehaviour
                 speedValue = 1;
             }
         }
-        else
+
+        if (!Physics.Raycast(cliffCheckTransform.position, -Vector3.up, 2f, groundMask))
         {
-            rb.AddForce(Vector3.up * -0.5f, ForceMode.Impulse);
+            rb.linearVelocity = new Vector3(0, 0, 0);
         }
 
     }

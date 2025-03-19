@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MaterialObjectSpawner : MonoBehaviour
 {
-    public Transform[] spawnPositions;
-    public GameObject[] materialObjects;
-    public LayerMask groundMask;
+    [SerializeField] private Transform[] spawnPositions;
+    [SerializeField] private GameObject[] materialObjects;
+    [SerializeField] private LayerMask groundMask;
 
     private List<int> spawnPositionPicked = new List<int>();
 

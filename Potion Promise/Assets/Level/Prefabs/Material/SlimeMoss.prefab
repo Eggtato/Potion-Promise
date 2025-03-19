@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8681808910539104928}
   - component: {fileID: 8629284887810856253}
   - component: {fileID: 1484281468384218672}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: L_lumut.001 (1)
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8677052597754821800}
   - component: {fileID: 8474261870008453751}
   - component: {fileID: 1088995040218232143}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: L_Stone 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1519856424585785698}
   - component: {fileID: 4383210568405318089}
   - component: {fileID: 6111360846096092875}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: L_lumut.001
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2564024953375214360}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Slimy Moss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359811816407563330}
   - component: {fileID: 693778614494354536}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: SlimeMoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}

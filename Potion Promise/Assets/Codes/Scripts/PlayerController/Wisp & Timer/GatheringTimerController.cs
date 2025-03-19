@@ -21,12 +21,15 @@ public class GatheringTimerController : MonoBehaviour
     {
         bool lowSanity = false;
         float thresholdSanityLow = sanityAmount / 3;
+        float countDown = sanityAmount / csFog.fogRevealers[0].sightRange;
+        int minus = 2;
 
-        while (csFog.fogRevealers[0].sightRange > 0)
+        while (countDown > 0)
         {
-            csFog.fogRevealers[0].sightRange -= 2;
+            csFog.fogRevealers[0].sightRange -= minus;
+            countDown -= minus;
 
-            if (csFog.fogRevealers[0].sightRange <= 5 && !lowSanity)
+            if (countDown <= thresholdSanityLow && !lowSanity)
             {
                 lowSanity = true;
                 //play low sanity sound
