@@ -60689,7 +60689,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1611066693}
   fogPlaneHeight: 2
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
-  fogColor: {r: 0.032933608, g: 0, b: 0.18867922, a: 1}
+  fogColor: {r: 0.05031442, g: 0, b: 0.3018868, a: 1}
   fogPlaneAlpha: 1
   fogLerpSpeed: 3
   keepRevealedTiles: 0
