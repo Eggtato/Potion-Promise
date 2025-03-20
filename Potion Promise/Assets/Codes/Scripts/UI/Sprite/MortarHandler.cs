@@ -75,7 +75,7 @@ public class MortarHandler : MonoBehaviour
     /// </summary>
     public void SmashMaterial()
     {
-        if (!hasSmashedMaterial)
+        if (!hasSmashedMaterial || materialData == null)
         {
             return;
         }
