@@ -691,7 +691,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf39584d08a5414fbd0b82868da1ae2, type: 2}
+  - {fileID: 2100000, guid: fe3dbdaeffa0c3646872e28cf9e12fd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5942,6 +5942,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!1001 &120430486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8250,7 +8251,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf39584d08a5414fbd0b82868da1ae2, type: 2}
+  - {fileID: 2100000, guid: fe3dbdaeffa0c3646872e28cf9e12fd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28679,6 +28680,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!1 &390192101
 GameObject:
   m_ObjectHideFlags: 0
@@ -29662,7 +29664,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf39584d08a5414fbd0b82868da1ae2, type: 2}
+  - {fileID: 2100000, guid: fe3dbdaeffa0c3646872e28cf9e12fd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41932,7 +41934,7 @@ Transform:
   m_GameObject: {fileID: 716968935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 2}
+  m_LocalPosition: {x: 0, y: 5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42066,6 +42068,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!4 &738286227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8029310298607558620, guid: fbf09f2b56db3bf4292bdbde6d7ab90f, type: 3}
@@ -49069,7 +49072,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf39584d08a5414fbd0b82868da1ae2, type: 2}
+  - {fileID: 2100000, guid: fe3dbdaeffa0c3646872e28cf9e12fd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -59886,6 +59889,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!1 &1121506102
 GameObject:
   m_ObjectHideFlags: 0
@@ -60912,6 +60916,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181049889}
   m_Mesh: {fileID: 4206096719540875024, guid: 052c78e5aba7f54459e250b2c04fc6c0, type: 3}
+--- !u!1 &1194567736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194567737}
+  m_Layer: 0
+  m_Name: MaterialsSpawned
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1194567737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194567736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1196238561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2ca42ce2ebc1f9468ff815b2ec3e369, type: 3}
@@ -61480,7 +61515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7beebadd016205f46a4a711397a46211, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74500,6 +74535,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!4 &1524159080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8903558bdb33e7d41a799a7e7a905297, type: 3}
@@ -92071,6 +92107,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  SpawnParentTransform: {fileID: 1194567737}
 --- !u!1 &1867880974
 GameObject:
   m_ObjectHideFlags: 0
@@ -124135,7 +124172,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bf39584d08a5414fbd0b82868da1ae2, type: 2}
+  - {fileID: 2100000, guid: fe3dbdaeffa0c3646872e28cf9e12fd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129855,3 +129892,4 @@ SceneRoots:
   - {fileID: 363497601}
   - {fileID: 1415928853}
   - {fileID: 1170514809}
+  - {fileID: 1194567737}

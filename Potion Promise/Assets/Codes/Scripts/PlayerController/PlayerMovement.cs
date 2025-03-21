@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!Physics.Raycast(cliffCheckTransform.position, -Vector3.up, 2f, groundMask))
+        if (!Physics.Raycast(cliffCheckTransform.position, -Vector3.up, 7f, groundMask))
         {
             rb.linearVelocity = new Vector3(0, 0, 0);
         }
