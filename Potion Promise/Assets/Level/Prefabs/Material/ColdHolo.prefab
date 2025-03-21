@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5799256475822113021}
   - component: {fileID: 8072910946778073195}
   - component: {fileID: 7974246498970093297}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: SM_Cold Holo Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1390790394423702444}
   - component: {fileID: 5712179015959663507}
   - component: {fileID: 5466092268510115779}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 2919199925484259499}
   - component: {fileID: 3559779541331871438}
   - component: {fileID: 3294135056675902085}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: ColdHolo
   m_TagString: material
   m_Icon: {fileID: 0}

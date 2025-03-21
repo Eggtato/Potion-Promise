@@ -40,22 +40,28 @@ public class PlayerSpellController : MonoBehaviour
 
         ray = Camera.ScreenPointToRay(Input.mousePosition);
 
+        anim.SetBool("castingspell", true);
+
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             Vector3 b = (hit.point - Body.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(b);
-            Debug.Log(rotation);
+            rotation.x = 0;
+            rotation.z = 0;
 
-            while (Quaternion.Angle(Body.rotation, rotation) > 5)
+            while (rotation.y - Body.rotation.eulerAngles.y > 20)
             {
+                Debug.Log(rotation.y - Body.rotation.eulerAngles.y);
                 Body.rotation = Quaternion.Lerp(Body.rotation, rotation, 0.5f);
                 yield return new WaitForSeconds(0.02f);
             }
         }
 
-        anim.SetBool("castingspell", true);
         yield return new WaitForSeconds(0.8f);
+
         anim.SetBool("castingspell", false);
+
+        yield return new WaitForSeconds(0.2f);
 
         magicWand.SetActive(false);
 

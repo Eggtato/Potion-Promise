@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3592698653260686740}
   - component: {fileID: 3555675569063041947}
   - component: {fileID: 4421161363600288087}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: HardSpike
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6353796407584926399}
   - component: {fileID: 4945010680658544246}
   - component: {fileID: 1619007611068128251}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Hard Spike Shroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

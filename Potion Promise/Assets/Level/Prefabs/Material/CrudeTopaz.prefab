@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8799204111267180265}
   - component: {fileID: 4430299154545121291}
   - component: {fileID: 8334463191969100322}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: CrudeTopaz
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6168811262985488846}
   - component: {fileID: 480067024943619516}
   - component: {fileID: 6891739526102331670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_CrudeTopaz New (1)
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 3188531303013107931}
   - component: {fileID: 8207294581918175950}
   - component: {fileID: 8779277858363331779}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_CrudeTopaz New
   m_TagString: material
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5636835834293069066}
   - component: {fileID: 2857739455206751474}
   - component: {fileID: 6814320274161478018}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: WetCoverPlant
   m_TagString: material
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0bbb4451ddb4d334abb5e6ce0858bdbe, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

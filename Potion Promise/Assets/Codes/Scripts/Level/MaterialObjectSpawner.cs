@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MaterialObjectSpawner : MonoBehaviour
 {
-    public Transform[] spawnPositions;
-    public GameObject[] materialObjects;
-    public LayerMask groundMask;
+    [SerializeField] private Transform[] spawnPositions;
+    [SerializeField] private GameObject[] materialObjects;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Transform SpawnParentTransform;
 
     private List<int> spawnPositionPicked = new List<int>();
 
@@ -31,7 +32,9 @@ public class MaterialObjectSpawner : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(spawnPositions[rnd].position + new Vector3(0, 5f, 0), transform.TransformDirection(-Vector3.up), out hit, 10f, groundMask))
             {
-                Instantiate(materialObjects[Random.Range(0, materialObjects.Length)], hit.point + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, Random.Range(0, 360), 0));
+                Transform a = Instantiate(materialObjects[Random.Range(0, materialObjects.Length)], SpawnParentTransform).transform;
+                a.position = hit.point + new Vector3(0, 0.5f, 0);
+                a.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
             }
 
             spawnPositionPicked.Add(rnd);
