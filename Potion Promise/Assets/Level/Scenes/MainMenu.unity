@@ -7379,9 +7379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AutoUnparentOnAwake: 1
-  CurrentDay: 0
-  ObtainedMaterialDataList: []
-  ProgressionDataList: []
 --- !u!1 &343917108
 GameObject:
   m_ObjectHideFlags: 0

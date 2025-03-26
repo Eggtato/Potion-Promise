@@ -5,45 +5,54 @@ using UnityEngine;
 
 public class GameDataManager : PersistentSingleton<GameDataManager>
 {
-    public int CurrentDay;
-    public Action OnAllDataLoaded;
-    public Action<int> OnCurrentDayChanged;
-    public List<ObtainedMaterialData> ObtainedMaterialDataList = new();
-    public List<ProgressionData> ProgressionDataList = new List<ProgressionData>();
+    public event Action OnAllDataLoaded;
+    public event Action<int> OnCurrentDayChanged;
 
     private GameData gameData;
     private ProgressionSavedData progressionData;
 
+    public int CurrentDay
+    {
+        get => gameData.CurrentDay;
+        private set
+        {
+            gameData.CurrentDay = value;
+            OnCurrentDayChanged?.Invoke(gameData.CurrentDay);
+            SaveGameData();
+        }
+    }
+
+    public List<ObtainedMaterialData> ObtainedMaterialDataList => gameData?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
+    public List<ProgressionData> ProgressionDataList => progressionData?.ProgressionDataList ?? new List<ProgressionData>();
+
     public new void Awake()
     {
         base.Awake();
-
-        gameData = Data.Get<GameData>();
-        progressionData = Data.Get<ProgressionSavedData>();
-
-        CurrentDay = gameData.CurrentDay;
-        ObtainedMaterialDataList = gameData.ObtainedMaterialDataList;
-        ProgressionDataList = progressionData.ProgressionDataList;
+        LoadData();
     }
 
-    public void Save()
+    private void LoadData()
     {
-        Data.Save();
+        gameData = Data.Get<GameData>() ?? new GameData();
+        progressionData = Data.Get<ProgressionSavedData>() ?? new ProgressionSavedData();
+
+        OnAllDataLoaded?.Invoke();
     }
+
+    public void SaveGameData() => Data.Save<GameData>();
+    public void SaveProgressionData() => Data.Save<ProgressionSavedData>();
 
     public void ClearAllData()
     {
         PlayerPrefs.DeleteAll();
-        Save();
+        LoadData();
+        SaveGameData();
+        SaveProgressionData();
     }
 
     public void IncreaseCurrentDay()
     {
-        gameData.CurrentDay++;
-        CurrentDay = gameData.CurrentDay;
-        OnCurrentDayChanged?.Invoke(CurrentDay);
-
-        Save();
+        CurrentDay++;
     }
 
     public void AddNewProgression(int day, ProgressionType progressionType)
@@ -51,22 +60,30 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         var data = progressionData.ProgressionDataList.Find(i => i.Day == day);
         if (data == null)
         {
-            ProgressionData newProgressionData = new()
-            {
-                Day = day
-            };
-
-            newProgressionData.ProgressionTypes.Clear();
-            newProgressionData.ProgressionTypes.Add(progressionType);
-
-            progressionData.ProgressionDataList.Add(newProgressionData);
+            data = new ProgressionData { Day = day, ProgressionTypes = new List<ProgressionType> { progressionType } };
+            progressionData.ProgressionDataList.Add(data);
         }
-        else
+        else if (!data.ProgressionTypes.Contains(progressionType))
         {
             data.ProgressionTypes.Add(progressionType);
         }
 
-        progressionData.Save();
+        SaveProgressionData();
     }
 
+    public void AddObtainedMaterial(MaterialData materialData)
+    {
+        var data = gameData.ObtainedMaterialDataList.Find(i => i.MaterialType == materialData.MaterialType);
+        if (data == null)
+        {
+            data = new ObtainedMaterialData { MaterialType = materialData.MaterialType, Quantity = 1 };
+            gameData.ObtainedMaterialDataList.Add(data);
+        }
+        else
+        {
+            data.Quantity++;
+        }
+
+        SaveGameData();
+    }
 }
