@@ -86,4 +86,19 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
 
         SaveGameData();
     }
+
+    public void RemoveObtainedMaterialByOne(MaterialData materialData)
+    {
+        var data = gameData.ObtainedMaterialDataList.Find(i => i.MaterialType == materialData.MaterialType);
+        if (data == null)
+        {
+            Debug.LogError("Material to be used couldn't be found");
+        }
+        else
+        {
+            data.Quantity--;
+        }
+
+        SaveGameData();
+    }
 }
