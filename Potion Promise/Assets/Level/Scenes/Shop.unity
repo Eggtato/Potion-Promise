@@ -14478,6 +14478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
+  customerRoomUI: {fileID: 1257452193}
+  earnedMoney: {fileID: 5883193}
   leftButton: {fileID: 1362195265}
   rightButton: {fileID: 586243048}
   recipeBook: {fileID: 1489634628}
@@ -34051,7 +34053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1557651858
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39104,7 +39106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   shopCustomerManager: {fileID: 854450775}
-  earnedCoin: 0
+  EarnedCoin: 0
 --- !u!1 &1969741729
 GameObject:
   m_ObjectHideFlags: 0
@@ -41629,6 +41631,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8857088981581533610, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857088981581533610, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -41639,6 +41645,10 @@ PrefabInstance:
     - target: {fileID: 9205790979607597385, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
       propertyPath: m_Name
       value: PotionInventorySlotUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205790979607597385, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

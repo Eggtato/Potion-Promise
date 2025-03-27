@@ -21,7 +21,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
     public void Initialize(PotionData potionData)
     {
         PotionData = potionData;
-        icon.sprite = potionData.Sprite;
+        icon.sprite = potionData?.Sprite;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

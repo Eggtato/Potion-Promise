@@ -31,7 +31,6 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         private set
         {
             gameData.Debt = value;
-            playerEventSO.Event.OnEarnedCoinChanged?.Invoke();
             SaveGameData();
         }
     }

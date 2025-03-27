@@ -144,6 +144,7 @@ public class CustomerRoomUI : BaseUI
                 }
 
                 var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
+                slotUI.gameObject.SetActive(true);
                 slotPool.Add(slotUI);
             }
 

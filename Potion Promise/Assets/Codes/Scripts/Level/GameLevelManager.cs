@@ -7,7 +7,8 @@ public class GameLevelManager : Singleton<GameLevelManager>
     [SerializeField] private PlayerEventSO playerEventSO;
 
     [SerializeField] private ShopCustomerManager shopCustomerManager;
-    [SerializeField] private int earnedCoin;
+
+    public int EarnedCoin = 0;
 
     void OnEnable()
     {
@@ -21,12 +22,13 @@ public class GameLevelManager : Singleton<GameLevelManager>
 
     public void AddEarnedCoin(int amount)
     {
-        earnedCoin += amount;
+        EarnedCoin += amount;
+        playerEventSO.Event.OnEarnedCoinChanged?.Invoke();
     }
 
     public void HandleDayEnd()
     {
-        GameDataManager.Instance.PayDebt(earnedCoin);
+        GameDataManager.Instance.PayDebt(EarnedCoin);
     }
 
 }
