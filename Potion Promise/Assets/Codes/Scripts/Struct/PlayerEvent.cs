@@ -11,6 +11,11 @@ public struct PlayerEvent
     // UI Input Events
     public Action OnAnyUIClosed;
 
+    // Game Data Event
+    public Action OnCurrentDayChanged;
+    public Action OnDayEnd;
+    public Action OnEarnedCoinChanged;
+
     // UI Input Events : Main Menu
     public Action OnGoToNextScene;
     public Action OnNewGameButtonClicked;
@@ -22,7 +27,7 @@ public struct PlayerEvent
     public Action<SettingTabUI> OnSettingTabButtonClicked;
 
     // UI Input Events : Customer
-    public Action<PotionType> OnPotionDroppedOnCustomer;
+    public Action<PotionData> OnPotionDroppedOnCustomer;
 
     // UI Input Events : Shop
     public Action OnCustomerRoomOpened;

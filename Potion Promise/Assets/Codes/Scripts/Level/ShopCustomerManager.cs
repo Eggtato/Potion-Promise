@@ -4,9 +4,9 @@ public class ShopCustomerManager : MonoBehaviour
 {
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
+    [SerializeField] private ShopCustomerDatabaseSO shopCustomerDatabaseSO;
 
     [Header("Scene Reference")]
-    [SerializeField] private ShopCustomerDatabaseSO shopCustomerDatabaseSO;
     [SerializeField] private CustomerRoomUI customerRoomUI;
 
     private ShopCustomerOrderData currentOrder;
@@ -42,11 +42,16 @@ public class ShopCustomerManager : MonoBehaviour
         GenerateRandomOrder();
     }
 
-    public void ProcessPotionDrop(PotionType potionType)
+    public void ProcessPotionDrop(PotionData potionData)
     {
-        if (currentOrder.OrderedPotion == potionType)
+        if (currentOrder.OrderedPotion == potionData.PotionType)
+        {
+            GameLevelManager.Instance.AddEarnedCoin(potionData.Price);
             customerRoomUI.HandleCorrectCustomerOrder();
+        }
         else
+        {
             customerRoomUI.HandleIncorrectCustomerOrder();
+        }
     }
 }

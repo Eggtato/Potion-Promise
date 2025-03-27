@@ -6,7 +6,10 @@ using UnityEngine;
 public class GameDataManager : PersistentSingleton<GameDataManager>
 {
     public event Action OnAllDataLoaded;
-    public event Action<int> OnCurrentDayChanged;
+
+    [Header("Project Reference")]
+    [SerializeField] private PlayerEventSO playerEventSO;
+    [SerializeField] private InitialGameValueSO initialGameValueSO;
 
     private GameData gameData;
     private ProgressionSavedData progressionData;
@@ -17,11 +20,21 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         private set
         {
             gameData.CurrentDay = value;
-            OnCurrentDayChanged?.Invoke(gameData.CurrentDay);
+            playerEventSO.Event.OnCurrentDayChanged?.Invoke();
             SaveGameData();
         }
     }
 
+    public int Debt
+    {
+        get => gameData?.Debt ?? initialGameValueSO.InitialGameValue.Debt;
+        private set
+        {
+            gameData.Debt = value;
+            playerEventSO.Event.OnEarnedCoinChanged?.Invoke();
+            SaveGameData();
+        }
+    }
     public List<ObtainedMaterialData> ObtainedMaterialDataList => gameData?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
     public List<CraftedPotionData> CraftedPotionDataList => gameData?.CraftedPotionDataList ?? new List<CraftedPotionData>();
     public List<ProgressionData> ProgressionDataList => progressionData?.ProgressionDataList ?? new List<ProgressionData>();
@@ -70,6 +83,11 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         }
 
         SaveProgressionData();
+    }
+
+    public void PayDebt(int amount)
+    {
+        Debt -= amount;
     }
 
     public void AddObtainedMaterial(MaterialData materialData)

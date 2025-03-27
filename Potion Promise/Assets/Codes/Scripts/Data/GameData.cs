@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GameData : BaseData
 {
     public override string Name => "Game Data";
     public override string Key => "GameData";
 
     public int CurrentDay = 1;
-    public int Coin = 0;
+    public int Debt = 10000;
     public List<ObtainedMaterialData> ObtainedMaterialDataList = new List<ObtainedMaterialData>();
     public List<CraftedPotionData> CraftedPotionDataList = new List<CraftedPotionData>();
 }
