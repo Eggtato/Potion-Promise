@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopCustomerDatas:
   - Sprite: {fileID: 21300000, guid: a13668cc89f6641949a87c692f124e3d, type: 3}
-    ShopCustomerOrderDatas:
-    - OrderDescription: Thank god it's finally open.And oh? seems you one of the
-        miss's child. Well, young girl, i would love to have a Heal Potion, please.
+    Orders:
+    - OrderDescription: ' Thank god it''s finally open.And oh? seems you one of the
+        miss''s child. Well, young girl, i would love to have a Heal Potion, please.'
       DeclineDescription: It's out of stock? Oh well.
       CorrectOrderDescription: Those smell and color, the same healing potion as
         always!
@@ -28,56 +28,30 @@ MonoBehaviour:
       CorrectOrderDescription: Lovely! Thank you so much.
       InCorrectOrderDescription: That's....not what exactly i expected.
       OrderedPotion: 0
-    - OrderDescription: I believe that your mother was quite capable of creating
-        a potion for warming up your body.
+    - OrderDescription: I believe that your mother is quite capable of creating a
+        potion for warming up your body.
       DeclineDescription: Such a shame, at least do your best to restock some ingredients.
       CorrectOrderDescription: I can't thank you enough for this Amazing exilir.
-      InCorrectOrderDescription: 'Oh god, you mixed the order with someone elses! '
+      InCorrectOrderDescription: 'Oh God, you mixed the order with someone elses! '
       OrderedPotion: 2
   - Sprite: {fileID: 21300000, guid: f9593a802ca314a8c94342dd648cefdc, type: 3}
-    ShopCustomerOrderDatas:
+    Orders:
     - OrderDescription: My Mother sent me here, and she said "Don't forget to bring
-        one of those soothing cold liquid, son!"
-      DeclineDescription: Oh, i guess there's no cold booster this time then.
-      CorrectOrderDescription: And thats what my mum exactly needs! Thank you!
+        one wanna those soothing cold liquid Son!"
+      DeclineDescription: Oh, i guess there's no cold booster  this time.
+      CorrectOrderDescription: And thats what my mum exactly needs! Thank you.
       InCorrectOrderDescription: Big Yikes.
       OrderedPotion: 1
     - OrderDescription: Again with one of those chilling liquids that will put my
         brain into freeze!
       DeclineDescription: Out of the stock? Really?
       CorrectOrderDescription: Horray! Cold booster once again!
-      InCorrectOrderDescription: Are your brain freezing up or this is actually the
-        wrong order
+      InCorrectOrderDescription: Are your brain freezing up? This is the wrong order.
       OrderedPotion: 1
-    - OrderDescription: It's me again! I believe you have one of those hot exilir,
-        right?
+    - OrderDescription: It's me again! I believe you have one of those hot exilir.
+        Right?
       DeclineDescription: Oh c'mon!
       CorrectOrderDescription: At least with this, i can feel warmer. You're the
-        best!
+        best.
       InCorrectOrderDescription: Woomp Woomp.
-      OrderedPotion: 2
-  - Sprite: {fileID: 21300000, guid: d9df97a983e5548e6b79f61b37d25864, type: 3}
-    ShopCustomerOrderDatas:
-    - OrderDescription: Youre such a quiet young lad, i wondering if you have a exilir
-        that came out from the sun?
-      DeclineDescription: I see, don't forget to take care yourself dearest.
-      CorrectOrderDescription: Please accept my half of gold for your future, thank
-        you.
-      InCorrectOrderDescription: Oh, i believe this is the wrong one
-      OrderedPotion: 2
-    - OrderDescription: I was once a very healthy young goblin but now i don't even
-        know how to get a nice and enough sleep lately.
-      DeclineDescription: It's ran out of stock? well i cant blame you for doing
-        your job alone dearest.
-      CorrectOrderDescription: Oh how lovely, now i can sleep without hearing those
-        lousy neighbours all the time.
-      InCorrectOrderDescription: It seems you exhausted dear, don't worry i will
-        take it.
-      OrderedPotion: 4
-    - OrderDescription: My my, it's getting pretty cold in my area, it will be lovely
-        to have some booster to keep me warm.
-      DeclineDescription: Okay then, i will come back later.
-      CorrectOrderDescription: This will be keep me warm for the next few weeks,
-        thank you kindly.
-      InCorrectOrderDescription: Might got mixed up with other people's order.
       OrderedPotion: 2

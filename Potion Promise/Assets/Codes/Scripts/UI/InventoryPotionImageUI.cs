@@ -7,9 +7,9 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 {
     public PotionData PotionData { get; private set; }
 
+    private Image icon;
     private Transform rootcanvasParent;
 
-    private Image icon;
     private Transform parentAfterDrag;
 
     private void Awake()

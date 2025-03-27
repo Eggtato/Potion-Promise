@@ -24,66 +24,141 @@ public class CustomerRoomUI : BaseUI
 
     [Header("Animation")]
     [SerializeField] private float fadeInAnimation = 0.2f;
+    [SerializeField] private float delayTime = 3f;
+
+    private ShopCustomerOrderData currentCustomerOrderData;
+    private List<InventoryPotionSlotUI> slotPool = new List<InventoryPotionSlotUI>();
+    private Action onNextCustomer;
+    private ShopCustomerManager shopCustomerManager;
 
     private void Start()
     {
-        // Ensure the inventory slot template is inactive by default
         if (inventorySlotTemplate != null)
             inventorySlotTemplate.gameObject.SetActive(false);
 
         var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
 
+        if (craftedPotions == null || craftedPotions.Count == 0)
+        {
+            Debug.LogError("CraftedPotionDataList is NULL or EMPTY at Start()!");
+            return;
+        }
+
+        npcPanel.gameObject.SetActive(false);
+
         GenerateInventory(craftedPotions);
     }
 
-    public void InitializeNPC(Sprite sprite, ShopCustomerOrderData shopCustomerOrderData, Action rejectButtonAction)
+    public void Initialize(ShopCustomerManager shopCustomerManager)
     {
-        npcImage.sprite = sprite;
-        orderText.text = shopCustomerOrderData.OrderDescription;
+        this.shopCustomerManager = shopCustomerManager;
 
-        // Ensure the panel is visible
-        npcPanel.alpha = 0;
-        npcPanel.gameObject.SetActive(true);
-        npcPanel.DOFade(1f, fadeInAnimation);
-
-        // Remove old listeners before adding a new one
-        rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(() =>
         {
             npcPanel.DOFade(0, 0.2f).OnComplete(() =>
             {
                 npcPanel.gameObject.SetActive(false);
-                rejectButtonAction?.Invoke(); // Generate a new order
+                shopCustomerManager.RejectOrder();
             });
+        });
+    }
+
+
+    public void InitializeNPC(Sprite sprite, ShopCustomerOrderData shopCustomerOrderData)
+    {
+        if (npcPanel.gameObject.activeSelf)
+        {
+            SetupNewNPC(sprite, shopCustomerOrderData);
+            npcPanel.DOFade(0, 0.2f).OnComplete(() =>
+            {
+                npcPanel.gameObject.SetActive(false);
+                SetupNewNPC(sprite, shopCustomerOrderData);
+            });
+        }
+        else
+        {
+            SetupNewNPC(sprite, shopCustomerOrderData);
+        }
+    }
+
+    private void SetupNewNPC(Sprite sprite, ShopCustomerOrderData shopCustomerOrderData)
+    {
+        currentCustomerOrderData = shopCustomerOrderData;
+
+        npcImage.sprite = sprite;
+        orderText.text = shopCustomerOrderData.OrderDescription;
+
+        npcPanel.alpha = 0;
+        npcPanel.gameObject.SetActive(true);
+        npcPanel.DOFade(1f, fadeInAnimation);
+
+        rejectButton.gameObject.SetActive(true);
+    }
+
+    public void HandleCorrectCustomerOrder()
+    {
+        orderText.text = currentCustomerOrderData.CorrectOrderDescription;
+        rejectButton.gameObject.SetActive(false);
+        npcPanel.DOFade(0, 0.2f).SetDelay(delayTime).OnComplete(() =>
+        {
+            npcPanel.gameObject.SetActive(false);
+            shopCustomerManager.RejectOrder();
+            onNextCustomer = null;
+        });
+    }
+
+    public void HandleIncorrectCustomerOrder()
+    {
+        orderText.text = currentCustomerOrderData.InCorrectOrderDescription;
+        rejectButton.gameObject.SetActive(false);
+        npcPanel.DOFade(0, 0.2f).SetDelay(2f).OnComplete(() =>
+        {
+            npcPanel.gameObject.SetActive(false);
+            shopCustomerManager.RejectOrder();
+            onNextCustomer = null;
         });
     }
 
     private void GenerateInventory(List<CraftedPotionData> craftedPotionDatas)
     {
-        // Clear existing slots except the template
-        foreach (Transform child in inventoryParent)
+        if (craftedPotionDatas == null || craftedPotionDatas.Count == 0)
         {
-            if (child.gameObject == inventorySlotTemplate.gameObject) continue;
-            Destroy(child.gameObject);
+            Debug.LogError("GenerateInventory: CraftedPotionData list is null or empty!");
+            return;
         }
 
-        // Create a slot for each obtained material
+        int index = 0;
+
         foreach (var craftedPotion in craftedPotionDatas)
         {
-            var potionData = potionDatabaseSO.PotionDataList
-                .FirstOrDefault(p => p.PotionType == craftedPotion.PotionType);
-
-            if (potionData == null)
+            if (index < slotPool.Count)
             {
-                Debug.LogWarning($"PotionData not found for type: {craftedPotion.PotionType}");
-                continue;
+                slotPool[index].gameObject.SetActive(true);
+            }
+            else
+            {
+                if (inventorySlotTemplate == null)
+                {
+                    Debug.LogError("InventorySlotTemplate is NULL!");
+                    return;
+                }
+
+                var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
+                slotPool.Add(slotUI);
             }
 
-            var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
-            slotUI.gameObject.SetActive(true);
-            slotUI.Initialize(craftedPotion, potionData);
+            slotPool[index].Initialize(craftedPotion, potionDatabaseSO.GetPotionData(craftedPotion.PotionType));
+            index++;
+        }
+
+        // Hide unused slots
+        for (int i = index; i < slotPool.Count; i++)
+        {
+            slotPool[i].gameObject.SetActive(false);
         }
     }
+
+
 
     protected override void OnEnable()
     {
@@ -100,5 +175,9 @@ public class CustomerRoomUI : BaseUI
     private void HandleCustomerRoomOpened()
     {
         Show();
+
+        var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
+        GenerateInventory(craftedPotions);
     }
+
 }

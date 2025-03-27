@@ -3,11 +3,13 @@ using UnityEngine.EventSystems;
 
 public class CustomerPotionDropUI : MonoBehaviour, IDropHandler
 {
+    [SerializeField] private CustomerRoomUI customerRoomUI;
+
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.TryGetComponent<InventoryPotionImageUI>(out var draggableItem))
+        if (eventData.pointerDrag.TryGetComponent<InventoryPotionImageUI>(out var droppedPotion))
         {
-            Debug.Log("Potion dropped successfully!");
+            customerRoomUI.PlayerEventSO.Event.OnPotionDroppedOnCustomer?.Invoke(droppedPotion.PotionData.PotionType);
         }
         else
         {

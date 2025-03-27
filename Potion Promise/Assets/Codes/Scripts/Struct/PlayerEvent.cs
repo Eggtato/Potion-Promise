@@ -21,6 +21,9 @@ public struct PlayerEvent
     // UI Input Events : Main Menu > Setting
     public Action<SettingTabUI> OnSettingTabButtonClicked;
 
+    // UI Input Events : Customer
+    public Action<PotionType> OnPotionDroppedOnCustomer;
+
     // UI Input Events : Shop
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;
