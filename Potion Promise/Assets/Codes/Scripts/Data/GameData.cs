@@ -9,6 +9,7 @@ public class GameData : BaseData
     public int CurrentDay = 1;
     public int Coin = 0;
     public List<ObtainedMaterialData> ObtainedMaterialDataList = new List<ObtainedMaterialData>();
+    public List<CraftedPotionData> CraftedPotionDataList = new List<CraftedPotionData>();
 }
 
 public class ProgressionSavedData : BaseData

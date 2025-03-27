@@ -7,15 +7,20 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 {
     public MaterialData MaterialData { get; private set; }
 
-    [SerializeField] private Transform rootcanvasParent;
+    private Transform rootcanvasParent;
 
     private Image icon;
     private Transform parentAfterDrag;
 
+    private void Awake()
+    {
+        rootcanvasParent = GetComponentInParent<Canvas>().transform;
+        icon = GetComponent<Image>();
+    }
+
     public void Initialize(MaterialData materialData)
     {
         MaterialData = materialData;
-        icon = GetComponent<Image>();
         icon.sprite = materialData.Sprite;
     }
 

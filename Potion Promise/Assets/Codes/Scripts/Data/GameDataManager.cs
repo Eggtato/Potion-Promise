@@ -23,6 +23,7 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     }
 
     public List<ObtainedMaterialData> ObtainedMaterialDataList => gameData?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
+    public List<CraftedPotionData> CraftedPotionDataList => gameData?.CraftedPotionDataList ?? new List<CraftedPotionData>();
     public List<ProgressionData> ProgressionDataList => progressionData?.ProgressionDataList ?? new List<ProgressionData>();
 
     public new void Awake()
@@ -97,6 +98,22 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         else
         {
             data.Quantity--;
+        }
+
+        SaveGameData();
+    }
+
+    public void AddCraftedPotionData(PotionData potionData)
+    {
+        var data = gameData.CraftedPotionDataList.Find(i => i.PotionType == potionData.PotionType);
+        if (data == null)
+        {
+            data = new CraftedPotionData { PotionType = potionData.PotionType, Quantity = 1 };
+            gameData.CraftedPotionDataList.Add(data);
+        }
+        else
+        {
+            data.Quantity++;
         }
 
         SaveGameData();
