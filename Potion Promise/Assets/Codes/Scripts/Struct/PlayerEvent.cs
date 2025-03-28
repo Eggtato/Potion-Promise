@@ -15,6 +15,7 @@ public struct PlayerEvent
     public Action OnCurrentDayChanged;
     public Action OnDayEnd;
     public Action OnEarnedCoinChanged;
+    public Action OnMaterialInventoryChanged;
     public Action OnPotionInventoryChanged;
 
     // UI Input Events : Main Menu

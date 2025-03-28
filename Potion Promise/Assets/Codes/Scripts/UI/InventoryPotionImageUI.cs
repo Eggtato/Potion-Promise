@@ -7,14 +7,14 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 {
     public PotionData PotionData { get; private set; }
 
-    private Image icon;
+    [SerializeField] private Image icon;
     private Transform rootcanvasParent;
 
     private Transform parentAfterDrag;
 
     private void Awake()
     {
-        icon = GetComponent<Image>();
+        // icon = GetComponent<Image>();
         rootcanvasParent = GetComponentInParent<Canvas>().transform;
     }
 

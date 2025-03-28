@@ -54,6 +54,7 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
             if (mortarHandler != null)
             {
                 mortarHandler.SetDroppedMaterial(MaterialData);
+                GameDataManager.Instance.RemoveObtainedMaterialByOne(MaterialData);
             }
         }
     }

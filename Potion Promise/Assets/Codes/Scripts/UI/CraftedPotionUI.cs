@@ -36,17 +36,17 @@ public class CraftedPotionUI : BaseUI
         descriptionText.text = "Potion Obtained!";
 
         // Reset and set stars based on rarity
-        foreach (var starImage in potionStarImages)
-        {
-            starImage.sprite = gameAssetSO.InActiveStar;
-            starImage.gameObject.SetActive(false);
-        }
+        // foreach (var starImage in potionStarImages)
+        // {
+        //     starImage.sprite = gameAssetSO.InActiveStar;
+        //     starImage.gameObject.SetActive(false);
+        // }
 
-        for (int i = 0; i <= (int)craftedPotion.Rarity; i++)
-        {
-            potionStarImages[i].sprite = gameAssetSO.ActiveStar;
-            potionStarImages[i].gameObject.SetActive(true);
-        }
+        // for (int i = 0; i <= (int)craftedPotion.Rarity; i++)
+        // {
+        //     potionStarImages[i].sprite = gameAssetSO.ActiveStar;
+        //     potionStarImages[i].gameObject.SetActive(true);
+        // }
     }
 
     public void DisplayPotionFailure()
@@ -59,11 +59,11 @@ public class CraftedPotionUI : BaseUI
         descriptionText.text = "Crafting Failed!";
 
         // Reset stars
-        foreach (var starImage in potionStarImages)
-        {
-            starImage.sprite = gameAssetSO.InActiveStar;
-            starImage.gameObject.SetActive(false);
-        }
+        // foreach (var starImage in potionStarImages)
+        // {
+        //     starImage.sprite = gameAssetSO.InActiveStar;
+        //     starImage.gameObject.SetActive(false);
+        // }
     }
 
     private void HandleClose()

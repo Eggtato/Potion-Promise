@@ -102,25 +102,27 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
             data.Quantity++;
         }
 
+        playerEventSO.Event.OnMaterialInventoryChanged?.Invoke();
         SaveGameData();
     }
 
     public void RemoveObtainedMaterialByOne(MaterialData materialData)
     {
         var data = gameData.ObtainedMaterialDataList.Find(i => i.MaterialType == materialData.MaterialType);
-        if (data == null)
-        {
-            Debug.LogError("Material to be used couldn't be found");
-        }
-        else
+        if (data != null)
         {
             data.Quantity--;
+            if (data.Quantity <= 0)
+            {
+                gameData.ObtainedMaterialDataList.Remove(data);
+            }
         }
 
+        playerEventSO.Event.OnMaterialInventoryChanged?.Invoke();
         SaveGameData();
     }
 
-    public void AddCraftedPotionData(PotionType potionType)
+    public void AddCraftedPotion(PotionType potionType)
     {
         var data = gameData.CraftedPotionDataList.Find(i => i.PotionType == potionType);
         if (data == null)
@@ -131,6 +133,22 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         else
         {
             data.Quantity++;
+        }
+
+        playerEventSO.Event.OnPotionInventoryChanged?.Invoke();
+        SaveGameData();
+    }
+
+    public void RemoveCraftedPotionByOne(PotionType potionType)
+    {
+        var data = gameData.CraftedPotionDataList.Find(i => i.PotionType == potionType);
+        if (data != null)
+        {
+            data.Quantity--;
+            if (data.Quantity <= 0)
+            {
+                gameData.CraftedPotionDataList.Remove(data);
+            }
         }
 
         playerEventSO.Event.OnPotionInventoryChanged?.Invoke();

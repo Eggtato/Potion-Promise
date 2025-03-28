@@ -17,26 +17,42 @@ public class ShopCraftingRoomUI : BaseUI
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
     private ShopCraftingManager shopCraftingManager;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         // Ensure the inventory slot template is inactive by default
         if (inventorySlotTemplate != null)
             inventorySlotTemplate.gameObject.SetActive(false);
 
-        // Initialize inventory slots based on the obtained materials
-        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
-
-        GenerateInventory(obtainedMaterials);
+        GenerateInventory();
 
         // Hide crafted material images initially
         foreach (var craftedImage in craftedMaterialImages)
         {
             craftedImage.gameObject.SetActive(false);
+        }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
+            playerEventSO.Event.OnMaterialInventoryChanged += GenerateInventory;
+        }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
+            playerEventSO.Event.OnMaterialInventoryChanged -= GenerateInventory;
         }
     }
 
@@ -48,9 +64,11 @@ public class ShopCraftingRoomUI : BaseUI
     /// <summary>
     /// Initializes the inventory slots based on the obtained materials.
     /// </summary>
-    /// <param name="obtainedMaterialDataList">List of obtained materials.</param>
-    private void GenerateInventory(List<ObtainedMaterialData> obtainedMaterialDataList)
+    /// <param name="obtainedMaterials">List of obtained materials.</param>
+    private void GenerateInventory()
     {
+        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
+
         // Clear existing slots except the template
         foreach (Transform child in inventoryParent)
         {
@@ -59,7 +77,7 @@ public class ShopCraftingRoomUI : BaseUI
         }
 
         // Create a slot for each obtained material
-        foreach (var obtainedMaterial in obtainedMaterialDataList)
+        foreach (var obtainedMaterial in obtainedMaterials)
         {
             var materialData = materialDatabaseSO.MaterialDataList
                 .FirstOrDefault(m => m.MaterialType == obtainedMaterial.MaterialType);
@@ -73,28 +91,6 @@ public class ShopCraftingRoomUI : BaseUI
             var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
             slotUI.gameObject.SetActive(true);
             slotUI.Initialize(obtainedMaterial, materialData);
-        }
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
-            playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
-        }
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
-            playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
         }
     }
 
@@ -113,11 +109,6 @@ public class ShopCraftingRoomUI : BaseUI
         {
             item.gameObject.SetActive(false);
         }
-    }
-
-    public void AddDroppedMaterial(MaterialType materialType)
-    {
-
     }
 
     /// <summary>
