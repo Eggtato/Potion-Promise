@@ -6,8 +6,6 @@ public class GameLevelManager : Singleton<GameLevelManager>
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
 
-    [SerializeField] private ShopCustomerManager shopCustomerManager;
-
     public int EarnedCoin = 0;
 
     void OnEnable()

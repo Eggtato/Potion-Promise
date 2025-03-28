@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class CraftedPotionUI : BaseUI
 {
     [Header("Project References")]
-    [SerializeField] private PotionDatabaseSO potionDatabaseSO;
     [SerializeField] private GameAssetSO gameAssetSO;
 
     [Header("UI Elements")]
@@ -27,41 +26,10 @@ public class CraftedPotionUI : BaseUI
         InstantHide();
     }
 
-    protected override void OnEnable()
-    {
-        playerEventSO.Event.OnCraftPotionButtonClicked += HandleCraftPotionButtonClicked;
-    }
-
-    protected override void OnDisable()
-    {
-        playerEventSO.Event.OnCraftPotionButtonClicked -= HandleCraftPotionButtonClicked;
-    }
-
-    private void HandleCraftPotionButtonClicked(List<MaterialType> materialTypeList)
+    public void DisplayPotionSuccess(PotionData craftedPotion)
     {
         Show();
-        PotionData craftedPotion = FindMatchingPotion(materialTypeList);
 
-        if (craftedPotion != null)
-        {
-            DisplayPotionSuccess(craftedPotion);
-        }
-        else
-        {
-            DisplayPotionFailure();
-        }
-    }
-
-    private PotionData FindMatchingPotion(List<MaterialType> materialTypeList)
-    {
-        return potionDatabaseSO.PotionDataList.FirstOrDefault(potion =>
-            potion.MaterialRecipes.Count == materialTypeList.Count &&
-            !potion.MaterialRecipes.Except(materialTypeList).Any() &&
-            !materialTypeList.Except(potion.MaterialRecipes).Any());
-    }
-
-    private void DisplayPotionSuccess(PotionData craftedPotion)
-    {
         // Set potion details
         potionImage.sprite = craftedPotion.Sprite;
         potionName.text = craftedPotion.Name;
@@ -81,8 +49,10 @@ public class CraftedPotionUI : BaseUI
         }
     }
 
-    private void DisplayPotionFailure()
+    public void DisplayPotionFailure()
     {
+        Show();
+
         // Set failure feedback
         potionImage.sprite = gameAssetSO.FailedCraftedPotion;
         potionName.text = "Unknown Potion";

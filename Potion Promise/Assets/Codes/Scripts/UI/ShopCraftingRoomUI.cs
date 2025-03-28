@@ -15,6 +15,7 @@ public class ShopCraftingRoomUI : BaseUI
     [SerializeField] private Button craftButton;
 
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
+    private ShopCraftingManager shopCraftingManager;
 
     private void Awake()
     {
@@ -37,6 +38,11 @@ public class ShopCraftingRoomUI : BaseUI
         {
             craftedImage.gameObject.SetActive(false);
         }
+    }
+
+    public void Initialize(ShopCraftingManager shopCraftingManager)
+    {
+        this.shopCraftingManager = shopCraftingManager;
     }
 
     /// <summary>
@@ -99,7 +105,8 @@ public class ShopCraftingRoomUI : BaseUI
         {
             materialTypeList.Add(item.MaterialType);
         }
-        playerEventSO.Event.OnCraftPotionButtonClicked?.Invoke(materialTypeList);
+
+        shopCraftingManager.HandlePotionCrafted(materialTypeList);
 
         craftedMaterialDataList.Clear();
         foreach (var item in craftedMaterialImages)

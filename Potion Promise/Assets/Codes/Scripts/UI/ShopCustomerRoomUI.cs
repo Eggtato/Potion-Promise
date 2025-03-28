@@ -36,17 +36,29 @@ public class ShopCustomerRoomUI : BaseUI
         if (inventorySlotTemplate != null)
             inventorySlotTemplate.gameObject.SetActive(false);
 
-        var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
-
-        if (craftedPotions == null || craftedPotions.Count == 0)
-        {
-            Debug.LogError("CraftedPotionDataList is NULL or EMPTY at Start()!");
-            return;
-        }
-
         npcPanel.gameObject.SetActive(false);
 
-        GenerateInventory(craftedPotions);
+        GenerateInventory();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnCustomerRoomOpened += HandleCustomerRoomOpened;
+            playerEventSO.Event.OnPotionInventoryChanged += GenerateInventory;
+        }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnCustomerRoomOpened -= HandleCustomerRoomOpened;
+            playerEventSO.Event.OnPotionInventoryChanged -= GenerateInventory;
+        }
     }
 
     public void Initialize(ShopCustomerManager shopCustomerManager)
@@ -119,9 +131,11 @@ public class ShopCustomerRoomUI : BaseUI
         });
     }
 
-    private void GenerateInventory(List<CraftedPotionData> craftedPotionDatas)
+    private void GenerateInventory()
     {
-        if (craftedPotionDatas == null || craftedPotionDatas.Count == 0)
+        var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
+
+        if (craftedPotions == null || craftedPotions.Count == 0)
         {
             Debug.LogError("GenerateInventory: CraftedPotionData list is null or empty!");
             return;
@@ -129,7 +143,7 @@ public class ShopCustomerRoomUI : BaseUI
 
         int index = 0;
 
-        foreach (var craftedPotion in craftedPotionDatas)
+        foreach (var craftedPotion in craftedPotions)
         {
             if (index < slotPool.Count)
             {
@@ -159,26 +173,10 @@ public class ShopCustomerRoomUI : BaseUI
         }
     }
 
-
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        playerEventSO.Event.OnCustomerRoomOpened += HandleCustomerRoomOpened;
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        playerEventSO.Event.OnCustomerRoomOpened -= HandleCustomerRoomOpened;
-    }
-
     private void HandleCustomerRoomOpened()
     {
         Show();
-
-        var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
-        GenerateInventory(craftedPotions);
+        GenerateInventory();
     }
 
 }

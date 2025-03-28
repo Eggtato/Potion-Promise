@@ -15,6 +15,7 @@ public struct PlayerEvent
     public Action OnCurrentDayChanged;
     public Action OnDayEnd;
     public Action OnEarnedCoinChanged;
+    public Action OnPotionInventoryChanged;
 
     // UI Input Events : Main Menu
     public Action OnGoToNextScene;
@@ -48,5 +49,4 @@ public struct PlayerEvent
     public Action<MaterialData> OnMaterialGetInCauldron;
     public Action OnCauldronStirred;
     public Action<Vector3> OnSmashedMaterialDragging;
-    public Action<List<MaterialType>> OnCraftPotionButtonClicked;
 }

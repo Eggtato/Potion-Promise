@@ -7,7 +7,7 @@ public class ShopCustomerManager : MonoBehaviour
     [SerializeField] private ShopCustomerDatabaseSO shopCustomerDatabaseSO;
 
     [Header("Scene Reference")]
-    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
+    [SerializeField] private ShopCustomerRoomUI shopCustomerRoomUI;
 
     private ShopCustomerOrderData currentOrder;
 
@@ -23,7 +23,7 @@ public class ShopCustomerManager : MonoBehaviour
 
     private void Start()
     {
-        customerRoomUI.Initialize(this);
+        shopCustomerRoomUI.Initialize(this);
 
         GenerateRandomOrder();
     }
@@ -34,7 +34,7 @@ public class ShopCustomerManager : MonoBehaviour
         var orderData = customerData.GetRandomOrder();
 
         currentOrder = orderData;
-        customerRoomUI.InitializeNPC(customerData.Sprite, orderData);
+        shopCustomerRoomUI.InitializeNPC(customerData.Sprite, orderData);
     }
 
     public void RejectOrder()
@@ -47,11 +47,11 @@ public class ShopCustomerManager : MonoBehaviour
         if (currentOrder.OrderedPotion == potionData.PotionType)
         {
             GameLevelManager.Instance.AddEarnedCoin(potionData.Price);
-            customerRoomUI.HandleCorrectCustomerOrder();
+            shopCustomerRoomUI.HandleCorrectCustomerOrder();
         }
         else
         {
-            customerRoomUI.HandleIncorrectCustomerOrder();
+            shopCustomerRoomUI.HandleIncorrectCustomerOrder();
         }
     }
 }

@@ -120,12 +120,12 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         SaveGameData();
     }
 
-    public void AddCraftedPotionData(PotionData potionData)
+    public void AddCraftedPotionData(PotionType potionType)
     {
-        var data = gameData.CraftedPotionDataList.Find(i => i.PotionType == potionData.PotionType);
+        var data = gameData.CraftedPotionDataList.Find(i => i.PotionType == potionType);
         if (data == null)
         {
-            data = new CraftedPotionData { PotionType = potionData.PotionType, Quantity = 1 };
+            data = new CraftedPotionData { PotionType = potionType, Quantity = 1 };
             gameData.CraftedPotionDataList.Add(data);
         }
         else
@@ -133,6 +133,7 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
             data.Quantity++;
         }
 
+        playerEventSO.Event.OnPotionInventoryChanged?.Invoke();
         SaveGameData();
     }
 }
