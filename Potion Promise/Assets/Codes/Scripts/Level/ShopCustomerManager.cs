@@ -7,7 +7,7 @@ public class ShopCustomerManager : MonoBehaviour
     [SerializeField] private ShopCustomerDatabaseSO shopCustomerDatabaseSO;
 
     [Header("Scene Reference")]
-    [SerializeField] private CustomerRoomUI customerRoomUI;
+    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
 
     private ShopCustomerOrderData currentOrder;
 

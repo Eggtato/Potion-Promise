@@ -12,7 +12,7 @@ public class PountMovement : MonoBehaviour
     [SerializeField] private float maxYPosition = 2f; // Maximum Y boundary
     [SerializeField] private float fixedXPosition = 0f; // Fixed X position to lock horizontal movement
     [SerializeField] private float fadeOffset = 0.4f; // Offset for fading calculations
-    [SerializeField] private float fadeDuration = 0.3f; // Duration for fade effects
+    [SerializeField] private float fadeDuration = 0.1f; // Duration for fade effects
 
     private Vector3 offset;
     private bool isDragging = false;
@@ -73,7 +73,7 @@ public class PountMovement : MonoBehaviour
         spriteRenderer.DOFade(targetAlpha, 0); // Instant fade
     }
 
-    private void ResetColor()
+    private void ResetColor(MaterialData materialData)
     {
         spriteRenderer.DOFade(1f, fadeDuration);
     }

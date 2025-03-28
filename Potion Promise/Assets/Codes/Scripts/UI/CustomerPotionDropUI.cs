@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class CustomerPotionDropUI : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private CustomerRoomUI customerRoomUI;
+    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
 
     public void OnDrop(PointerEventData eventData)
     {

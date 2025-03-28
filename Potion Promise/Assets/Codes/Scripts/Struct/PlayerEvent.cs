@@ -35,7 +35,6 @@ public struct PlayerEvent
     public Action OnRecipeBookOpened;
     public Action OnMaterialSmashed;
     public Action OnMaterialStirred;
-    public Action OnMaterialGetInCauldron;
 
     // UI Input Events : Shop > Book Recipe
     public Action<PotionDatabaseSO, MaterialDatabaseSO, GameAssetSO> OnRecipeBookPageInitialized;
@@ -45,7 +44,9 @@ public struct PlayerEvent
     public Action<PotionData> OnPotionSlotClicked;
     public Action<MaterialData> OnMaterialSlotClicked;
 
-    public Action<MaterialData> OnMaterialCrafted;
+    // UI Input Events : Shop > Crafting
+    public Action<MaterialData> OnMaterialGetInCauldron;
+    public Action OnCauldronStirred;
     public Action<Vector3> OnSmashedMaterialDragging;
     public Action<List<MaterialType>> OnCraftPotionButtonClicked;
 }

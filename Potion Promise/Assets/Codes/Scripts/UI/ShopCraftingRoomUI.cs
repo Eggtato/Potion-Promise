@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftingRoomUI : BaseUI
+public class ShopCraftingRoomUI : BaseUI
 {
     [Header("Database Reference")]
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
@@ -18,7 +18,7 @@ public class CraftingRoomUI : BaseUI
 
     private void Awake()
     {
-        craftButton.onClick.AddListener(HandleCraftButtonClick);
+
     }
 
     private void Start()
@@ -76,7 +76,8 @@ public class CraftingRoomUI : BaseUI
         if (playerEventSO?.Event != null)
         {
             playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialCrafted += HandleMaterialCrafted;
+            playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
         }
     }
 
@@ -86,11 +87,12 @@ public class CraftingRoomUI : BaseUI
         if (playerEventSO?.Event != null)
         {
             playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialCrafted -= HandleMaterialCrafted;
+            playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
         }
     }
 
-    private void HandleCraftButtonClick()
+    private void HandlePotionCrafted()
     {
         List<MaterialType> materialTypeList = new List<MaterialType>();
         foreach (var item in craftedMaterialDataList)
@@ -106,6 +108,11 @@ public class CraftingRoomUI : BaseUI
         }
     }
 
+    public void AddDroppedMaterial(MaterialType materialType)
+    {
+
+    }
+
     /// <summary>
     /// Handles the event when the Alchemy Room is opened.
     /// </summary>
@@ -118,7 +125,7 @@ public class CraftingRoomUI : BaseUI
     /// Handles the event when a material is crafted.
     /// </summary>
     /// <param name="materialData">Data of the crafted material.</param>
-    private void HandleMaterialCrafted(MaterialData materialData)
+    private void HandleMaterialAdded(MaterialData materialData)
     {
         if (materialData == null)
         {

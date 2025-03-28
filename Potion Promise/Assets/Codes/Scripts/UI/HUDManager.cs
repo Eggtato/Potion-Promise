@@ -9,7 +9,7 @@ public class HUDManager : Singleton<HUDManager>
     [SerializeField] private PlayerEventSO playerEventSO;
 
     [Header("Pages")]
-    [SerializeField] private CustomerRoomUI customerRoomUI;
+    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
 
     [Header("Coin")]
     [SerializeField] private TMP_Text earnedMoney;

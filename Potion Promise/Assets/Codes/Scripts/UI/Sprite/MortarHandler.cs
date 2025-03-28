@@ -142,6 +142,7 @@ public class MortarHandler : MonoBehaviour
     {
         materialData = null;
         currentSmashedCount = 0;
+        hasSmashedMaterial = false;
         ResetMortarUI();
     }
 

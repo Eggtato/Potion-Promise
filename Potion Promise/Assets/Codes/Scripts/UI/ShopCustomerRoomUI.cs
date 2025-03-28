@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomerRoomUI : BaseUI
+public class ShopCustomerRoomUI : BaseUI
 {
     [Header("Project Reference")]
     [SerializeField] private PotionDatabaseSO potionDatabaseSO;
