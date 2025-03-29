@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClickSound: {fileID: 8300000, guid: 586d6493b1e8ae247975844fd733d192, type: 3}
   TypeSound: {fileID: 8300000, guid: 3f422aad134ac5542a4860dba28110f4, type: 3}
+  CoinSound: {fileID: 8300000, guid: 5a259264122183c49ab6cc80a3b87c87, type: 3}
+  DayEndSound: {fileID: 8300000, guid: 22840e4c50b053c42891b3c9627dcfc1, type: 3}

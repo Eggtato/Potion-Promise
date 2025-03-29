@@ -20,18 +20,22 @@ public class MainMenuUI : BaseUI
 
     private void OnNewGameButtonClicked()
     {
+        AudioManager.Instance.PlayClickSound();
         playerEventSO.Event.OnGoToNextScene?.Invoke();
     }
     private void OnContinueButtonClicked()
     {
+        AudioManager.Instance.PlayClickSound();
         playerEventSO.Event.OnGoToNextScene?.Invoke();
     }
     private void OnSettingButtonClicked()
     {
+        AudioManager.Instance.PlayClickSound();
         playerEventSO.Event.OnSettingButtonClicked?.Invoke();
     }
     private void OnExitButtonClicked()
     {
+        AudioManager.Instance.PlayClickSound();
         playerEventSO.Event.OnExitButtonClicked?.Invoke();
     }
 }

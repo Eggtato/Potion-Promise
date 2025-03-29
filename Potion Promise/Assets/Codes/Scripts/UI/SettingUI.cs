@@ -49,5 +49,6 @@ public class SettingUI : BaseUI
     private void OnBackButtonClicked()
     {
         Hide();
+        AudioManager.Instance.PlayClickSound();
     }
 }

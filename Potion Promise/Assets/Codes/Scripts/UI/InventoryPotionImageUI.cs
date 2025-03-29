@@ -26,6 +26,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayTypeSound();
         parentAfterDrag = transform.parent;
         transform.SetParent(rootcanvasParent);
         transform.SetAsLastSibling();
@@ -63,7 +64,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
         icon.raycastTarget = true;
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
-
+        AudioManager.Instance.PlayTypeSound();
 
     }
 

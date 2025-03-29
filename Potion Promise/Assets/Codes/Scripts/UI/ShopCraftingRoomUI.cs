@@ -12,7 +12,6 @@ public class ShopCraftingRoomUI : BaseUI
     [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
     [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();
-    [SerializeField] private Button craftButton;
 
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
     private ShopCraftingManager shopCraftingManager;

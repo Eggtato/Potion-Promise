@@ -67,6 +67,7 @@ public class ShopCustomerRoomUI : BaseUI
 
         rejectButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
             npcPanel.DOFade(0, 0.2f).OnComplete(() =>
             {
                 npcPanel.gameObject.SetActive(false);
@@ -135,13 +136,18 @@ public class ShopCustomerRoomUI : BaseUI
     {
         var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
 
+        int index = 0;
+
         if (craftedPotions == null || craftedPotions.Count == 0)
         {
-            Debug.LogError("GenerateInventory: CraftedPotionData list is null or empty!");
+            // Hide unused slots
+            for (int i = index; i < slotPool.Count; i++)
+            {
+                slotPool[i].gameObject.SetActive(false);
+            }
             return;
         }
 
-        int index = 0;
 
         foreach (var craftedPotion in craftedPotions)
         {
@@ -153,7 +159,6 @@ public class ShopCustomerRoomUI : BaseUI
             {
                 if (inventorySlotTemplate == null)
                 {
-                    Debug.LogError("InventorySlotTemplate is NULL!");
                     return;
                 }
 

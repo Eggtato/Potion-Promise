@@ -26,6 +26,7 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayTypeSound();
         parentAfterDrag = transform.parent;
         transform.SetParent(rootcanvasParent);
         transform.SetAsLastSibling();
@@ -53,10 +54,13 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
             var mortarHandler = hit.collider.GetComponent<MortarHandler>();
             if (mortarHandler != null)
             {
+                AudioManager.Instance.PlayTypeSound();
                 mortarHandler.SetDroppedMaterial(MaterialData);
                 GameDataManager.Instance.RemoveObtainedMaterialByOne(MaterialData);
+                return;
             }
         }
+        AudioManager.Instance.PlayTypeSound();
     }
 
     void ReduceSelf()
