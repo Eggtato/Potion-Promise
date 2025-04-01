@@ -105,6 +105,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -135,6 +138,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -214,7 +218,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 7777901396884172698}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
+        LoadingSceneName: LoadingScreenSlide
         DestinationSceneName: Cutscene
         LoadingMode: 2
         Priority: 4
@@ -445,6 +449,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -475,6 +482,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -554,8 +562,8 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 8600194131029939635}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
-        DestinationSceneName: Shop
+        LoadingSceneName: LoadingScreenSlide
+        DestinationSceneName: Gathering
         LoadingMode: 2
         Priority: 4
         SecureLoad: 1
@@ -739,6 +747,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -769,6 +780,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -848,9 +860,9 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 2597379579032919209}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
+        LoadingSceneName: LoadingScreenFade
         DestinationSceneName: CreditMenu
-        LoadingMode: 2
+        LoadingMode: 0
         Priority: 4
         SecureLoad: 1
         UnloadMethod: 2
@@ -1104,6 +1116,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -1134,6 +1149,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -1213,7 +1229,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 7276513273969680635}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
+        LoadingSceneName: LoadingScreenSlide
         DestinationSceneName: MainMenu
         LoadingMode: 2
         Priority: 4
@@ -1398,6 +1414,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -1428,6 +1447,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -1507,7 +1527,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 2682442145859951557}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
+        LoadingSceneName: LoadingScreenSlide
         DestinationSceneName: Shop
         LoadingMode: 2
         Priority: 4
@@ -1692,6 +1712,9 @@ MonoBehaviour:
     OnPause:
       m_PersistentCalls:
         m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
     OnResume:
       m_PersistentCalls:
         m_Calls: []
@@ -1722,6 +1745,7 @@ MonoBehaviour:
   - rid: 2923279792027468049
   KeepPlayModeChanges: 0
   PerformanceMode: 0
+  RestoreInitialValuesOnDisable: 0
   StopFeedbacksOnDisable: 0
   PlayCount: 0
   references:
@@ -1801,7 +1825,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 8487491850015650128}
         DebugActive: 0
-        LoadingSceneName: LoadingScreen
+        LoadingSceneName: LoadingScreenSlide
         DestinationSceneName: VisualNovel
         LoadingMode: 2
         Priority: 4

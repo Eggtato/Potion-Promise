@@ -2,7 +2,7 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 using Eggtato.Utility;
 
-public class GameSceneManager : MonoBehaviour
+public class GameSceneManager : Singleton<GameSceneManager>
 {
     [SerializeField] private MMFeedbacks loadMainMenuSceneFeedbacks;
     [SerializeField] private MMFeedbacks loadCutsceneSceneFeedbacks;
