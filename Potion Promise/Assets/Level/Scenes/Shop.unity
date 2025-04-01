@@ -1331,8 +1331,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Drag your potion to Customer to finish task
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -3167,7 +3167,6 @@ MonoBehaviour:
   - {fileID: 49562729}
   - {fileID: 904120391}
   - {fileID: 134652972}
-  craftButton: {fileID: 845777371}
 --- !u!114 &176052367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5398,8 +5397,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go right to go to crafting area
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5445,7 +5444,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -12262,8 +12261,8 @@ MonoBehaviour:
   m_text: This is the Customer DIalog, you may read it to tell what Potion the Customer
     wanted, also for accepting and rejecting
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12309,7 +12308,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -12903,8 +12902,8 @@ MonoBehaviour:
   m_text: This is your Mortar, pound up and down to  process material to pounded
     material
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12950,7 +12949,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -14711,8 +14710,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is where all your material will be placed
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14758,7 +14757,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -20601,6 +20600,7 @@ GameObject:
   - component: {fileID: 1004011741}
   - component: {fileID: 1004011740}
   - component: {fileID: 1004011743}
+  - component: {fileID: 1004011744}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20726,6 +20726,18 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1004011744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004011739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8aa3525151bb343b66b059b6095946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1004842467
 GameObject:
   m_ObjectHideFlags: 0
@@ -27436,8 +27448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is your Cauldron, stir left and right to mix the pounded material
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -27483,7 +27495,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -34868,8 +34880,8 @@ MonoBehaviour:
   m_text: This is where all your processed material will be displayed, press the
     checkmark button to craft it
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -34915,7 +34927,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -36938,7 +36950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1796911975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37448,8 +37460,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is where your potion will be placed after crafting it
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37495,7 +37507,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -39243,8 +39255,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is your total money
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
-  m_sharedMaterial: {fileID: -3665705988253315778, guid: 51899d956cbb7e44e8b8dd78e6ceca27, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -39290,7 +39302,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -40234,7 +40246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2046990653
 RectTransform:
   m_ObjectHideFlags: 0
