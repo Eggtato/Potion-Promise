@@ -1,12 +1,20 @@
 using Eggtato.Utility;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUDManager : Singleton<HUDManager>
 {
+    [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
 
-    [Header("Buttons")]
+    [Header("Pages")]
+    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
+
+    [Header("Coin")]
+    [SerializeField] private TMP_Text earnedMoney;
+
+    [Header("Navigation")]
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
     [SerializeField] private Button recipeBook;
@@ -20,9 +28,25 @@ public class HUDManager : Singleton<HUDManager>
         recipeBook.onClick.AddListener(ShowRecipeBook);
     }
 
+    private void OnEnable()
+    {
+        playerEventSO.Event.OnEarnedCoinChanged += RefreshCoinUI;
+    }
+
+    private void OnDisable()
+    {
+        playerEventSO.Event.OnEarnedCoinChanged -= RefreshCoinUI;
+    }
+
     private void Start()
     {
+        RefreshCoinUI();
         SetDefaultSetting();
+    }
+
+    private void RefreshCoinUI()
+    {
+        earnedMoney.text = GameLevelManager.Instance.EarnedCoin.ToString();
     }
 
     private void SetDefaultSetting()
@@ -36,7 +60,7 @@ public class HUDManager : Singleton<HUDManager>
         rightButton.gameObject.SetActive(true);
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
-        playerEventSO.Event.OnCustomerRoomOpened?.Invoke();
+        customerRoomUI.Show();
     }
 
     private void ShowAlchemyRoom()

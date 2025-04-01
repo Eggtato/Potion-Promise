@@ -11,6 +11,13 @@ public struct PlayerEvent
     // UI Input Events
     public Action OnAnyUIClosed;
 
+    // Game Data Event
+    public Action OnCurrentDayChanged;
+    public Action OnDayEnd;
+    public Action OnEarnedCoinChanged;
+    public Action OnMaterialInventoryChanged;
+    public Action OnPotionInventoryChanged;
+
     // UI Input Events : Main Menu
     public Action OnGoToNextScene;
     public Action OnNewGameButtonClicked;
@@ -21,13 +28,15 @@ public struct PlayerEvent
     // UI Input Events : Main Menu > Setting
     public Action<SettingTabUI> OnSettingTabButtonClicked;
 
+    // UI Input Events : Customer
+    public Action<PotionData> OnPotionDroppedOnCustomer;
+
     // UI Input Events : Shop
     public Action OnCustomerRoomOpened;
     public Action OnAlchemyRoomOpened;
     public Action OnRecipeBookOpened;
     public Action OnMaterialSmashed;
     public Action OnMaterialStirred;
-    public Action OnMaterialGetInCauldron;
 
     // UI Input Events : Shop > Book Recipe
     public Action<PotionDatabaseSO, MaterialDatabaseSO, GameAssetSO> OnRecipeBookPageInitialized;
@@ -37,7 +46,8 @@ public struct PlayerEvent
     public Action<PotionData> OnPotionSlotClicked;
     public Action<MaterialData> OnMaterialSlotClicked;
 
-    public Action<MaterialData> OnMaterialCrafted;
+    // UI Input Events : Shop > Crafting
+    public Action<MaterialData> OnMaterialGetInCauldron;
+    public Action OnCauldronStirred;
     public Action<Vector3> OnSmashedMaterialDragging;
-    public Action<List<MaterialType>> OnCraftPotionButtonClicked;
 }

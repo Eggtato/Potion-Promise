@@ -117,6 +117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryMaterialImageUI: {fileID: 2662869665154016178}
   quantityText: {fileID: 2482301644250288174}
+  obtainedMaterialData:
+    MaterialType: 0
+    Quantity: 0
 --- !u!1 &4788656844150318594
 GameObject:
   m_ObjectHideFlags: 0

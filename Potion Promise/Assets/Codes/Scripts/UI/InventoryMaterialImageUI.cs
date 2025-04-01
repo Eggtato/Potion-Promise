@@ -7,20 +7,26 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 {
     public MaterialData MaterialData { get; private set; }
 
-    [SerializeField] private Transform rootcanvasParent;
+    private Transform rootcanvasParent;
 
     private Image icon;
     private Transform parentAfterDrag;
 
+    private void Awake()
+    {
+        rootcanvasParent = GetComponentInParent<Canvas>().transform;
+        icon = GetComponent<Image>();
+    }
+
     public void Initialize(MaterialData materialData)
     {
         MaterialData = materialData;
-        icon = GetComponent<Image>();
         icon.sprite = materialData.Sprite;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayTypeSound();
         parentAfterDrag = transform.parent;
         transform.SetParent(rootcanvasParent);
         transform.SetAsLastSibling();
@@ -37,10 +43,24 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
 
-        var mortarDropAreaUI = eventData.pointerCurrentRaycast.gameObject.GetComponent<MortarDropAreaUI>();
-        if (mortarDropAreaUI == null) return;
+        // Convert mouse position to world point
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        mortarDropAreaUI.SetDroppedMaterial(MaterialData);
+        // Perform a 2D raycast to detect a collider
+        RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+        if (hit.collider != null)
+        {
+            // Check if the object has the MortarDropAreaUI component
+            var mortarHandler = hit.collider.GetComponent<MortarHandler>();
+            if (mortarHandler != null)
+            {
+                AudioManager.Instance.PlayTypeSound();
+                mortarHandler.SetDroppedMaterial(MaterialData);
+                GameDataManager.Instance.RemoveObtainedMaterialByOne(MaterialData);
+                return;
+            }
+        }
+        AudioManager.Instance.PlayTypeSound();
     }
 
     void ReduceSelf()

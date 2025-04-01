@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e337b8960c29674caaee5762bdee895, type: 3}
+  m_Name: ShopCustomerDatabaseSO
+  m_EditorClassIdentifier: 
+  ShopCustomerDatas:
+  - Sprite: {fileID: 21300000, guid: a13668cc89f6641949a87c692f124e3d, type: 3}
+    Orders:
+    - OrderDescription: ' Thank god it''s finally open.And oh? seems you one of the
+        miss''s child. Well, young girl, i would love to have a Heal Potion, please.'
+      DeclineDescription: It's out of stock? Oh well.
+      CorrectOrderDescription: Those smell and color, the same healing potion as
+        always!
+      InCorrectOrderDescription: I think you mixed up with someone else order.
+      OrderedPotion: 0
+    - OrderDescription: I Hope im not the last customer, Same as always dearly, The
+        Potion of Healings.
+      DeclineDescription: Oh i see, better be early next time then.
+      CorrectOrderDescription: Lovely! Thank you so much.
+      InCorrectOrderDescription: That's....not what exactly i expected.
+      OrderedPotion: 0
+    - OrderDescription: I believe that your mother is quite capable of creating a
+        potion for warming up your body.
+      DeclineDescription: Such a shame, at least do your best to restock some ingredients.
+      CorrectOrderDescription: I can't thank you enough for this Amazing exilir.
+      InCorrectOrderDescription: 'Oh God, you mixed the order with someone elses! '
+      OrderedPotion: 2
+  - Sprite: {fileID: 21300000, guid: f9593a802ca314a8c94342dd648cefdc, type: 3}
+    Orders:
+    - OrderDescription: My Mother sent me here, and she said "Don't forget to bring
+        one wanna those soothing cold liquid Son!"
+      DeclineDescription: Oh, i guess there's no cold booster  this time.
+      CorrectOrderDescription: And thats what my mum exactly needs! Thank you.
+      InCorrectOrderDescription: Big Yikes.
+      OrderedPotion: 1
+    - OrderDescription: Again with one of those chilling liquids that will put my
+        brain into freeze!
+      DeclineDescription: Out of the stock? Really?
+      CorrectOrderDescription: Horray! Cold booster once again!
+      InCorrectOrderDescription: Are your brain freezing up? This is the wrong order.
+      OrderedPotion: 1
+    - OrderDescription: It's me again! I believe you have one of those hot exilir.
+        Right?
+      DeclineDescription: Oh c'mon!
+      CorrectOrderDescription: At least with this, i can feel warmer. You're the
+        best.
+      InCorrectOrderDescription: Woomp Woomp.
+      OrderedPotion: 2

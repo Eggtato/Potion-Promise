@@ -54,6 +54,7 @@ public class CauldronHandler : MonoBehaviour
         currentSmashedCount = 0;
         UpdateDroppedMaterialSprite(materialData.Color);
         RaiseDroppedMaterialSprite();
+        HandleMaterialDropped();
     }
 
     /// <summary>
@@ -79,9 +80,10 @@ public class CauldronHandler : MonoBehaviour
         }
         else
         {
-            CraftMaterial();
+            // CraftMaterial();
             ResetCauldron();
             LowerDroppedMaterialSprite();
+            playerEventSO.Event.OnCauldronStirred?.Invoke();
         }
     }
 
@@ -131,11 +133,11 @@ public class CauldronHandler : MonoBehaviour
     /// <summary>
     /// Crafts the material and invokes the relevant event.
     /// </summary>
-    private void CraftMaterial()
+    private void HandleMaterialDropped()
     {
         if (playerEventSO != null && materialData != null)
         {
-            playerEventSO.Event.OnMaterialCrafted?.Invoke(materialData);
+            playerEventSO.Event.OnMaterialGetInCauldron?.Invoke(materialData);
         }
         else
         {
@@ -147,7 +149,6 @@ public class CauldronHandler : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out SmashedMaterialMovement materialMovement))
         {
-            playerEventSO.Event.OnMaterialGetInCauldron?.Invoke();
             SetDroppedMaterial(materialMovement.MaterialData);
             Destroy(collision.gameObject);
         }

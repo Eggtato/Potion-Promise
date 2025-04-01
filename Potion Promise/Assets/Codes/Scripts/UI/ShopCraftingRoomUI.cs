@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftingRoomUI : BaseUI
+public class ShopCraftingRoomUI : BaseUI
 {
     [Header("Database Reference")]
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
@@ -12,14 +12,9 @@ public class CraftingRoomUI : BaseUI
     [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
     [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();
-    [SerializeField] private Button craftButton;
 
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
-
-    private void Awake()
-    {
-        craftButton.onClick.AddListener(HandleCraftButtonClick);
-    }
+    private ShopCraftingManager shopCraftingManager;
 
     private void Start()
     {
@@ -27,10 +22,7 @@ public class CraftingRoomUI : BaseUI
         if (inventorySlotTemplate != null)
             inventorySlotTemplate.gameObject.SetActive(false);
 
-        // Initialize inventory slots based on the obtained materials
-        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
-
-        GenerateInventory(obtainedMaterials);
+        GenerateInventory();
 
         // Hide crafted material images initially
         foreach (var craftedImage in craftedMaterialImages)
@@ -39,12 +31,43 @@ public class CraftingRoomUI : BaseUI
         }
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
+            playerEventSO.Event.OnMaterialInventoryChanged += GenerateInventory;
+        }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (playerEventSO?.Event != null)
+        {
+            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
+            playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
+            playerEventSO.Event.OnMaterialInventoryChanged -= GenerateInventory;
+        }
+    }
+
+    public void Initialize(ShopCraftingManager shopCraftingManager)
+    {
+        this.shopCraftingManager = shopCraftingManager;
+    }
+
     /// <summary>
     /// Initializes the inventory slots based on the obtained materials.
     /// </summary>
-    /// <param name="obtainedMaterialDataList">List of obtained materials.</param>
-    private void GenerateInventory(List<ObtainedMaterialData> obtainedMaterialDataList)
+    /// <param name="obtainedMaterials">List of obtained materials.</param>
+    private void GenerateInventory()
     {
+        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
+
         // Clear existing slots except the template
         foreach (Transform child in inventoryParent)
         {
@@ -53,7 +76,7 @@ public class CraftingRoomUI : BaseUI
         }
 
         // Create a slot for each obtained material
-        foreach (var obtainedMaterial in obtainedMaterialDataList)
+        foreach (var obtainedMaterial in obtainedMaterials)
         {
             var materialData = materialDatabaseSO.MaterialDataList
                 .FirstOrDefault(m => m.MaterialType == obtainedMaterial.MaterialType);
@@ -70,34 +93,15 @@ public class CraftingRoomUI : BaseUI
         }
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialCrafted += HandleMaterialCrafted;
-        }
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
-            playerEventSO.Event.OnMaterialCrafted -= HandleMaterialCrafted;
-        }
-    }
-
-    private void HandleCraftButtonClick()
+    private void HandlePotionCrafted()
     {
         List<MaterialType> materialTypeList = new List<MaterialType>();
         foreach (var item in craftedMaterialDataList)
         {
             materialTypeList.Add(item.MaterialType);
         }
-        playerEventSO.Event.OnCraftPotionButtonClicked?.Invoke(materialTypeList);
+
+        shopCraftingManager.HandlePotionCrafted(materialTypeList);
 
         craftedMaterialDataList.Clear();
         foreach (var item in craftedMaterialImages)
@@ -118,7 +122,7 @@ public class CraftingRoomUI : BaseUI
     /// Handles the event when a material is crafted.
     /// </summary>
     /// <param name="materialData">Data of the crafted material.</param>
-    private void HandleMaterialCrafted(MaterialData materialData)
+    private void HandleMaterialAdded(MaterialData materialData)
     {
         if (materialData == null)
         {

@@ -14,6 +14,11 @@ public class AlchemyRoomManager : MonoBehaviour
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        HandleAlchemyRoomInstantClosed();
+    }
+
     private void OnEnable()
     {
         playerEventSO.Event.OnAnyUIClosed += HandleAlchemyRoomClosed;
@@ -41,6 +46,16 @@ public class AlchemyRoomManager : MonoBehaviour
         foreach (var item in spriteRenderers)
         {
             item.DOFade(0, fadeTransitionTime);
+        }
+
+        container.gameObject.SetActive(false);
+    }
+
+    private void HandleAlchemyRoomInstantClosed()
+    {
+        foreach (var item in spriteRenderers)
+        {
+            item.DOFade(0, 0);
         }
 
         container.gameObject.SetActive(false);
