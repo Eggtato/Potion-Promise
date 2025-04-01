@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.VFX;
 
 public class GatheringTimerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GatheringTimerController : MonoBehaviour
     [SerializeField] private Image sanityBar;
     [SerializeField] private GameObject rewardScreen;
     [SerializeField] private FischlWorks_FogWar.csFogWar csFog;
+    [SerializeField] private VisualEffect fogEffect;
 
     [SerializeField] private PlayerEventSO playerEventSO;
 
@@ -25,19 +27,22 @@ public class GatheringTimerController : MonoBehaviour
         float thresholdSanityLow = sanityAmount / 3;
         float countDown = sanityAmount / csFog.fogRevealers[0].sightRange;
         int minus = 2;
+        float startSightVEffect = 12;
 
         while (countDown > 0)
         {
+            yield return new WaitForSeconds(15f);
             csFog.fogRevealers[0].sightRange -= minus;
             countDown -= minus;
+
+            fogEffect.SetFloat("SightRange", startSightVEffect);
+            startSightVEffect -= minus;
 
             if (countDown <= thresholdSanityLow && !lowSanity)
             {
                 lowSanity = true;
                 //play low sanity sound
             }
-
-            yield return new WaitForSeconds(15f);
         }
 
         ShowRewardScreen();

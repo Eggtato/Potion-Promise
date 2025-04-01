@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cliffCheckTransform;
 
     [SerializeField] private float PlayerHeight = 1.5f;
+
+    [SerializeField] private VisualEffect vfxRenderer;
 
     public bool canMove = true;
 
@@ -71,5 +74,6 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(0, 0, 0);
         }
 
+        vfxRenderer.SetVector3("ColliderPos", transform.position);
     }
 }
