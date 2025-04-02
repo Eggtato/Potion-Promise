@@ -5,8 +5,10 @@ public class GameLevelManager : Singleton<GameLevelManager>
 {
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
+    [SerializeField] private GameSettingSO initialGameValueSO;
 
     public int EarnedCoin = 0;
+
 
     void OnEnable()
     {

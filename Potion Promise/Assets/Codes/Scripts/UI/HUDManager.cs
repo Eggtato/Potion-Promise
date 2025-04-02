@@ -11,8 +11,9 @@ public class HUDManager : Singleton<HUDManager>
     [Header("Pages")]
     [SerializeField] private ShopCustomerRoomUI customerRoomUI;
 
-    [Header("Coin")]
-    [SerializeField] private TMP_Text earnedMoney;
+    [Header("Texts")]
+    [SerializeField] private TMP_Text earnedMoneyText;
+    [SerializeField] private TMP_Text currentDayText;
 
     [Header("Navigation")]
     [SerializeField] private Button leftButton;
@@ -30,23 +31,24 @@ public class HUDManager : Singleton<HUDManager>
 
     private void OnEnable()
     {
-        playerEventSO.Event.OnEarnedCoinChanged += RefreshCoinUI;
+        playerEventSO.Event.OnEarnedCoinChanged += RefreshUI;
     }
 
     private void OnDisable()
     {
-        playerEventSO.Event.OnEarnedCoinChanged -= RefreshCoinUI;
+        playerEventSO.Event.OnEarnedCoinChanged -= RefreshUI;
     }
 
     private void Start()
     {
-        RefreshCoinUI();
+        RefreshUI();
         SetDefaultSetting();
     }
 
-    private void RefreshCoinUI()
+    private void RefreshUI()
     {
-        earnedMoney.text = GameLevelManager.Instance.EarnedCoin.ToString();
+        earnedMoneyText.text = GameLevelManager.Instance.EarnedCoin.ToString();
+        currentDayText.text = "Day " + GameDataManager.Instance.CurrentDay.ToString();
     }
 
     private void SetDefaultSetting()

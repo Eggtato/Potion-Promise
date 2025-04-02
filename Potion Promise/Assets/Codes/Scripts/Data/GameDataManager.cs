@@ -9,7 +9,7 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
 
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
-    [SerializeField] private InitialGameValueSO initialGameValueSO;
+    [SerializeField] private GameSettingSO initialGameValueSO;
 
     private GameData gameData;
     private ProgressionSavedData progressionData;
