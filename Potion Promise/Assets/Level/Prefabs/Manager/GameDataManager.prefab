@@ -47,3 +47,4 @@ MonoBehaviour:
   AutoUnparentOnAwake: 1
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   initialGameValueSO: {fileID: 11400000, guid: 1df20e036f086f34eafbf71cc85b4e30, type: 2}
+  dayProgressionSO: {fileID: 11400000, guid: 3622c025e7d5b424aa3d2087d15b4893, type: 2}

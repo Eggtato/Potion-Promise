@@ -11,4 +11,10 @@ public class PlayerEventSO : ScriptableObject
     {
         Event.OnDayEnd?.Invoke();
     }
+
+    [Button]
+    public void TestGoToTheNextScene()
+    {
+        Event.OnGoToNextScene?.Invoke();
+    }
 }

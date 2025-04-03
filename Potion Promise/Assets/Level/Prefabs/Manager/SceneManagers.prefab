@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 354985410606999111}
   - component: {fileID: 7777901396884172698}
   m_Layer: 0
-  m_Name: LoadCutsceneSceneFeedbacks
+  m_Name: LoadCutSceneSceneFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
         Owner: {fileID: 7777901396884172698}
         DebugActive: 0
         LoadingSceneName: LoadingScreenSlide
-        DestinationSceneName: Cutscene
+        DestinationSceneName: CutScene
         LoadingMode: 2
         Priority: 4
         SecureLoad: 1

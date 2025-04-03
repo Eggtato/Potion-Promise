@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Eggtato.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : PersistentSingleton<GameDataManager>
 {
@@ -10,6 +12,7 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private GameSettingSO initialGameValueSO;
+    [SerializeField] private DayProgressionSO dayProgressionSO;
 
     private GameData gameData;
     private ProgressionSavedData progressionData;
@@ -83,6 +86,32 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
 
         SaveProgressionData();
     }
+
+    public ProgressionType GetCurrentProgressionType()
+    {
+        int currentDay = CurrentDay;
+
+        // Get the saved progression data for the current day
+        ProgressionData savedData = ProgressionDataList
+            .FirstOrDefault(i => i.Day == currentDay);
+
+        if (savedData == null || savedData.ProgressionTypes.Count == 0)
+        {
+            Debug.LogWarning($"No saved progression found for day {currentDay}, starting from first progression.");
+            return dayProgressionSO.DayProgressionDataList
+                .FirstOrDefault(i => i.Day == currentDay)?.ProgressionTypes.FirstOrDefault()
+                ?? throw new Exception($"No progression data found for day {currentDay}");
+        }
+
+        // Return the last progression type recorded for the current day
+        return savedData.ProgressionTypes.Last();
+    }
+
+    public bool IsCurrentSceneProgression()
+    {
+        return SceneManager.GetActiveScene().name != "MainMenu"; // Adjust based on your scene names
+    }
+
 
     public void PayDebt(int amount)
     {

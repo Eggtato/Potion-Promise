@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Eggtato.Utility;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(GameSceneManager))]
@@ -13,6 +11,7 @@ public class DayProgressionManager : MonoBehaviour
 
     private GameDataManager gameDataManager;
     private GameSceneManager gameSceneManager;
+    private ProgressionType? lastCompletedProgressionType;
 
     private void Awake()
     {
@@ -20,31 +19,59 @@ public class DayProgressionManager : MonoBehaviour
         gameSceneManager = GetComponent<GameSceneManager>();
     }
 
+    private void Start()
+    {
+        SavePreviousProgression(); // Ensure we save before progressing
+    }
+
     private void OnEnable()
     {
-        playerEventSO.Event.OnGoToNextScene += CheckForCurrentProgressionDay;
+        playerEventSO.Event.OnGoToNextScene += HandleProgressionBeforeSceneChange;
     }
 
     private void OnDisable()
     {
-        playerEventSO.Event.OnGoToNextScene -= CheckForCurrentProgressionDay;
+        playerEventSO.Event.OnGoToNextScene -= HandleProgressionBeforeSceneChange;
     }
 
-    private void Update()
+    private void HandleProgressionBeforeSceneChange()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Before changing the scene, ensure we save the last completed progression
+        SavePreviousProgression();
+
+        // Now proceed to handle the next progression
+        ProcessCurrentProgression();
+    }
+
+    private void SavePreviousProgression()
+    {
+        if (lastCompletedProgressionType == null)
         {
-            CheckForCurrentProgressionDay();
+            Debug.Log("No previous progression to save.");
+            return;
         }
+
+        int currentDay = gameDataManager.CurrentDay;
+
+        ProgressionData savedData = gameDataManager.ProgressionDataList
+            .FirstOrDefault(i => i.Day == currentDay);
+
+        if (savedData != null && savedData.ProgressionTypes.Contains(lastCompletedProgressionType.Value))
+        {
+            Debug.Log($"Previous progression ({lastCompletedProgressionType}) already saved.");
+            return;
+        }
+
+        // Save the last completed progression before changing the scene
+        gameDataManager.AddNewProgression(currentDay, lastCompletedProgressionType.Value);
+        Debug.Log($"Saved previous progression type: {lastCompletedProgressionType}");
+
+        lastCompletedProgressionType = null; // Reset to avoid double saving
     }
 
-    private void CheckForCurrentProgressionDay()
+    private void ProcessCurrentProgression()
     {
-        HandleDayProgression(gameDataManager.CurrentDay);
-    }
-
-    public void HandleDayProgression(int currentDay)
-    {
+        int currentDay = gameDataManager.CurrentDay;
         List<ProgressionData> dataList = dayProgressionSO.DayProgressionDataList;
         List<ProgressionData> savedDataList = gameDataManager.ProgressionDataList;
 
@@ -56,41 +83,31 @@ public class DayProgressionManager : MonoBehaviour
         }
 
         ProgressionData savedData = savedDataList.FirstOrDefault(i => i.Day == currentDay);
-
-        if (savedData == null)
-        {
-            StartNewProgression(currentDay, data.ProgressionTypes[0]);
-            return;
-        }
-
         bool allPartsCompleted = ProcessIncompleteParts(currentDay, data, savedData);
 
         if (allPartsCompleted)
         {
             gameDataManager.IncreaseCurrentDay();
-            CheckForCurrentProgressionDay();
+            ProcessCurrentProgression();
         }
-    }
-
-    private void StartNewProgression(int currentDay, ProgressionType progressionType)
-    {
-        gameDataManager.AddNewProgression(currentDay, progressionType);
-        LoadSceneForProgression(currentDay, progressionType);
     }
 
     private bool ProcessIncompleteParts(int currentDay, ProgressionData data, ProgressionData savedData)
     {
         foreach (var progressionType in data.ProgressionTypes)
         {
-            if (!savedData.ProgressionTypes.Contains(progressionType))
+            if (savedData == null || !savedData.ProgressionTypes.Contains(progressionType))
             {
-                gameDataManager.AddNewProgression(currentDay, progressionType);
+                // Store the progression, but don't save it yet
+                lastCompletedProgressionType = progressionType;
+
+                // Load the next scene
                 LoadSceneForProgression(currentDay, progressionType);
                 return false;
             }
         }
 
-        return true; // All parts for the day are completed.
+        return true; // All parts for the day are completed
     }
 
     private void LoadSceneForProgression(int currentDay, ProgressionType progressionType)
