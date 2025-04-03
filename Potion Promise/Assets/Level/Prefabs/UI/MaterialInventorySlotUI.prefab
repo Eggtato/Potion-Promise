@@ -365,4 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0c713417db3c4abf96bb9df0167b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootcanvasParent: {fileID: 0}
+  icon: {fileID: 4866944105901849805}
+  slotCardImage: {fileID: 5824707221479742260}
+  inGathering: 0
+  selected: 0

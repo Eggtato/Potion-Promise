@@ -14,6 +14,10 @@ public class PlayerMaterialDetection : MonoBehaviour
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
+    [SerializeField] private GameAssetSO gameAssetSO; 
+    public GameAssetSO GameAssetSO => gameAssetSO;
+
+    [SerializeField] private RewardManager rewardManager;
     public GameObject rewardMaterialShow;
     [SerializeField] private List<GameObject> rewardMaterialShowList = new List<GameObject>();
     public Transform rewardGrid;
@@ -22,6 +26,9 @@ public class PlayerMaterialDetection : MonoBehaviour
     private bool canTakeMaterial = true;
 
     [SerializeField] private List<InventoryMaterialSlotUI> InventoryMaterialSlotUIList = new List<InventoryMaterialSlotUI>();
+    public List<InventoryMaterialImageUI> InventoryMaterialImageUIList = new List<InventoryMaterialImageUI>();
+
+    [SerializeField] private int inventoryCount = 20;
 
     private void Update()
     {
@@ -63,7 +70,7 @@ public class PlayerMaterialDetection : MonoBehaviour
 
     private void GetMaterial()
     {
-        if (materialShowList.Count <= 0 || !canTakeMaterial) return;
+        if (materialShowList.Count <= 0 || !canTakeMaterial || inventoryCount <= 0 ) return;
 
         StartCoroutine(TakingItemAnim());
             
@@ -85,7 +92,7 @@ public class PlayerMaterialDetection : MonoBehaviour
             ObtainedMaterialData omd = new ObtainedMaterialData();
             omd.Quantity = 1;
             omd.MaterialType = gatheredMaterialType;
-            ims.Initialize(omd, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType));
+            InventoryMaterialImageUIList.Add(ims.InitializeInGathering(omd, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType), rewardManager, gameAssetSO));
             InventoryMaterialSlotUIList.Add(ims);
         }
 
@@ -93,6 +100,8 @@ public class PlayerMaterialDetection : MonoBehaviour
 
         materialShowList.Remove(materialObject);
         Destroy(materialObject);
+
+        inventoryCount--;
     }
 
     private IEnumerator TakingItemAnim()
