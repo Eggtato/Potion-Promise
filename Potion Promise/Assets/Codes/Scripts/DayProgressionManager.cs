@@ -27,11 +27,13 @@ public class DayProgressionManager : MonoBehaviour
     private void OnEnable()
     {
         playerEventSO.Event.OnGoToNextScene += HandleProgressionBeforeSceneChange;
+        playerEventSO.Event.OnDayEnd += SavePreviousProgression;
     }
 
     private void OnDisable()
     {
         playerEventSO.Event.OnGoToNextScene -= HandleProgressionBeforeSceneChange;
+        playerEventSO.Event.OnDayEnd -= SavePreviousProgression;
     }
 
     private void HandleProgressionBeforeSceneChange()

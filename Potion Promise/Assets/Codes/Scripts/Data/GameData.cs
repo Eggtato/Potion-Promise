@@ -11,6 +11,17 @@ public class GameData : BaseData
     public int Debt = 10000;
     public List<ObtainedMaterialData> ObtainedMaterialDataList = new List<ObtainedMaterialData>();
     public List<CraftedPotionData> CraftedPotionDataList = new List<CraftedPotionData>();
+
+    public GameData Clone()
+    {
+        return new GameData
+        {
+            CurrentDay = this.CurrentDay,
+            Debt = this.Debt,
+            ObtainedMaterialDataList = new List<ObtainedMaterialData>(this.ObtainedMaterialDataList),
+            CraftedPotionDataList = new List<CraftedPotionData>(this.CraftedPotionDataList)
+        };
+    }
 }
 
 public class ProgressionSavedData : BaseData

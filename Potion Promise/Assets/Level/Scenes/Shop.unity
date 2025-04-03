@@ -42459,6 +42459,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1257452193}
     - target: {fileID: 6036674304741190308, guid: fc889c6577c3dfc45886b5f2373c1b49, type: 3}
+      propertyPath: shopDayEndUI
+      value: 
+      objectReference: {fileID: 1751517769}
+    - target: {fileID: 6036674304741190308, guid: fc889c6577c3dfc45886b5f2373c1b49, type: 3}
       propertyPath: initialGameValueSO
       value: 
       objectReference: {fileID: 11400000, guid: 1df20e036f086f34eafbf71cc85b4e30, type: 2}

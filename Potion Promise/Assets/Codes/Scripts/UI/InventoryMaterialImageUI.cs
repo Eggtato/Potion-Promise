@@ -56,7 +56,7 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
             {
                 AudioManager.Instance.PlayTypeSound();
                 mortarHandler.SetDroppedMaterial(MaterialData);
-                GameDataManager.Instance.RemoveObtainedMaterialByOne(MaterialData);
+                GameLevelManager.Instance.RemoveObtainedMaterialByOne(MaterialData);
                 return;
             }
         }

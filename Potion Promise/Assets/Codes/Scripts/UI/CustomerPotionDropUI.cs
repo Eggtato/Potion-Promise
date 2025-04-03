@@ -10,7 +10,7 @@ public class CustomerPotionDropUI : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag.TryGetComponent<InventoryPotionImageUI>(out var droppedPotion))
         {
             customerRoomUI.PlayerEventSO.Event.OnPotionDroppedOnCustomer?.Invoke(droppedPotion.PotionData);
-            GameDataManager.Instance.RemoveCraftedPotionByOne(droppedPotion.PotionData.PotionType);
+            GameLevelManager.Instance.RemoveCraftedPotionByOne(droppedPotion.PotionData.PotionType);
         }
         else
         {

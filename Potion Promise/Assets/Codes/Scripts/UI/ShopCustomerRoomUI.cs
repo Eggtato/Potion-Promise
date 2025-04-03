@@ -28,7 +28,6 @@ public class ShopCustomerRoomUI : BaseUI
 
     private ShopCustomerOrderData currentCustomerOrderData;
     private List<InventoryPotionSlotUI> slotPool = new List<InventoryPotionSlotUI>();
-    private Action onNextCustomer;
     private ShopCustomerManager shopCustomerManager;
 
     private void Start()
@@ -116,7 +115,6 @@ public class ShopCustomerRoomUI : BaseUI
         {
             npcPanel.gameObject.SetActive(false);
             shopCustomerManager.RejectOrder();
-            onNextCustomer = null;
         });
     }
 
@@ -128,7 +126,6 @@ public class ShopCustomerRoomUI : BaseUI
         {
             npcPanel.gameObject.SetActive(false);
             shopCustomerManager.RejectOrder();
-            onNextCustomer = null;
         });
     }
 

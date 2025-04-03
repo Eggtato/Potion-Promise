@@ -23,48 +23,25 @@ public class ShopDayEndUI : BaseUI
         });
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnDayEnd += HandleDayEnd;
-        }
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnDayEnd -= HandleDayEnd;
-        }
-    }
-
-    private void HandleDayEnd()
-    {
-        AudioManager.Instance.PlayDayEndSound();
-        Show();
-        StartCoroutine(ProcessConvertion(GameLevelManager.Instance.EarnedCoin, GameDataManager.Instance.Debt));
-    }
-
     private void RefreshUI(int todayRevenueAmount, int debtAmount)
     {
         todayRevenueAmountText.text = "<sprite name=coin>" + todayRevenueAmount;
         debtAmountText.text = "<sprite name=coin>" + debtAmount;
     }
 
-    private IEnumerator ProcessConvertion(int todayRevenueAmount, int debtAmount)
+    public IEnumerator StartDebtConversion(int todayRevenueAmount, int debtAmount)
     {
         RefreshUI(todayRevenueAmount, debtAmount);
         yield return new WaitForSeconds(delayAtStart);
 
-        while (todayRevenueAmount >= 0)
+        while (todayRevenueAmount > 0)
         {
-            AudioManager.Instance.PlayCoinSound();
-            RefreshUI(todayRevenueAmount, debtAmount);
             todayRevenueAmount--;
             debtAmount--;
+
+            AudioManager.Instance.PlayCoinSound();
+            RefreshUI(todayRevenueAmount, debtAmount);
+
             yield return new WaitForSeconds(delayInBetween);
         }
     }

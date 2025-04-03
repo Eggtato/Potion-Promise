@@ -42,6 +42,6 @@ public class ShopCraftingManager : MonoBehaviour
 
     public void HandlePotionSuccesfullyCrafted(PotionType potionType)
     {
-        GameDataManager.Instance.AddCraftedPotion(potionType);
+        GameLevelManager.Instance.AddCraftedPotion(potionType);
     }
 }

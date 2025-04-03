@@ -66,6 +66,11 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         SaveProgressionData();
     }
 
+    public GameData GetTemporaryCopy()
+    {
+        return gameData.Clone(); // Get a copy for temporary modification
+    }
+
     public void IncreaseCurrentDay()
     {
         CurrentDay++;
@@ -112,10 +117,15 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         return SceneManager.GetActiveScene().name != "MainMenu"; // Adjust based on your scene names
     }
 
-
-    public void PayDebt(int amount)
+    public void UpdateDebt(int amount)
     {
-        Debt -= amount;
+        Debt = amount;
+    }
+
+    public void UpdateObtainedMaterial(List<ObtainedMaterialData> obtainedMaterialDataList)
+    {
+        gameData.ObtainedMaterialDataList = obtainedMaterialDataList;
+        SaveGameData();
     }
 
     public void AddObtainedMaterial(MaterialData materialData)
@@ -148,6 +158,12 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
         }
 
         playerEventSO.Event.OnMaterialInventoryChanged?.Invoke();
+        SaveGameData();
+    }
+
+    public void UpdateCraftedPotion(List<CraftedPotionData> craftedPotionDataList)
+    {
+        gameData.CraftedPotionDataList = craftedPotionDataList;
         SaveGameData();
     }
 
