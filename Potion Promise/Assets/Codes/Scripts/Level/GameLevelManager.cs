@@ -9,7 +9,7 @@ public class GameLevelManager : Singleton<GameLevelManager>
     [SerializeField] private GameSettingSO initialGameValueSO;
 
     [Header("UI Reference")]
-    [SerializeField] private ShopDayEndUI shopDayEndUI;
+    [SerializeField] private BaseUI dayEndUI;
 
     public int EarnedCoin = 0;
 
@@ -113,10 +113,14 @@ public class GameLevelManager : Singleton<GameLevelManager>
 
         // Play end-of-day sound and show UI
         AudioManager.Instance.PlayDayEndSound();
-        shopDayEndUI.Show();
+        dayEndUI.Show();
 
-        // Wait until UI finishes conversion
-        yield return shopDayEndUI.StartDebtConversion(EarnedCoin, TemporaryGameData.Debt);
+        if (CrossSceneMessage.GetProgressionType(GameDataManager.Instance.CurrentDay.ToString()) == ProgressionType.Shop)
+        {
+            // Wait until UI finishes conversion
+            ShopDayEndUI shopDayEndUI = dayEndUI as ShopDayEndUI;
+            yield return shopDayEndUI.StartDebtConversion(EarnedCoin, TemporaryGameData.Debt);
+        }
 
         // Apply debt payment and finalize the day
         PayDebt();
