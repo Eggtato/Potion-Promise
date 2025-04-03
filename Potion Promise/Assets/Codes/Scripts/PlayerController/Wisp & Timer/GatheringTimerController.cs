@@ -10,11 +10,10 @@ public class GatheringTimerController : MonoBehaviour
     [SerializeField] private float sanityAmount = 120f;
     [SerializeField] private TMP_Text sanityTxt;
     [SerializeField] private Image sanityBar;
-    [SerializeField] private GameObject rewardScreen;
     [SerializeField] private FischlWorks_FogWar.csFogWar csFog;
     [SerializeField] private VisualEffect fogEffect;
 
-    [SerializeField] private PlayerEventSO playerEventSO;
+    [SerializeField] private RewardManager rewardManager;
 
     private void Start()
     {
@@ -31,7 +30,13 @@ public class GatheringTimerController : MonoBehaviour
 
         while (countDown > 0)
         {
-            yield return new WaitForSeconds(15f);
+            if (!this.enabled)
+            {
+                yield return new WaitForSeconds(0.02f);
+                continue;
+            }
+
+            yield return new WaitForSeconds(16f);
             csFog.fogRevealers[0].sightRange -= minus;
             countDown -= minus;
 
@@ -45,16 +50,6 @@ public class GatheringTimerController : MonoBehaviour
             }
         }
 
-        ShowRewardScreen();
-    }
-
-    public void ShowRewardScreen()
-    {
-        rewardScreen.SetActive(true);
-    }
-
-    public void ToNextScene()
-    {
-        playerEventSO.Event.OnGoToNextScene?.Invoke();
+        rewardManager.PassedOut();
     }
 }

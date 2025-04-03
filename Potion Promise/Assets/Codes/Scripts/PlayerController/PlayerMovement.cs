@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform playermesh;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform cliffCheckTransform;
+    [SerializeField] private GameObject portalInteractShow;
 
     [SerializeField] private float PlayerHeight = 1.5f;
 
     [SerializeField] private VisualEffect vfxRenderer;
+    [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private PlayerSpellController playerSpellController;
+    [SerializeField] private GatheringTimerController gatheringTimerController;
 
     public bool canMove = true;
 
@@ -21,17 +25,39 @@ public class PlayerMovement : MonoBehaviour
     private float magnitude;
     private float speedValue = 1;
     private Vector3 speedMagnitude;
+    private bool inRewardScreen = false;
 
     public Animator anim;
+
+    public void SetInRewardScreen()
+    {
+        inRewardScreen = !inRewardScreen;
+        playerSpellController.enabled = !inRewardScreen;
+        gatheringTimerController.enabled = !inRewardScreen;
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("f") && portalInteractShow.activeSelf)
+        {
+            rewardManager.GoBackThroughPortal();
+        }
+    }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (inRewardScreen)
+        {
+            rb.linearVelocity = new Vector3(0, 0, 0);
+            return;
+        }
+
         movX = Input.GetAxisRaw("Horizontal");
         movZ = Input.GetAxisRaw("Vertical");
 
@@ -75,5 +101,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         vfxRenderer.SetVector3("ColliderPos", transform.position);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "portal")
+        {
+            portalInteractShow.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag == "portal")
+        {
+            portalInteractShow.SetActive(false);
+        }
     }
 }

@@ -12,7 +12,6 @@ public class WispMovement : MonoBehaviour
 
     private Vector3 defectPosition = new Vector3(0, 0.25f, 0);
     private float defectSpeed = 0;
-    private int direction = 1;
     private float runningOffsetValue = 1;
     public float hitPoint;
 
