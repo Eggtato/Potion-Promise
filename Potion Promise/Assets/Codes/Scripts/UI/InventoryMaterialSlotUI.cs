@@ -18,16 +18,6 @@ public class InventoryMaterialSlotUI : MonoBehaviour
         quantityText.text = "x" + obtainedMaterialData.Quantity;
     }
 
-    public InventoryMaterialImageUI InitializeInGathering(ObtainedMaterialData obtainedMaterialData, MaterialData MaterialData, RewardManager rewardManager, GameAssetSO gameAssetSO)
-    {
-        this.obtainedMaterialData = obtainedMaterialData;
-        inventoryMaterialImageUI.InitializeInGathering(MaterialData, rewardManager, gameAssetSO);
-        inventoryMaterialImageUI.inGathering = true;
-        quantityText.text = "x" + obtainedMaterialData.Quantity;
-
-        return inventoryMaterialImageUI;
-    }
-
     public void AddQuantity()
     {
         obtainedMaterialData.Quantity += 1;

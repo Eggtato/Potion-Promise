@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RewardManager : MonoBehaviour
+public class RewardManagerUI : MonoBehaviour
 {
     [SerializeField] private GameObject rewardScreen;
     [SerializeField] private TMP_Text rewardTxt;
@@ -15,16 +15,20 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
 
     [SerializeField] private PlayerEventSO playerEventSO;
-    [SerializeField] private GameDataManager gameDataManager;
 
     private MaterialData materialDataSelected = null;
 
 
-    public void PassedOut()
+    public void PassOut()
     {
         toNextSceneBtn.SetActive(false);
         confirmMaterialBtn.SetActive(true);
         rewardTxt.text = "Passed Out!";
+
+        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
+        {
+            a.inventoryMaterialImageUIGathering.canBeSelected = true;
+        }
 
         UnselectAll();
 
@@ -39,9 +43,9 @@ public class RewardManager : MonoBehaviour
 
     public void UnselectAll()
     {
-        foreach (InventoryMaterialImageUI a in playerMaterialDetection.InventoryMaterialImageUIList)
+        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
         {
-            a.Unselect();
+            a.inventoryMaterialImageUIGathering.Unselect();
         }
 
         materialDataSelected = null;
@@ -54,39 +58,39 @@ public class RewardManager : MonoBehaviour
 
     public void ConfirmItemSelected()
     {
-        if (playerMaterialDetection.InventoryMaterialImageUIList.Count == 0)
+        if (playerMaterialDetection.inventoryMaterialSlotUIGatheringList.Count == 0)
         {
             ToNextScene();
         }
 
         if (materialDataSelected == null) return;
 
-        gameDataManager.AddObtainedMaterial(materialDataSelected);
+        GameLevelManager.Instance.AddObtainedMaterial(materialDataSelected);
 
         ToNextScene();
     }
 
-    public void GoBackThroughPortal()
+    public void ReturnToHome()
     {
         confirmPortalPanel.SetActive(true);
         playerMovement.SetInRewardScreen();
     }
 
-    public void CancelGoBackThroughPortal()
+    public void CancelReturnToHome()
     {
         confirmPortalPanel.SetActive(false);
         playerMovement.SetInRewardScreen();
     }
 
-    public void ConfirmGoBackThroughPortal()
+    public void ConfirmReturnToHome()
     {
         confirmPortalPanel.SetActive(false);
         toNextSceneBtn.SetActive(true);
         confirmMaterialBtn.SetActive(false);
 
-        foreach (InventoryMaterialImageUI a in playerMaterialDetection.InventoryMaterialImageUIList)
+        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
         {
-            gameDataManager.AddObtainedMaterial(a.MaterialData);
+            GameLevelManager.Instance.AddObtainedMaterial(a.inventoryMaterialImageUIGathering.MaterialData);
         }
 
         rewardScreen.SetActive(true);

@@ -17,7 +17,7 @@ public class PlayerMaterialDetection : MonoBehaviour
     [SerializeField] private GameAssetSO gameAssetSO; 
     public GameAssetSO GameAssetSO => gameAssetSO;
 
-    [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private RewardManagerUI rewardManager;
     public GameObject rewardMaterialShow;
     [SerializeField] private List<GameObject> rewardMaterialShowList = new List<GameObject>();
     public Transform rewardGrid;
@@ -25,8 +25,7 @@ public class PlayerMaterialDetection : MonoBehaviour
     public Animator anim;
     private bool canTakeMaterial = true;
 
-    [SerializeField] private List<InventoryMaterialSlotUI> InventoryMaterialSlotUIList = new List<InventoryMaterialSlotUI>();
-    public List<InventoryMaterialImageUI> InventoryMaterialImageUIList = new List<InventoryMaterialImageUI>();
+    public List<InventoryMaterialSlotUIGathering> inventoryMaterialSlotUIGatheringList = new List<InventoryMaterialSlotUIGathering>();
 
     [SerializeField] private int inventoryCount = 20;
 
@@ -48,7 +47,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         {
             if (item.MaterialType == materialType)
             {
-                a.GetComponent<MaterialShowData>().init(materialObject, item);
+                a.GetComponent<MaterialShowData>().Initialize(materialObject, item);
                 materialShowList.Add(a);
                 break;
             }
@@ -59,7 +58,7 @@ public class PlayerMaterialDetection : MonoBehaviour
     {
         foreach (GameObject a in materialShowList)
         {
-            if (a.GetComponent<MaterialShowData>().getMaterialObject() == materialObject)
+            if (a.GetComponent<MaterialShowData>().materialObject == materialObject)
             {
                 materialShowList.Remove(a);
                 Destroy(a);
@@ -72,31 +71,31 @@ public class PlayerMaterialDetection : MonoBehaviour
     {
         if (materialShowList.Count <= 0 || !canTakeMaterial || inventoryCount <= 0 ) return;
 
-        StartCoroutine(TakingItemAnim());
+        StartCoroutine(TakeItemRoutine());
             
         GameObject materialObject = materialShowList[0];
         MaterialShowData materialShowData = materialObject.GetComponent<MaterialShowData>();
-        MaterialType gatheredMaterialType = materialShowData.getMaterialData().MaterialType;
+        MaterialType gatheredMaterialType = materialShowData.materialData.MaterialType;
 
-        InventoryMaterialSlotUI ims = InventoryMaterialSlotUIList.Find(item => item.obtainedMaterialData.MaterialType == gatheredMaterialType);
+        InventoryMaterialSlotUIGathering inventoryMaterialSlot = inventoryMaterialSlotUIGatheringList.Find(item => item.obtainedMaterialData.MaterialType == gatheredMaterialType);
 
         //add material
-        if (ims != null)
+        if (inventoryMaterialSlot != null)
         {
-            ims.AddQuantity();
+            inventoryMaterialSlot.AddQuantity();
         }
         else
         {
             GameObject a = Instantiate(rewardMaterialShow, rewardGrid);
-            ims = a.GetComponent<InventoryMaterialSlotUI>();
-            ObtainedMaterialData omd = new ObtainedMaterialData();
-            omd.Quantity = 1;
-            omd.MaterialType = gatheredMaterialType;
-            InventoryMaterialImageUIList.Add(ims.InitializeInGathering(omd, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType), rewardManager, gameAssetSO));
-            InventoryMaterialSlotUIList.Add(ims);
+            inventoryMaterialSlot = a.GetComponent<InventoryMaterialSlotUIGathering>();
+            ObtainedMaterialData obtainedMaterialData = new ObtainedMaterialData();
+            obtainedMaterialData.Quantity = 1;
+            obtainedMaterialData.MaterialType = gatheredMaterialType;
+            inventoryMaterialSlot.Initialize(obtainedMaterialData, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType), rewardManager, gameAssetSO);
+            inventoryMaterialSlotUIGatheringList.Add(inventoryMaterialSlot);
         }
 
-        Destroy(materialShowData.getMaterialObject());
+        Destroy(materialShowData.materialObject);
 
         materialShowList.Remove(materialObject);
         Destroy(materialObject);
@@ -104,7 +103,7 @@ public class PlayerMaterialDetection : MonoBehaviour
         inventoryCount--;
     }
 
-    private IEnumerator TakingItemAnim()
+    private IEnumerator TakeItemRoutine()
     {
         canTakeMaterial = false;
         anim.SetBool("takingitem", true);
