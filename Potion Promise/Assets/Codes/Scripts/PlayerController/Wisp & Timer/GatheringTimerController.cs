@@ -13,14 +13,14 @@ public class GatheringTimerController : MonoBehaviour
     [SerializeField] private FischlWorks_FogWar.csFogWar csFog;
     [SerializeField] private VisualEffect fogEffect;
 
-    [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private RewardManagerUI rewardManager;
 
     private void Start()
     {
-        StartCoroutine(SanityTimer());
+        StartCoroutine(SanityTimerRoutine());
     }
 
-    private IEnumerator SanityTimer()
+    private IEnumerator SanityTimerRoutine()
     {
         bool lowSanity = false;
         float thresholdSanityLow = sanityAmount / 3;
@@ -50,6 +50,6 @@ public class GatheringTimerController : MonoBehaviour
             }
         }
 
-        rewardManager.PassedOut();
+        rewardManager.PassOut();
     }
 }

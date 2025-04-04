@@ -47,7 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
+  initialGameValueSO: {fileID: 11400000, guid: 1df20e036f086f34eafbf71cc85b4e30, type: 2}
+  shopDayEndUI: {fileID: 0}
   EarnedCoin: 0
+  TemporaryGameData:
+    CurrentDay: 1
+    Debt: 10000
+    ObtainedMaterialDataList: []
+    CraftedPotionDataList: []
 --- !u!1 &7616573366545549947
 GameObject:
   m_ObjectHideFlags: 0

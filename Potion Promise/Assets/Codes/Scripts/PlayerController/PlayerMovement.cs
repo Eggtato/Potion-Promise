@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float PlayerHeight = 1.5f;
 
     [SerializeField] private VisualEffect vfxRenderer;
-    [SerializeField] private RewardManager rewardManager;
+    [SerializeField] private RewardManagerUI rewardManager;
     [SerializeField] private PlayerSpellController playerSpellController;
     [SerializeField] private GatheringTimerController gatheringTimerController;
 
@@ -45,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown("f") && portalInteractShow.activeSelf)
         {
-            rewardManager.GoBackThroughPortal();
+            rewardManager.ReturnToHome();
+            portalInteractShow.SetActive(false);
         }
     }
 

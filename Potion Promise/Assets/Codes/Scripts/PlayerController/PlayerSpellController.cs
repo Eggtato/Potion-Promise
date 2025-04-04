@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PlayerSpellController : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private Camera Camera;
-    [SerializeField] private Transform Body;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Transform body;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject magicWand;
     [SerializeField] private GameObject[] effectGameObjects;
@@ -13,22 +13,22 @@ public class PlayerSpellController : MonoBehaviour
     private bool canSpell = true;
     private RaycastHit hit;
     private Ray ray;
-    public LayerMask layerMask;
+    [SerializeField] private LayerMask groundMask;
 
-    void Start()
+    private void Start()
     {
         magicWand.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Fire1") && canSpell)
         {
-            StartCoroutine(castingSpellAnim());
+            StartCoroutine(CastingSpellRoutine());
         }
     }
 
-    IEnumerator castingSpellAnim()
+    IEnumerator CastingSpellRoutine()
     {
         canSpell = false;
 
@@ -38,28 +38,29 @@ public class PlayerSpellController : MonoBehaviour
 
         magicWand.SetActive(true);
 
-        ray = Camera.ScreenPointToRay(Input.mousePosition);
+        ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        anim.SetBool("castingspell", true);
+        animator.SetBool("castingspell", true);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
-            Vector3 b = (hit.point - Body.position).normalized;
+            Vector3 b = (hit.point - body.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(b);
             rotation.x = 0;
             rotation.z = 0;
 
-            while (rotation.y - Body.rotation.eulerAngles.y > 20)
+            //Debug.Log(rotation.y - body.rotation.eulerAngles.y);
+
+            while (rotation.y - body.rotation.eulerAngles.y > 0.5f)
             {
-                Debug.Log(rotation.y - Body.rotation.eulerAngles.y);
-                Body.rotation = Quaternion.Lerp(Body.rotation, rotation, 0.5f);
+                body.rotation = Quaternion.Lerp(body.rotation, rotation, 0.5f);
                 yield return new WaitForSeconds(0.02f);
             }
         }
 
         yield return new WaitForSeconds(0.8f);
 
-        anim.SetBool("castingspell", false);
+        animator.SetBool("castingspell", false);
 
         yield return new WaitForSeconds(0.2f);
 
