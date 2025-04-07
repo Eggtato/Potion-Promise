@@ -17,6 +17,6 @@ MonoBehaviour:
     Debt: 10000
     ObtainedMaterialDataList: []
     CraftedPotionDataList: []
-  ShopDuration: 20
+  ShopDuration: 200
   FadeInAnimation: 0.1
   FadeOutAnimation: 0.1
