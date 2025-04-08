@@ -10,6 +10,12 @@ public class GameAssetSO : ScriptableObject
     [PreviewField(60)] public Sprite ActiveStar;
     [PreviewField(60)] public Sprite InActiveStar;
 
+    [Header("Shop / Inventory / Inventory Tab Panel")]
+    [SerializeField] public Sprite FilterUpOff1;
+    [SerializeField] public Sprite FilterUpOn1;
+    [SerializeField] public Sprite FilterUpOff2;
+    [SerializeField] public Sprite FilterUpOn2;
+
     [Header("Recipe Book / Potion Page")]
     [PreviewField(60)] public Sprite PotionCommmonCard;
     [PreviewField(60)] public Sprite SelectedPotionCommmonCard;

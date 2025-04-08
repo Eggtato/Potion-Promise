@@ -41,8 +41,6 @@ public class ShopCustomerRoomUI : BaseUI
             inventorySlotTemplate.gameObject.SetActive(false);
 
         npcPanel.gameObject.SetActive(false);
-
-        GenerateInventory();
     }
 
     protected override void OnEnable()

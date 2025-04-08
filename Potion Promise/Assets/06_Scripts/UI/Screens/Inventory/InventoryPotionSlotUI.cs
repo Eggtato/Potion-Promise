@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class InventoryPotionSlotUI : MonoBehaviour
+public class InventoryPotionSlotUI : MonoBehaviour, IResettableSlot
 {
     [SerializeField] private InventoryPotionImageUI inventoryPotionImageUI;
     [SerializeField] private TMP_Text quantityText;
@@ -12,5 +12,10 @@ public class InventoryPotionSlotUI : MonoBehaviour
         this.craftedPotionData = craftedPotionData;
         inventoryPotionImageUI.Initialize(potionData);
         quantityText.text = "x" + craftedPotionData.Quantity;
+    }
+
+    public void ResetSlot()
+    {
+        gameObject.SetActive(false);
     }
 }

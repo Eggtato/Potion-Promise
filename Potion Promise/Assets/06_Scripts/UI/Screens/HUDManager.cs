@@ -48,7 +48,7 @@ public class HUDManager : Singleton<HUDManager>
     private void RefreshUI()
     {
         earnedMoneyText.text = GameLevelManager.Instance.EarnedCoin.ToString();
-        currentDayText.text = "Day " + GameDataManager.Instance.CurrentDay.ToString();
+        currentDayText.text = GameDataManager.Instance.CurrentDay.ToString();
     }
 
     private void SetDefaultSetting()

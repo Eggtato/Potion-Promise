@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 
-public class InventoryMaterialSlotUI : MonoBehaviour
+public class InventoryMaterialSlotUI : MonoBehaviour, IResettableSlot
 {
     [SerializeField] private InventoryMaterialImageUI inventoryMaterialImageUI;
     [SerializeField] private TMP_Text quantityText;
@@ -22,5 +22,10 @@ public class InventoryMaterialSlotUI : MonoBehaviour
     {
         obtainedMaterialData.Quantity += 1;
         quantityText.text = "x" + obtainedMaterialData.Quantity;
+    }
+
+    public void ResetSlot()
+    {
+        gameObject.SetActive(false);
     }
 }
