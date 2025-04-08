@@ -12,13 +12,18 @@ public class ShopCustomerRoomUI : BaseUI
     [Header("Project Reference")]
     [SerializeField] private PotionDatabaseSO potionDatabaseSO;
 
-    [Header("NPC UI Reference")]
+    [Header("NPC UI")]
     [SerializeField] private CanvasGroup npcPanel;
     [SerializeField] private Image npcImage;
     [SerializeField] private TMP_Text orderText;
     [SerializeField] private Button rejectButton;
 
-    [Header("NPC UI Reference")]
+    [Header("Counter")]
+    [SerializeField] private string openString = "OPEN";
+    [SerializeField] private string closeString = "CLOSE";
+    [SerializeField] private Button openShopButton;
+
+    [Header("Inventory")]
     [SerializeField] private InventoryPotionSlotUI inventorySlotTemplate;
     [SerializeField] private Transform inventoryParent;
 
@@ -72,6 +77,12 @@ public class ShopCustomerRoomUI : BaseUI
                 npcPanel.gameObject.SetActive(false);
                 shopCustomerManager.RejectOrder();
             });
+        });
+
+        openShopButton.onClick.AddListener(() =>
+        {
+            playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
+            openShopButton.GetComponentInChildren<TMP_Text>().text = closeString;
         });
     }
 

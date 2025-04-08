@@ -39,6 +39,9 @@ public struct PlayerEvent
     public Action OnMaterialStirred;
 
     // UI Input Events : Shop > Book Recipe
+    public Action OnOpenShopButtonClicked;
+
+    // UI Input Events : Shop > Book Recipe
     public Action<PotionDatabaseSO, MaterialDatabaseSO, GameAssetSO> OnRecipeBookPageInitialized;
     public Action OnAnyPageUIClosed;
     public Action OnPotionPageTabButtonClicked;

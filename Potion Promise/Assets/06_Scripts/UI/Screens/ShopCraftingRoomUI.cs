@@ -8,7 +8,7 @@ public class ShopCraftingRoomUI : BaseUI
     [Header("Database Reference")]
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
 
-    [Header("UI References")]
+    [Header("UI")]
     [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
     [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();

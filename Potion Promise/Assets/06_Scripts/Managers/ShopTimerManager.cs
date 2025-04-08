@@ -7,11 +7,26 @@ public class ShopTimerManager : MonoBehaviour
     [SerializeField] private GameSettingSO initialGameValueSO;
 
     private float timer;
-    private bool isTimerFinished;
+    private bool isTimerFinished = true;
 
     private void Start()
     {
         timer = initialGameValueSO.ShopDuration;
+    }
+
+    private void OnEnable()
+    {
+        playerEventSO.Event.OnOpenShopButtonClicked += StartTimer;
+    }
+
+    private void OnDisable()
+    {
+        playerEventSO.Event.OnOpenShopButtonClicked -= StartTimer;
+    }
+
+    private void StartTimer()
+    {
+        isTimerFinished = false;
     }
 
     private void Update()

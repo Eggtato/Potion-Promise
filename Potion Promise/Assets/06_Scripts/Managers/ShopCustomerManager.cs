@@ -14,18 +14,18 @@ public class ShopCustomerManager : MonoBehaviour
     private void OnEnable()
     {
         playerEventSO.Event.OnPotionDroppedOnCustomer += ProcessPotionDrop;
+        playerEventSO.Event.OnOpenShopButtonClicked += GenerateRandomOrder;
     }
 
     private void OnDisable()
     {
         playerEventSO.Event.OnPotionDroppedOnCustomer -= ProcessPotionDrop;
+        playerEventSO.Event.OnOpenShopButtonClicked -= GenerateRandomOrder;
     }
 
     private void Start()
     {
         shopCustomerRoomUI.Initialize(this);
-
-        GenerateRandomOrder();
     }
 
     public void GenerateRandomOrder()
