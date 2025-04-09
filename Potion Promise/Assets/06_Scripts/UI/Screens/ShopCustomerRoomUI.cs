@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -9,11 +10,26 @@ using UnityEngine.UI;
 
 public class ShopCustomerRoomUI : BaseUI
 {
+    [Serializable]
+    public class CustomerLine
+    {
+        public Transform Transform;
+        [HideInInspector] public bool IsOccupied;
+        [HideInInspector] public ShopCustomerImageUI ShopCustomerImageUI;
+        public Color32 CustomerColor;
+    }
+
+    [Header("Project Reference")]
+    [SerializeField] private GameSettingSO gameSettingSO;
+
     [Header("NPC UI")]
     [SerializeField] private CanvasGroup npcPanel;
-    [SerializeField] private Image npcImage;
+    [SerializeField] private List<CustomerLine> customerLines = new();
+    [SerializeField] private CanvasGroup orderPanel;
     [SerializeField] private TMP_Text orderText;
     [SerializeField] private Button rejectButton;
+    [SerializeField] private Transform shopCustomerParent;
+    [SerializeField] private ShopCustomerImageUI shopCustomerImageUI;
 
     [Header("Counter")]
     [SerializeField] private string openString = "OPEN";
@@ -21,50 +37,49 @@ public class ShopCustomerRoomUI : BaseUI
     [SerializeField] private Button openShopButton;
 
     [Header("Animation")]
-    [SerializeField] private float fadeInAnimation = 0.2f;
+    [SerializeField] private float customerMoveDuration = 1f;
+    [SerializeField] private float customerMoveDelayBetween = 0.5f;
     [SerializeField] private float delayTime = 3f;
+    [SerializeField] private Ease customerMoveEase;
 
+    private bool isCustomerMoving;
     private ShopCustomerOrderData currentCustomerOrderData;
-    private List<InventoryPotionSlotUI> slotPool = new List<InventoryPotionSlotUI>();
     private ShopCustomerManager shopCustomerManager;
+    private readonly Queue<Dictionary<ShopCustomerData, ShopCustomerOrderData>> shopCustomerDatas = new();
+
+    public Queue<Dictionary<ShopCustomerData, ShopCustomerOrderData>> ShopCustomerDatas => shopCustomerDatas;
+    public bool IsCustomerMoving => isCustomerMoving;
 
     private void Start()
     {
         npcPanel.gameObject.SetActive(false);
+        shopCustomerImageUI.gameObject.SetActive(false);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnCustomerRoomOpened += HandleCustomerRoomOpened;
-        }
+        playerEventSO.Event.OnCustomerRoomOpened += HandleCustomerRoomOpened;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        if (playerEventSO?.Event != null)
-        {
-            playerEventSO.Event.OnCustomerRoomOpened -= HandleCustomerRoomOpened;
-        }
+        playerEventSO.Event.OnCustomerRoomOpened -= HandleCustomerRoomOpened;
     }
 
-    public void Initialize(ShopCustomerManager shopCustomerManager)
+    public void Initialize(ShopCustomerManager manager)
     {
-        this.shopCustomerManager = shopCustomerManager;
+        shopCustomerManager = manager;
 
+        rejectButton.onClick.RemoveAllListeners();
         rejectButton.onClick.AddListener(() =>
         {
             AudioManager.Instance.PlayClickSound();
-            npcPanel.DOFade(0, 0.2f).OnComplete(() =>
-            {
-                npcPanel.gameObject.SetActive(false);
-                shopCustomerManager.RejectOrder();
-            });
+            shopCustomerManager.RejectOrder();
         });
 
+        openShopButton.onClick.RemoveAllListeners();
         openShopButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
@@ -72,46 +87,129 @@ public class ShopCustomerRoomUI : BaseUI
         });
     }
 
-
-    public void InitializeNPC(Sprite sprite, ShopCustomerOrderData shopCustomerOrderData)
+    public void InitializeCustomer(ShopCustomerData customerData, ShopCustomerOrderData orderData)
     {
-        if (npcPanel.gameObject.activeSelf)
+        foreach (var line in customerLines)
         {
-            SetupNewNPC(sprite, shopCustomerOrderData);
-            npcPanel.DOFade(0, 0.2f).OnComplete(() =>
+            if (!line.IsOccupied)
             {
-                npcPanel.gameObject.SetActive(false);
-                SetupNewNPC(sprite, shopCustomerOrderData);
-            });
-        }
-        else
-        {
-            SetupNewNPC(sprite, shopCustomerOrderData);
+                var newCustomer = Instantiate(shopCustomerImageUI, shopCustomerParent);
+                newCustomer.gameObject.SetActive(true);
+                newCustomer.InitilizeCustomer(customerData, orderData);
+                newCustomer.transform.SetAsFirstSibling();
+                newCustomer.GetComponent<Image>().color = line.CustomerColor;
+
+                newCustomer.CanvasGroup.alpha = 0f;
+                newCustomer.transform.position = line.Transform.position;
+                newCustomer.CanvasGroup.DOFade(1f, gameSettingSO.FadeInAnimation);
+
+                line.IsOccupied = true;
+                line.ShopCustomerImageUI = newCustomer;
+
+                shopCustomerDatas.Enqueue(new Dictionary<ShopCustomerData, ShopCustomerOrderData>
+                {
+                    { customerData, orderData }
+                });
+
+                if (shopCustomerDatas.Count == 1)
+                {
+                    currentCustomerOrderData = orderData;
+                    orderText.text = orderData.OrderDescription;
+                    SetupNewNPC(newCustomer.GetComponent<Image>(), customerData.Sprite);
+                }
+
+                break;
+            }
         }
     }
 
-    private void SetupNewNPC(Sprite sprite, ShopCustomerOrderData shopCustomerOrderData)
+    public IEnumerator ShiftCustomers()
     {
-        currentCustomerOrderData = shopCustomerOrderData;
+        isCustomerMoving = true;
 
-        npcImage.sprite = sprite;
-        orderText.text = shopCustomerOrderData.OrderDescription;
+        FadeOutUI(rejectButton.GetComponent<CanvasGroup>(), orderPanel);
 
-        npcPanel.alpha = 0;
+        if (customerLines[0].IsOccupied)
+        {
+            Destroy(customerLines[0].ShopCustomerImageUI.gameObject);
+            customerLines[0].IsOccupied = false;
+            customerLines[0].ShopCustomerImageUI = null;
+        }
+
+        for (int i = 1; i < customerLines.Count; i++)
+        {
+            if (customerLines[i].IsOccupied)
+            {
+                var current = customerLines[i];
+                var target = customerLines[i - 1];
+
+                current.ShopCustomerImageUI.transform.DOMove(target.Transform.position, customerMoveDuration).SetEase(customerMoveEase);
+                current.ShopCustomerImageUI.GetComponent<Image>().DOColor(target.CustomerColor, customerMoveDuration).SetEase(customerMoveEase);
+
+                target.IsOccupied = true;
+                target.ShopCustomerImageUI = current.ShopCustomerImageUI;
+
+                current.IsOccupied = false;
+                current.ShopCustomerImageUI = null;
+
+                yield return new WaitForSeconds(customerMoveDelayBetween);
+            }
+        }
+
+        if (shopCustomerDatas.Count > 0)
+        {
+            var next = shopCustomerDatas.Peek().First();
+            currentCustomerOrderData = next.Value;
+            orderText.text = next.Value.OrderDescription;
+
+            var frontCustomer = customerLines[0].ShopCustomerImageUI;
+            if (frontCustomer != null)
+            {
+                SetupNewNPC(frontCustomer.GetComponent<Image>(), next.Key.Sprite);
+            }
+        }
+
+        isCustomerMoving = false;
+
+        if (shopCustomerManager.IsSpawnQueued)
+        {
+            shopCustomerManager.SpawnQueuedCustomer();
+        }
+    }
+
+    private void FadeOutUI(params CanvasGroup[] groups)
+    {
+        foreach (var group in groups)
+        {
+            group.DOFade(0f, gameSettingSO.FadeInAnimation).OnComplete(() =>
+            {
+                group.gameObject.SetActive(false);
+            });
+        }
+    }
+
+    private void SetupNewNPC(Image image, Sprite sprite)
+    {
+        image.sprite = sprite;
+
         npcPanel.gameObject.SetActive(true);
-        npcPanel.DOFade(1f, fadeInAnimation);
-
         rejectButton.gameObject.SetActive(true);
+        orderPanel.gameObject.SetActive(true);
+
+        rejectButton.GetComponent<CanvasGroup>().DOFade(1f, gameSettingSO.FadeInAnimation);
+        orderPanel.DOFade(1f, gameSettingSO.FadeInAnimation);
     }
 
     public void HandleCorrectCustomerOrder()
     {
         orderText.text = currentCustomerOrderData.CorrectOrderDescription;
         rejectButton.gameObject.SetActive(false);
-        npcPanel.DOFade(0, 0.2f).SetDelay(delayTime).OnComplete(() =>
+
+        npcPanel.DOFade(0f, 0.2f).SetDelay(delayTime).OnComplete(() =>
         {
             npcPanel.gameObject.SetActive(false);
-            shopCustomerManager.RejectOrder();
+            ShopCustomerDatas.Dequeue();
+            StartCoroutine(ShiftCustomers());
         });
     }
 
@@ -119,17 +217,17 @@ public class ShopCustomerRoomUI : BaseUI
     {
         orderText.text = currentCustomerOrderData.InCorrectOrderDescription;
         rejectButton.gameObject.SetActive(false);
-        npcPanel.DOFade(0, 0.2f).SetDelay(2f).OnComplete(() =>
+
+        npcPanel.DOFade(0f, 0.2f).SetDelay(2f).OnComplete(() =>
         {
             npcPanel.gameObject.SetActive(false);
-            shopCustomerManager.RejectOrder();
+            ShopCustomerDatas.Dequeue();
+            StartCoroutine(ShiftCustomers());
         });
     }
-
 
     private void HandleCustomerRoomOpened()
     {
         Show();
     }
-
 }

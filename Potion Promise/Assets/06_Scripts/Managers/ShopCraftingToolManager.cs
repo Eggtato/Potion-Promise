@@ -1,11 +1,13 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class AlchemyRoomManager : MonoBehaviour
+public class ShopCraftingToolManager : MonoBehaviour
 {
+    [Header("Project Reference")]
+    [SerializeField] private GameSettingSO gameSettingSO;
+
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private Transform container;
-    [SerializeField] protected float fadeTransitionTime = 0.3f;
 
     private SpriteRenderer[] spriteRenderers;
 
@@ -37,7 +39,7 @@ public class AlchemyRoomManager : MonoBehaviour
 
         foreach (var item in spriteRenderers)
         {
-            item.DOFade(1, fadeTransitionTime);
+            item.DOFade(1, gameSettingSO.FadeInAnimation);
         }
     }
 
@@ -45,7 +47,7 @@ public class AlchemyRoomManager : MonoBehaviour
     {
         foreach (var item in spriteRenderers)
         {
-            item.DOFade(0, fadeTransitionTime);
+            item.DOFade(0, gameSettingSO.FadeInAnimation);
         }
 
         container.gameObject.SetActive(false);

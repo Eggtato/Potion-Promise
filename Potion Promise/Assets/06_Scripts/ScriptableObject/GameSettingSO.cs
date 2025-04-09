@@ -8,6 +8,7 @@ public class GameSettingSO : ScriptableObject
 
     [Header("Game Setting")]
     [Unit(Units.Second)] public float ShopDuration;
+    public int ShopCustomerLimitPerDay = 5;
 
     [Header("UI Animation")]
     [Unit(Units.Second)] public float FadeInAnimation;
