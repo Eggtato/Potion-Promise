@@ -25,7 +25,7 @@ public class ShopCraftingRoomUI : BaseUI
         base.OnEnable();
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnCraftingRoomOpened += HandleAlchemyRoomOpened;
             playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
             playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
         }
@@ -36,7 +36,7 @@ public class ShopCraftingRoomUI : BaseUI
         base.OnDisable();
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
+            playerEventSO.Event.OnCraftingRoomOpened -= HandleAlchemyRoomOpened;
             playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
             playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
         }

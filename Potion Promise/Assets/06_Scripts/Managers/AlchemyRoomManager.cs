@@ -22,13 +22,13 @@ public class AlchemyRoomManager : MonoBehaviour
     private void OnEnable()
     {
         playerEventSO.Event.OnAnyUIClosed += HandleAlchemyRoomClosed;
-        playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
+        playerEventSO.Event.OnCraftingRoomOpened += HandleAlchemyRoomOpened;
     }
 
     private void OnDisable()
     {
         playerEventSO.Event.OnAnyUIClosed -= HandleAlchemyRoomClosed;
-        playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
+        playerEventSO.Event.OnCraftingRoomOpened -= HandleAlchemyRoomOpened;
     }
 
     private void HandleAlchemyRoomOpened()

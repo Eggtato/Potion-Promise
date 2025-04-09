@@ -33,7 +33,7 @@ public struct PlayerEvent
 
     // UI Input Events : Shop
     public Action OnCustomerRoomOpened;
-    public Action OnAlchemyRoomOpened;
+    public Action OnCraftingRoomOpened;
     public Action OnRecipeBookOpened;
     public Action OnMaterialSmashed;
     public Action OnMaterialStirred;

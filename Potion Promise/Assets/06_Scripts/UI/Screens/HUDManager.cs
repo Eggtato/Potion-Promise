@@ -77,6 +77,7 @@ public class HUDManager : Singleton<HUDManager>
         rightButton.gameObject.SetActive(false);
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
+        playerEventSO.Event.OnCraftingRoomOpened?.Invoke();
         craftingRoomUI.Show();
         shopInventoryUI.ShowMaterialPanel();
     }
