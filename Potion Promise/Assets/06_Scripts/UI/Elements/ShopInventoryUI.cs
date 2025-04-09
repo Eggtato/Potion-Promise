@@ -29,18 +29,16 @@ public class ShopInventoryUI : MonoBehaviour
         potionPanelButton.onClick.AddListener(() =>
         {
             ShowPotionPanel();
-            TogglePanels(potionPanelCanvas, materialPanelCanvas, true);
         });
         materialPanelButton.onClick.AddListener(() =>
         {
             ShowMaterialPanel();
-            TogglePanels(materialPanelCanvas, potionPanelCanvas, true);
         });
     }
 
     private void Start()
     {
-        ShowPotionPanel();
+        RefreshPotionPanel();
         TogglePanels(potionPanelCanvas, materialPanelCanvas);
     }
 
@@ -48,8 +46,8 @@ public class ShopInventoryUI : MonoBehaviour
     {
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnPotionInventoryChanged += ShowPotionPanel;
-            playerEventSO.Event.OnMaterialInventoryChanged += ShowMaterialPanel;
+            playerEventSO.Event.OnPotionInventoryChanged += RefreshPotionPanel;
+            playerEventSO.Event.OnMaterialInventoryChanged += RefreshMaterialPanel;
         }
     }
 
@@ -57,12 +55,24 @@ public class ShopInventoryUI : MonoBehaviour
     {
         if (playerEventSO?.Event != null)
         {
-            playerEventSO.Event.OnPotionInventoryChanged -= ShowPotionPanel;
-            playerEventSO.Event.OnMaterialInventoryChanged -= ShowMaterialPanel;
+            playerEventSO.Event.OnPotionInventoryChanged -= RefreshPotionPanel;
+            playerEventSO.Event.OnMaterialInventoryChanged -= RefreshMaterialPanel;
         }
     }
 
-    private void ShowPotionPanel()
+    public void ShowPotionPanel()
+    {
+        RefreshPotionPanel();
+        TogglePanels(potionPanelCanvas, materialPanelCanvas, true);
+    }
+
+    public void ShowMaterialPanel()
+    {
+        RefreshMaterialPanel();
+        TogglePanels(materialPanelCanvas, potionPanelCanvas, true);
+    }
+
+    private void RefreshPotionPanel()
     {
         GenerateInventory(
             GameDataManager.Instance?.CraftedPotionDataList,
@@ -78,7 +88,7 @@ public class ShopInventoryUI : MonoBehaviour
 
     }
 
-    private void ShowMaterialPanel()
+    private void RefreshMaterialPanel()
     {
         GenerateInventory(
             GameDataManager.Instance?.ObtainedMaterialDataList,

@@ -10,6 +10,7 @@ public class HUDManager : Singleton<HUDManager>
 
     [Header("Pages")]
     [SerializeField] private ShopCustomerRoomUI customerRoomUI;
+    [SerializeField] private ShopCraftingRoomUI craftingRoomUI;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text earnedMoneyText;
@@ -20,12 +21,16 @@ public class HUDManager : Singleton<HUDManager>
     [SerializeField] private Button rightButton;
     [SerializeField] private Button recipeBook;
 
+    private ShopInventoryUI shopInventoryUI;
+
     public new void Awake()
     {
         base.Awake();
 
+        shopInventoryUI = GetComponent<ShopInventoryUI>();
+
         leftButton.onClick.AddListener(ShowCustomerRoom);
-        rightButton.onClick.AddListener(ShowAlchemyRoom);
+        rightButton.onClick.AddListener(ShowCraftingRoom);
         recipeBook.onClick.AddListener(ShowRecipeBook);
     }
 
@@ -63,15 +68,17 @@ public class HUDManager : Singleton<HUDManager>
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
         customerRoomUI.Show();
+        shopInventoryUI.ShowPotionPanel();
     }
 
-    private void ShowAlchemyRoom()
+    private void ShowCraftingRoom()
     {
         leftButton.gameObject.SetActive(true);
         rightButton.gameObject.SetActive(false);
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
-        playerEventSO.Event.OnAlchemyRoomOpened?.Invoke();
+        craftingRoomUI.Show();
+        shopInventoryUI.ShowMaterialPanel();
     }
 
     private void ShowRecipeBook()

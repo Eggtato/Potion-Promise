@@ -9,9 +9,6 @@ using UnityEngine.UI;
 
 public class ShopCustomerRoomUI : BaseUI
 {
-    [Header("Project Reference")]
-    [SerializeField] private PotionDatabaseSO potionDatabaseSO;
-
     [Header("NPC UI")]
     [SerializeField] private CanvasGroup npcPanel;
     [SerializeField] private Image npcImage;
@@ -23,10 +20,6 @@ public class ShopCustomerRoomUI : BaseUI
     [SerializeField] private string closeString = "CLOSE";
     [SerializeField] private Button openShopButton;
 
-    [Header("Inventory")]
-    [SerializeField] private InventoryPotionSlotUI inventorySlotTemplate;
-    [SerializeField] private Transform inventoryParent;
-
     [Header("Animation")]
     [SerializeField] private float fadeInAnimation = 0.2f;
     [SerializeField] private float delayTime = 3f;
@@ -37,9 +30,6 @@ public class ShopCustomerRoomUI : BaseUI
 
     private void Start()
     {
-        if (inventorySlotTemplate != null)
-            inventorySlotTemplate.gameObject.SetActive(false);
-
         npcPanel.gameObject.SetActive(false);
     }
 
@@ -49,7 +39,6 @@ public class ShopCustomerRoomUI : BaseUI
         if (playerEventSO?.Event != null)
         {
             playerEventSO.Event.OnCustomerRoomOpened += HandleCustomerRoomOpened;
-            playerEventSO.Event.OnPotionInventoryChanged += GenerateInventory;
         }
     }
 
@@ -59,7 +48,6 @@ public class ShopCustomerRoomUI : BaseUI
         if (playerEventSO?.Event != null)
         {
             playerEventSO.Event.OnCustomerRoomOpened -= HandleCustomerRoomOpened;
-            playerEventSO.Event.OnPotionInventoryChanged -= GenerateInventory;
         }
     }
 
@@ -138,56 +126,10 @@ public class ShopCustomerRoomUI : BaseUI
         });
     }
 
-    private void GenerateInventory()
-    {
-        var craftedPotions = GameDataManager.Instance?.CraftedPotionDataList;
-
-        int index = 0;
-
-        if (craftedPotions == null || craftedPotions.Count == 0)
-        {
-            // Hide unused slots
-            for (int i = index; i < slotPool.Count; i++)
-            {
-                slotPool[i].gameObject.SetActive(false);
-            }
-            return;
-        }
-
-
-        foreach (var craftedPotion in craftedPotions)
-        {
-            if (index < slotPool.Count)
-            {
-                slotPool[index].gameObject.SetActive(true);
-            }
-            else
-            {
-                if (inventorySlotTemplate == null)
-                {
-                    return;
-                }
-
-                var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
-                slotUI.gameObject.SetActive(true);
-                slotPool.Add(slotUI);
-            }
-
-            slotPool[index].Initialize(craftedPotion, potionDatabaseSO.GetPotionData(craftedPotion.PotionType));
-            index++;
-        }
-
-        // Hide unused slots
-        for (int i = index; i < slotPool.Count; i++)
-        {
-            slotPool[i].gameObject.SetActive(false);
-        }
-    }
 
     private void HandleCustomerRoomOpened()
     {
         Show();
-        GenerateInventory();
     }
 
 }

@@ -11,9 +11,6 @@ public class PotionRecipeSlotUI : MonoBehaviour
     [SerializeField] private Image slotCardImage;
     [SerializeField] private Image itemIcon;
     [SerializeField] private TMP_Text itemName;
-    [SerializeField] private List<Image> itemStarImages = new();
-    [SerializeField] private HorizontalLayoutGroup starLayoutGroup;
-    [SerializeField] private float layoutSpacingAmountForTwoStars = -70;
 
     private Button cardSlotButton;
     private Sprite unselectedSlotCardSprite;
@@ -68,23 +65,6 @@ public class PotionRecipeSlotUI : MonoBehaviour
         itemIcon.sprite = potionData.Sprite;
 
         if (itemName) itemName.text = potionData.Name;
-
-        // Reset and set stars based on rarity
-        foreach (var starImage in itemStarImages)
-        {
-            starImage.gameObject.SetActive(false);
-        }
-
-        for (int i = 0; i <= (int)potionData.Rarity && i < itemStarImages.Count; i++)
-        {
-            itemStarImages[i].sprite = gameAssetSO.ActiveStar;
-            itemStarImages[i].gameObject.SetActive(true);
-        }
-
-        if ((int)potionData.Rarity == 1)
-        {
-            starLayoutGroup.spacing = layoutSpacingAmountForTwoStars;
-        }
     }
 
 

@@ -26,6 +26,8 @@ MonoBehaviour:
   FilterUpOn1: {fileID: 21300000, guid: 214623eeb927beb489f4d83858c6ec66, type: 3}
   FilterUpOff2: {fileID: 21300000, guid: 879478c77336381458215642557fef14, type: 3}
   FilterUpOn2: {fileID: 21300000, guid: 3acb1b2294275c54996cd67234e16df6, type: 3}
+  bookMarkOff: {fileID: 21300000, guid: 970f4efe0ad3745ce93e164c3ed2ea3f, type: 3}
+  bookMarkOn: {fileID: 21300000, guid: f808c069dcd5e43cd8c3b55b9c5ae752, type: 3}
   PotionCommmonCard: {fileID: 21300000, guid: bce3d05096df45b4fa580b3bd054ae20, type: 3}
   SelectedPotionCommmonCard: {fileID: 21300000, guid: c9fc8dea33393644c98f6e35945dc305, type: 3}
   PotionRareCard: {fileID: 21300000, guid: b9368afa986f6e24aa07226567ee7000, type: 3}

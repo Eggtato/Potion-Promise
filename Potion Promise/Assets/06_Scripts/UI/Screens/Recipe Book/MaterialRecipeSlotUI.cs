@@ -10,10 +10,6 @@ public class MaterialRecipeSlotUI : MonoBehaviour
 
     [SerializeField] private Image slotCardImage;
     [SerializeField] private Image itemIcon;
-    [SerializeField] private List<Image> itemStarImages = new();
-    [SerializeField] private HorizontalLayoutGroup starLayoutGroup;
-    [SerializeField] private float layoutSpacingAmountForTwoStars = -70;
-
     private Button cardSlotButton;
     private Sprite unselectedSlotCardSprite;
     private Sprite selectedSlotCardSprite;
@@ -65,23 +61,6 @@ public class MaterialRecipeSlotUI : MonoBehaviour
 
         slotCardImage.sprite = unselectedSlotCardSprite;
         itemIcon.sprite = materialData.Sprite;
-
-        // Reset and set stars based on rarity
-        foreach (var starImage in itemStarImages)
-        {
-            starImage.gameObject.SetActive(false);
-        }
-
-        for (int i = 0; i <= (int)materialData.Rarity && i < itemStarImages.Count; i++)
-        {
-            itemStarImages[i].sprite = gameAssetSO.ActiveStar;
-            itemStarImages[i].gameObject.SetActive(true);
-        }
-
-        if ((int)materialData.Rarity == 1)
-        {
-            starLayoutGroup.spacing = layoutSpacingAmountForTwoStars;
-        }
     }
 
 

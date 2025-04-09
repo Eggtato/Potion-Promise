@@ -2,39 +2,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class RecipeBookMaterialDetailUI : MonoBehaviour
 {
+    [Header("UI Elements")]
     [SerializeField] private Image materialImage;
     [SerializeField] private TMP_Text materialName;
     [SerializeField] private TMP_Text materialDescription;
     [SerializeField] private TMP_Text materialProfit;
-    [SerializeField] private Image craftablePotionIconTemplate;
+    [SerializeField] private Image craftablePotionIcon;
+    [SerializeField] private Transform craftablePotionPanel;
     [SerializeField] private Transform craftablePotionLayout;
 
     private PotionDatabaseSO potionDatabaseSO;
     private PlayerEventSO playerEventSO;
-    private Dictionary<PotionType, Sprite> potionSpriteLookup = new Dictionary<PotionType, Sprite>();
+    private Dictionary<PotionType, Sprite> potionSpriteLookup;
+
     private RecipeBookMaterialPageUI recipeBookMaterialPageUI;
 
     private void Awake()
     {
         recipeBookMaterialPageUI = GetComponentInParent<RecipeBookMaterialPageUI>();
-        if (recipeBookMaterialPageUI == null)
-        {
-            Debug.LogError("RecipeBookUI is missing in the parent hierarchy.");
-            return;
-        }
     }
 
     private void Start()
     {
-        playerEventSO = recipeBookMaterialPageUI.PlayerEventSO;
-        potionDatabaseSO = recipeBookMaterialPageUI.PotionDatabaseSO;
+        playerEventSO = recipeBookMaterialPageUI?.PlayerEventSO;
+        potionDatabaseSO = recipeBookMaterialPageUI?.PotionDatabaseSO;
 
-        BuildPotionSpriteLookup();
+        if (potionDatabaseSO != null)
+        {
+            BuildPotionSpriteLookup();
+        }
 
         HideAllUI();
+        craftablePotionIcon.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -67,39 +70,51 @@ public class RecipeBookMaterialDetailUI : MonoBehaviour
     private void BuildPotionSpriteLookup()
     {
         potionSpriteLookup = new Dictionary<PotionType, Sprite>();
-
         foreach (var potionData in potionDatabaseSO.PotionDataList)
         {
-            if (!potionSpriteLookup.ContainsKey(potionData.PotionType))
-            {
-                potionSpriteLookup[potionData.PotionType] = potionData.Sprite;
-            }
+            potionSpriteLookup[potionData.PotionType] = potionData.Sprite;
         }
     }
 
     private void HideAllUI()
     {
-        materialImage.gameObject.SetActive(false);
-        materialName.gameObject.SetActive(false);
-        materialDescription.gameObject.SetActive(false);
-        materialProfit.gameObject.SetActive(false);
-        craftablePotionIconTemplate.gameObject.SetActive(false);
+        SetUIActive(false);
+    }
+
+    private void SetUIActive(bool state)
+    {
+        materialImage.gameObject.SetActive(state);
+        materialName.gameObject.SetActive(state);
+        materialDescription.gameObject.SetActive(state);
+        materialProfit.gameObject.SetActive(state);
+        craftablePotionPanel.gameObject.SetActive(state);
     }
 
     private void ShowMaterialDetails(MaterialData materialData)
     {
-        materialImage.gameObject.SetActive(true);
+        // Set material visuals
         materialImage.sprite = materialData.Sprite;
-
-        materialName.gameObject.SetActive(true);
         materialName.text = materialData.Name;
-
-        materialDescription.gameObject.SetActive(true);
         materialDescription.text = materialData.Description;
-
-        materialProfit.gameObject.SetActive(true);
         materialProfit.text = $"<sprite name=coin> {materialData.Price}";
 
+        SetUIActive(true);
 
+        // Clear old icons except template
+        foreach (Transform child in craftablePotionLayout)
+        {
+            if (child == craftablePotionIcon.transform) continue;
+            Destroy(child.gameObject);
+        }
+
+        var relatedPotions = potionDatabaseSO.PotionDataList
+            .Where(potion => potion.MaterialRecipes.Contains(materialData.MaterialType));
+
+        foreach (var potion in relatedPotions)
+        {
+            var potionImage = Instantiate(craftablePotionIcon, craftablePotionLayout);
+            potionImage.sprite = potion.Sprite;
+            potionImage.gameObject.SetActive(true);
+        }
     }
 }

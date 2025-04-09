@@ -5,12 +5,7 @@ using UnityEngine.UI;
 
 public class ShopCraftingRoomUI : BaseUI
 {
-    [Header("Database Reference")]
-    [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
-
     [Header("UI")]
-    [SerializeField] private InventoryMaterialSlotUI inventorySlotTemplate;
-    [SerializeField] private Transform inventoryParent;
     [SerializeField] private List<Image> craftedMaterialImages = new List<Image>();
 
     private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
@@ -18,12 +13,6 @@ public class ShopCraftingRoomUI : BaseUI
 
     private void Start()
     {
-        // Ensure the inventory slot template is inactive by default
-        if (inventorySlotTemplate != null)
-            inventorySlotTemplate.gameObject.SetActive(false);
-
-        GenerateInventory();
-
         // Hide crafted material images initially
         foreach (var craftedImage in craftedMaterialImages)
         {
@@ -39,7 +28,6 @@ public class ShopCraftingRoomUI : BaseUI
             playerEventSO.Event.OnAlchemyRoomOpened += HandleAlchemyRoomOpened;
             playerEventSO.Event.OnMaterialGetInCauldron += HandleMaterialAdded;
             playerEventSO.Event.OnCauldronStirred += HandlePotionCrafted;
-            playerEventSO.Event.OnMaterialInventoryChanged += GenerateInventory;
         }
     }
 
@@ -51,46 +39,12 @@ public class ShopCraftingRoomUI : BaseUI
             playerEventSO.Event.OnAlchemyRoomOpened -= HandleAlchemyRoomOpened;
             playerEventSO.Event.OnMaterialGetInCauldron -= HandleMaterialAdded;
             playerEventSO.Event.OnCauldronStirred -= HandlePotionCrafted;
-            playerEventSO.Event.OnMaterialInventoryChanged -= GenerateInventory;
         }
     }
 
     public void Initialize(ShopCraftingManager shopCraftingManager)
     {
         this.shopCraftingManager = shopCraftingManager;
-    }
-
-    /// <summary>
-    /// Initializes the inventory slots based on the obtained materials.
-    /// </summary>
-    /// <param name="obtainedMaterials">List of obtained materials.</param>
-    private void GenerateInventory()
-    {
-        var obtainedMaterials = GameDataManager.Instance?.ObtainedMaterialDataList ?? new List<ObtainedMaterialData>();
-
-        // Clear existing slots except the template
-        foreach (Transform child in inventoryParent)
-        {
-            if (child.gameObject == inventorySlotTemplate.gameObject) continue;
-            Destroy(child.gameObject);
-        }
-
-        // Create a slot for each obtained material
-        foreach (var obtainedMaterial in obtainedMaterials)
-        {
-            var materialData = materialDatabaseSO.MaterialDataList
-                .FirstOrDefault(m => m.MaterialType == obtainedMaterial.MaterialType);
-
-            if (materialData == null)
-            {
-                Debug.LogWarning($"MaterialData not found for type: {obtainedMaterial.MaterialType}");
-                continue;
-            }
-
-            var slotUI = Instantiate(inventorySlotTemplate, inventoryParent);
-            slotUI.gameObject.SetActive(true);
-            slotUI.Initialize(obtainedMaterial, materialData);
-        }
     }
 
     private void HandlePotionCrafted()

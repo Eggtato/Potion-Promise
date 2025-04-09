@@ -28,12 +28,16 @@ public class RecipeBookUI : BaseUI
         {
             playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
+            potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(true);
+            materialTabButton.GetComponent<RecipeBookTabUI>().SetSelected(false);
         });
 
         materialTabButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnMaterialTabButtonClicked?.Invoke();
+            potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(false);
+            materialTabButton.GetComponent<RecipeBookTabUI>().SetSelected(true);
         });
 
         playerEventSO.Event.OnRecipeBookPageInitialized.Invoke(potionDatabaseSO, materialDatabaseSO, gameAssetSO);
@@ -67,7 +71,6 @@ public class RecipeBookUI : BaseUI
         playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
         playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
         pageTitleText.text = "POTIONS";
-        potionTabButton.animator.Play("Pressed");
     }
 
     private void HandleOnClose()
