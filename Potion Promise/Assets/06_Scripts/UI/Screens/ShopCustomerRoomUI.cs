@@ -38,6 +38,7 @@ public class ShopCustomerRoomUI : BaseUI
     [SerializeField] private Button openShopButton;
 
     [Header("Animation")]
+    [SerializeField] private float customerFadeDuration = 0.5f;
     [SerializeField] private float orderAppearDelay = 0.5f;
     [SerializeField] private float customerMoveDuration = 1f;
     [SerializeField] private float customerMoveDelay = 0.5f;
@@ -111,7 +112,7 @@ public class ShopCustomerRoomUI : BaseUI
             // Fade-in animation for the customer UI
             customer.CanvasGroup.alpha = 0f;
             customer.transform.position = line.Transform.position;
-            customer.CanvasGroup.DOFade(1f, gameSettingSO.CustomerFadeDuration).SetEase(fadeEase);
+            customer.CanvasGroup.DOFade(1f, customerFadeDuration).SetEase(fadeEase);
             customer.CanvasGroup.blocksRaycasts = false;
 
             // Mark the line as occupied and assign the customer to it
@@ -146,8 +147,8 @@ public class ShopCustomerRoomUI : BaseUI
         {
             var first = customerLines[0].ShopCustomerImageUI;
             // Move and fade out animation before destroying the object
-            first.GetComponent<RectTransform>().DOLocalMoveX(exitMoveOffsetX, gameSettingSO.CustomerFadeDuration).SetEase(fadeEase);
-            first.CanvasGroup.DOFade(0, gameSettingSO.CustomerFadeDuration).SetEase(fadeEase).OnComplete(() =>
+            first.GetComponent<RectTransform>().DOLocalMoveX(exitMoveOffsetX, customerFadeDuration).SetEase(fadeEase);
+            first.CanvasGroup.DOFade(0, customerFadeDuration).SetEase(fadeEase).OnComplete(() =>
             {
                 Destroy(first.gameObject);
                 customerLines[0].IsOccupied = false;
@@ -155,7 +156,7 @@ public class ShopCustomerRoomUI : BaseUI
             });
 
             // Wait for the animation to finish
-            yield return new WaitForSeconds(gameSettingSO.CustomerFadeDuration);
+            yield return new WaitForSeconds(customerFadeDuration);
         }
 
         // Shift each remaining customer forward in line
@@ -222,7 +223,7 @@ public class ShopCustomerRoomUI : BaseUI
         orderPanel.gameObject.SetActive(true);
 
         // Fade in order panel with delay
-        orderPanel.DOFade(1f, gameSettingSO.CustomerFadeDuration).SetDelay(orderAppearDelay).SetEase(orderEase).OnComplete(() =>
+        orderPanel.DOFade(1f, customerFadeDuration).SetDelay(orderAppearDelay).SetEase(orderEase).OnComplete(() =>
         {
             // Start typewriter effect for order text
             var typewriter = orderText.GetComponent<TypewriterByCharacter>();
@@ -231,7 +232,7 @@ public class ShopCustomerRoomUI : BaseUI
             typewriter.onTextShowed.AddListener(() =>
             {
                 // Once text finishes, fade in the reject button and make it interactable
-                rejectButton.GetComponent<CanvasGroup>().DOFade(1f, gameSettingSO.CustomerFadeDuration / 3).SetEase(orderEase);
+                rejectButton.GetComponent<CanvasGroup>().DOFade(1f, customerFadeDuration / 3).SetEase(orderEase);
                 rejectButton.GetComponent<CanvasGroup>().blocksRaycasts = true;
             });
         });

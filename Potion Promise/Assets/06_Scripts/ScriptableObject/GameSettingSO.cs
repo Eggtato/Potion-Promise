@@ -11,7 +11,6 @@ public class GameSettingSO : ScriptableObject
     public int ShopCustomerLimitPerDay = 5;
 
     [Header("UI Animation")]
-    [Unit(Units.Second)] public float CustomerFadeDuration = 0.5f;
     [Unit(Units.Second)] public float FadeInAnimation;
     [Unit(Units.Second)] public float FadeOutAnimation;
 }

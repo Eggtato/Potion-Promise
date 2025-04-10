@@ -34509,13 +34509,13 @@ MonoBehaviour:
   openString: OPEN
   closeString: CLOSE
   openShopButton: {fileID: 1827598123}
-  OrderAppearAfterCustomerDelay: 0.5
+  customerFadeDuration: 0.5
+  orderAppearDelay: 0.25
   customerMoveDuration: 1
-  customerMoveDelayBetween: 0.5
-  customerMoveWhileFadingTargetX: 100
-  delayTime: 3
-  customerMoveEase: 10
-  customerFadeEase: 2
+  customerMoveDelay: 0.5
+  exitMoveOffsetX: 50
+  moveEase: 9
+  fadeEase: 9
   orderEase: 5
 --- !u!114 &1257452194
 MonoBehaviour:
