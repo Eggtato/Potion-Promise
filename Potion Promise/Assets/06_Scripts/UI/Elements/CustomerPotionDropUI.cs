@@ -3,13 +3,13 @@ using UnityEngine.EventSystems;
 
 public class CustomerPotionDropUI : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private ShopCustomerRoomUI customerRoomUI;
+    [SerializeField] private PlayerEventSO playerEventSO;
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.TryGetComponent<InventoryPotionImageUI>(out var droppedPotion))
         {
-            customerRoomUI.PlayerEventSO.Event.OnPotionDroppedOnCustomer?.Invoke(droppedPotion.PotionData);
+            playerEventSO.Event.OnPotionDroppedOnCustomer?.Invoke(droppedPotion.PotionData);
             GameLevelManager.Instance.RemoveCraftedPotionByOne(droppedPotion.PotionData.PotionType);
         }
         else

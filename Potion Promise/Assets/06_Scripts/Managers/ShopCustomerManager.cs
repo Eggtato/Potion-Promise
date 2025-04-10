@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class ShopCustomerManager : MonoBehaviour
 {
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
+    [SerializeField] private GameSettingSO gameSettingSO;
     [SerializeField] private ShopCustomerDatabaseSO shopCustomerDatabaseSO;
 
     [Header("Scene Reference")]
@@ -61,7 +63,7 @@ public class ShopCustomerManager : MonoBehaviour
 
     private bool ShouldSpawnCustomer()
     {
-        return isShopOpened && !isSpawnQueued && shopCustomerRoomUI.ShopCustomerDatas.Count < maxCustomerLine;
+        return isShopOpened && !isSpawnQueued && shopCustomerRoomUI.CustomerQueue.Count < maxCustomerLine;
     }
 
     private void HandleShopOpened()
@@ -75,9 +77,9 @@ public class ShopCustomerManager : MonoBehaviour
         if (!CanSpawnCustomer()) return;
 
         var randomCustomer = shopCustomerDatabaseSO.GetRandomCustomer();
-        currentOrder = randomCustomer.GetRandomOrder();
+        var randomCustomerOrder = randomCustomer.GetRandomOrder();
 
-        shopCustomerRoomUI.InitializeCustomer(randomCustomer, currentOrder);
+        shopCustomerRoomUI.InitializeCustomer(randomCustomer, randomCustomerOrder);
     }
 
     public void SpawnQueuedCustomer()
@@ -91,9 +93,9 @@ public class ShopCustomerManager : MonoBehaviour
 
     public void RejectOrder()
     {
-        if (shopCustomerRoomUI.ShopCustomerDatas.Count == 0) return;
+        if (shopCustomerRoomUI.CustomerQueue.Count == 0) return;
 
-        shopCustomerRoomUI.ShopCustomerDatas.Dequeue();
+        shopCustomerRoomUI.CustomerQueue.Dequeue();
 
         if (CanSpawnCustomer())
         {
@@ -106,11 +108,13 @@ public class ShopCustomerManager : MonoBehaviour
     private bool CanSpawnCustomer()
     {
         return !shopCustomerRoomUI.IsCustomerMoving &&
-               shopCustomerRoomUI.ShopCustomerDatas.Count < maxCustomerLine;
+               shopCustomerRoomUI.CustomerQueue.Count < maxCustomerLine;
     }
 
     public void ProcessPotionDrop(PotionData potionData)
     {
+        currentOrder = shopCustomerRoomUI.CustomerQueue.Peek().First().Value;
+
         if (currentOrder == null)
         {
             Debug.LogWarning("No current order set.");
@@ -122,13 +126,11 @@ public class ShopCustomerManager : MonoBehaviour
         if (isCorrectOrder)
         {
             GameLevelManager.Instance.AddEarnedCoin(potionData.Price);
-            shopCustomerRoomUI.HandleCorrectCustomerOrder();
+            StartCoroutine(shopCustomerRoomUI.HandleCorrectOrder());
         }
         else
         {
-            shopCustomerRoomUI.HandleIncorrectCustomerOrder();
+            StartCoroutine(shopCustomerRoomUI.HandleIncorrectOrder());
         }
-
-        CanSpawnCustomer(); // update internal state
     }
 }

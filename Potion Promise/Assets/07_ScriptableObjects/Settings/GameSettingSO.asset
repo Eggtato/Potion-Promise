@@ -18,5 +18,7 @@ MonoBehaviour:
     ObtainedMaterialDataList: []
     CraftedPotionDataList: []
   ShopDuration: 200
+  ShopCustomerLimitPerDay: 5
+  CustomerFadeDuration: 0.5
   FadeInAnimation: 0.1
   FadeOutAnimation: 0.1

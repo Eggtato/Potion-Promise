@@ -34509,10 +34509,14 @@ MonoBehaviour:
   openString: OPEN
   closeString: CLOSE
   openShopButton: {fileID: 1827598123}
+  OrderAppearAfterCustomerDelay: 0.5
   customerMoveDuration: 1
   customerMoveDelayBetween: 0.5
+  customerMoveWhileFadingTargetX: 100
   delayTime: 3
   customerMoveEase: 10
+  customerFadeEase: 2
+  orderEase: 5
 --- !u!114 &1257452194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43147,11 +43151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTypeWriter: 1
-  startTypewriterMode: 3
+  startTypewriterMode: 0
   hideAppearancesOnSkip: 0
   hideDisappearancesOnSkip: 0
   triggerEventsOnSkip: 0
-  resetTypingSpeedAtStartup: 1
+  resetTypingSpeedAtStartup: 0
   disappearanceOrientation: 0
   triggerShowedAfterEffectsEnd: 0
   triggerDisappearedAfterEffectsEnd: 0
@@ -43173,12 +43177,12 @@ MonoBehaviour:
   waitForNormalChars: 0.03
   waitLong: 0.6
   waitMiddle: 0.2
-  avoidMultiplePunctuationWait: 0
+  avoidMultiplePunctuationWait: 1
   waitForNewLines: 1
   waitForLastCharacter: 1
   useTypewriterWaitForDisappearances: 1
   disappearanceWaitTime: 0.015
-  disappearanceSpeedMultiplier: 1
+  disappearanceSpeedMultiplier: 1.5
 --- !u!114 &1755970949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43193,7 +43197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typewriterStartsAutomatically: 1
   animationLoop: 0
-  timeScale: 0
+  timeScale: 1
   _text: 
   useDynamicScaling: 1
   referenceFontSize: 10
@@ -49771,6 +49775,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 176052366}
     - target: {fileID: 5921237201285106269, guid: fc889c6577c3dfc45886b5f2373c1b49, type: 3}
+      propertyPath: gameSettingSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 1df20e036f086f34eafbf71cc85b4e30, type: 2}
+    - target: {fileID: 5921237201285106269, guid: fc889c6577c3dfc45886b5f2373c1b49, type: 3}
       propertyPath: shopCustomerRoomUI
       value: 
       objectReference: {fileID: 1257452193}
@@ -49850,17 +49858,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1512463126}
     m_Modifications:
-    - target: {fileID: 456716010804484742, guid: c89cdf09f8f45f340b52bf3fd7a8101a, type: 3}
-      propertyPath: customerRoomUI
-      value: 
-      objectReference: {fileID: 1257452193}
     - target: {fileID: 4193935976085862764, guid: c89cdf09f8f45f340b52bf3fd7a8101a, type: 3}
       propertyPath: m_Name
       value: CustomerImage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193935976085862764, guid: c89cdf09f8f45f340b52bf3fd7a8101a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459720651967202876, guid: c89cdf09f8f45f340b52bf3fd7a8101a, type: 3}
       propertyPath: m_Pivot.x

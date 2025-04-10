@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec984fc0518216418b1e7bffe022b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerRoomUI: {fileID: 0}
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
 --- !u!114 &4097851337970522087
 MonoBehaviour:
   m_ObjectHideFlags: 0
