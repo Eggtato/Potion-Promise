@@ -18,7 +18,7 @@ public class ShopCustomerManager : MonoBehaviour
     private float customerSpawnTimer;
     private bool isShopOpened;
     private bool isSpawnQueued;
-
+    private int customerSpawnedToday = 0;
     private ShopCustomerOrderData currentOrder;
 
     public bool IsSpawnQueued => isSpawnQueued;
@@ -39,6 +39,7 @@ public class ShopCustomerManager : MonoBehaviour
     {
         shopCustomerRoomUI.Initialize(this);
         customerSpawnTimer = maxCustomerSpawnTime;
+        ResetCustomerCount();
     }
 
     private void Update()
@@ -80,7 +81,9 @@ public class ShopCustomerManager : MonoBehaviour
         var randomCustomerOrder = randomCustomer.GetRandomOrder();
 
         shopCustomerRoomUI.InitializeCustomer(randomCustomer, randomCustomerOrder);
+        customerSpawnedToday++; // <-- Track the number of spawned customers
     }
+
 
     public void SpawnQueuedCustomer()
     {
@@ -91,7 +94,7 @@ public class ShopCustomerManager : MonoBehaviour
         isSpawnQueued = false;
     }
 
-    public void RejectOrder()
+    public void FinishOrder()
     {
         if (shopCustomerRoomUI.CustomerQueue.Count == 0) return;
 
@@ -108,8 +111,10 @@ public class ShopCustomerManager : MonoBehaviour
     private bool CanSpawnCustomer()
     {
         return !shopCustomerRoomUI.IsCustomerMoving &&
-               shopCustomerRoomUI.CustomerQueue.Count < maxCustomerLine;
+               shopCustomerRoomUI.CustomerQueue.Count < maxCustomerLine &&
+               customerSpawnedToday < gameSettingSO.ShopCustomerLimitPerDay;
     }
+
 
     public void ProcessPotionDrop(PotionData potionData)
     {
@@ -133,4 +138,10 @@ public class ShopCustomerManager : MonoBehaviour
             StartCoroutine(shopCustomerRoomUI.HandleIncorrectOrder());
         }
     }
+
+    public void ResetCustomerCount()
+    {
+        customerSpawnedToday = 0;
+    }
+
 }

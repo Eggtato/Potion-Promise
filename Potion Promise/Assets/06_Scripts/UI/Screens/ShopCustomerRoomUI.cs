@@ -23,7 +23,7 @@ public class ShopCustomerRoomUI : BaseUI
     [Header("Project Reference")]
     [SerializeField] private GameSettingSO gameSettingSO;
 
-    [Header("NPC UI")]
+    [Header("Customer UI")]
     [SerializeField] private CanvasGroup npcPanel;
     [SerializeField] private List<CustomerLine> customerLines = new();
     [SerializeField] private CanvasGroup orderPanel;
@@ -50,6 +50,7 @@ public class ShopCustomerRoomUI : BaseUI
     private ShopCustomerOrderData currentOrder;
     private ShopCustomerManager manager;
     private readonly Queue<Dictionary<ShopCustomerData, ShopCustomerOrderData>> customerQueue = new();
+    private bool isShopOpened;
 
     public Queue<Dictionary<ShopCustomerData, ShopCustomerOrderData>> CustomerQueue => customerQueue;
     public bool IsCustomerMoving => isCustomerMoving;
@@ -87,7 +88,7 @@ public class ShopCustomerRoomUI : BaseUI
         openShopButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
-            openShopButton.GetComponentInChildren<TMP_Text>().text = closeString;
+            HandleShopSignClick();
         });
     }
 
@@ -212,11 +213,11 @@ public class ShopCustomerRoomUI : BaseUI
         image.sprite = sprite;
 
         // Show NPC-related panels and order/reject UI
-        npcPanel.gameObject.SetActive(true);
         rejectButton.GetComponent<CanvasGroup>().DOFade(0, 0).SetEase(orderEase);
         rejectButton.GetComponent<CanvasGroup>().blocksRaycasts = false;
         orderPanel.DOFade(0, 0);
 
+        npcPanel.gameObject.SetActive(true);
         rejectButton.gameObject.SetActive(true);
         orderPanel.gameObject.SetActive(true);
 
@@ -246,12 +247,12 @@ public class ShopCustomerRoomUI : BaseUI
 
     public IEnumerator HandleReject()
     {
-        StartCoroutine(PlayOrderResponse(currentOrder.DeclineDescription, manager.RejectOrder));
+        StartCoroutine(PlayOrderResponse(currentOrder.DeclineDescription, manager.FinishOrder));
         yield return null;
     }
 
-    public IEnumerator HandleCorrectOrder() => PlayOrderResponse(currentOrder.CorrectOrderDescription, manager.RejectOrder);
-    public IEnumerator HandleIncorrectOrder() => PlayOrderResponse(currentOrder.InCorrectOrderDescription, manager.RejectOrder);
+    public IEnumerator HandleCorrectOrder() => PlayOrderResponse(currentOrder.CorrectOrderDescription, manager.FinishOrder);
+    public IEnumerator HandleIncorrectOrder() => PlayOrderResponse(currentOrder.InCorrectOrderDescription, manager.FinishOrder);
 
     private IEnumerator PlayOrderResponse(string message, Action callback = null)
     {
@@ -270,5 +271,20 @@ public class ShopCustomerRoomUI : BaseUI
             FadeOutUI(orderPanel);
             callback?.Invoke();
         });
+    }
+
+    private void HandleShopSignClick()
+    {
+        isShopOpened = !isShopOpened;
+
+        if (isShopOpened)
+        {
+            openShopButton.GetComponentInChildren<TMP_Text>().text = closeString;
+        }
+        else
+        {
+            openShopButton.GetComponentInChildren<TMP_Text>().text = openString;
+            playerEventSO.Event.OnDayEnd?.Invoke();
+        }
     }
 }
