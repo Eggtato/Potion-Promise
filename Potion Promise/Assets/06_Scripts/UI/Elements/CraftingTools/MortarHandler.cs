@@ -12,6 +12,7 @@ public class MortarHandler : MonoBehaviour
     [Header("Scene Reference")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
     [SerializeField] private SpriteRenderer smashedMaterialSprite;
+    [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
@@ -58,6 +59,8 @@ public class MortarHandler : MonoBehaviour
         droppedMaterialSprite.color = materialData.Color;
         UpdateSmashedSprite();
         RaiseDroppedMaterialSprite();
+
+        craftingToolMaterialUI.RefreshUI(materialData);
     }
 
     private void RaiseDroppedMaterialSprite()
@@ -153,5 +156,6 @@ public class MortarHandler : MonoBehaviour
     {
         droppedMaterialSprite.gameObject.SetActive(false);
         smashedMaterialSprite.gameObject.SetActive(false);
+        craftingToolMaterialUI.Hide();
     }
 }

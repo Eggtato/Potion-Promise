@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class CauldronHandler : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class CauldronHandler : MonoBehaviour
 
     [Header("Scene References")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite; // Sprite representing the dropped material
-
+    [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
@@ -17,6 +18,7 @@ public class CauldronHandler : MonoBehaviour
     private MaterialData materialData; // Current material in the cauldron
     private int currentSmashedCount; // Number of times the material has been stirred
     private Vector3 initialSpritePosition; // Initial position of the sprite
+    private List<MaterialData> craftedMaterialDataList = new List<MaterialData>();
 
     private void Start()
     {
@@ -64,6 +66,8 @@ public class CauldronHandler : MonoBehaviour
     {
         materialData = null;
         currentSmashedCount = 0;
+        craftedMaterialDataList.Clear();
+        craftingToolMaterialUI.Hide();
     }
 
     /// <summary>
@@ -76,14 +80,13 @@ public class CauldronHandler : MonoBehaviour
         if (currentSmashedCount < materialData.SmashedTimes - 1)
         {
             currentSmashedCount++;
-            UpdateSmashedSprite();
+            UpdateStirredSprite();
         }
         else
         {
-            // CraftMaterial();
-            ResetCauldron();
+            CraftPotion();
             LowerDroppedMaterialSprite();
-            playerEventSO.Event.OnCauldronStirred?.Invoke();
+            ResetCauldron();
         }
     }
 
@@ -99,7 +102,7 @@ public class CauldronHandler : MonoBehaviour
     /// <summary>
     /// Updates the sprite to reflect the current smashed state.
     /// </summary>
-    private void UpdateSmashedSprite()
+    private void UpdateStirredSprite()
     {
         if (gameAssetSO.StirredMaterialSprites == null || gameAssetSO.StirredMaterialSprites.Count == 0)
         {
@@ -137,7 +140,8 @@ public class CauldronHandler : MonoBehaviour
     {
         if (playerEventSO != null && materialData != null)
         {
-            playerEventSO.Event.OnMaterialGetInCauldron?.Invoke(materialData);
+            craftedMaterialDataList.Add(materialData);
+            StartCoroutine(craftingToolMaterialUI.RefreshUI(craftedMaterialDataList));
         }
         else
         {
@@ -152,5 +156,16 @@ public class CauldronHandler : MonoBehaviour
             SetDroppedMaterial(materialMovement.MaterialData);
             Destroy(collision.gameObject);
         }
+    }
+
+    private void CraftPotion()
+    {
+        List<MaterialType> materialTypeList = new List<MaterialType>();
+        foreach (var item in craftedMaterialDataList)
+        {
+            materialTypeList.Add(item.MaterialType);
+        }
+
+        ShopCraftingManager.Instance.HandlePotionCrafted(materialTypeList);
     }
 }

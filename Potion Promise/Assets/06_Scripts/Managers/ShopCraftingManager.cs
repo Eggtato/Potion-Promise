@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Eggtato.Utility;
 using UnityEngine;
 
-public class ShopCraftingManager : MonoBehaviour
+public class ShopCraftingManager : Singleton<ShopCraftingManager>
 {
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
@@ -12,13 +13,9 @@ public class ShopCraftingManager : MonoBehaviour
     [SerializeField] private ShopCraftingRoomUI shopCraftingRoomUI;
     [SerializeField] private CraftedPotionUI craftedPotionUI;
 
-    private void Start()
-    {
-        shopCraftingRoomUI.Initialize(this);
-    }
-
     public void HandlePotionCrafted(List<MaterialType> materialTypeList)
     {
+        Debug.Log(materialTypeList.Count);
         PotionData craftedPotion = FindMatchingPotion(materialTypeList);
 
         if (craftedPotion != null)

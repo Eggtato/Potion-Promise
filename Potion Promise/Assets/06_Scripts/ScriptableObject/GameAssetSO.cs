@@ -16,6 +16,9 @@ public class GameAssetSO : ScriptableObject
     [PreviewField(60)] public Sprite FilterUpOff2;
     [PreviewField(60)] public Sprite FilterUpOn2;
 
+    [Header("Shop / Crafting Room")]
+    [PreviewField(60)][SerializeField] public Sprite EmptyMaterialSlot;
+
     [Header("Recipe Book")]
     [PreviewField(60)] public Sprite bookMarkOff;
     [PreviewField(60)] public Sprite bookMarkOn;
