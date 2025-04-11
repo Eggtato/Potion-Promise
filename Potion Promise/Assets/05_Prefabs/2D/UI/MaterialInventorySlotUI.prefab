@@ -397,4 +397,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0c713417db3c4abf96bb9df0167b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droppedMaterial: {fileID: 3213914402225010415, guid: 84aa3ca57ad01c341abc3d50b12615bc, type: 3}
   icon: {fileID: 4866944105901849805}

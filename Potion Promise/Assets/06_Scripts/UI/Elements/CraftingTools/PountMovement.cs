@@ -38,13 +38,13 @@ public class PountMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        playerEventSO.Event.OnSmashedMaterialDragging += HandleSmashedMaterialDragging;
+        // playerEventSO.Event.OnSmashedMaterialDragging += HandleSmashedMaterialDragging;
         playerEventSO.Event.OnMaterialGetInCauldron += ResetColor;
     }
 
     private void OnDisable()
     {
-        playerEventSO.Event.OnSmashedMaterialDragging -= HandleSmashedMaterialDragging;
+        // playerEventSO.Event.OnSmashedMaterialDragging -= HandleSmashedMaterialDragging;
         playerEventSO.Event.OnMaterialGetInCauldron -= ResetColor;
     }
 
@@ -73,7 +73,7 @@ public class PountMovement : MonoBehaviour
         spriteRenderer.DOFade(targetAlpha, 0); // Instant fade
     }
 
-    private void ResetColor(MaterialData materialData)
+    private void ResetColor()
     {
         spriteRenderer.DOFade(1f, fadeDuration);
     }

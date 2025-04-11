@@ -19,7 +19,7 @@ public abstract class BaseUI : MonoBehaviour
         playerEventSO.Event.OnAnyUIClosed -= HandleAnyUIClosed;
     }
 
-    private void HandleAnyUIClosed()
+    public virtual void HandleAnyUIClosed()
     {
         InstantHide();
     }
@@ -30,6 +30,7 @@ public abstract class BaseUI : MonoBehaviour
 
         panel.gameObject.SetActive(true);
         panel.alpha = 0;
+        panel.blocksRaycasts = true;
         panel.DOFade(1, fadeTransitionTime);
     }
 

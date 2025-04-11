@@ -1712,8 +1712,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 16
+  m_SortingLayerID: 1189835917
+  m_SortingOrder: 22
   m_TargetDisplay: 0
 --- !u!1 &65910156
 GameObject:
@@ -6137,7 +6137,7 @@ GameObject:
   - component: {fileID: 311781621}
   - component: {fileID: 311781620}
   m_Layer: 7
-  m_Name: Bar (1)
+  m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6187,7 +6187,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.49
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -8697,8 +8697,9 @@ GameObject:
   - component: {fileID: 429675713}
   - component: {fileID: 429675712}
   - component: {fileID: 429675711}
+  - component: {fileID: 429675714}
   m_Layer: 7
-  m_Name: Bar
+  m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8777,6 +8778,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429675709}
   m_CullTransparentMesh: 1
+--- !u!114 &429675714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429675709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57470b913c3e924db5139b127629150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 311781620}
 --- !u!1 &430325201
 GameObject:
   m_ObjectHideFlags: 0
@@ -9423,11 +9437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 741918245196868398, guid: 9efef242989dd2b43bfb7a9fa2485397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 741918245196868398, guid: 9efef242989dd2b43bfb7a9fa2485397, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 741918245196868398, guid: 9efef242989dd2b43bfb7a9fa2485397, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13638,8 +13652,8 @@ RectTransform:
   - {fileID: 1764989679}
   - {fileID: 929369880}
   - {fileID: 2046990653}
-  - {fileID: 1777595263}
   - {fileID: 1017640349}
+  - {fileID: 1777595263}
   - {fileID: 1751517765}
   - {fileID: 176052365}
   - {fileID: 1257452192}
@@ -13699,7 +13713,7 @@ Canvas:
   m_GameObject: {fileID: 668206049}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1004011741}
   m_PlaneDistance: 10
   m_PixelPerfect: 1
@@ -16423,7 +16437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17946,7 +17960,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1621622226}
   - {fileID: 317130265}
   - {fileID: 1686173874}
   - {fileID: 1951374876}
@@ -18674,7 +18687,7 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0136317015, y: 1.1181128}
+  m_Offset: {x: -0.0136317015, y: 1.3397622}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -18684,7 +18697,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.9021878, y: 0.59487975}
+  m_Size: {x: 2.9021878, y: 0.15158093}
   m_EdgeRadius: 0
 --- !u!251 &924836924
 PlatformEffector2D:
@@ -18700,8 +18713,8 @@ PlatformEffector2D:
     m_Bits: 64
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 145
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -35026,9 +35039,9 @@ Transform:
   m_GameObject: {fileID: 1264868735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.8843, z: -0.1}
-  m_LocalScale: {x: 0.8517, y: 0.8517, z: 0.8517}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.03, y: 1.5, z: -0.1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1686173874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35075,7 +35088,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5a71700970b669e448d5ef6ffd515979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -35134,7 +35147,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.32
+  m_Radius: 1.1707714
 --- !u!50 &1264868740
 Rigidbody2D:
   serializedVersion: 5
@@ -35903,8 +35916,9 @@ GameObject:
   - component: {fileID: 1303872929}
   - component: {fileID: 1303872928}
   - component: {fileID: 1303872927}
+  - component: {fileID: 1303872930}
   m_Layer: 7
-  m_Name: Bar
+  m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35985,6 +35999,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303872925}
   m_CullTransparentMesh: 1
+--- !u!114 &1303872930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303872925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57470b913c3e924db5139b127629150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 1888932158}
 --- !u!1 &1310254627
 GameObject:
   m_ObjectHideFlags: 0
@@ -41646,7 +41673,7 @@ Transform:
   m_Children:
   - {fileID: 565407562}
   - {fileID: 271269422}
-  m_Father: {fileID: 902086801}
+  m_Father: {fileID: 1931574312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1621622228
 BoxCollider2D:
@@ -41682,7 +41709,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -3.199358}
+  m_Offset: {x: 0, y: -2.809636}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -41692,7 +41719,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 19.2, y: 1.1134264}
+  m_Size: {x: 19.2, y: 0.79587555}
   m_EdgeRadius: 0
 --- !u!1 &1628805546
 GameObject:
@@ -42920,7 +42947,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686173873}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -42976,6 +43003,7 @@ MonoBehaviour:
   droppedMaterialSprite: {fileID: 617533083}
   smashedMaterialSprite: {fileID: 1264868737}
   craftingToolMaterialUI: {fileID: 1289262203}
+  craftingToolProgressUI: {fileID: 429675714}
   raisedSpriteYPosition: 1
 --- !u!61 &1686173878
 BoxCollider2D:
@@ -43011,7 +43039,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.64876366}
+  m_Offset: {x: 0, y: -0.0697487}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -43021,7 +43049,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.886422, y: 0.7406173}
+  m_Size: {x: 1.886422, y: 1.8986472}
   m_EdgeRadius: 0
 --- !u!1 &1698752890
 GameObject:
@@ -43833,10 +43861,10 @@ MonoBehaviour:
   startTypewriterMode: 0
   hideAppearancesOnSkip: 0
   hideDisappearancesOnSkip: 0
-  triggerEventsOnSkip: 0
+  triggerEventsOnSkip: 1
   resetTypingSpeedAtStartup: 0
   disappearanceOrientation: 0
-  triggerShowedAfterEffectsEnd: 0
+  triggerShowedAfterEffectsEnd: 1
   triggerDisappearedAfterEffectsEnd: 0
   onTextShowed:
     m_PersistentCalls:
@@ -47029,6 +47057,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1621622226}
   - {fileID: 902086801}
   m_Father: {fileID: 1182944685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49363,6 +49392,7 @@ GameObject:
   - component: {fileID: 2108905440}
   - component: {fileID: 2108905442}
   - component: {fileID: 2108905441}
+  - component: {fileID: 2108905443}
   m_Layer: 0
   m_Name: CraftingBackground
   m_TagString: Untagged
@@ -49428,6 +49458,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108905439}
   m_CullTransparentMesh: 1
+--- !u!114 &2108905443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108905439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9ea36a6230cb34786383c57cea5539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedMaterialPrefab: {fileID: 3213914402225010415, guid: 84aa3ca57ad01c341abc3d50b12615bc, type: 3}
+  parent: {fileID: 902086801}
 --- !u!1 &2111357491
 GameObject:
   m_ObjectHideFlags: 0

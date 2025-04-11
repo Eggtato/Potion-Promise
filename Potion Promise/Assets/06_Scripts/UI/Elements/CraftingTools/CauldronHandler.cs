@@ -142,6 +142,7 @@ public class CauldronHandler : MonoBehaviour
         {
             craftedMaterialDataList.Add(materialData);
             StartCoroutine(craftingToolMaterialUI.RefreshUI(craftedMaterialDataList));
+            playerEventSO.Event.OnMaterialGetInCauldron?.Invoke();
         }
         else
         {

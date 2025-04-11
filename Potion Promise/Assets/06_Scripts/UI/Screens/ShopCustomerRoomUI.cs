@@ -74,6 +74,12 @@ public class ShopCustomerRoomUI : BaseUI
         playerEventSO.Event.OnCustomerRoomOpened -= Show;
     }
 
+    public override void HandleAnyUIClosed()
+    {
+        panel.alpha = 0;
+        panel.blocksRaycasts = false;
+    }
+
     public void Initialize(ShopCustomerManager customerManager)
     {
         manager = customerManager;

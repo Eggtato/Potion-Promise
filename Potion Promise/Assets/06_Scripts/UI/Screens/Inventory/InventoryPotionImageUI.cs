@@ -35,28 +35,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 mousePosition = Input.mousePosition;
-        transform.position = mousePosition;
-    }
-
-    void ReduceSelf()
-    {
-        // assignedInventoryMaterial.Quantity--;
-        // if (assignedInventoryMaterial.Quantity <= 0)
-        // {
-        //     transform.parent.gameObject.SetActive(false);
-        // }
-        // quantitytxt.text = "x " + assignedInventoryMaterial.Quantity;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
     }
 
     public void OnEndDrag(PointerEventData eventData)

@@ -15,7 +15,6 @@ public class ShopCraftingManager : Singleton<ShopCraftingManager>
 
     public void HandlePotionCrafted(List<MaterialType> materialTypeList)
     {
-        Debug.Log(materialTypeList.Count);
         PotionData craftedPotion = FindMatchingPotion(materialTypeList);
 
         if (craftedPotion != null)

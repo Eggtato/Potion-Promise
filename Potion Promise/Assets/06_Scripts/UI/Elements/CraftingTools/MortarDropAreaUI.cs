@@ -6,6 +6,6 @@ public class MortarDropAreaUI : MonoBehaviour
 
     public void SetDroppedMaterial(MaterialData materialData)
     {
-        mortarHandler.SetDroppedMaterial(materialData);
+        // mortarHandler.SetDroppedMaterial(materialData);
     }
 }

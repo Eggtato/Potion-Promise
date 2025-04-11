@@ -13,6 +13,7 @@ public class MortarHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
     [SerializeField] private SpriteRenderer smashedMaterialSprite;
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
+    [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
@@ -21,6 +22,8 @@ public class MortarHandler : MonoBehaviour
     private int currentSmashedCount;
     private Vector3 initialSpritePosition; // Initial position of the sprite
     private bool hasSmashedMaterial = false;
+    private BoxCollider2D boxCollider2D;
+    private GameObject droppedMaterialGameObject;
 
     public PlayerEventSO PlayerEventSO => playerEventSO;
 
@@ -45,14 +48,8 @@ public class MortarHandler : MonoBehaviour
     /// Initializes the dropped material in the mortar.
     /// </summary>
     /// <param name="materialData">The material data to set.</param>
-    public void SetDroppedMaterial(MaterialData materialData)
+    public void SetDroppedMaterial()
     {
-        if (hasSmashedMaterial) return;
-
-        hasSmashedMaterial = true;
-        this.materialData = materialData;
-        currentSmashedCount = 0;
-
         droppedMaterialSprite.gameObject.SetActive(true);
         smashedMaterialSprite.gameObject.SetActive(false);
 
@@ -61,6 +58,8 @@ public class MortarHandler : MonoBehaviour
         RaiseDroppedMaterialSprite();
 
         craftingToolMaterialUI.RefreshUI(materialData);
+
+        Destroy(droppedMaterialGameObject);
     }
 
     private void RaiseDroppedMaterialSprite()
@@ -78,10 +77,16 @@ public class MortarHandler : MonoBehaviour
     /// </summary>
     public void SmashMaterial()
     {
-        if (!hasSmashedMaterial || materialData == null)
+        if (hasSmashedMaterial || materialData == null)
         {
             return;
         }
+
+        if (currentSmashedCount <= 0)
+        {
+            SetDroppedMaterial();
+        }
+
 
         if (currentSmashedCount < materialData.SmashedTimes - 1)
         {
@@ -106,6 +111,8 @@ public class MortarHandler : MonoBehaviour
             Debug.LogWarning("No smashed material sprites available in GameAssetSO.");
             return;
         }
+
+        craftingToolProgressUI.UpdateProgressBar(currentSmashedCount / (float)materialData.SmashedTimes);
 
         int totalSprites = gameAssetSO.SmashedMaterialSprites.Count;
         int rangePerSprite = Mathf.CeilToInt((float)materialData.SmashedTimes / totalSprites);
@@ -157,5 +164,15 @@ public class MortarHandler : MonoBehaviour
         droppedMaterialSprite.gameObject.SetActive(false);
         smashedMaterialSprite.gameObject.SetActive(false);
         craftingToolMaterialUI.Hide();
+        craftingToolProgressUI.UpdateProgressBar(0);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<DroppedMaterialMovement>(out DroppedMaterialMovement droppedMaterial))
+        {
+            materialData = droppedMaterial.MaterialData;
+            droppedMaterialGameObject = droppedMaterial.gameObject;
+        }
     }
 }
