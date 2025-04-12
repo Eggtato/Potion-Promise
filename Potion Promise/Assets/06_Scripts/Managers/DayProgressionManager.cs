@@ -12,6 +12,7 @@ public class DayProgressionManager : MonoBehaviour
     private GameDataManager gameDataManager;
     private GameSceneManager gameSceneManager;
     private ProgressionType? lastCompletedProgressionType;
+    private int lastDay;
 
     private void Awake()
     {
@@ -70,7 +71,13 @@ public class DayProgressionManager : MonoBehaviour
 
     private void ProcessCurrentProgression()
     {
+        bool isDayStart = false;
         int currentDay = gameDataManager.CurrentDay;
+        if (lastDay != currentDay)
+        {
+            isDayStart = true;
+        }
+        lastDay = currentDay;
         List<ProgressionData> dataList = dayProgressionSO.DayProgressionDataList;
         List<ProgressionData> savedDataList = gameDataManager.ProgressionDataList;
 
@@ -81,7 +88,7 @@ public class DayProgressionManager : MonoBehaviour
         }
 
         ProgressionData savedData = savedDataList.FirstOrDefault(i => i.Day == currentDay);
-        bool allPartsCompleted = ProcessIncompleteParts(currentDay, data, savedData);
+        bool allPartsCompleted = ProcessIncompleteParts(currentDay, data, savedData, isDayStart);
 
         if (allPartsCompleted)
         {
@@ -90,7 +97,7 @@ public class DayProgressionManager : MonoBehaviour
         }
     }
 
-    private bool ProcessIncompleteParts(int currentDay, ProgressionData data, ProgressionData savedData)
+    private bool ProcessIncompleteParts(int currentDay, ProgressionData data, ProgressionData savedData, bool isDayStart)
     {
         foreach (var progressionType in data.ProgressionTypes)
         {
@@ -100,7 +107,7 @@ public class DayProgressionManager : MonoBehaviour
                 lastCompletedProgressionType = progressionType;
 
                 // Load the next scene
-                LoadSceneForProgression(currentDay, progressionType);
+                LoadSceneForProgression(currentDay, progressionType, isDayStart);
                 return false;
             }
         }
@@ -108,28 +115,28 @@ public class DayProgressionManager : MonoBehaviour
         return true; // All parts for the day are completed
     }
 
-    private void LoadSceneForProgression(int currentDay, ProgressionType progressionType)
+    private void LoadSceneForProgression(int currentDay, ProgressionType progressionType, bool isDayStart)
     {
         CrossSceneMessage.Send(currentDay.ToString(), progressionType);
 
         switch (progressionType)
         {
             case ProgressionType.CutScene:
-                gameSceneManager.LoadCutsceneScene();
+                gameSceneManager.LoadCutsceneScene(isDayStart);
                 break;
             case ProgressionType.EarlyVisualNovel:
             case ProgressionType.MiddleVisualNovel:
             case ProgressionType.EndVisualNovel:
-                gameSceneManager.LoadVisualNovelScene();
+                gameSceneManager.LoadVisualNovelScene(isDayStart);
                 break;
             case ProgressionType.Shop:
-                gameSceneManager.LoadShopScene();
+                gameSceneManager.LoadShopScene(isDayStart);
                 break;
             case ProgressionType.Gathering:
-                gameSceneManager.LoadGatheringScene();
+                gameSceneManager.LoadGatheringScene(isDayStart);
                 break;
             case ProgressionType.Credit:
-                gameSceneManager.LoadCreditScene();
+                gameSceneManager.LoadCreditScene(isDayStart);
                 break;
             default:
                 break;

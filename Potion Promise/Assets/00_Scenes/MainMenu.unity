@@ -2324,12 +2324,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManagers
       objectReference: {fileID: 0}
-    - target: {fileID: 2682442145859951557, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
-      propertyPath: managedReferences[2923279792027468049].BeforeSceneActivationDelay
+    - target: {fileID: 3328444425390994130, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+      propertyPath: managedReferences[2923279792027468049].AfterSceneActivationDelay
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3328444425390994130, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+      propertyPath: managedReferences[2923279792027468049].BeforeSceneActivationDelay
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3536856917524688441, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+    - {fileID: 2400476299875562420, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+    - {fileID: 7847527727568795598, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+    - {fileID: 7926890922423645650, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+    - {fileID: 876099256217911601, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
+    - {fileID: 7777448257581567902, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee9f6cf3d5c085478fbf42dab279920, type: 3}

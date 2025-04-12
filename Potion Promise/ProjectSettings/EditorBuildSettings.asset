@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/00_Scenes/LoadingScreenFade.unity
     guid: b9989f733f5f78445ae49b32327df6e0
   - enabled: 1
+    path: Assets/00_Scenes/LoadingScreenSlideForDayStart.unity
+    guid: 93f09c477f2aa8f41839740fbe32c4f8
+  - enabled: 1
     path: Assets/00_Scenes/MainMenu.unity
     guid: e97735779878c0842b31b1b7aea72049
   - enabled: 1
