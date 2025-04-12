@@ -51,6 +51,9 @@ TagManager:
   - name: UI
     uniqueID: 1189835917
     locked: 0
+  - name: ProcessedMaterial
+    uniqueID: 1455199475
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

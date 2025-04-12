@@ -3,8 +3,6 @@ using UnityEngine.EventSystems;
 
 public class InventoryDropAreaUI : MonoBehaviour
 {
-    public MaterialData MaterialData { get; private set; }
-
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
 
@@ -37,7 +35,6 @@ public class InventoryDropAreaUI : MonoBehaviour
 
     private void HandleStartDraggingMaterialDragging(DroppedMaterialMovement droppedMaterial)
     {
-        MaterialData = droppedMaterial.MaterialData;
         canvasGroup.blocksRaycasts = true;
     }
 
@@ -48,14 +45,12 @@ public class InventoryDropAreaUI : MonoBehaviour
 
     private void HandleReleasedMaterialDragging()
     {
-        MaterialData = null;
         Hide();
         canvasGroup.blocksRaycasts = false;
     }
 
     public void ReceiveMaterial(MaterialData data)
     {
-        this.MaterialData = data;
         GameLevelManager.Instance.AddObtainedMaterial(data);
     }
 

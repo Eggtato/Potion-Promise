@@ -101,8 +101,7 @@ public class DroppedMaterialMovement : MonoBehaviour
 
         foreach (RaycastResult result in results)
         {
-            var dropArea = result.gameObject.GetComponent<InventoryDropAreaUI>();
-            if (dropArea != null)
+            if (result.gameObject.TryGetComponent<InventoryDropAreaUI>(out var dropArea))
             {
                 dropArea.ReceiveMaterial(this.materialData);
                 transform.DOKill();

@@ -50,9 +50,9 @@ public struct PlayerEvent
     public Action<MaterialData> OnMaterialSlotClicked;
 
     // UI Input Events : Shop > Crafting
+    public Action OnSmashedMaterialSpawned;
     public Action OnMaterialGetInCauldron;
     public Action OnCauldronStirred;
-    public Action<Vector3> OnSmashedMaterialDragging;
     public Action<DroppedMaterialMovement> OnStartDraggingDroppedMaterial;
     public Action<DroppedMaterialMovement> OnDraggingDroppedMaterial;
     public Action OnReleasedDroppedMaterial;

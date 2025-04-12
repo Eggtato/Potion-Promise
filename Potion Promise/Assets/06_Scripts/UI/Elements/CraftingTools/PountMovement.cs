@@ -22,6 +22,7 @@ public class PountMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody;
     private float initialGravityScale;
+    private bool isOverlapWithSmashedMaterial;
 
     private void Awake()
     {
@@ -145,5 +146,13 @@ public class PountMovement : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = zDistanceToCamera; // Maintain the initial Z distance from the camera
         return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<SmashedMaterialMovement>(out SmashedMaterialMovement smashedMaterial))
+        {
+            isOverlapWithSmashedMaterial = false;
+        }
     }
 }

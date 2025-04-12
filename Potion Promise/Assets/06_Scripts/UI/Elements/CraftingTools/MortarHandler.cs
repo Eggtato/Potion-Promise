@@ -8,10 +8,9 @@ public class MortarHandler : MonoBehaviour
     [SerializeField] private GameAssetSO gameAssetSO;
     [SerializeField] private PlayerEventSO playerEventSO;
 
-
     [Header("Scene Reference")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
-    [SerializeField] private SpriteRenderer smashedMaterialSprite;
+    [SerializeField] private Transform smashedMaterial;
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
     [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
 
@@ -22,7 +21,6 @@ public class MortarHandler : MonoBehaviour
     private int currentSmashedCount;
     private Vector3 initialSpritePosition; // Initial position of the sprite
     private bool hasSmashedMaterial = false;
-    private BoxCollider2D boxCollider2D;
     private GameObject droppedMaterialGameObject;
 
     public PlayerEventSO PlayerEventSO => playerEventSO;
@@ -51,7 +49,7 @@ public class MortarHandler : MonoBehaviour
     public void SetDroppedMaterial()
     {
         droppedMaterialSprite.gameObject.SetActive(true);
-        smashedMaterialSprite.gameObject.SetActive(false);
+        smashedMaterial.gameObject.SetActive(false);
 
         droppedMaterialSprite.color = materialData.Color;
         UpdateSmashedSprite();
@@ -126,22 +124,18 @@ public class MortarHandler : MonoBehaviour
     /// </summary>
     private void SpawnSmashedMaterial()
     {
-        if (smashedMaterialSprite == null)
+        if (smashedMaterial == null)
         {
             Debug.LogWarning("SmashedMaterialSprite is not assigned.");
             return;
         }
 
-        GameObject spawnedObject = Instantiate(smashedMaterialSprite.gameObject, smashedMaterialSprite.transform.position, Quaternion.identity, transform);
+        GameObject spawnedObject = Instantiate(smashedMaterial.gameObject, smashedMaterial.transform.position, Quaternion.identity, transform);
         spawnedObject.SetActive(true);
 
         if (spawnedObject.TryGetComponent<SmashedMaterialMovement>(out var smashedMaterialMovement))
         {
             smashedMaterialMovement.Initialize(materialData);
-        }
-        else
-        {
-            Debug.LogWarning("Spawned object is missing SmashedMaterialMovement component.");
         }
     }
 
@@ -162,7 +156,7 @@ public class MortarHandler : MonoBehaviour
     private void ResetMortarUI()
     {
         droppedMaterialSprite.gameObject.SetActive(false);
-        smashedMaterialSprite.gameObject.SetActive(false);
+        smashedMaterial.gameObject.SetActive(false);
         craftingToolMaterialUI.Hide();
         craftingToolProgressUI.UpdateProgressBar(0);
     }

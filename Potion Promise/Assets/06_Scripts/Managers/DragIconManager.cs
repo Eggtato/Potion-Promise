@@ -1,9 +1,13 @@
 using Eggtato.Utility;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class DragIconManager : Singleton<DragIconManager>
 {
+    [Header("Project Reference")]
+    [SerializeField] private GameSettingSO gameSettingSO;
+
     [SerializeField] private Image dragIcon;
     private CanvasGroup canvasGroup;
 
@@ -12,7 +16,7 @@ public class DragIconManager : Singleton<DragIconManager>
         base.Awake();
 
         canvasGroup = dragIcon.GetComponent<CanvasGroup>();
-        Hide();
+        InstantHide();
     }
 
     public void ShowIcon(Sprite sprite)
@@ -20,6 +24,7 @@ public class DragIconManager : Singleton<DragIconManager>
         dragIcon.sprite = sprite;
         dragIcon.enabled = true;
         canvasGroup.alpha = 1;
+        dragIcon.transform.DOScale(1, 0);
     }
 
     public void UpdatePosition(Vector2 screenPosition)
@@ -29,7 +34,19 @@ public class DragIconManager : Singleton<DragIconManager>
 
     public void Hide()
     {
-        dragIcon.enabled = false;
-        canvasGroup.alpha = 0;
+        dragIcon.transform.DOScale(0, gameSettingSO.CraftingMaterialFadeInAnimation).OnComplete(() =>
+        {
+            dragIcon.enabled = false;
+            canvasGroup.alpha = 0;
+        });
+    }
+
+    public void InstantHide()
+    {
+        dragIcon.transform.DOScale(0, 0).OnComplete(() =>
+        {
+            dragIcon.enabled = false;
+            canvasGroup.alpha = 0;
+        });
     }
 }

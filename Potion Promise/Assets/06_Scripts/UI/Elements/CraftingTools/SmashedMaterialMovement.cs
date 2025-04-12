@@ -1,23 +1,28 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SmashedMaterialMovement : MonoBehaviour
 {
+    [Header("Project Reference")]
+    [SerializeField] private GameSettingSO gameSettingSO;
+    [SerializeField] private PlayerEventSO playerEventSO;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private int orderWhenDragging = 20;
+
     private Vector3 offset;
     private bool isDragging = false;
     private float zDistanceToCamera;
     private Rigidbody2D myRigidbody2D;
     private MaterialData materialData;
-    private SpriteRenderer spriteRenderer;
-    private PlayerEventSO playerEventSO;
 
     public MaterialData MaterialData => materialData;
 
     private void Awake()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        playerEventSO = GetComponentInParent<MortarHandler>().PlayerEventSO;
     }
 
     private void Start()
@@ -28,8 +33,6 @@ public class SmashedMaterialMovement : MonoBehaviour
 
     private void Update()
     {
-        playerEventSO.Event.OnSmashedMaterialDragging?.Invoke(transform.position);
-
         if (isDragging)
         {
             DragObject();
@@ -71,6 +74,8 @@ public class SmashedMaterialMovement : MonoBehaviour
     {
         isDragging = false;
         myRigidbody2D.simulated = true;
+
+        TryDropToTrashBin();
     }
 
     /// <summary>
@@ -82,7 +87,33 @@ public class SmashedMaterialMovement : MonoBehaviour
         Vector3 desiredPosition = worldMousePosition + offset;
 
         // Smoothly move the object to the desired position
-        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
+        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 10), 0.1f);
+    }
+
+    private void TryDropToTrashBin()
+    {
+        // Perform a graphic raycast to check if the UI is under the cursor
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.TryGetComponent<TrashBinUI>(out var trashArea))
+            {
+                spriteRenderer.sortingOrder = orderWhenDragging;
+                transform.DOScale(0, gameSettingSO.CraftingMaterialFadeInAnimation).OnComplete(() =>
+                {
+                    transform.DOKill();
+                    Destroy(gameObject); // or pool it
+                    return;
+                });
+            }
+        }
     }
 
     /// <summary>
