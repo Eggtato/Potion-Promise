@@ -3,6 +3,9 @@ using UnityEngine.EventSystems;
 
 public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
 {
+    [Header("Project Reference")]
+    [SerializeField] private PlayerEventSO playerEventSO;
+
     [SerializeField] private DroppedMaterialMovement droppedMaterialPrefab;
     [SerializeField] private Transform parent;
 

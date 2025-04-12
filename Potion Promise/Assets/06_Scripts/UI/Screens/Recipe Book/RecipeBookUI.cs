@@ -30,6 +30,7 @@ public class RecipeBookUI : BaseUI
             playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
             potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(true);
             materialTabButton.GetComponent<RecipeBookTabUI>().SetSelected(false);
+            pageTitleText.text = "POTIONS";
         });
 
         materialTabButton.onClick.AddListener(() =>
@@ -38,6 +39,7 @@ public class RecipeBookUI : BaseUI
             playerEventSO.Event.OnMaterialTabButtonClicked?.Invoke();
             potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(false);
             materialTabButton.GetComponent<RecipeBookTabUI>().SetSelected(true);
+            pageTitleText.text = "MATERIALS";
         });
 
         playerEventSO.Event.OnRecipeBookPageInitialized.Invoke(potionDatabaseSO, materialDatabaseSO, gameAssetSO);

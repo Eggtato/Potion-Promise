@@ -45,6 +45,11 @@ public class DroppedMaterialMovement : MonoBehaviour
         spriteRenderer.sprite = materialData.Sprite;
     }
 
+    void OnMouseEnter()
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
     private void OnMouseDown()
     {
         StartDragging();
@@ -53,6 +58,11 @@ public class DroppedMaterialMovement : MonoBehaviour
     private void OnMouseUp()
     {
         StopDragging();
+    }
+
+    void OnMouseExit()
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -67,6 +77,7 @@ public class DroppedMaterialMovement : MonoBehaviour
         myRigidbody2D.simulated = false;
 
         playerEventSO.Event.OnStartDraggingDroppedMaterial?.Invoke(this);
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
 
         spriteRenderer.sortingOrder = orderWhenDragging;
 
@@ -81,6 +92,7 @@ public class DroppedMaterialMovement : MonoBehaviour
         TryDropToInventory();
 
         playerEventSO.Event.OnReleasedDroppedMaterial?.Invoke();
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
 
         spriteRenderer.sortingOrder = orderWhenDropped;
 
@@ -123,6 +135,7 @@ public class DroppedMaterialMovement : MonoBehaviour
         // Smoothly move the object to the desired position
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
         playerEventSO.Event.OnDraggingDroppedMaterial?.Invoke(this);
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
         DragIconManager.Instance.UpdatePosition(new Vector3(desiredPosition.x, desiredPosition.y, 0));
 
         PointerEventData pointerData = new PointerEventData(EventSystem.current)

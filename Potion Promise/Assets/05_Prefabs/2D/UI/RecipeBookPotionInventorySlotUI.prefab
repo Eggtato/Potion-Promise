@@ -564,6 +564,7 @@ GameObject:
   - component: {fileID: 2300994001783021075}
   - component: {fileID: 8601854678475766264}
   - component: {fileID: 6543918978020331137}
+  - component: {fileID: 8632700944172517012}
   m_Layer: 5
   m_Name: RecipeBookPotionInventorySlotUI
   m_TagString: Untagged
@@ -703,3 +704,16 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &8632700944172517012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325886482670580892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933362f3b6eb68547bac3b5ec3ac694b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}

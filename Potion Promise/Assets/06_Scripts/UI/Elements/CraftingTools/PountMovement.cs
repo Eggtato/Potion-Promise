@@ -57,6 +57,16 @@ public class PountMovement : MonoBehaviour
         }
     }
 
+    void OnMouseEnter()
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
+    void OnMouseExit()
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
+    }
+
     private void OnMouseDown()
     {
         StartDragging();
@@ -96,6 +106,7 @@ public class PountMovement : MonoBehaviour
     {
         rigidBody.gravityScale = initialGravityScale;
         isDragging = false;
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -116,6 +127,8 @@ public class PountMovement : MonoBehaviour
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
 
         HandlePoundSmashMovement(desiredPosition.y);
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     private void HandlePoundSmashMovement(float currentYPosition)

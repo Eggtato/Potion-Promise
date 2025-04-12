@@ -27,6 +27,16 @@ public class StirMovement : MonoBehaviour
         }
     }
 
+    void OnMouseEnter()
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
+    void OnMouseExit()
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
+    }
+
     /// <summary>
     /// Initiates dragging by storing the initial mouse position and normalized Z rotation.
     /// </summary>
@@ -43,6 +53,21 @@ public class StirMovement : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
+
+        float currentZ = transform.eulerAngles.z;
+        float distanceToMinZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, minZRotation));
+        float distanceToMaxZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, maxZRotation));
+
+        if (distanceToMinZRotation > distanceToMaxZRotation)
+        {
+            transform.DORotate(new Vector3(0, 0, maxZRotation), 0.2f);
+        }
+        else
+        {
+            transform.DORotate(new Vector3(0, 0, minZRotation), 0.2f);
+        }
+
     }
 
     /// <summary>
@@ -63,6 +88,8 @@ public class StirMovement : MonoBehaviour
         transform.DORotate(new Vector3(0, 0, targetZRotation), 0.1f);
 
         CheckForDirectionChange(targetZRotation);
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     void CheckForDirectionChange(float currentZRotation)

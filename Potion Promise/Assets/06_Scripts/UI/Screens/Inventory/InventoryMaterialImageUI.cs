@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public MaterialData MaterialData { get; private set; }
 
+
+    [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private DroppedMaterialMovement droppedMaterial;
 
     private Transform rootCanvasParent;
@@ -38,6 +40,8 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -46,5 +50,18 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
         icon.raycastTarget = true;
+
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
+    }
+
 }

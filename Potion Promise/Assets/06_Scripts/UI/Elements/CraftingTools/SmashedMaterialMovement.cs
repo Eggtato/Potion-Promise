@@ -10,7 +10,6 @@ public class SmashedMaterialMovement : MonoBehaviour
     [SerializeField] private PlayerEventSO playerEventSO;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private int orderWhenDragging = 20;
 
     private Vector3 offset;
     private bool isDragging = false;
@@ -45,6 +44,11 @@ public class SmashedMaterialMovement : MonoBehaviour
         spriteRenderer.color = materialData.Color;
     }
 
+    void OnMouseEnter()
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
     private void OnMouseDown()
     {
         StartDragging();
@@ -53,6 +57,11 @@ public class SmashedMaterialMovement : MonoBehaviour
     private void OnMouseUp()
     {
         StopDragging();
+    }
+
+    void OnMouseExit()
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -65,6 +74,8 @@ public class SmashedMaterialMovement : MonoBehaviour
         isDragging = true;
 
         myRigidbody2D.simulated = false;
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     /// <summary>
@@ -76,6 +87,8 @@ public class SmashedMaterialMovement : MonoBehaviour
         myRigidbody2D.simulated = true;
 
         TryDropToTrashBin();
+
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -88,6 +101,8 @@ public class SmashedMaterialMovement : MonoBehaviour
 
         // Smoothly move the object to the desired position
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 10), 0.1f);
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     private void TryDropToTrashBin()
@@ -105,7 +120,6 @@ public class SmashedMaterialMovement : MonoBehaviour
         {
             if (result.gameObject.TryGetComponent<TrashBinUI>(out var trashArea))
             {
-                spriteRenderer.sortingOrder = orderWhenDragging;
                 transform.DOScale(0, gameSettingSO.CraftingMaterialFadeInAnimation).OnComplete(() =>
                 {
                     transform.DOKill();

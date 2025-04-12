@@ -19,6 +19,11 @@ public class DragIconManager : Singleton<DragIconManager>
         InstantHide();
     }
 
+    private void Start()
+    {
+        dragIcon.raycastTarget = false;
+    }
+
     public void ShowIcon(Sprite sprite)
     {
         dragIcon.sprite = sprite;

@@ -18,6 +18,12 @@ public struct PlayerEvent
     public Action OnMaterialInventoryChanged;
     public Action OnPotionInventoryChanged;
 
+    // Cursor
+    public Action OnCursorSetDefault;
+    public Action OnCursorSetHand;
+    public Action OnCursorSetGrab;
+    public Action OnCursorSetSelect;
+
     // UI Input Events : Main Menu
     public Action OnGoToNextScene;
     public Action OnNewGameButtonClicked;

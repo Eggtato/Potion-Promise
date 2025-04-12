@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Febucci.UI;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class ShopCustomerRoomUI : BaseUI
     [SerializeField] private string openString = "OPEN";
     [SerializeField] private string closeString = "CLOSE";
     [SerializeField] private Button openShopButton;
+    [SerializeField] private MMFeedbacks openShopFeedbacks;
 
     [Header("Animation")]
     [SerializeField] private float customerFadeDuration = 0.5f;
@@ -95,6 +97,7 @@ public class ShopCustomerRoomUI : BaseUI
         openShopButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
+            openShopFeedbacks.PlayFeedbacks();
             HandleShopSignClick();
         });
     }

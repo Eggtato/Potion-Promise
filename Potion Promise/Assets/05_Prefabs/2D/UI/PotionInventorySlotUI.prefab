@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3993f63c2ce30234b8000e890f8508e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   icon: {fileID: 7906616211317883217}
 --- !u!114 &1983371459576009313
 MonoBehaviour:

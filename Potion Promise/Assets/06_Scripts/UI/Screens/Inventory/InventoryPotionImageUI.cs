@@ -3,10 +3,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public PotionData PotionData { get; private set; }
 
+    [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private Image icon;
     private Transform rootcanvasParent;
 
@@ -37,6 +38,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+
+        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -45,7 +48,17 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
         AudioManager.Instance.PlayTypeSound();
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
+    }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        playerEventSO.Event.OnCursorSetHand?.Invoke();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
 }

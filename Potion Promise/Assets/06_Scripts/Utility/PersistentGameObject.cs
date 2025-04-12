@@ -1,7 +1,11 @@
 using Eggtato.Utility;
 using UnityEngine;
 
-public class PersistentGameObject : PersistentSingleton<PersistentGameObject>
+public class PersistentGameObject : MonoBehaviour
 {
-    // Just to persist across all scenes
+    private void Awake()
+    {
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
+    }
 }
