@@ -77,7 +77,7 @@ public class MortarHandler : MonoBehaviour
     /// </summary>
     public void SmashMaterial()
     {
-        if (hasSmashedMaterial || materialData == null)
+        if (!hasSmashedMaterial)
         {
             return;
         }
@@ -173,6 +173,7 @@ public class MortarHandler : MonoBehaviour
         {
             materialData = droppedMaterial.MaterialData;
             droppedMaterialGameObject = droppedMaterial.gameObject;
+            hasSmashedMaterial = true;
         }
     }
 }

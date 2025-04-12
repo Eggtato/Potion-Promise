@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class SmashedMaterialMovement : MonoBehaviour
@@ -81,7 +82,7 @@ public class SmashedMaterialMovement : MonoBehaviour
         Vector3 desiredPosition = worldMousePosition + offset;
 
         // Smoothly move the object to the desired position
-        transform.position = desiredPosition;
+        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
     }
 
     /// <summary>

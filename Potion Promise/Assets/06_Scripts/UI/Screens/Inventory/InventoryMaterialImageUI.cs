@@ -13,19 +13,16 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     [SerializeField] private Image icon;
     private Transform parentAfterDrag;
-    private Image image;
 
     private void Awake()
     {
         rootCanvasParent = GetComponentInParent<Canvas>().transform;
-        image = GetComponent<Image>();
     }
 
     public void Initialize(MaterialData materialData)
     {
         MaterialData = materialData;
         icon.sprite = materialData.Sprite;
-
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,7 +31,7 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
         parentAfterDrag = transform.parent;
         transform.SetParent(rootCanvasParent);
         transform.SetAsLastSibling();
-        image.raycastTarget = false;
+        icon.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,6 +45,6 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
         AudioManager.Instance.PlayTypeSound();
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
-        image.raycastTarget = true;
+        icon.raycastTarget = true;
     }
 }

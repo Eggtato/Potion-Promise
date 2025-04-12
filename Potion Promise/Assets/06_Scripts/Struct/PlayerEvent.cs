@@ -53,4 +53,7 @@ public struct PlayerEvent
     public Action OnMaterialGetInCauldron;
     public Action OnCauldronStirred;
     public Action<Vector3> OnSmashedMaterialDragging;
+    public Action<DroppedMaterialMovement> OnStartDraggingDroppedMaterial;
+    public Action<DroppedMaterialMovement> OnDraggingDroppedMaterial;
+    public Action OnReleasedDroppedMaterial;
 }

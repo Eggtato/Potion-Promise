@@ -49,24 +49,21 @@ public class CraftingToolMaterialUI : MonoBehaviour
     {
         for (int i = 0; i < materialImages.Length; i++)
         {
-            if (materialImages[i].sprite == gameAssetSO.EmptyMaterialSlot)
+            materialImages[i].transform.localScale = Vector3.zero;
+            materialImages[i].transform.DOScale(1, gameSettingSO.CraftingMaterialFadeInAnimation).SetEase(materialAppearEase);
+
+            if (i < materialDatas.Count)
             {
-                materialImages[i].transform.localScale = Vector3.zero;
-                materialImages[i].transform.DOScale(1, gameSettingSO.CraftingMaterialFadeInAnimation).SetEase(materialAppearEase);
-
-                if (i < materialDatas.Count)
-                {
-                    materialImages[i].sprite = materialDatas[i].Sprite;
-                    materialImages[i].color = Color.white;
-                }
-
-                if (!panel.gameObject.activeInHierarchy)
-                {
-                    panel.gameObject.SetActive(true);
-                    panel.DOFade(1, gameSettingSO.CraftingMaterialFadeInAnimation);
-                }
-                yield return new WaitForSeconds(gameSettingSO.FadeInAnimation);
+                materialImages[i].sprite = materialDatas[i].Sprite;
+                materialImages[i].color = Color.white;
             }
+
+            if (!panel.gameObject.activeInHierarchy)
+            {
+                panel.gameObject.SetActive(true);
+                panel.DOFade(1, gameSettingSO.CraftingMaterialFadeInAnimation);
+            }
+            yield return new WaitForSeconds(gameSettingSO.FadeInAnimation);
         }
     }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class StirMovement : MonoBehaviour
@@ -58,7 +59,8 @@ public class StirMovement : MonoBehaviour
         float targetZRotation = Mathf.Clamp(initialZRotation - (deltaX * sensitivity), minZRotation, maxZRotation);
 
         // Apply the rotation to the object
-        transform.rotation = Quaternion.Euler(0, 0, targetZRotation);
+        // transform.rotation = Quaternion.Euler(0, 0, targetZRotation);
+        transform.DORotate(new Vector3(0, 0, targetZRotation), 0.1f);
 
         CheckForDirectionChange(targetZRotation);
     }

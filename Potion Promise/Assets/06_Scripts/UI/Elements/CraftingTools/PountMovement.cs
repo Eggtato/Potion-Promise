@@ -112,7 +112,7 @@ public class PountMovement : MonoBehaviour
         desiredPosition.y = Mathf.Clamp(desiredPosition.y, minYPosition, maxYPosition);
 
         // Move the object to the desired position
-        transform.position = desiredPosition;
+        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
 
         HandlePoundSmashMovement(desiredPosition.y);
     }

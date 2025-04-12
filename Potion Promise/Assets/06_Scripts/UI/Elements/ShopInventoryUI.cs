@@ -75,7 +75,7 @@ public class ShopInventoryUI : MonoBehaviour
     private void RefreshPotionPanel()
     {
         GenerateInventory(
-            GameDataManager.Instance?.CraftedPotionDataList,
+            GameLevelManager.Instance?.TemporaryGameData.CraftedPotionDataList,
             potionSlotTemplate,
             potionInventoryParent,
             data => potionDatabaseSO.GetPotionData(data.PotionType),
@@ -91,7 +91,7 @@ public class ShopInventoryUI : MonoBehaviour
     private void RefreshMaterialPanel()
     {
         GenerateInventory(
-            GameDataManager.Instance?.ObtainedMaterialDataList,
+            GameLevelManager.Instance?.TemporaryGameData.ObtainedMaterialDataList,
             materialSlotTemplate,
             materialInventoryParent,
             data => materialDatabaseSO.GetMaterialData(data.MaterialType),
