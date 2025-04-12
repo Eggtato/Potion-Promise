@@ -49,7 +49,6 @@ public class DayProgressionManager : MonoBehaviour
     {
         if (lastCompletedProgressionType == null)
         {
-            Debug.Log("No previous progression to save.");
             return;
         }
 
@@ -60,13 +59,11 @@ public class DayProgressionManager : MonoBehaviour
 
         if (savedData != null && savedData.ProgressionTypes.Contains(lastCompletedProgressionType.Value))
         {
-            Debug.Log($"Previous progression ({lastCompletedProgressionType}) already saved.");
             return;
         }
 
         // Save the last completed progression before changing the scene
         gameDataManager.AddNewProgression(currentDay, lastCompletedProgressionType.Value);
-        Debug.Log($"Saved previous progression type: {lastCompletedProgressionType}");
 
         lastCompletedProgressionType = null; // Reset to avoid double saving
     }
@@ -80,7 +77,6 @@ public class DayProgressionManager : MonoBehaviour
         ProgressionData data = dataList.FirstOrDefault(i => i.Day == currentDay);
         if (data == null)
         {
-            Debug.LogError($"No progression data found for day {currentDay}.");
             return;
         }
 
@@ -136,7 +132,6 @@ public class DayProgressionManager : MonoBehaviour
                 gameSceneManager.LoadCreditScene();
                 break;
             default:
-                Debug.LogError($"Unhandled ProgressionType: {progressionType}");
                 break;
         }
     }

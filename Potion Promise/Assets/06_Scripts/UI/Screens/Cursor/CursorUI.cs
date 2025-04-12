@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Eggtato.Utility;
 using UnityEngine;
 
-public class CursorManager : MonoBehaviour
+public class CursorManager : PersistentSingleton<CursorManager>
 {
     [System.Serializable]
     public class CursorReference
@@ -18,8 +19,10 @@ public class CursorManager : MonoBehaviour
 
     private Dictionary<CursorType, CursorReference> cursorMap;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
+
         cursorMap = new Dictionary<CursorType, CursorReference>();
         foreach (var cursor in cursors)
         {

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3607926015436067309}
-  - component: {fileID: 6451443115357523304}
   m_Layer: 0
   m_Name: Cursors
   m_TagString: Untagged
@@ -36,32 +35,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6451443115357523304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5183191215423722407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de34df08ed53f914cbbe3f8e78977b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
-  cursors:
-  - CursorType: 0
-    Texture: {fileID: 2800000, guid: 76cc329c14c5aca4b8a6f9f0a927541a, type: 3}
-    Hotspot: {x: 0, y: 0}
-  - CursorType: 1
-    Texture: {fileID: 2800000, guid: 2bd7f9dd4a535d84fb6ed0cd1219acd3, type: 3}
-    Hotspot: {x: 0, y: 0}
-  - CursorType: 2
-    Texture: {fileID: 2800000, guid: b6ac6f5acb7b56d459c596cbefd98a23, type: 3}
-    Hotspot: {x: 0, y: 0}
-  - CursorType: 3
-    Texture: {fileID: 2800000, guid: 05190da31e44db943981a712fb5b7e4c, type: 3}
-    Hotspot: {x: 0, y: 0}
 --- !u!1 &7935799273759897927
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +47,7 @@ GameObject:
   - component: {fileID: 3519178704764333566}
   - component: {fileID: 5159497897430965354}
   - component: {fileID: 7421694475962536433}
+  - component: {fileID: 3722461139102070653}
   m_Layer: 0
   m_Name: CursorCanvas
   m_TagString: Untagged
@@ -164,3 +138,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4087
+--- !u!114 &3722461139102070653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935799273759897927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de34df08ed53f914cbbe3f8e78977b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
+  cursors:
+  - CursorType: 0
+    Texture: {fileID: 2800000, guid: 76cc329c14c5aca4b8a6f9f0a927541a, type: 3}
+    Hotspot: {x: 0, y: 0}
+  - CursorType: 1
+    Texture: {fileID: 2800000, guid: 2bd7f9dd4a535d84fb6ed0cd1219acd3, type: 3}
+    Hotspot: {x: 0, y: 0}
+  - CursorType: 2
+    Texture: {fileID: 2800000, guid: b6ac6f5acb7b56d459c596cbefd98a23, type: 3}
+    Hotspot: {x: 0, y: 0}
+  - CursorType: 3
+    Texture: {fileID: 2800000, guid: 05190da31e44db943981a712fb5b7e4c, type: 3}
+    Hotspot: {x: 0, y: 0}

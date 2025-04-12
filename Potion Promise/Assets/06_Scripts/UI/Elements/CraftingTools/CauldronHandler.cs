@@ -25,7 +25,6 @@ public class CauldronHandler : MonoBehaviour
     {
         if (droppedMaterialSprite == null)
         {
-            Debug.LogError("Dropped Material Sprite is not assigned.");
             enabled = false;
             return;
         }
@@ -55,9 +54,9 @@ public class CauldronHandler : MonoBehaviour
 
         this.materialData = materialData;
         currentSmashedCount = 0;
-        UpdateDroppedMaterialSprite(materialData.Color);
         RaiseDroppedMaterialSprite();
         HandleMaterialDropped();
+        UpdateDroppedMaterialSprite(CombineColors());
     }
 
     /// <summary>
@@ -101,6 +100,19 @@ public class CauldronHandler : MonoBehaviour
         droppedMaterialSprite.color = color;
     }
 
+    private Color CombineColors()
+    {
+        Color result = Color.black;
+
+        foreach (MaterialData item in craftedMaterialDataList)
+        {
+            result += item.Color;
+        }
+
+        result /= craftedMaterialDataList.Count; // Averaging
+        return result;
+    }
+
     /// <summary>
     /// Updates the sprite to reflect the current smashed state.
     /// </summary>
@@ -108,7 +120,6 @@ public class CauldronHandler : MonoBehaviour
     {
         if (gameAssetSO.StirredMaterialSprites == null || gameAssetSO.StirredMaterialSprites.Count == 0)
         {
-            Debug.LogWarning("No smashed material sprites available in GameAssetSO.");
             return;
         }
 
