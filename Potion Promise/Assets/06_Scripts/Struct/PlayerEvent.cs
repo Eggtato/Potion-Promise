@@ -15,6 +15,7 @@ public struct PlayerEvent
     public Action OnCurrentDayChanged;
     public Action OnDayEnd;
     public Action OnEarnedCoinChanged;
+    public Action<int> OnCoinEarned;
     public Action OnMaterialInventoryChanged;
     public Action OnPotionInventoryChanged;
 

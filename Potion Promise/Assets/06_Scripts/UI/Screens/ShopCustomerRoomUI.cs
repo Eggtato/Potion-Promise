@@ -96,6 +96,7 @@ public class ShopCustomerRoomUI : BaseUI
         openShopButton.onClick.RemoveAllListeners();
         openShopButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
             playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
             openShopFeedbacks.PlayFeedbacks();
             HandleShopSignClick();

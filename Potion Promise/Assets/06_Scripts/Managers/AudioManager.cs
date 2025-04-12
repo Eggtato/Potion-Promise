@@ -30,9 +30,16 @@ public class AudioManager : PersistentSingleton<AudioManager>
         PlaySFX(gameSoundSO.DayEndSound);
     }
 
-    public void PlayCoinSound()
+    public void PlayCoinSound(SoundLength soundLength)
     {
-        PlayShortSFX(gameSoundSO.CoinSound);
+        if (soundLength == SoundLength.Short)
+        {
+            PlayShortSFX(gameSoundSO.CoinSound);
+        }
+        else
+        {
+            PlaySFX(gameSoundSO.CoinSound);
+        }
     }
 
     private void PlayMusic(AudioClip audio)
@@ -62,4 +69,10 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         MMSoundManagerSoundPlayEvent.Trigger(audio, track, transform.position);
     }
+}
+
+public enum SoundLength
+{
+    Short,
+    Long
 }

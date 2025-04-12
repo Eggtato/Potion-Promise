@@ -39,7 +39,7 @@ public class ShopDayEndUI : BaseUI
             todayRevenueAmount--;
             debtAmount--;
 
-            AudioManager.Instance.PlayCoinSound();
+            AudioManager.Instance.PlayCoinSound(SoundLength.Short);
             RefreshUI(todayRevenueAmount, debtAmount);
 
             yield return new WaitForSeconds(delayInBetween);

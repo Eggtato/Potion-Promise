@@ -95,6 +95,7 @@ public class GameLevelManager : Singleton<GameLevelManager>
     public void AddEarnedCoin(int amount)
     {
         EarnedCoin += amount;
+        playerEventSO.Event.OnCoinEarned?.Invoke(amount);
         playerEventSO.Event.OnEarnedCoinChanged?.Invoke();
     }
 
