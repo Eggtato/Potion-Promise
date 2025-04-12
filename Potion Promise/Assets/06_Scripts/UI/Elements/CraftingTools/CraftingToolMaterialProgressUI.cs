@@ -16,6 +16,6 @@ public class CraftingToolMaterialProgressUI : MonoBehaviour
 
     public void UpdateProgressBar(float value)
     {
-        progressBar.fillAmount = value;
+        progressBar.DOFillAmount(value, 0.2f);
     }
 }

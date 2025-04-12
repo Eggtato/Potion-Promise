@@ -11,6 +11,7 @@ public class CauldronHandler : MonoBehaviour
     [Header("Scene References")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite; // Sprite representing the dropped material
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
+    [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
@@ -68,6 +69,7 @@ public class CauldronHandler : MonoBehaviour
         currentSmashedCount = 0;
         craftedMaterialDataList.Clear();
         craftingToolMaterialUI.Hide();
+        craftingToolProgressUI.UpdateProgressBar(0);
     }
 
     /// <summary>
@@ -109,6 +111,8 @@ public class CauldronHandler : MonoBehaviour
             Debug.LogWarning("No smashed material sprites available in GameAssetSO.");
             return;
         }
+
+        craftingToolProgressUI.UpdateProgressBar(currentSmashedCount / (float)materialData.SmashedTimes);
 
         int totalSprites = gameAssetSO.StirredMaterialSprites.Count;
         int rangePerSprite = Mathf.CeilToInt((float)materialData.SmashedTimes / totalSprites);
