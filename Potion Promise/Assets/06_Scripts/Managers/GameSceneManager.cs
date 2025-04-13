@@ -4,7 +4,7 @@ using Eggtato.Utility;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
-public class GameSceneManager : Singleton<GameSceneManager>
+public class GameSceneManager : PersistentSingleton<GameSceneManager>
 {
     [Header("Scene Names")]
     [SerializeField] private SceneAsset mainMenu;
@@ -19,12 +19,14 @@ public class GameSceneManager : Singleton<GameSceneManager>
     [SerializeField] private MMF_Player loadDayStartLoadingScreenSlide;
     [SerializeField] private MMF_Player loadNormalLoadingScreenFade;
 
-    [SerializeField] private MMFeedbacks loadMainMenuSceneFeedbacks;
-    [SerializeField] private MMFeedbacks loadCutsceneSceneFeedbacks;
-    [SerializeField] private MMFeedbacks loadVisualNovelSceneFeedbacks;
-    [SerializeField] private MMFeedbacks loadShopSceneFeedbacks;
-    [SerializeField] private MMFeedbacks loadGatheringSceneFeedbacks;
-    [SerializeField] private MMFeedbacks loadCreditSceneFeedbacks;
+    private SceneAsset currentScene;
+
+    public SceneAsset CurrentScene => currentScene;
+
+    private void Start()
+    {
+        currentScene = mainMenu;
+    }
 
     private void LoadNormalLoadingScreenSlide(SceneAsset scene)
     {
@@ -47,59 +49,54 @@ public class GameSceneManager : Singleton<GameSceneManager>
         loadNormalLoadingScreenFade.PlayFeedbacks();
     }
 
-    public void LoadMainMenuScene(bool isDayStart = false)
+    public void LoadMainMenuScene()
     {
-        SceneAsset scene = mainMenu;
-        if (isDayStart)
-        {
-            LoadDayStartLoadingScreenSlide(scene);
-            return;
-        }
-        LoadNormalLoadingScreenSlide(scene);
+        currentScene = mainMenu;
+        LoadNormalLoadingScreenSlide(currentScene);
     }
 
     public void LoadCutsceneScene(bool isDayStart = false)
     {
-        SceneAsset scene = cutScene;
+        currentScene = cutScene;
         if (isDayStart)
         {
-            LoadDayStartLoadingScreenSlide(scene);
+            LoadDayStartLoadingScreenSlide(currentScene);
             return;
         }
-        LoadNormalLoadingScreenSlide(scene);
+        LoadNormalLoadingScreenSlide(currentScene);
     }
 
     public void LoadVisualNovelScene(bool isDayStart = false)
     {
-        SceneAsset scene = visualNovel;
+        currentScene = visualNovel;
         if (isDayStart)
         {
-            LoadDayStartLoadingScreenSlide(scene);
+            LoadDayStartLoadingScreenSlide(currentScene);
             return;
         }
-        LoadNormalLoadingScreenSlide(scene);
+        LoadNormalLoadingScreenSlide(currentScene);
     }
 
     public void LoadShopScene(bool isDayStart = false)
     {
-        SceneAsset scene = shop;
+        currentScene = shop;
         if (isDayStart)
         {
-            LoadDayStartLoadingScreenSlide(scene);
+            LoadDayStartLoadingScreenSlide(currentScene);
             return;
         }
-        LoadNormalLoadingScreenSlide(scene);
+        LoadNormalLoadingScreenSlide(currentScene);
     }
 
     public void LoadGatheringScene(bool isDayStart = false)
     {
-        SceneAsset scene = gathering;
+        currentScene = gathering;
         if (isDayStart)
         {
-            LoadDayStartLoadingScreenSlide(scene);
+            LoadDayStartLoadingScreenSlide(currentScene);
             return;
         }
-        LoadNormalLoadingScreenSlide(scene);
+        LoadNormalLoadingScreenSlide(currentScene);
     }
 
     public void LoadCreditScene(bool isDayStart = false)

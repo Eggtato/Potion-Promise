@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-static class SceneSwitchInit {
+static class SceneSwitchInit
+{
 #if UNITY_EDITOR
 	[UnityEditor.InitializeOnLoadMethod]
 #endif
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad),]
-	static void Init() {
+	static void Init()
+	{
 		SceneManager.sceneLoaded += SceneSwitcher.Init1;
 	}
 }
 
-class SceneSwitcher : MonoBehaviour {
+class SceneSwitcher : MonoBehaviour
+{
 	public Rect WindowRect;
 	Rect _windowRect0;
 	string _sceneLabel;
@@ -22,13 +25,15 @@ class SceneSwitcher : MonoBehaviour {
 	float _dpiInv;
 	const string Title = "Scene Switcher";
 
-	internal static void Init1(Scene cur, LoadSceneMode _) {
+	internal static void Init1(Scene cur, LoadSceneMode _)
+	{
 		SceneManager.sceneLoaded -= Init1;
 		if (_initialized)
 			return;
 		_initialized = true;
 
-		var go = new GameObject(Title) {
+		var go = new GameObject(Title)
+		{
 			// hideFlags = HideFlags.HideInHierarchy
 		};
 		DontDestroyOnLoad(go);
@@ -39,11 +44,13 @@ class SceneSwitcher : MonoBehaviour {
 		ss.Init2(cur, _);
 	}
 
-	void OnDestroy() {
+	void OnDestroy()
+	{
 		SceneManager.sceneLoaded -= Init2;
 	}
 
-	void Init2(Scene activeScene, LoadSceneMode _) {
+	void Init2(Scene activeScene, LoadSceneMode _)
+	{
 		_sceneLabel = string.Format("{0}:{1}", activeScene.buildIndex, activeScene.name);
 		_dpiInv = 1f / Screen.dpi / 1.5f;
 		if (Screen.dpi == 264f) // not editor GameView
@@ -54,11 +61,13 @@ class SceneSwitcher : MonoBehaviour {
 	const float MinWidth = 120f;
 	const float BaseWidth = 40f;
 
-	void OnGUI() {
-		if (_dirty) {
+	void OnGUI()
+	{
+		if (_dirty)
+		{
 			_dirty = false;
-			var labelSize = GUI.skin.label.CalcSize(new GUIContent {text = _sceneLabel});
-			
+			var labelSize = GUI.skin.label.CalcSize(new GUIContent { text = _sceneLabel });
+
 			WindowRect.width = Mathf.Max(MinWidth, BaseWidth + labelSize.x);
 			WindowRect.height = _windowRect0.height;
 		}
@@ -70,20 +79,26 @@ class SceneSwitcher : MonoBehaviour {
 		WindowRect = GUILayout.Window(_windowId, WindowRect, InnerGui, Title);
 	}
 
-	void ScaleGUI() {
+	void ScaleGUI()
+	{
 		var max = Mathf.Max(Screen.width, Screen.height);
 		var ratio = max * _dpiInv;
 		GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(ratio, ratio, 1));
 	}
 
-	void InnerGui(int _) {
-		using (new GUILayout.HorizontalScope()) {
+	void InnerGui(int _)
+	{
+		using (new GUILayout.HorizontalScope())
+		{
 			var activeScene = SceneManager.GetActiveScene();
-			var valid = SceneManager.sceneCountInBuildSettings > activeScene.buildIndex && SceneManager.GetSceneByBuildIndex(activeScene.buildIndex) == activeScene;
-			var buildIndex = valid ? activeScene.buildIndex : -1;
+			var buildIndex = activeScene.buildIndex;
+			bool valid = buildIndex >= 0 && buildIndex < SceneManager.sceneCountInBuildSettings;
+
+			if (!valid)
+				buildIndex = 0; // fallback value if current scene not in build settings
+
 			bool buf;
 			int newIndex;
-
 
 			GUILayout.BeginVertical();
 			{
@@ -92,10 +107,9 @@ class SceneSwitcher : MonoBehaviour {
 				{
 					buf = GUI.enabled;
 					newIndex = buildIndex - 1;
-					//GUI.enabled = newIndex >= 0;
-					if (newIndex < 0) {
+					if (newIndex < 0)
 						newIndex = SceneManager.sceneCountInBuildSettings - 1;
-					}
+
 					if (GUILayout.Button(" < "))
 						SceneManager.LoadScene(newIndex);
 
@@ -103,10 +117,9 @@ class SceneSwitcher : MonoBehaviour {
 
 					buf = GUI.enabled;
 					newIndex = buildIndex + 1;
-					//GUI.enabled = newIndex <= SceneManager.sceneCountInBuildSettings - 1;
-					if (newIndex > SceneManager.sceneCountInBuildSettings - 1) {
+					if (newIndex >= SceneManager.sceneCountInBuildSettings)
 						newIndex = 0;
-					}
+
 					if (GUILayout.Button(" > "))
 						SceneManager.LoadScene(newIndex);
 
@@ -119,4 +132,5 @@ class SceneSwitcher : MonoBehaviour {
 
 		GUI.DragWindow();
 	}
+
 }

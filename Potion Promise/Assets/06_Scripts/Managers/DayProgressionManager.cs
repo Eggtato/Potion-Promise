@@ -1,27 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Eggtato.Utility;
 using UnityEngine;
 
 [RequireComponent(typeof(GameSceneManager))]
-public class DayProgressionManager : MonoBehaviour
+public class DayProgressionManager : PersistentSingleton<DayProgressionManager>
 {
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private DayProgressionSO dayProgressionSO;
 
     private GameDataManager gameDataManager;
-    private GameSceneManager gameSceneManager;
     private ProgressionType? lastCompletedProgressionType;
     private int lastDay;
 
-    private void Awake()
-    {
-        gameDataManager = GameDataManager.Instance;
-        gameSceneManager = GetComponent<GameSceneManager>();
-    }
-
     private void Start()
     {
+        gameDataManager = GameDataManager.Instance;
         SavePreviousProgression(); // Ensure we save before progressing
     }
 
@@ -122,24 +117,29 @@ public class DayProgressionManager : MonoBehaviour
         switch (progressionType)
         {
             case ProgressionType.CutScene:
-                gameSceneManager.LoadCutsceneScene(isDayStart);
+                GameSceneManager.Instance.LoadCutsceneScene(isDayStart);
                 break;
             case ProgressionType.EarlyVisualNovel:
             case ProgressionType.MiddleVisualNovel:
             case ProgressionType.EndVisualNovel:
-                gameSceneManager.LoadVisualNovelScene(isDayStart);
+                GameSceneManager.Instance.LoadVisualNovelScene(isDayStart);
                 break;
             case ProgressionType.Shop:
-                gameSceneManager.LoadShopScene(isDayStart);
+                GameSceneManager.Instance.LoadShopScene(isDayStart);
                 break;
             case ProgressionType.Gathering:
-                gameSceneManager.LoadGatheringScene(isDayStart);
+                GameSceneManager.Instance.LoadGatheringScene(isDayStart);
                 break;
             case ProgressionType.Credit:
-                gameSceneManager.LoadCreditScene(isDayStart);
+                GameSceneManager.Instance.LoadCreditScene(isDayStart);
                 break;
             default:
                 break;
         }
+    }
+
+    public void SetNullProgressionType()
+    {
+        lastCompletedProgressionType = null;
     }
 }

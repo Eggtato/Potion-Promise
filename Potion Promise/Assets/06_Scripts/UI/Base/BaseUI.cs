@@ -45,6 +45,12 @@ public abstract class BaseUI : MonoBehaviour
         });
     }
 
+    public void InstantShow()
+    {
+        panel.alpha = 1;
+        panel.gameObject.SetActive(true);
+    }
+
     public void InstantHide()
     {
         panel.alpha = 0;
