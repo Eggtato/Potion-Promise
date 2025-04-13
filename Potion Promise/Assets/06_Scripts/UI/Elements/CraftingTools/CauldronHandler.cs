@@ -155,6 +155,8 @@ public class CauldronHandler : MonoBehaviour
     {
         if (playerEventSO != null && materialData != null)
         {
+            AudioManager.Instance.PlayMaterialFallsIntoCauldronSounds();
+
             craftedMaterialDataList.Add(materialData);
             StartCoroutine(craftingToolMaterialUI.RefreshUI(craftedMaterialDataList));
             playerEventSO.Event.OnMaterialGetInCauldron?.Invoke();

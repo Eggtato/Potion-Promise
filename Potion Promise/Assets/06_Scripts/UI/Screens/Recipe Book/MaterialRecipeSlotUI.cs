@@ -66,6 +66,8 @@ public class MaterialRecipeSlotUI : MonoBehaviour
 
     private void Select()
     {
+        AudioManager.Instance.PlayClickSound();
+
         slotCardImage.sprite = selectedSlotCardSprite;
         OnSlotSelected?.Invoke(this);
     }

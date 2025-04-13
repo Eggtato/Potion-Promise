@@ -29,7 +29,8 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        AudioManager.Instance.PlayTypeSound();
+        AudioManager.Instance.PlayMaterialGrabSound();
+
         parentAfterDrag = transform.parent;
         transform.SetParent(rootCanvasParent);
         transform.SetAsLastSibling();
@@ -46,7 +47,8 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        AudioManager.Instance.PlayTypeSound();
+        AudioManager.Instance.PlayMaterialReleaseSound();
+
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
         icon.raycastTarget = true;

@@ -28,10 +28,14 @@ public class ShopInventoryUI : MonoBehaviour
     {
         potionPanelButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
+
             ShowPotionPanel();
         });
         materialPanelButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
+
             ShowMaterialPanel();
         });
     }

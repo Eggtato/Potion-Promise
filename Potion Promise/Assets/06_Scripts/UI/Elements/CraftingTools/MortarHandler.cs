@@ -85,6 +85,7 @@ public class MortarHandler : MonoBehaviour
             SetDroppedMaterial();
         }
 
+        AudioManager.Instance.PlayMaterialSmashedSound();
 
         if (currentSmashedCount < materialData.SmashedTimes - 1)
         {

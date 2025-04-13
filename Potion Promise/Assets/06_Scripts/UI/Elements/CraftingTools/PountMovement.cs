@@ -94,6 +94,8 @@ public class PountMovement : MonoBehaviour
     /// </summary>
     private void StartDragging()
     {
+        AudioManager.Instance.PlayPountGrabSound();
+
         Vector3 worldMousePosition = GetWorldMousePosition();
         offset = transform.position - worldMousePosition;
         isDragging = true;
@@ -104,6 +106,8 @@ public class PountMovement : MonoBehaviour
     /// </summary>
     private void StopDragging()
     {
+        AudioManager.Instance.PlayPountGrabSound();
+
         rigidBody.gravityScale = initialGravityScale;
         isDragging = false;
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
@@ -139,6 +143,8 @@ public class PountMovement : MonoBehaviour
 
             if (movedDown)
             {
+                AudioManager.Instance.PlayMaterialSmashedSound();
+
                 playerEventSO.Event.OnMaterialSmashed?.Invoke();
                 movedDown = false;
             }

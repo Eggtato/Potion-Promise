@@ -70,6 +70,8 @@ public class PotionRecipeSlotUI : MonoBehaviour
 
     private void Select()
     {
+        AudioManager.Instance.PlayClickSound();
+
         slotCardImage.sprite = selectedSlotCardSprite;
         OnSlotSelected?.Invoke(this);
     }

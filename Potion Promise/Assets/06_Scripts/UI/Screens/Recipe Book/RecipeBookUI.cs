@@ -26,6 +26,8 @@ public class RecipeBookUI : BaseUI
 
         potionTabButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
+
             playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnPotionPageTabButtonClicked?.Invoke();
             potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(true);
@@ -35,6 +37,8 @@ public class RecipeBookUI : BaseUI
 
         materialTabButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayClickSound();
+
             playerEventSO.Event.OnAnyPageUIClosed?.Invoke();
             playerEventSO.Event.OnMaterialTabButtonClicked?.Invoke();
             potionTabButton.GetComponent<RecipeBookTabUI>().SetSelected(false);

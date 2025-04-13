@@ -12,7 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e483eb03b2ce9cc42848b28d7138db3e, type: 3}
   m_Name: GameSoundSO
   m_EditorClassIdentifier: 
-  ClickSound: {fileID: 8300000, guid: 586d6493b1e8ae247975844fd733d192, type: 3}
+  ClickSound: {fileID: 8300000, guid: d267264bba550264ea43044cacfb9c62, type: 3}
   TypeSound: {fileID: 8300000, guid: 3f422aad134ac5542a4860dba28110f4, type: 3}
-  CoinSound: {fileID: 8300000, guid: 5a259264122183c49ab6cc80a3b87c87, type: 3}
-  DayEndSound: {fileID: 8300000, guid: 22840e4c50b053c42891b3c9627dcfc1, type: 3}
+  CoinSound: {fileID: 8300000, guid: f3203d1899b47ca4eab2640c7803b0e8, type: 3}
+  DayStartSound: {fileID: 8300000, guid: 632ca7a37810cd14f983182605afeae5, type: 3}
+  DayEndSound: {fileID: 8300000, guid: 77d6a79e02064154ca8d0e7b82436e46, type: 3}
+  StirGrabSound: {fileID: 8300000, guid: e49874f19fdb7114bbf776cb9e5f53c0, type: 3}
+  PountGrabSound: {fileID: 8300000, guid: e49874f19fdb7114bbf776cb9e5f53c0, type: 3}
+  MaterialGrabSound: {fileID: 8300000, guid: 90f232b178ab14b4c9f100e3d7457919, type: 3}
+  MaterialReleaseSound: {fileID: 8300000, guid: 90f232b178ab14b4c9f100e3d7457919, type: 3}
+  TrashBinSound: {fileID: 8300000, guid: 44766caa059435f4fb71af84b2bea7e4, type: 3}
+  MaterialFallsIntoCauldronSounds:
+  - {fileID: 8300000, guid: f32d8d60f197f204ba10bab042d4cf87, type: 3}
+  - {fileID: 8300000, guid: c6600c5491e54a044b5fa6d406a6e20b, type: 3}
+  - {fileID: 8300000, guid: 397f887ca5a702240b4c9338fe65fb9c, type: 3}
+  - {fileID: 8300000, guid: 333946845ce249d458dc4662051fba24, type: 3}
+  - {fileID: 8300000, guid: fcf77559b4c484b4bb499c9a95c32e21, type: 3}
+  - {fileID: 8300000, guid: fb5c285c2df3e3c499d85185274beae0, type: 3}
+  MaterialStirredInCauldronSounds:
+  - {fileID: 8300000, guid: ebb03b2b009894845b81a64051a5c698, type: 3}
+  MaterialSmashedSounds:
+  - {fileID: 8300000, guid: ec831c2536d30374dbf768096ce241a9, type: 3}
+  - {fileID: 8300000, guid: 446bb872cb0e3044bbf59c0a0a0a4adb, type: 3}
+  - {fileID: 8300000, guid: bdb08458eee8f714d87101d84fb4b99b, type: 3}

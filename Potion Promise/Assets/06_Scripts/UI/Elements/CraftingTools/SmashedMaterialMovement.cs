@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -8,14 +9,15 @@ public class SmashedMaterialMovement : MonoBehaviour
     [Header("Project Reference")]
     [SerializeField] private GameSettingSO gameSettingSO;
     [SerializeField] private PlayerEventSO playerEventSO;
-
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private int grabSortingOrder = 22;
 
     private Vector3 offset;
     private bool isDragging = false;
     private float zDistanceToCamera;
     private Rigidbody2D myRigidbody2D;
     private MaterialData materialData;
+    private int initialSortingOrder;
 
     public MaterialData MaterialData => materialData;
 
@@ -28,6 +30,7 @@ public class SmashedMaterialMovement : MonoBehaviour
     {
         // Cache the initial Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
+        initialSortingOrder = spriteRenderer.sortingOrder;
     }
 
     private void Update()
@@ -69,11 +72,15 @@ public class SmashedMaterialMovement : MonoBehaviour
     /// </summary>
     private void StartDragging()
     {
+        AudioManager.Instance.PlayMaterialGrabSound();
+
         Vector3 worldMousePosition = GetWorldMousePosition();
         offset = transform.position - worldMousePosition;
         isDragging = true;
 
         myRigidbody2D.simulated = false;
+
+        spriteRenderer.sortingOrder = grabSortingOrder;
 
         playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
@@ -83,10 +90,14 @@ public class SmashedMaterialMovement : MonoBehaviour
     /// </summary>
     private void StopDragging()
     {
+        AudioManager.Instance.PlayMaterialReleaseSound();
+
         isDragging = false;
         myRigidbody2D.simulated = true;
 
         TryDropToTrashBin();
+
+        spriteRenderer.sortingOrder = initialSortingOrder;
 
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
@@ -122,6 +133,8 @@ public class SmashedMaterialMovement : MonoBehaviour
             {
                 transform.DOScale(0, gameSettingSO.CraftingMaterialFadeInAnimation).OnComplete(() =>
                 {
+                    AudioManager.Instance.PlayTrashBinSound();
+
                     transform.DOKill();
                     Destroy(gameObject); // or pool it
                     return;

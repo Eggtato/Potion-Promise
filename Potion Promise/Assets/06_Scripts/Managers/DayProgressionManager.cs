@@ -73,7 +73,7 @@ public class DayProgressionManager : MonoBehaviour
     {
         bool isDayStart = false;
         int currentDay = gameDataManager.CurrentDay;
-        if (lastDay != currentDay)
+        if (lastDay != 0 && lastDay < currentDay)
         {
             isDayStart = true;
         }

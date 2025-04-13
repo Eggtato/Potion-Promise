@@ -70,6 +70,8 @@ public class DroppedMaterialMovement : MonoBehaviour
     /// </summary>
     private void StartDragging()
     {
+        AudioManager.Instance.PlayMaterialGrabSound();
+
         Vector3 worldMousePosition = GetWorldMousePosition();
         offset = transform.position - worldMousePosition;
         isDragging = true;
@@ -86,6 +88,8 @@ public class DroppedMaterialMovement : MonoBehaviour
 
     private void StopDragging()
     {
+        AudioManager.Instance.PlayMaterialReleaseSound();
+
         isDragging = false;
         myRigidbody2D.simulated = true;
 

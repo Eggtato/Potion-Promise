@@ -25,9 +25,54 @@ public class AudioManager : PersistentSingleton<AudioManager>
         PlaySFX(gameSoundSO.TypeSound);
     }
 
+    public void PlayDayStartSound()
+    {
+        PlaySFX(gameSoundSO.DayStartSound);
+    }
+
     public void PlayDayEndSound()
     {
         PlaySFX(gameSoundSO.DayEndSound);
+    }
+
+    public void PlayStirGrabSound()
+    {
+        PlaySFX(gameSoundSO.StirGrabSound);
+    }
+
+    public void PlayPountGrabSound()
+    {
+        PlaySFX(gameSoundSO.PountGrabSound);
+    }
+
+    public void PlayMaterialGrabSound()
+    {
+        PlaySFX(gameSoundSO.MaterialGrabSound);
+    }
+
+    public void PlayMaterialReleaseSound()
+    {
+        PlaySFX(gameSoundSO.MaterialReleaseSound);
+    }
+
+    public void PlayTrashBinSound()
+    {
+        PlaySFX(gameSoundSO.TrashBinSound);
+    }
+
+    public void PlayMaterialFallsIntoCauldronSounds()
+    {
+        PlaySFX(gameSoundSO.MaterialFallsIntoCauldronSounds);
+    }
+
+    public void PlayMaterialStirredInCauldronSound()
+    {
+        PlaySFX(gameSoundSO.MaterialStirredInCauldronSounds);
+    }
+
+    public void PlayMaterialSmashedSound()
+    {
+        PlaySFX(gameSoundSO.MaterialSmashedSounds);
     }
 
     public void PlayCoinSound(SoundLength soundLength)
@@ -55,6 +100,14 @@ public class AudioManager : PersistentSingleton<AudioManager>
         // PlaySound(audio, MMSoundManager.MMSoundManagerTracks.Sfx);
         MMF_MMSoundManagerSound sound = sfxFeedbacks.GetFeedbackOfType<MMF_MMSoundManagerSound>();
         sound.Sfx = audio;
+        sfxFeedbacks.PlayFeedbacks();
+    }
+
+    private void PlaySFX(AudioClip[] audios)
+    {
+        // PlaySound(audio, MMSoundManager.MMSoundManagerTracks.Sfx);
+        MMF_MMSoundManagerSound sound = sfxFeedbacks.GetFeedbackOfType<MMF_MMSoundManagerSound>();
+        sound.Sfx = audios[Random.Range(0, audios.Length)];
         sfxFeedbacks.PlayFeedbacks();
     }
 

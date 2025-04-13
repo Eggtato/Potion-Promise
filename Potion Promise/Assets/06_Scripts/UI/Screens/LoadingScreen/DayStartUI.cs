@@ -24,6 +24,7 @@ public class DayStartUI : MonoBehaviour
 
     private void ShowRoutine()
     {
+        AudioManager.Instance.PlayDayStartSound();
         panel.DOFade(1, gameSettingSO.FadeInAnimation).SetDelay(startDelay).OnComplete(() =>
         {
             dayText.DOFade(1, gameSettingSO.FadeInAnimation).SetDelay(startDelay).OnComplete(() =>

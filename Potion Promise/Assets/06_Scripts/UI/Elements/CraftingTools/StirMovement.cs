@@ -27,6 +27,11 @@ public class StirMovement : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        HandleStirReleased();
+    }
+
     void OnMouseEnter()
     {
         playerEventSO.Event.OnCursorSetHand?.Invoke();
@@ -42,6 +47,8 @@ public class StirMovement : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
+        AudioManager.Instance.PlayStirGrabSound();
+
         initialMousePosition = Input.mousePosition;
         initialZRotation = GetNormalizedZRotation(); // Get the current rotation in the -180 to 180 range
         isDragging = true;
@@ -52,22 +59,12 @@ public class StirMovement : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
+        AudioManager.Instance.PlayStirGrabSound();
+
         isDragging = false;
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
 
-        float currentZ = transform.eulerAngles.z;
-        float distanceToMinZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, minZRotation));
-        float distanceToMaxZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, maxZRotation));
-
-        if (distanceToMinZRotation > distanceToMaxZRotation)
-        {
-            transform.DORotate(new Vector3(0, 0, maxZRotation), 0.2f);
-        }
-        else
-        {
-            transform.DORotate(new Vector3(0, 0, minZRotation), 0.2f);
-        }
-
+        HandleStirReleased();
     }
 
     /// <summary>
@@ -100,6 +97,8 @@ public class StirMovement : MonoBehaviour
 
             if (wentLeft)
             {
+                AudioManager.Instance.PlayMaterialStirredInCauldronSound();
+
                 playerEventSO.Event.OnMaterialStirred?.Invoke();
                 wentLeft = false;
             }
@@ -108,6 +107,22 @@ public class StirMovement : MonoBehaviour
         {
             directionChanged = true;
             wentLeft = true;
+        }
+    }
+
+    private void HandleStirReleased()
+    {
+        float currentZ = transform.eulerAngles.z;
+        float distanceToMinZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, minZRotation));
+        float distanceToMaxZRotation = Mathf.Abs(Mathf.DeltaAngle(currentZ, maxZRotation));
+
+        if (distanceToMinZRotation > distanceToMaxZRotation)
+        {
+            transform.DORotate(new Vector3(0, 0, maxZRotation), 0.2f);
+        }
+        else
+        {
+            transform.DORotate(new Vector3(0, 0, minZRotation), 0.2f);
         }
     }
 

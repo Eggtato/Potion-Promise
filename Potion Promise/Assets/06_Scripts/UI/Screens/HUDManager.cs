@@ -69,6 +69,7 @@ public class HUDManager : Singleton<HUDManager>
     private void RefreshEarnedCoinUI(int amount)
     {
         AudioManager.Instance.PlayCoinSound(SoundLength.Long);
+
         earnedCoinText.text = "+" + amount.ToString();
         earnCoinFeedbacks.PlayFeedbacks();
     }
@@ -81,6 +82,7 @@ public class HUDManager : Singleton<HUDManager>
     private void ShowCustomerRoom()
     {
         AudioManager.Instance.PlayClickSound();
+
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(true);
 
@@ -92,6 +94,7 @@ public class HUDManager : Singleton<HUDManager>
     private void ShowCraftingRoom()
     {
         AudioManager.Instance.PlayClickSound();
+
         leftButton.gameObject.SetActive(true);
         rightButton.gameObject.SetActive(false);
 
@@ -104,12 +107,14 @@ public class HUDManager : Singleton<HUDManager>
     private void ShowRecipeBook()
     {
         AudioManager.Instance.PlayClickSound();
+
         playerEventSO.Event.OnRecipeBookOpened?.Invoke();
     }
 
     private void HandleDayButtonClick()
     {
         AudioManager.Instance.PlayClickSound();
+
         dayClickFeedbacks.PlayFeedbacks();
     }
 }
