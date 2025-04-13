@@ -140,7 +140,7 @@ public class SmashedMaterialMovement : MonoBehaviour
                 });
             }
         }
-        // spriteRenderer.sortingOrder = initialSortingOrder;
+        spriteRenderer.sortingOrder = initialSortingOrder;
     }
 
     /// <summary>

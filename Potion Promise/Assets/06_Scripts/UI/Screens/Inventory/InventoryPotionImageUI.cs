@@ -86,6 +86,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
                 return;
             }
         }
+
+        // If it fails
         GameLevelManager.Instance.AddCraftedPotion(PotionData.PotionType);
     }
 

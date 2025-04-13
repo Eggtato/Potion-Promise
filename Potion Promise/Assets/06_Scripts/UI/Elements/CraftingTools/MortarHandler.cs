@@ -13,6 +13,7 @@ public class MortarHandler : MonoBehaviour
     [SerializeField] private Transform smashedMaterial;
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
     [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
+    [SerializeField] private ParticleSystem smashEffect;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 1.4f; // Y position when sprite is raised
@@ -56,6 +57,9 @@ public class MortarHandler : MonoBehaviour
         RaiseDroppedMaterialSprite();
 
         craftingToolMaterialUI.RefreshUI(materialData);
+
+        var mainModule = smashEffect.main;
+        mainModule.startColor = new ParticleSystem.MinMaxGradient(materialData.Color);
 
         Destroy(droppedMaterialGameObject);
     }
@@ -118,6 +122,8 @@ public class MortarHandler : MonoBehaviour
 
         int spriteIndex = Mathf.Clamp(currentSmashedCount / rangePerSprite, 0, totalSprites - 1);
         droppedMaterialSprite.sprite = gameAssetSO.SmashedMaterialSprites[spriteIndex];
+
+        smashEffect.Play();
     }
 
     /// <summary>
@@ -138,6 +144,8 @@ public class MortarHandler : MonoBehaviour
         {
             smashedMaterialMovement.Initialize(materialData);
         }
+
+        smashEffect.Play();
     }
 
     /// <summary>
