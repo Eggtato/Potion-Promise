@@ -75,6 +75,11 @@ public class AudioManager : PersistentSingleton<AudioManager>
         PlaySFX(gameSoundSO.MaterialSmashedSounds);
     }
 
+    public void PlayCustomerComeSound()
+    {
+        PlaySFX(gameSoundSO.CustomerComeSound);
+    }
+
     public void PlayCoinSound(SoundLength soundLength)
     {
         if (soundLength == SoundLength.Short)
