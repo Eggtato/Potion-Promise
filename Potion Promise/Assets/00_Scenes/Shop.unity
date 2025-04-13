@@ -19647,7 +19647,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1189835917
-  m_SortingOrder: 20
+  m_SortingOrder: 24
   m_TargetDisplay: 0
 --- !u!114 &929369884
 MonoBehaviour:
@@ -32569,7 +32569,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 17
+  m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: c55f13082a8b1dc4595a9ff4060a0e38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -35888,7 +35888,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1189835917
-  m_SortingOrder: 19
+  m_SortingOrder: 22
   m_TargetDisplay: 0
 --- !u!1 &1257452191
 GameObject:
@@ -36098,7 +36098,7 @@ MonoBehaviour:
   gameSettingSO: {fileID: 11400000, guid: 1df20e036f086f34eafbf71cc85b4e30, type: 2}
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   spriteRenderer: {fileID: 1264868737}
-  grabSortingOrder: 22
+  grabSortingOrder: 25
 --- !u!58 &1264868739
 CircleCollider2D:
   m_ObjectHideFlags: 0

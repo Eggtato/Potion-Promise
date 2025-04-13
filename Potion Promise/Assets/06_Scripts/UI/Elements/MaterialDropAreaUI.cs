@@ -17,7 +17,7 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
 
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        GameLevelManager.Instance.RemoveObtainedMaterialByOne(droppedMaterial.MaterialData);
+        // GameLevelManager.Instance.RemoveObtainedMaterialByOne(droppedMaterial.MaterialData);
         DroppedMaterialMovement material = Instantiate(droppedMaterialPrefab, worldPoint, Quaternion.identity);
         material.Initialize(droppedMaterial.MaterialData);
         material.transform.parent = parent;

@@ -141,8 +141,6 @@ public class ShopCustomerRoomUI : BaseUI
                 SetupCustomerVisual(customer.GetComponent<Image>(), data.Sprite);
             }
 
-            AudioManager.Instance.PlayCustomerComeSound();
-
             break; // Stop after placing the customer in the first available spot
         }
     }
@@ -176,8 +174,6 @@ public class ShopCustomerRoomUI : BaseUI
         for (int i = 1; i < customerLines.Count; i++)
         {
             if (!customerLines[i].IsOccupied) continue;
-
-            AudioManager.Instance.PlayCustomerComeSound();
 
             var current = customerLines[i];
             var target = customerLines[i - 1];

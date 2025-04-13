@@ -16,7 +16,6 @@ public class InventoryDropAreaUI : MonoBehaviour
     private void Start()
     {
         Hide();
-        canvasGroup.blocksRaycasts = false;
     }
 
     private void OnEnable()
@@ -24,6 +23,8 @@ public class InventoryDropAreaUI : MonoBehaviour
         playerEventSO.Event.OnStartDraggingDroppedMaterial += HandleStartDraggingMaterialDragging;
         playerEventSO.Event.OnDraggingDroppedMaterial += HandleDraggingMaterialDragging;
         playerEventSO.Event.OnReleasedDroppedMaterial += HandleReleasedMaterialDragging;
+        playerEventSO.Event.OnDraggingInventoryMaterial += HandleInvenrotyMaterialDragging;
+        playerEventSO.Event.OnReleasedInventoryMaterial += HandleReleasedMaterialDragging;
     }
 
     private void OnDisable()
@@ -31,6 +32,13 @@ public class InventoryDropAreaUI : MonoBehaviour
         playerEventSO.Event.OnStartDraggingDroppedMaterial -= HandleStartDraggingMaterialDragging;
         playerEventSO.Event.OnDraggingDroppedMaterial -= HandleDraggingMaterialDragging;
         playerEventSO.Event.OnReleasedDroppedMaterial -= HandleReleasedMaterialDragging;
+        playerEventSO.Event.OnDraggingInventoryMaterial -= HandleInvenrotyMaterialDragging;
+        playerEventSO.Event.OnReleasedInventoryMaterial -= HandleReleasedMaterialDragging;
+    }
+
+    private void HandleInvenrotyMaterialDragging()
+    {
+        canvasGroup.blocksRaycasts = true;
     }
 
     private void HandleStartDraggingMaterialDragging(DroppedMaterialMovement droppedMaterial)
@@ -46,12 +54,16 @@ public class InventoryDropAreaUI : MonoBehaviour
     private void HandleReleasedMaterialDragging()
     {
         Hide();
-        canvasGroup.blocksRaycasts = false;
     }
 
     public void ReceiveMaterial(MaterialData data)
     {
         GameLevelManager.Instance.AddObtainedMaterial(data);
+    }
+
+    public void ReceivePotion(PotionType type)
+    {
+        GameLevelManager.Instance.AddCraftedPotion(type);
     }
 
     public void Show()
@@ -62,5 +74,6 @@ public class InventoryDropAreaUI : MonoBehaviour
     public void Hide()
     {
         canvasGroup.alpha = 0;
+        canvasGroup.blocksRaycasts = false;
     }
 }

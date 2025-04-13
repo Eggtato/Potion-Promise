@@ -88,8 +88,6 @@ public class DroppedMaterialMovement : MonoBehaviour
 
     private void StopDragging()
     {
-        AudioManager.Instance.PlayMaterialReleaseSound();
-
         isDragging = false;
         myRigidbody2D.simulated = true;
 

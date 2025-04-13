@@ -97,8 +97,6 @@ public class SmashedMaterialMovement : MonoBehaviour
 
         TryDropToTrashBin();
 
-        spriteRenderer.sortingOrder = initialSortingOrder;
-
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
@@ -135,12 +133,14 @@ public class SmashedMaterialMovement : MonoBehaviour
                 {
                     AudioManager.Instance.PlayTrashBinSound();
 
+                    spriteRenderer.sortingOrder = grabSortingOrder;
                     transform.DOKill();
                     Destroy(gameObject); // or pool it
                     return;
                 });
             }
         }
+        // spriteRenderer.sortingOrder = initialSortingOrder;
     }
 
     /// <summary>

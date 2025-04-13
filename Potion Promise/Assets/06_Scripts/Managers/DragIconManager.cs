@@ -29,12 +29,13 @@ public class DragIconManager : Singleton<DragIconManager>
         dragIcon.sprite = sprite;
         dragIcon.enabled = true;
         canvasGroup.alpha = 1;
-        dragIcon.transform.DOScale(1, 0);
+        dragIcon.transform.DOScale(1, 0.05f).SetDelay(0.05f);
     }
 
     public void UpdatePosition(Vector2 screenPosition)
     {
-        dragIcon.rectTransform.position = screenPosition;
+        // dragIcon.rectTransform.position = screenPosition;
+        dragIcon.transform.DOMove(screenPosition, 0.1f);
     }
 
     public void Hide()
