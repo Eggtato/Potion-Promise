@@ -21,16 +21,16 @@ public class RewardManagerUI : MonoBehaviour
 
     public void PassOut()
     {
-        toNextSceneBtn.SetActive(false);
-        confirmMaterialBtn.SetActive(true);
+        toNextSceneBtn.SetActive(true);
+        // confirmMaterialBtn.SetActive(true);
         rewardTxt.text = "Passed Out!";
 
-        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
-        {
-            a.inventoryMaterialImageUIGathering.canBeSelected = true;
-        }
+        // foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
+        // {
+        //     a.inventoryMaterialImageUIGathering.canBeSelected = true;
+        // }
 
-        UnselectAll();
+        // UnselectAll();
 
         rewardScreen.SetActive(true);
         playerMovement.SetInRewardScreen();
@@ -66,7 +66,7 @@ public class RewardManagerUI : MonoBehaviour
 
         if (materialDataSelected == null) return;
 
-        GameLevelManager.Instance.AddObtainedMaterial(materialDataSelected);
+        playerEventSO.Event.OnDayEnd?.Invoke();
 
         ToNextScene();
     }
@@ -87,7 +87,7 @@ public class RewardManagerUI : MonoBehaviour
     {
         confirmPortalPanel.SetActive(false);
         toNextSceneBtn.SetActive(true);
-        confirmMaterialBtn.SetActive(false);
+        // confirmMaterialBtn.SetActive(false);
 
         rewardScreen.SetActive(true);
         playerMovement.SetInRewardScreen();
