@@ -33,7 +33,6 @@ public class SettingTabUI : MonoBehaviour
     protected virtual void OnEnable()
     {
         playerEventSO.Event.OnSettingTabButtonClicked += OnSettingTabButtonClicked;
-        buttonPressedFeedbacks.PlayFeedbacks();
     }
 
     protected virtual void OnDisable()
