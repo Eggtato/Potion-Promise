@@ -14,7 +14,7 @@ public class PlayerMaterialDetection : MonoBehaviour
     [SerializeField] private MaterialDatabaseSO materialDatabaseSO;
     public MaterialDatabaseSO MaterialDatabaseSO => materialDatabaseSO;
 
-    [SerializeField] private GameAssetSO gameAssetSO; 
+    [SerializeField] private GameAssetSO gameAssetSO;
     public GameAssetSO GameAssetSO => gameAssetSO;
 
     [SerializeField] private RewardManagerUI rewardManager;
@@ -69,10 +69,10 @@ public class PlayerMaterialDetection : MonoBehaviour
 
     private void GetMaterial()
     {
-        if (materialShowList.Count <= 0 || !canTakeMaterial || inventoryCount <= 0 ) return;
+        if (materialShowList.Count <= 0 || !canTakeMaterial || inventoryCount <= 0) return;
 
         StartCoroutine(TakeItemRoutine());
-            
+
         GameObject materialObject = materialShowList[0];
         MaterialShowData materialShowData = materialObject.GetComponent<MaterialShowData>();
         MaterialType gatheredMaterialType = materialShowData.materialData.MaterialType;
@@ -94,6 +94,7 @@ public class PlayerMaterialDetection : MonoBehaviour
             inventoryMaterialSlot.Initialize(obtainedMaterialData, materialDatabaseSO.MaterialDataList.Find(item => item.MaterialType == gatheredMaterialType), rewardManager, gameAssetSO);
             inventoryMaterialSlotUIGatheringList.Add(inventoryMaterialSlot);
         }
+        GameLevelManager.Instance.AddObtainedMaterial(materialShowData.materialData);
 
         Destroy(materialShowData.materialObject);
 

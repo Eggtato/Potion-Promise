@@ -30,7 +30,7 @@ public class AudioManager : PersistentSingleton<AudioManager>
         PlaySFX(gameSoundSO.DayStartSound);
     }
 
-    public void PlayDayEndSound()
+    public void PlayShopDayEndSound()
     {
         PlaySFX(gameSoundSO.DayEndSound);
     }

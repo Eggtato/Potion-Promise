@@ -106,18 +106,13 @@ public class GameLevelManager : Singleton<GameLevelManager>
 
     private IEnumerator ProcessDayEnd()
     {
-        if (EarnedCoin <= 0) // No earnings, skip conversion and debt payment
-        {
-            FinalizeDay();
-            yield break;
-        }
-
-        // Play end-of-day sound and show UI
-        AudioManager.Instance.PlayDayEndSound();
-        dayEndUI.Show();
+        if (dayEndUI) dayEndUI.Show();
 
         if (CrossSceneMessage.GetProgressionType(GameDataManager.Instance.CurrentDay.ToString()) == ProgressionType.Shop)
         {
+            // Play end-of-day sound
+            AudioManager.Instance.PlayShopDayEndSound();
+
             // Wait until UI finishes conversion
             ShopDayEndUI shopDayEndUI = dayEndUI as ShopDayEndUI;
             yield return shopDayEndUI.StartDebtConversion(EarnedCoin, TemporaryGameData.Debt);

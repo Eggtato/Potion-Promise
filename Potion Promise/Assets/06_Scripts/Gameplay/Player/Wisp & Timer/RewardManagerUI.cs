@@ -34,6 +34,7 @@ public class RewardManagerUI : MonoBehaviour
 
         rewardScreen.SetActive(true);
         playerMovement.SetInRewardScreen();
+        playerEventSO.Event.OnDayEnd?.Invoke();
     }
 
     public void SetMaterialSelected(MaterialData materialDataSelected)
@@ -88,13 +89,9 @@ public class RewardManagerUI : MonoBehaviour
         toNextSceneBtn.SetActive(true);
         confirmMaterialBtn.SetActive(false);
 
-        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
-        {
-            GameLevelManager.Instance.AddObtainedMaterial(a.inventoryMaterialImageUIGathering.MaterialData);
-        }
-
         rewardScreen.SetActive(true);
         playerMovement.SetInRewardScreen();
+        playerEventSO.Event.OnDayEnd?.Invoke();
     }
 
     public void ToNextScene()

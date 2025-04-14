@@ -97,7 +97,6 @@ public class ShopCustomerRoomUI : BaseUI
         openShopButton.onClick.AddListener(() =>
         {
             AudioManager.Instance.PlayClickSound();
-            playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
             openShopFeedbacks.PlayFeedbacks();
             HandleShopSignClick();
         });
@@ -292,6 +291,7 @@ public class ShopCustomerRoomUI : BaseUI
         if (isShopOpened)
         {
             openShopButton.GetComponentInChildren<TMP_Text>().text = closeString;
+            playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
         }
         else
         {
