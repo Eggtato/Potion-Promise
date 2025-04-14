@@ -11,6 +11,7 @@ TagManager:
   - NPCSPRITE
   - material
   - portal
+  - Blocker
   layers:
   - Default
   - TransparentFX

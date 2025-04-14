@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DroppedMaterialMovement : MonoBehaviour
+public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
 {
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private int orderWhenDragging = 20;
@@ -45,24 +45,14 @@ public class DroppedMaterialMovement : MonoBehaviour
         spriteRenderer.sprite = materialData.Sprite;
     }
 
-    void OnMouseEnter()
-    {
-        playerEventSO.Event.OnCursorSetHand?.Invoke();
-    }
-
-    private void OnMouseDown()
+    public void OnGrab()
     {
         StartDragging();
     }
 
-    private void OnMouseUp()
+    public void OnRelease()
     {
         StopDragging();
-    }
-
-    void OnMouseExit()
-    {
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -137,7 +127,6 @@ public class DroppedMaterialMovement : MonoBehaviour
         // Smoothly move the object to the desired position
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
         playerEventSO.Event.OnDraggingDroppedMaterial?.Invoke(this);
-        playerEventSO.Event.OnCursorSetGrab?.Invoke();
         DragIconManager.Instance.UpdatePosition(new Vector3(desiredPosition.x, desiredPosition.y, 0));
 
         PointerEventData pointerData = new PointerEventData(EventSystem.current)

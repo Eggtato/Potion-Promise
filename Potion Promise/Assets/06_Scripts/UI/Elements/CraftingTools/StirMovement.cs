@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class StirMovement : MonoBehaviour
+public class StirMovement : MonoBehaviour, IGrabbable
 {
     [Header("Project Reference")]
     [SerializeField] private PlayerEventSO playerEventSO;
@@ -32,20 +32,10 @@ public class StirMovement : MonoBehaviour
         HandleStirReleased();
     }
 
-    void OnMouseEnter()
-    {
-        playerEventSO.Event.OnCursorSetHand?.Invoke();
-    }
-
-    void OnMouseExit()
-    {
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
-    }
-
     /// <summary>
     /// Initiates dragging by storing the initial mouse position and normalized Z rotation.
     /// </summary>
-    private void OnMouseDown()
+    public void OnGrab()
     {
         AudioManager.Instance.PlayStirGrabSound();
 
@@ -57,12 +47,11 @@ public class StirMovement : MonoBehaviour
     /// <summary>
     /// Ends dragging.
     /// </summary>
-    private void OnMouseUp()
+    public void OnRelease()
     {
         AudioManager.Instance.PlayStirGrabSound();
 
         isDragging = false;
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
 
         HandleStirReleased();
     }
@@ -85,8 +74,6 @@ public class StirMovement : MonoBehaviour
         transform.DORotate(new Vector3(0, 0, targetZRotation), 0.1f);
 
         CheckForDirectionChange(targetZRotation);
-
-        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     void CheckForDirectionChange(float currentZRotation)

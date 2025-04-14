@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class PountMovement : MonoBehaviour
+public class PountMovement : MonoBehaviour, IGrabbable
 {
     [Header("Project References")]
     [SerializeField] private PlayerEventSO playerEventSO;
@@ -57,22 +57,12 @@ public class PountMovement : MonoBehaviour
         }
     }
 
-    void OnMouseEnter()
-    {
-        playerEventSO.Event.OnCursorSetHand?.Invoke();
-    }
-
-    void OnMouseExit()
-    {
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
-    }
-
-    private void OnMouseDown()
+    public void OnGrab()
     {
         StartDragging();
     }
 
-    private void OnMouseUp()
+    public void OnRelease()
     {
         StopDragging();
     }
@@ -131,8 +121,6 @@ public class PountMovement : MonoBehaviour
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
 
         HandlePoundSmashMovement(desiredPosition.y);
-
-        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     private void HandlePoundSmashMovement(float currentYPosition)

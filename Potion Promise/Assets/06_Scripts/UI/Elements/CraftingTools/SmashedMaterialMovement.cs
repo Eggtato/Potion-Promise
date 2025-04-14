@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SmashedMaterialMovement : MonoBehaviour
+public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 {
     [Header("Project Reference")]
     [SerializeField] private GameSettingSO gameSettingSO;
@@ -47,24 +47,14 @@ public class SmashedMaterialMovement : MonoBehaviour
         spriteRenderer.color = materialData.Color;
     }
 
-    void OnMouseEnter()
-    {
-        playerEventSO.Event.OnCursorSetHand?.Invoke();
-    }
-
-    private void OnMouseDown()
+    public void OnGrab()
     {
         StartDragging();
     }
 
-    private void OnMouseUp()
+    public void OnRelease()
     {
         StopDragging();
-    }
-
-    void OnMouseExit()
-    {
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -81,8 +71,6 @@ public class SmashedMaterialMovement : MonoBehaviour
         myRigidbody2D.simulated = false;
 
         spriteRenderer.sortingOrder = grabSortingOrder;
-
-        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     /// <summary>
@@ -96,8 +84,6 @@ public class SmashedMaterialMovement : MonoBehaviour
         myRigidbody2D.simulated = true;
 
         TryDropToTrashBin();
-
-        playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 
     /// <summary>
@@ -110,8 +96,6 @@ public class SmashedMaterialMovement : MonoBehaviour
 
         // Smoothly move the object to the desired position
         transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 10), 0.1f);
-
-        playerEventSO.Event.OnCursorSetGrab?.Invoke();
     }
 
     private void TryDropToTrashBin()
