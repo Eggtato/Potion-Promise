@@ -12886,7 +12886,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -16881,6 +16881,30 @@ PrefabInstance:
     - target: {fileID: 7648867673520185605, guid: afb19611ed9e9c64181459538f701a82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: shop
+      value: Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: cutScene
+      value: CutScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: mainMenu
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: gathering
+      value: Gathering
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: creditScene
+      value: CreditMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865431673250577103, guid: afb19611ed9e9c64181459538f701a82, type: 3}
+      propertyPath: visualNovel
+      value: VisualNovel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

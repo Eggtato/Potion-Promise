@@ -2,50 +2,50 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 using Eggtato.Utility;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+// using UnityEditor;
 
 public class GameSceneManager : PersistentSingleton<GameSceneManager>
 {
     [Header("Scene Names")]
-    [SerializeField] private SceneAsset mainMenu;
-    [SerializeField] private SceneAsset cutScene;
-    [SerializeField] private SceneAsset visualNovel;
-    [SerializeField] private SceneAsset shop;
-    [SerializeField] private SceneAsset gathering;
-    [SerializeField] private SceneAsset creditScene;
+    [SerializeField] private string mainMenu;
+    [SerializeField] private string cutScene;
+    [SerializeField] private string visualNovel;
+    [SerializeField] private string shop;
+    [SerializeField] private string gathering;
+    [SerializeField] private string creditScene;
 
     [Header("Feedbacks")]
     [SerializeField] private MMF_Player loadNormalLoadingScreenSlide;
     [SerializeField] private MMF_Player loadDayStartLoadingScreenSlide;
     [SerializeField] private MMF_Player loadNormalLoadingScreenFade;
 
-    private SceneAsset currentScene;
+    private string currentScene;
 
-    public SceneAsset CurrentScene => currentScene;
+    public string CurrentScene => currentScene;
 
     private void Start()
     {
         currentScene = mainMenu;
     }
 
-    private void LoadNormalLoadingScreenSlide(SceneAsset scene)
+    private void LoadNormalLoadingScreenSlide(string scene)
     {
         MMF_LoadScene loadScene = loadNormalLoadingScreenSlide.GetFeedbackOfType<MMF_LoadScene>();
-        loadScene.DestinationSceneName = scene.name;
+        loadScene.DestinationSceneName = scene;
         loadNormalLoadingScreenSlide.PlayFeedbacks();
     }
 
-    private void LoadDayStartLoadingScreenSlide(SceneAsset scene)
+    private void LoadDayStartLoadingScreenSlide(string scene)
     {
         MMF_LoadScene loadScene = loadDayStartLoadingScreenSlide.GetFeedbackOfType<MMF_LoadScene>();
-        loadScene.DestinationSceneName = scene.name;
+        loadScene.DestinationSceneName = scene;
         loadDayStartLoadingScreenSlide.PlayFeedbacks();
     }
 
-    private void LoadNormalLoadingScreenFade(SceneAsset scene)
+    private void LoadNormalLoadingScreenFade(string scene)
     {
         MMF_LoadScene loadScene = loadNormalLoadingScreenFade.GetFeedbackOfType<MMF_LoadScene>();
-        loadScene.DestinationSceneName = scene.name;
+        loadScene.DestinationSceneName = scene;
         loadNormalLoadingScreenFade.PlayFeedbacks();
     }
 

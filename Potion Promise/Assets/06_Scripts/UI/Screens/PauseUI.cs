@@ -47,7 +47,7 @@ public class PauseUI : BaseUI
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameSceneManager.Instance.CurrentScene.name != "MainMenu")
+        if (Input.GetKeyDown(KeyCode.Escape) && GameSceneManager.Instance.CurrentScene != "MainMenu")
         {
             InstantShow();
             Time.timeScale = 0;

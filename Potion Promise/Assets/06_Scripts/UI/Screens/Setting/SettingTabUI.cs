@@ -25,9 +25,15 @@ public class SettingTabUI : MonoBehaviour
         });
     }
 
+    private void Start()
+    {
+
+    }
+
     protected virtual void OnEnable()
     {
         playerEventSO.Event.OnSettingTabButtonClicked += OnSettingTabButtonClicked;
+        buttonPressedFeedbacks.PlayFeedbacks();
     }
 
     protected virtual void OnDisable()
@@ -53,11 +59,11 @@ public class SettingTabUI : MonoBehaviour
 
     public void Show()
     {
-        buttonPressedFeedbacks.PlayFeedbacks();
-
         page.gameObject.SetActive(true);
         page.alpha = 0;
         page.DOFade(1, fadeTransitionTime);
+
+        buttonPressedFeedbacks.PlayFeedbacks();
     }
 
     public void Hide()
