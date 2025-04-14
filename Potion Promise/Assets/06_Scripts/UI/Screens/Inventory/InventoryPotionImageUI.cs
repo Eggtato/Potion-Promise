@@ -55,7 +55,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
     {
         AudioManager.Instance.PlayMaterialReleaseSound();
 
-        TryDropToInventory();
+        TryDropToDroppableArea();
 
         transform.SetParent(parentAfterDrag, false);
         transform.SetAsFirstSibling();
@@ -65,7 +65,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
         playerEventSO.Event.OnReleasedInventoryMaterial?.Invoke();
     }
 
-    private void TryDropToInventory()
+    private void TryDropToDroppableArea()
     {
         // Perform a graphic raycast to check if the UI is under the cursor
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
@@ -81,6 +81,12 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
             if (result.gameObject.TryGetComponent<InventoryDropAreaUI>(out var dropArea))
             {
                 dropArea.ReceivePotion(PotionData.PotionType);
+                transform.DOKill();
+                Destroy(gameObject); // or pool it
+                return;
+            }
+            else if (result.gameObject.TryGetComponent<CustomerPotionDropUI>(out var customerPotionDrop))
+            {
                 transform.DOKill();
                 Destroy(gameObject); // or pool it
                 return;

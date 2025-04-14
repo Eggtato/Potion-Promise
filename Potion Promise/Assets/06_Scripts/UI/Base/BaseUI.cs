@@ -31,7 +31,7 @@ public abstract class BaseUI : MonoBehaviour
         panel.gameObject.SetActive(true);
         panel.alpha = 0;
         panel.blocksRaycasts = true;
-        panel.DOFade(1, fadeTransitionTime);
+        panel.DOFade(1, fadeTransitionTime).SetUpdate(true);
     }
 
     public void Hide()
@@ -39,7 +39,7 @@ public abstract class BaseUI : MonoBehaviour
         // AudioManager.Instance.PlayClickSound();
 
         panel.alpha = 1;
-        panel.DOFade(0, fadeTransitionTime).OnComplete(() =>
+        panel.DOFade(0, fadeTransitionTime).SetUpdate(true).OnComplete(() =>
         {
             panel.gameObject.SetActive(false);
         });

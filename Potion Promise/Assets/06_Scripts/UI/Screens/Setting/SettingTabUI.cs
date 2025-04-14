@@ -5,18 +5,17 @@ using MoreMountains.Feedbacks;
 
 public class SettingTabUI : MonoBehaviour
 {
+    [Header("Project Reference")]
+    [SerializeField] private PlayerEventSO playerEventSO;
+
     [SerializeField] private Button tabButton;
     [SerializeField] private CanvasGroup page;
     [SerializeField] protected float fadeTransitionTime = 0.1f;
     [SerializeField] private MMFeedbacks buttonPressedFeedbacks;
     [SerializeField] private MMFeedbacks buttonUnpressedFeedbacks;
 
-    private PlayerEventSO playerEventSO;
-
     private void Awake()
     {
-        playerEventSO = GetComponent<SettingUI>().PlayerEventSO;
-
         tabButton.onClick.AddListener(() =>
         {
             playerEventSO.Event.OnSettingTabButtonClicked?.Invoke(this);
@@ -60,7 +59,7 @@ public class SettingTabUI : MonoBehaviour
     {
         page.gameObject.SetActive(true);
         page.alpha = 0;
-        page.DOFade(1, fadeTransitionTime);
+        page.DOFade(1, fadeTransitionTime).SetUpdate(true);
 
         buttonPressedFeedbacks.PlayFeedbacks();
     }
@@ -70,7 +69,7 @@ public class SettingTabUI : MonoBehaviour
         buttonUnpressedFeedbacks.PlayFeedbacks();
 
         page.alpha = 1;
-        page.DOFade(0, fadeTransitionTime).OnComplete(() =>
+        page.DOFade(0, fadeTransitionTime).SetUpdate(true).OnComplete(() =>
         {
             page.gameObject.SetActive(false);
         });
