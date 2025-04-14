@@ -5,37 +5,40 @@ using UnityEngine.EventSystems;
 
 public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
 {
+    [Header("Settings")]
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private int orderWhenDragging = 20;
 
-    private int orderWhenDropped;
-    private Vector3 offset;
-    private bool isDragging = false;
+    private int originalSortingOrder;
+    private Vector3 grabOffset;
     private float zDistanceToCamera;
-    private Rigidbody2D myRigidbody2D;
-    private MaterialData materialData;
+
+    private bool isDragging = false;
+
+    private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
 
+    private MaterialData materialData;
     public MaterialData MaterialData => materialData;
 
     private void Awake()
     {
-        myRigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        // Cache the initial Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
-        orderWhenDropped = spriteRenderer.sortingOrder;
+        originalSortingOrder = spriteRenderer.sortingOrder;
+        DisableOutline();
     }
 
     private void Update()
     {
         if (isDragging)
         {
-            DragObject();
+            UpdateDragging();
         }
     }
 
@@ -55,23 +58,18 @@ public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
         StopDragging();
     }
 
-    /// <summary>
-    /// Initiates dragging by calculating the offset.
-    /// </summary>
     private void StartDragging()
     {
-        AudioManager.Instance.PlayMaterialGrabSound();
-
-        Vector3 worldMousePosition = GetWorldMousePosition();
-        offset = transform.position - worldMousePosition;
         isDragging = true;
+        rb2D.simulated = false;
 
-        myRigidbody2D.simulated = false;
+        grabOffset = transform.position - GetWorldMousePosition();
+        spriteRenderer.sortingOrder = orderWhenDragging;
+
+        AudioManager.Instance.PlayMaterialGrabSound();
 
         playerEventSO.Event.OnStartDraggingDroppedMaterial?.Invoke(this);
         playerEventSO.Event.OnCursorSetGrab?.Invoke();
-
-        spriteRenderer.sortingOrder = orderWhenDragging;
 
         DragIconManager.Instance.ShowIcon(materialData.Sprite);
     }
@@ -79,90 +77,100 @@ public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
     private void StopDragging()
     {
         isDragging = false;
-        myRigidbody2D.simulated = true;
+        rb2D.simulated = true;
+        spriteRenderer.sortingOrder = originalSortingOrder;
 
         TryDropToInventory();
 
         playerEventSO.Event.OnReleasedDroppedMaterial?.Invoke();
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
 
-        spriteRenderer.sortingOrder = orderWhenDropped;
-
         DragIconManager.Instance.Hide();
+        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
+    }
 
+    private void UpdateDragging()
+    {
+        Vector3 mousePosition = GetWorldMousePosition();
+        Vector3 targetPosition = mousePosition + grabOffset;
+
+        transform.DOMove(new Vector3(targetPosition.x, targetPosition.y, 0), 0.1f);
+        DragIconManager.Instance.UpdatePosition(targetPosition);
+        playerEventSO.Event.OnDraggingDroppedMaterial?.Invoke(this);
+
+        HandleUIDropFeedback();
+    }
+
+    private void HandleUIDropFeedback()
+    {
+        var results = RaycastUI(Input.mousePosition);
+        bool overDropArea = false;
+
+        foreach (var result in results)
+        {
+            if (result.gameObject.TryGetComponent<InventoryDropAreaUI>(out _))
+            {
+                overDropArea = true;
+                break;
+            }
+        }
+
+        if (overDropArea)
+        {
+            DragIconManager.Instance.ShowIcon(materialData.Sprite);
+            spriteRenderer.DOFade(0, 0);
+            DisableOutline();
+        }
+        else
+        {
+            DragIconManager.Instance.Hide();
+            spriteRenderer.DOFade(1, 0);
+            EnableOutline();
+        }
     }
 
     private void TryDropToInventory()
     {
-        // Perform a graphic raycast to check if the UI is under the cursor
-        PointerEventData pointerData = new PointerEventData(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
+        var results = RaycastUI(Input.mousePosition);
 
-        var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerData, results);
-
-        foreach (RaycastResult result in results)
+        foreach (var result in results)
         {
             if (result.gameObject.TryGetComponent<InventoryDropAreaUI>(out var dropArea))
             {
-                dropArea.ReceiveMaterial(this.materialData);
+                dropArea.ReceiveMaterial(materialData);
                 transform.DOKill();
-                Destroy(gameObject); // or pool it
+                Destroy(gameObject); // Or return to pool
                 return;
             }
         }
     }
 
-
-    /// <summary>
-    /// Handles the dragging behavior, clamping movement to specified boundaries.
-    /// </summary>
-    private void DragObject()
+    private List<RaycastResult> RaycastUI(Vector2 screenPosition)
     {
-        Vector3 worldMousePosition = GetWorldMousePosition();
-        Vector3 desiredPosition = worldMousePosition + offset;
-
-        // Smoothly move the object to the desired position
-        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 0), 0.1f);
-        playerEventSO.Event.OnDraggingDroppedMaterial?.Invoke(this);
-        DragIconManager.Instance.UpdatePosition(new Vector3(desiredPosition.x, desiredPosition.y, 0));
-
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
-            position = Input.mousePosition
+            position = screenPosition
         };
 
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
-
-        foreach (RaycastResult result in results)
-        {
-            var dropArea = result.gameObject.GetComponent<InventoryDropAreaUI>();
-            if (dropArea != null)
-            {
-                // dropArea.Show();
-                DragIconManager.Instance.ShowIcon(MaterialData.Sprite);
-                spriteRenderer.DOFade(0, 0);
-                return;
-            }
-            else
-            {
-                DragIconManager.Instance.Hide();
-                spriteRenderer.DOFade(1, 0);
-            }
-        }
+        return results;
     }
 
-    /// <summary>
-    /// Gets the mouse position in world space.
-    /// </summary>
-    /// <returns>Mouse position in world coordinates.</returns>
     private Vector3 GetWorldMousePosition()
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = zDistanceToCamera;
         return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+    public void EnableOutline()
+    {
+        spriteRenderer.material.EnableKeyword("OUTBASE_ON");
+    }
+
+    public void DisableOutline()
+    {
+        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
     }
 }

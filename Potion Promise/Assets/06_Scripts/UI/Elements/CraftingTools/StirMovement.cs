@@ -18,6 +18,12 @@ public class StirMovement : MonoBehaviour, IGrabbable
     private float initialZRotation;      // Object's Z rotation at the start of dragging
     private bool directionChanged = false;
     private bool wentLeft = false;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Update()
     {
@@ -30,6 +36,7 @@ public class StirMovement : MonoBehaviour, IGrabbable
     private void Start()
     {
         HandleStirReleased();
+        DisableOutline();
     }
 
     /// <summary>
@@ -42,6 +49,8 @@ public class StirMovement : MonoBehaviour, IGrabbable
         initialMousePosition = Input.mousePosition;
         initialZRotation = GetNormalizedZRotation(); // Get the current rotation in the -180 to 180 range
         isDragging = true;
+
+        EnableOutline();
     }
 
     /// <summary>
@@ -54,6 +63,8 @@ public class StirMovement : MonoBehaviour, IGrabbable
         isDragging = false;
 
         HandleStirReleased();
+
+        DisableOutline();
     }
 
     /// <summary>
@@ -121,5 +132,15 @@ public class StirMovement : MonoBehaviour, IGrabbable
     {
         float zRotation = transform.eulerAngles.z;
         return zRotation > 180f ? zRotation - 360f : zRotation;
+    }
+
+    public void EnableOutline()
+    {
+        spriteRenderer.material.EnableKeyword("OUTBASE_ON");
+    }
+
+    public void DisableOutline()
+    {
+        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
     }
 }

@@ -105,6 +105,7 @@ public class MouseGrab : MonoBehaviour
             if (currentHovered != null)
             {
                 playerEventSO.Event.OnCursorSetDefault?.Invoke();
+                currentHovered.DisableOutline();
             }
 
             currentHovered = hovered;
@@ -112,6 +113,7 @@ public class MouseGrab : MonoBehaviour
             if (currentHovered != null)
             {
                 playerEventSO.Event.OnCursorSetHand?.Invoke();
+                currentHovered.EnableOutline();
             }
         }
         else if (currentHovered != null && !isGrabbing)

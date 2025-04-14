@@ -35,6 +35,7 @@ public class PountMovement : MonoBehaviour, IGrabbable
         // Cache the Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
         initialGravityScale = rigidBody.gravityScale;
+        DisableOutline();
     }
 
     private void OnEnable()
@@ -60,11 +61,13 @@ public class PountMovement : MonoBehaviour, IGrabbable
     public void OnGrab()
     {
         StartDragging();
+        EnableOutline();
     }
 
     public void OnRelease()
     {
         StopDragging();
+        DisableOutline();
     }
 
     private void HandleSmashedMaterialDragging(Vector3 smashedMaterialPosition)
@@ -161,5 +164,15 @@ public class PountMovement : MonoBehaviour, IGrabbable
         {
             isOverlapWithSmashedMaterial = false;
         }
+    }
+
+    public void EnableOutline()
+    {
+        spriteRenderer.material.EnableKeyword("OUTBASE_ON");
+    }
+
+    public void DisableOutline()
+    {
+        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
     }
 }

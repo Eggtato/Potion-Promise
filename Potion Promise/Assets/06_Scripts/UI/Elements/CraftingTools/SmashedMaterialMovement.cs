@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -6,18 +5,22 @@ using UnityEngine.EventSystems;
 
 public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 {
-    [Header("Project Reference")]
+    [Header("References")]
     [SerializeField] private GameSettingSO gameSettingSO;
     [SerializeField] private PlayerEventSO playerEventSO;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private int grabSortingOrder = 22;
 
-    private Vector3 offset;
-    private bool isDragging = false;
-    private float zDistanceToCamera;
+    [Header("Sorting Order")]
+    [SerializeField] private int sortingOrderOnGrab = 22;
+
     private Rigidbody2D myRigidbody2D;
+
     private MaterialData materialData;
-    private int initialSortingOrder;
+    private Vector3 offset;
+    private float zDistanceToCamera;
+
+    private int originalSortingOrder;
+    private bool isDragging = false;
 
     public MaterialData MaterialData => materialData;
 
@@ -28,9 +31,9 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 
     private void Start()
     {
-        // Cache the initial Z distance from the camera
         zDistanceToCamera = Camera.main.WorldToScreenPoint(transform.position).z;
-        initialSortingOrder = spriteRenderer.sortingOrder;
+        originalSortingOrder = spriteRenderer.sortingOrder;
+        DisableOutline();
     }
 
     private void Update()
@@ -41,10 +44,10 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
         }
     }
 
-    public void Initialize(MaterialData materialData)
+    public void Initialize(MaterialData data)
     {
-        this.materialData = materialData;
-        spriteRenderer.color = materialData.Color;
+        materialData = data;
+        spriteRenderer.color = data.Color;
     }
 
     public void OnGrab()
@@ -57,25 +60,18 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
         StopDragging();
     }
 
-    /// <summary>
-    /// Initiates dragging by calculating the offset.
-    /// </summary>
     private void StartDragging()
     {
         AudioManager.Instance.PlayMaterialGrabSound();
 
-        Vector3 worldMousePosition = GetWorldMousePosition();
-        offset = transform.position - worldMousePosition;
+        offset = transform.position - GetWorldMousePosition();
         isDragging = true;
-
         myRigidbody2D.simulated = false;
 
-        spriteRenderer.sortingOrder = grabSortingOrder;
+        spriteRenderer.sortingOrder = sortingOrderOnGrab;
+        EnableOutline();
     }
 
-    /// <summary>
-    /// Stops dragging.
-    /// </summary>
     private void StopDragging()
     {
         AudioManager.Instance.PlayMaterialReleaseSound();
@@ -84,57 +80,56 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
         myRigidbody2D.simulated = true;
 
         TryDropToTrashBin();
+        DisableOutline();
     }
 
-    /// <summary>
-    /// Handles the dragging behavior, clamping movement to specified boundaries.
-    /// </summary>
     private void DragObject()
     {
-        Vector3 worldMousePosition = GetWorldMousePosition();
-        Vector3 desiredPosition = worldMousePosition + offset;
-
-        // Smoothly move the object to the desired position
-        transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y, 10), 0.1f);
+        Vector3 targetPosition = GetWorldMousePosition() + offset;
+        transform.DOMove(new Vector3(targetPosition.x, targetPosition.y, 10), 0.1f);
     }
 
     private void TryDropToTrashBin()
     {
-        // Perform a graphic raycast to check if the UI is under the cursor
-        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        PointerEventData pointerData = new(EventSystem.current)
         {
             position = Input.mousePosition
         };
 
-        var results = new List<RaycastResult>();
+        List<RaycastResult> results = new();
         EventSystem.current.RaycastAll(pointerData, results);
 
         foreach (RaycastResult result in results)
         {
-            if (result.gameObject.TryGetComponent<TrashBinUI>(out var trashArea))
+            if (result.gameObject.TryGetComponent<TrashBinUI>(out var trashBin))
             {
-                transform.DOScale(0, gameSettingSO.CraftingMaterialFadeInAnimation).OnComplete(() =>
-                {
-                    AudioManager.Instance.PlayTrashBinSound();
-
-                    spriteRenderer.sortingOrder = grabSortingOrder;
-                    transform.DOKill();
-                    Destroy(gameObject); // or pool it
-                    return;
-                });
+                transform.DOScale(0f, gameSettingSO.CraftingMaterialFadeInAnimation)
+                         .OnComplete(() =>
+                         {
+                             AudioManager.Instance.PlayTrashBinSound();
+                             Destroy(gameObject); // Pooling can be used instead
+                         });
+                return;
             }
         }
-        spriteRenderer.sortingOrder = initialSortingOrder;
+
+        spriteRenderer.sortingOrder = originalSortingOrder;
     }
 
-    /// <summary>
-    /// Gets the mouse position in world space.
-    /// </summary>
-    /// <returns>Mouse position in world coordinates.</returns>
     private Vector3 GetWorldMousePosition()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = zDistanceToCamera;
-        return Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 screenPosition = Input.mousePosition;
+        screenPosition.z = zDistanceToCamera;
+        return Camera.main.ScreenToWorldPoint(screenPosition);
+    }
+
+    public void EnableOutline()
+    {
+        spriteRenderer.material.EnableKeyword("OUTBASE_ON");
+    }
+
+    public void DisableOutline()
+    {
+        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
     }
 }
