@@ -1105,9 +1105,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.16470589, g: 0.4627451, b: 1, a: 1}
-      maxColor: {r: 0.1462264, g: 0.8533668, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.38431376, b: 0.11764707, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9027,9 +9027,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.504717, g: 0.7401677, b: 1, a: 1}
-      maxColor: {r: 0.4575472, g: 0.9079322, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.38431376, b: 0.11764707, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -25643,9 +25643,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.504717, g: 0.7401677, b: 1, a: 1}
-      maxColor: {r: 0.4575472, g: 0.9079322, b: 1, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -30795,7 +30795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTINUE
+  m_text: CONFIRM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53e5b634747de1644a712a0b5b88d7a0, type: 2}
   m_sharedMaterial: {fileID: -3665705988253315778, guid: 53e5b634747de1644a712a0b5b88d7a0, type: 2}
@@ -31808,9 +31808,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
-      minColor: {r: 0, g: 0.5691333, b: 0.9339623, a: 1}
-      maxColor: {r: 0, g: 0.58039194, b: 0.6981132, a: 1}
+      minMaxState: 0
+      minColor: {r: 0, g: 0, b: 0, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -38086,7 +38086,7 @@ Transform:
   m_GameObject: {fileID: 716968935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 3, z: 2.1}
+  m_LocalPosition: {x: -0, y: 2, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39948,7 +39948,7 @@ GameObject:
   - component: {fileID: 812034711}
   - component: {fileID: 812034710}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_ToNextScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46951,9 +46951,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.16470589, g: 0.4627451, b: 1, a: 1}
-      maxColor: {r: 0.1462264, g: 0.8533668, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.38431376, b: 0.11764707, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -58606,17 +58606,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fogRevealers:
-  - revealerTransform: {fileID: 2137259670}
+  - revealerTransform: {fileID: 1611066693}
     sightRange: 16
     updateOnlyOnMove: 0
     lastSeenAt: {x: 0, y: 0}
   levelMidPoint: {fileID: 2014475517}
   FogRefreshRate: 10
   playerTransform: {fileID: 1611066693}
-  fogPlaneHeight: 2
+  fogPlaneHeight: 0
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   fogColor: {r: 0.05031442, g: 0, b: 0.3018868, a: 1}
-  fogPlaneAlpha: 1
+  fogPlaneAlpha: 0.95
   fogLerpSpeed: 3
   keepRevealedTiles: 0
   revealedTileOpacity: 0.5
@@ -58633,8 +58633,8 @@ MonoBehaviour:
   rayMaxDistance: 30
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 2048
-  ignoreTriggers: 1
+    m_Bits: 0
+  ignoreTriggers: 0
   drawGizmos: 0
   LogOutOfRange: 0
 --- !u!4 &1170514809
@@ -60232,7 +60232,7 @@ GameObject:
   - component: {fileID: 1352984581}
   - component: {fileID: 1352984580}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90386,7 +90386,7 @@ GameObject:
   - component: {fileID: 1792149670}
   - component: {fileID: 1792149669}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_ConfirmSelectedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90763,7 +90763,7 @@ VisualEffect:
       - m_Value: 750
         m_Name: FogAmount
         m_Overridden: 1
-      - m_Value: 12
+      - m_Value: 16
         m_Name: SightRange
         m_Overridden: 1
     m_Vector2f:
@@ -101576,9 +101576,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
-      maxColor: {r: 0, g: 0.35294107, b: 0.4245283, a: 1}
+      maxColor: {r: 1, g: 0.38431376, b: 0.11764707, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -107132,7 +107132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1954049992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -107654,7 +107654,7 @@ GameObject:
   - component: {fileID: 2012725884}
   - component: {fileID: 2012725883}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_ConfirmPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123489,9 +123489,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 0
       minColor: {r: 0.16470589, g: 0.4627451, b: 1, a: 1}
-      maxColor: {r: 0.1462264, g: 0.8533668, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.38431376, b: 0.11764707, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -128055,12 +128055,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 563783643}
   - {fileID: 1876662111}
-  - {fileID: 468150588}
   - {fileID: 313710081}
   - {fileID: 51782558}
   - {fileID: 1030079648}
+  - {fileID: 563783643}
+  - {fileID: 468150588}
   m_Father: {fileID: 960063201}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2137259671
@@ -128076,12 +128076,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToFollow: {fileID: 1388948636}
-  speed: 0.1
-  offset: {x: 3, y: 0, z: 3}
+  speed: 0.18
+  offset: {x: -2.05, y: 2, z: -2.89}
   rb: {fileID: 1611066694}
   groundMask:
     serializedVersion: 2
     m_Bits: 768
+  wispColor: {r: 1, g: 0.6447507, b: 0.2783019, a: 1}
+  wispParticleSystem:
+  - {fileID: 2137259669}
+  - {fileID: 1876662113}
+  - {fileID: 313710083}
+  - {fileID: 51782560}
   hitPoint: 0
 --- !u!1001 &2140793628
 PrefabInstance:
@@ -128269,8 +128275,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584402398}
   m_HandleRect: {fileID: 1584402397}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999995
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

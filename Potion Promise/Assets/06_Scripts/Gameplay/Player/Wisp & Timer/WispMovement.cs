@@ -9,13 +9,20 @@ public class WispMovement : MonoBehaviour
     [SerializeField] private Vector3 offset = new Vector3(2, 0, 2);
     [SerializeField] private Rigidbody rb;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Color wispColor;
+    [SerializeField] private ParticleSystem[] wispParticleSystem;
 
     private Vector3 defectPosition = new Vector3(0, 0.25f, 0);
     private float defectSpeed = 0;
     private float runningOffsetValue = 1;
     public float hitPoint;
 
-    void FixedUpdate()
+    private void Start()
+    {
+        ChangeColor(wispColor);
+    }
+
+    private void FixedUpdate()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position + new Vector3(0, 10, 0), -Vector3.up, out hit, 30f, groundMask))
@@ -36,7 +43,7 @@ public class WispMovement : MonoBehaviour
 
         Vector3 velocityDirection = rb.linearVelocity;
         velocityDirection.y = 0;
-        transform.position = Vector3.Slerp(transform.position, ObjectToFollow.TransformPoint(offset * runningOffsetValue) + (velocityDirection * 0.65f) + new Vector3(0, hitPoint, 0), speed + defectSpeed);
+        transform.position = Vector3.Slerp(transform.position, ObjectToFollow.position + offset + new Vector3(0, hitPoint, 0), speed + defectSpeed);
         
         if (rb.linearVelocity.magnitude > 1)
         {
@@ -45,6 +52,16 @@ public class WispMovement : MonoBehaviour
         else
         {
             runningOffsetValue = 1;
+        }
+    }
+
+    public void ChangeColor(Color wispColor)
+    {
+
+        foreach (ParticleSystem a in wispParticleSystem)
+        {
+            ParticleSystem.MainModule main = a.main;
+            main.startColor = wispColor;
         }
     }
 }

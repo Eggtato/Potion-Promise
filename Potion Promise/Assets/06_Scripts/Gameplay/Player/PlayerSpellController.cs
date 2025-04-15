@@ -49,9 +49,7 @@ public class PlayerSpellController : MonoBehaviour
             rotation.x = 0;
             rotation.z = 0;
 
-            //Debug.Log(rotation.y - body.rotation.eulerAngles.y);
-
-            while (rotation.y - body.rotation.eulerAngles.y > 0.5f)
+            while (Mathf.Abs(rotation.eulerAngles.y - body.rotation.eulerAngles.y) > 15f)
             {
                 body.rotation = Quaternion.Lerp(body.rotation, rotation, 0.5f);
                 yield return new WaitForSeconds(0.02f);

@@ -21,16 +21,16 @@ public class RewardManagerUI : MonoBehaviour
 
     public void PassOut()
     {
-        toNextSceneBtn.SetActive(true);
-        // confirmMaterialBtn.SetActive(true);
+        toNextSceneBtn.SetActive(false);
+        confirmMaterialBtn.SetActive(true);
         rewardTxt.text = "Passed Out!";
 
-        // foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
-        // {
-        //     a.inventoryMaterialImageUIGathering.canBeSelected = true;
-        // }
+        foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
+        {
+            a.canBeSelected = true;
+        }
 
-        // UnselectAll();
+        UnselectAll();
 
         rewardScreen.SetActive(true);
         playerMovement.SetInRewardScreen();
@@ -46,7 +46,7 @@ public class RewardManagerUI : MonoBehaviour
     {
         foreach (InventoryMaterialSlotUIGathering a in playerMaterialDetection.inventoryMaterialSlotUIGatheringList)
         {
-            a.inventoryMaterialImageUIGathering.Unselect();
+            a.Unselect();
         }
 
         materialDataSelected = null;

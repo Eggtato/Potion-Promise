@@ -20,34 +20,30 @@ public class GatheringTimerController : MonoBehaviour
         StartCoroutine(SanityTimerRoutine());
     }
 
-    private IEnumerator SanityTimerRoutine()
+    IEnumerator SanityTimerRoutine()
     {
+        float countDownImage = (1 / sanityAmount) * 0.02f;
+        float countDownTxt = 1 * 0.02f;
         bool lowSanity = false;
         float thresholdSanityLow = sanityAmount / 3;
-        float countDown = sanityAmount / csFog.fogRevealers[0].sightRange;
-        int minus = 2;
-        float startSightVEffect = 12;
+        float effectSightRange = 16;
+        float countDownEffect = 1 / effectSightRange * 0.02f;
 
-        while (countDown > 0)
+        while (sanityBar.fillAmount > 0)
         {
-            if (!this.enabled)
-            {
-                yield return new WaitForSeconds(0.02f);
-                continue;
-            }
-
-            yield return new WaitForSeconds(16f);
-            csFog.fogRevealers[0].sightRange -= minus;
-            countDown -= minus;
-
-            fogEffect.SetFloat("SightRange", startSightVEffect);
-            startSightVEffect -= minus;
-
-            if (countDown <= thresholdSanityLow && !lowSanity)
+            sanityBar.fillAmount -= countDownImage;
+            sanityTxt.text = sanityAmount.ToString("###");
+            sanityAmount -= countDownTxt;
+            if (sanityAmount < thresholdSanityLow && lowSanity != true)
             {
                 lowSanity = true;
-                //play low sanity sound
             }
+
+            effectSightRange -= countDownEffect;
+            csFog.fogRevealers[0].sightRange = (int)effectSightRange;
+            fogEffect.SetFloat("SightRange", effectSightRange);
+
+            yield return new WaitForSeconds(0.02f);
         }
 
         rewardManager.PassOut();
