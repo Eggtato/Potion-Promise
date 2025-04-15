@@ -14,7 +14,7 @@ namespace MoreMountains.Tools
 		/// the possible directions this fader can move in
 		public enum Directions { TopToBottom, LeftToRight, RightToLeft, BottomToTop }
 
-		[MMInspectorGroup("Identification", true, 122)] 
+		[MMInspectorGroup("Identification", true, 122)]
 		/// the ID for this fader (0 is default), set more IDs if you need more than one fader
 		[Tooltip("the ID for this fader (0 is default), set more IDs if you need more than one fader")]
 		public int ID;
@@ -26,7 +26,7 @@ namespace MoreMountains.Tools
 		/// the direction this fader should move in when fading out
 		[Tooltip("the direction this fader should move in when fading out")]
 		public Directions FadeOutDirection = Directions.LeftToRight;
-        
+
 		[MMInspectorGroup("Timing", true, 124)]
 		/// the default duration of the fade in/out
 		[Tooltip("the default duration of the fade in/out")]
@@ -49,7 +49,7 @@ namespace MoreMountains.Tools
 		[MMInspectorGroup("Interaction", true, 125)]
 		/// whether or not the fader should block raycasts when visible
 		[Tooltip("whether or not the fader should block raycasts when visible")]
-		public bool ShouldBlockRaycasts = false; 
+		public bool ShouldBlockRaycasts = false;
 
 		/// the width of the fader
 		public virtual float Width { get { return _rectTransform.rect.width; } }
@@ -57,8 +57,8 @@ namespace MoreMountains.Tools
 		public virtual float Height { get { return _rectTransform.rect.height; } }
 
 		[MMInspectorGroup("Debug", true, 126)]
-		[MMInspectorButtonBar(new string[] { "FadeIn1Second", "FadeOut1Second", "DefaultFade", "ResetFader" }, 
-			new string[] { "FadeIn1Second", "FadeOut1Second", "DefaultFade", "ResetFader" }, 
+		[MMInspectorButtonBar(new string[] { "FadeIn1Second", "FadeOut1Second", "DefaultFade", "ResetFader" },
+			new string[] { "FadeIn1Second", "FadeOut1Second", "DefaultFade", "ResetFader" },
 			new bool[] { true, true, true, true },
 			new string[] { "main-call-to-action", "", "", "" })]
 		public bool DebugToolbar;
@@ -210,7 +210,7 @@ namespace MoreMountains.Tools
 			{
 				curve = DefaultTween;
 			}
-            
+
 			IgnoreTimescale = ignoreTimeScale;
 			EnableFader();
 			_fading = true;
