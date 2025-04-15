@@ -95,6 +95,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
         // If it fails
         GameLevelManager.Instance.AddCraftedPotion(PotionData.PotionType);
+        transform.DOKill();
+        Destroy(gameObject); // or pool it
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Eggtato.Utility;
 using UnityEngine;
 
@@ -12,8 +13,10 @@ public class GameLevelManager : Singleton<GameLevelManager>
     [SerializeField] private BaseUI dayEndUI;
 
     public int EarnedCoin = 0;
-
     public GameData TemporaryGameData;
+
+    public List<ObtainedMaterialData> obtainedMaterialDatas = new List<ObtainedMaterialData>();
+    public List<CraftedPotionData> craftedPotionDatas = new List<CraftedPotionData>();
 
     private void Start()
     {
@@ -97,6 +100,20 @@ public class GameLevelManager : Singleton<GameLevelManager>
         EarnedCoin += amount;
         playerEventSO.Event.OnCoinEarned?.Invoke(amount);
         playerEventSO.Event.OnEarnedCoinChanged?.Invoke();
+    }
+
+    public void AddSoldPotion(PotionType potionType)
+    {
+        var temporaryData = craftedPotionDatas.Find(i => i.PotionType == potionType);
+        if (temporaryData == null)
+        {
+            temporaryData = new CraftedPotionData { PotionType = potionType, Quantity = 1 };
+            craftedPotionDatas.Add(temporaryData);
+        }
+        else
+        {
+            temporaryData.Quantity++;
+        }
     }
 
     private void HandleDayEnd()

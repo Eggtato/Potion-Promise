@@ -11,6 +11,7 @@ public class CustomerPotionDropUI : MonoBehaviour, IDropHandler
         {
             playerEventSO.Event.OnPotionDroppedOnCustomer?.Invoke(droppedPotion.PotionData);
             GameLevelManager.Instance.RemoveCraftedPotionByOne(droppedPotion.PotionData.PotionType);
+            GameLevelManager.Instance.AddSoldPotion(droppedPotion.PotionData.PotionType);
         }
         else
         {
