@@ -37,5 +37,6 @@ public class MainMenuUI : BaseUI
     {
         AudioManager.Instance.PlayClickSound();
         playerEventSO.Event.OnExitButtonClicked?.Invoke();
+        Application.Quit();
     }
 }
