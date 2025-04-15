@@ -132,7 +132,7 @@ public class GameLevelManager : Singleton<GameLevelManager>
 
             // Wait until UI finishes conversion
             ShopDayEndUI shopDayEndUI = dayEndUI as ShopDayEndUI;
-            yield return shopDayEndUI.StartDebtConversion(EarnedCoin, TemporaryGameData.Debt);
+            yield return shopDayEndUI.ShowResultUI(EarnedCoin, TemporaryGameData.Debt, TemporaryGameData.CurrentDay, craftedPotionDatas);
         }
 
         // Apply debt payment and finalize the day
