@@ -87,6 +87,7 @@ public class HUDManager : Singleton<HUDManager>
         rightButton.gameObject.SetActive(true);
 
         playerEventSO.Event.OnAnyUIClosed?.Invoke();
+        playerEventSO.Event.OnCustomerRoomOpened?.Invoke();
         customerRoomUI.Show();
         shopInventoryUI.ShowPotionPanel();
     }

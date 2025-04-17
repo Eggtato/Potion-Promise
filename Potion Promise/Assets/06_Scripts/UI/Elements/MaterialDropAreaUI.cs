@@ -9,8 +9,39 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
     [SerializeField] private DroppedMaterialMovement droppedMaterialPrefab;
     [SerializeField] private Transform parent;
 
+    private bool isVisible;
+
+    private void Start()
+    {
+        // gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        playerEventSO.Event.OnCraftingRoomOpened += HandleCraftingRoomOpened;
+        playerEventSO.Event.OnCustomerRoomOpened += HandleCraftingRoomClosed;
+    }
+
+    private void OnDisable()
+    {
+        playerEventSO.Event.OnCraftingRoomOpened -= HandleCraftingRoomOpened;
+        playerEventSO.Event.OnCustomerRoomOpened -= HandleCraftingRoomClosed;
+    }
+
+    private void HandleCraftingRoomOpened()
+    {
+        isVisible = true;
+    }
+
+    private void HandleCraftingRoomClosed()
+    {
+        isVisible = false;
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
+        if (!isVisible) return;
+
         var droppedMaterial = eventData.pointerDrag.GetComponent<InventoryMaterialImageUI>();
 
         if (droppedMaterial == null) return;

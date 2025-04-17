@@ -88,6 +88,11 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
                 return;
             }
         }
+
+        // If it fails
+        GameLevelManager.Instance.AddObtainedMaterial(MaterialData);
+        transform.DOKill();
+        Destroy(gameObject); // or pool it
     }
 
     public void OnPointerEnter(PointerEventData eventData)
