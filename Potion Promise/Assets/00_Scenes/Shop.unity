@@ -11434,8 +11434,9 @@ GameObject:
   - component: {fileID: 523803625}
   - component: {fileID: 523803624}
   - component: {fileID: 523803627}
+  - component: {fileID: 523803628}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11557,6 +11558,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
+--- !u!225 &523803628
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523803622}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &524416740
 GameObject:
   m_ObjectHideFlags: 0
@@ -13681,7 +13694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 416.6001, y: -427.31403}
+  m_AnchoredPosition: {x: 416.60013, y: -427.31403}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588377046
@@ -41930,7 +41943,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1922039928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47319,14 +47332,22 @@ MonoBehaviour:
   panel: {fileID: 1922039931}
   fadeTransitionTime: 0.3
   potionDatabaseSO: {fileID: 11400000, guid: 590ab40665945134cae93765b1611f34, type: 2}
-  inventoryPotionSlotUI: {fileID: 8994848823806123038, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
+  inventoryPotionSlotUIPrefab: {fileID: 8994848823806123038, guid: c429924d6f5f731479c4a9fd0ac15f01, type: 3}
   parent: {fileID: 1502862925}
   todayRevenueAmountText: {fileID: 532666460}
   debtAmountText: {fileID: 1559562659}
   dayText: {fileID: 445235711}
   continueButton: {fileID: 523803624}
+  continueButtonCanvasGroup: {fileID: 523803628}
+  stampImage: {fileID: 1472079193}
+  potionImages:
+  - {fileID: 2064299737}
+  - {fileID: 825515682}
+  - {fileID: 1302137520}
+  - {fileID: 1951584402}
   delayAtStart: 1.5
   delayInBetween: 0.01
+  potionEase: 27
 --- !u!1 &1755970944
 GameObject:
   m_ObjectHideFlags: 0

@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 8109781164664532286}
   - component: {fileID: 8994848823806123038}
   - component: {fileID: 484359240452663603}
+  - component: {fileID: 8264902978314103285}
   m_Layer: 5
   m_Name: PotionInventorySlotUI
   m_TagString: Untagged
@@ -399,3 +400,15 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!225 &8264902978314103285
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9205790979607597385}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

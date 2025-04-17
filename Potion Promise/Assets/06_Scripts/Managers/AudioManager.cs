@@ -80,6 +80,26 @@ public class AudioManager : PersistentSingleton<AudioManager>
         PlaySFX(gameSoundSO.CustomerComeSound);
     }
 
+    public void PlayStampSound()
+    {
+        PlaySFX(gameSoundSO.StampSound);
+    }
+
+    public void PlayPopSound()
+    {
+        PlaySFX(gameSoundSO.PopSound);
+    }
+
+    public void PlaySuccessSound()
+    {
+        PlaySFX(gameSoundSO.SuccessSound);
+    }
+
+    public void PlayFailSound()
+    {
+        PlaySFX(gameSoundSO.FailSound);
+    }
+
     public void PlayCoinSound(SoundLength soundLength)
     {
         if (soundLength == SoundLength.Short)

@@ -14,6 +14,7 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
     private Transform rootcanvasParent;
 
     private Transform parentAfterDrag;
+    private bool isInteractable;
 
     private void Awake()
     {
@@ -21,14 +22,17 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
         rootcanvasParent = GetComponentInParent<Canvas>().transform;
     }
 
-    public void Initialize(PotionData potionData)
+    public void Initialize(PotionData potionData, bool isInteractable)
     {
         PotionData = potionData;
         icon.sprite = potionData?.Sprite;
+        this.isInteractable = isInteractable;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+
         AudioManager.Instance.PlayMaterialGrabSound();
 
         transform.localScale = Vector2.zero;
@@ -44,6 +48,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.DOMove(new Vector3(mousePosition.x, mousePosition.y, 0), 0.1f);
 
@@ -53,6 +59,8 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+
         AudioManager.Instance.PlayMaterialReleaseSound();
 
         TryDropToDroppableArea();
@@ -101,11 +109,15 @@ public class InventoryPotionImageUI : MonoBehaviour, IBeginDragHandler, IDragHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+
         playerEventSO.Event.OnCursorSetHand?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isInteractable) return;
+
         playerEventSO.Event.OnCursorSetDefault?.Invoke();
     }
 

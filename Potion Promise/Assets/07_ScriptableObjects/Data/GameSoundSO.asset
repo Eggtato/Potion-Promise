@@ -36,3 +36,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 446bb872cb0e3044bbf59c0a0a0a4adb, type: 3}
   - {fileID: 8300000, guid: bdb08458eee8f714d87101d84fb4b99b, type: 3}
   CustomerComeSound: {fileID: 8300000, guid: c230389cdba1a4d47bda71c4d0e2b6f9, type: 3}
+  StampSound: {fileID: 8300000, guid: dcbb5575e7e4bd84b8a31249627c07ce, type: 3}
+  PopSound: {fileID: 8300000, guid: d4b4564ad8ca7254c9d41efb905858eb, type: 3}
+  SuccessSound: {fileID: 8300000, guid: 026943ecf606ecd46ba1b71e4ce1687a, type: 3}
+  FailSound: {fileID: 8300000, guid: ad10290ec7be13847834b23e4ff27f98, type: 3}

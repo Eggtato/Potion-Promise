@@ -17,4 +17,8 @@ public class GameSoundSO : ScriptableObject
     public AudioClip[] MaterialStirredInCauldronSounds;
     public AudioClip[] MaterialSmashedSounds;
     public AudioClip CustomerComeSound;
+    public AudioClip StampSound;
+    public AudioClip PopSound;
+    public AudioClip SuccessSound;
+    public AudioClip FailSound;
 }

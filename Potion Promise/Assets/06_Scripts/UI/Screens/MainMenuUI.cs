@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,11 @@ public class MainMenuUI : BaseUI
         continueGameButton.onClick.AddListener(OnContinueButtonClicked);
         settingButton.onClick.AddListener(OnSettingButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
+    }
+
+    private void Start()
+    {
+        MMSoundManager.Instance.UnmuteMusic();
     }
 
     private void OnNewGameButtonClicked()

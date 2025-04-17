@@ -289,7 +289,7 @@ MonoBehaviour:
   Direction: 0
   AutoChangeDirectionOnEnd: 0
   AutoPlayOnStart: 1
-  AutoPlayOnEnable: 0
+  AutoPlayOnEnable: 1
   ForceTimescaleMode: 0
   ForcedTimescaleMode: 1
   DurationMultiplier: 1
@@ -4054,6 +4054,7 @@ Transform:
   - {fileID: 1082774588}
   - {fileID: 1709833801}
   - {fileID: 418562578353666595}
+  - {fileID: 1151395934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548193091
@@ -8702,7 +8703,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 513590244}
-  - {fileID: 1151395934}
   - {fileID: 1437125026}
   - {fileID: 1180808663}
   m_Father: {fileID: 539173775}
@@ -8887,7 +8887,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1082774588}
+  m_Father: {fileID: 539173775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1151395935
 MonoBehaviour:
@@ -17262,6 +17262,14 @@ PrefabInstance:
     - target: {fileID: 1705617004684059356, guid: 2c816db404385544da04129ea52a747e, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246093295717847830, guid: 2c816db404385544da04129ea52a747e, type: 3}
+      propertyPath: managedReferences[5019177782102196343].Persistent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091371398539636574, guid: 2c816db404385544da04129ea52a747e, type: 3}
+      propertyPath: managedReferences[5019177782102196353].Persistent
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993764632815690979, guid: 2c816db404385544da04129ea52a747e, type: 3}
       propertyPath: m_LocalPosition.x
