@@ -49,10 +49,21 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
 
     private void LoadData()
     {
-        gameData = Data.Get<GameData>() ?? new GameData();
+        gameData = Data.Get<GameData>() ?? initialGameValueSO.InitialGameValue;
         progressionData = Data.Get<ProgressionSavedData>() ?? new ProgressionSavedData();
 
         OnAllDataLoaded?.Invoke();
+    }
+
+    private void LoadNewData()
+    {
+        var initialGameData = initialGameValueSO.InitialGameValue;
+        gameData.CurrentDay = initialGameData.CurrentDay;
+        gameData.Debt = initialGameData.Debt;
+        gameData.ObtainedMaterialDataList = initialGameData.ObtainedMaterialDataList;
+        progressionData = new ProgressionSavedData();
+
+        SaveGameData();
     }
 
     public void SaveGameData() => Data.Save<GameData>();
@@ -61,9 +72,8 @@ public class GameDataManager : PersistentSingleton<GameDataManager>
     public void ClearAllData()
     {
         PlayerPrefs.DeleteAll();
-        LoadData();
-        SaveGameData();
-        SaveProgressionData();
+        LoadNewData();
+        // SaveProgressionData();
     }
 
     public GameData GetTemporaryCopy()

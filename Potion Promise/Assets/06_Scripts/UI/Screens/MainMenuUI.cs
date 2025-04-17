@@ -1,20 +1,24 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuUI : BaseUI
 {
     [Header("Buttons")]
+    [SerializeField] private NewGameConfirmationUI newGameConfirmationUI;
+
+    [Header("Buttons")]
     [SerializeField] private Button newGameButton;
-    [SerializeField] private Button continueGameButton;
+    [SerializeField] private Button loadGameButton;
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
 
     private void Awake()
     {
         newGameButton.onClick.AddListener(OnNewGameButtonClicked);
-        continueGameButton.onClick.AddListener(OnContinueButtonClicked);
+        loadGameButton.onClick.AddListener(OnContinueButtonClicked);
         settingButton.onClick.AddListener(OnSettingButtonClicked);
         exitButton.onClick.AddListener(OnExitButtonClicked);
     }
@@ -22,12 +26,26 @@ public class MainMenuUI : BaseUI
     private void Start()
     {
         MMSoundManager.Instance.UnmuteMusic();
+
+        if (GameDataManager.Instance.ProgressionDataList.IsNullOrEmpty())
+        {
+            loadGameButton.gameObject.SetActive(false);
+        }
     }
 
     private void OnNewGameButtonClicked()
     {
         AudioManager.Instance.PlayClickSound();
-        playerEventSO.Event.OnGoToNextScene?.Invoke();
+
+        if (GameDataManager.Instance.ProgressionDataList.IsNullOrEmpty())
+        {
+            AudioManager.Instance.PlayClickSound();
+            playerEventSO.Event.OnGoToNextScene?.Invoke();
+        }
+        else
+        {
+            newGameConfirmationUI.Show();
+        }
     }
     private void OnContinueButtonClicked()
     {
