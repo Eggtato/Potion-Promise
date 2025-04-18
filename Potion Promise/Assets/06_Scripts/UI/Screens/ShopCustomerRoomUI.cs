@@ -32,6 +32,7 @@ public class ShopCustomerRoomUI : BaseUI
     [SerializeField] private Button rejectButton;
     [SerializeField] private Transform shopCustomerParent;
     [SerializeField] private ShopCustomerImageUI shopCustomerImageUI;
+    [SerializeField] private ShopCloseConfirmationUI shopCloseConfirmationUI;
 
     [Header("Counter")]
     [SerializeField] private string openString = "OPEN";
@@ -286,17 +287,25 @@ public class ShopCustomerRoomUI : BaseUI
 
     private void HandleShopSignClick()
     {
-        isShopOpened = !isShopOpened;
+        // isShopOpened = !isShopOpened;
 
-        if (isShopOpened)
+        if (!isShopOpened)
         {
             openShopButton.GetComponentInChildren<TMP_Text>().text = closeString;
             playerEventSO.Event.OnOpenShopButtonClicked?.Invoke();
+            isShopOpened = true;
         }
         else
         {
-            openShopButton.GetComponentInChildren<TMP_Text>().text = openString;
-            playerEventSO.Event.OnDayEnd?.Invoke();
+            if (customerQueue.Count > 0)
+            {
+                shopCloseConfirmationUI.Show();
+            }
+            else
+            {
+                openShopButton.GetComponentInChildren<TMP_Text>().text = openString;
+                playerEventSO.Event.OnDayEnd?.Invoke();
+            }
         }
     }
 }
