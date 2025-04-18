@@ -12,6 +12,7 @@ public class CauldronHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer droppedMaterialSprite; // Sprite representing the dropped material
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
     [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
+    [SerializeField] private Transform cauldronTopPart;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
@@ -171,8 +172,11 @@ public class CauldronHandler : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out SmashedMaterialMovement materialMovement))
         {
-            SetDroppedMaterial(materialMovement.MaterialData);
-            Destroy(collision.gameObject);
+            if (materialMovement.transform.position.y > cauldronTopPart.position.y)
+            {
+                SetDroppedMaterial(materialMovement.MaterialData);
+                Destroy(collision.gameObject);
+            }
         }
     }
 

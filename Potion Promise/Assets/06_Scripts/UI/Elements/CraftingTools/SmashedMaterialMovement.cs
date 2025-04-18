@@ -86,7 +86,7 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
     private void DragObject()
     {
         Vector3 targetPosition = GetWorldMousePosition() + offset;
-        transform.DOMove(new Vector3(targetPosition.x, targetPosition.y, 10), 0.1f);
+        transform.DOMove(new Vector3(targetPosition.x, targetPosition.y, 0), 0.1f);
     }
 
     private void TryDropToTrashBin()
