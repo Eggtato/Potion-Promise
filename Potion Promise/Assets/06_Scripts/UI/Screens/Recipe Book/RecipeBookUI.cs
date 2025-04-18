@@ -81,6 +81,7 @@ public class RecipeBookUI : BaseUI
 
     private void HandleOnClose()
     {
+        AudioManager.Instance.PlayClickSound();
         Hide();
     }
 }

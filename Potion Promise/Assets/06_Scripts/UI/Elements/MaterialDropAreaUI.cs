@@ -9,7 +9,7 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
     [SerializeField] private DroppedMaterialMovement droppedMaterialPrefab;
     [SerializeField] private Transform parent;
 
-    private bool isVisible;
+    public bool IsVisible;
 
     private void Start()
     {
@@ -30,17 +30,17 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
 
     private void HandleCraftingRoomOpened()
     {
-        isVisible = true;
+        IsVisible = true;
     }
 
     private void HandleCraftingRoomClosed()
     {
-        isVisible = false;
+        IsVisible = false;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (!isVisible) return;
+        if (!IsVisible) return;
 
         var droppedMaterial = eventData.pointerDrag.GetComponent<InventoryMaterialImageUI>();
 

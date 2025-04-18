@@ -87,6 +87,15 @@ public class InventoryMaterialImageUI : MonoBehaviour, IBeginDragHandler, IDragH
                 Destroy(gameObject); // or pool it
                 return;
             }
+            else if (result.gameObject.TryGetComponent<MaterialDropAreaUI>(out var materialDrop))
+            {
+                if (materialDrop.IsVisible)
+                {
+                    transform.DOKill();
+                    Destroy(gameObject); // or pool it
+                    return;
+                }
+            }
         }
 
         // If it fails
