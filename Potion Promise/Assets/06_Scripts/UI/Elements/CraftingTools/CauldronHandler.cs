@@ -13,6 +13,8 @@ public class CauldronHandler : MonoBehaviour
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
     [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
     [SerializeField] private Transform cauldronTopPart;
+    [SerializeField] private Canvas worldCanvas;
+    [SerializeField] private SmashedMaterialDropChecker smashedMaterialDropChecker;
 
     [Header("Configs")]
     [SerializeField] private float raisedSpriteYPosition = 2.3f; // Y position when sprite is raised
@@ -176,6 +178,7 @@ public class CauldronHandler : MonoBehaviour
             {
                 SetDroppedMaterial(materialMovement.MaterialData);
                 Destroy(collision.gameObject);
+                smashedMaterialDropChecker.ResetSortingOrder();
             }
         }
     }

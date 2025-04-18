@@ -8,6 +8,7 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
 
     [SerializeField] private DroppedMaterialMovement droppedMaterialPrefab;
     [SerializeField] private Transform parent;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     public bool IsVisible;
 
@@ -31,11 +32,13 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
     private void HandleCraftingRoomOpened()
     {
         IsVisible = true;
+        canvasGroup.blocksRaycasts = true;
     }
 
     private void HandleCraftingRoomClosed()
     {
         IsVisible = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -48,7 +51,7 @@ public class MaterialDropAreaUI : MonoBehaviour, IDropHandler
 
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // GameLevelManager.Instance.RemoveObtainedMaterialByOne(droppedMaterial.MaterialData);
+        GameLevelManager.Instance.RemoveObtainedMaterialByOne(droppedMaterial.MaterialData);
         DroppedMaterialMovement material = Instantiate(droppedMaterialPrefab, worldPoint, Quaternion.identity);
         material.Initialize(droppedMaterial.MaterialData);
         material.transform.parent = parent;

@@ -11237,6 +11237,100 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &507955697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 507955698}
+  - component: {fileID: 507955700}
+  - component: {fileID: 507955699}
+  m_Layer: 7
+  m_Name: SmashedMaterialDropChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &507955698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507955697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 924836920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &507955699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507955697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b470e62df3a496442ac1491c0de25b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cauldronTopPart: {fileID: 1077661065}
+  cauldronWorldCanvas: {fileID: 1253369458}
+  targetOrder: 20
+--- !u!61 &507955700
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507955697}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 3.7037077}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.7133124, y: 3.200389}
+  m_EdgeRadius: 0
 --- !u!1 &514344798
 GameObject:
   m_ObjectHideFlags: 0
@@ -13694,7 +13788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 416.6001, y: -427.31403}
+  m_AnchoredPosition: {x: 416.60013, y: -427.31403}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588377046
@@ -14839,11 +14933,11 @@ RectTransform:
   - {fileID: 1764989679}
   - {fileID: 929369880}
   - {fileID: 2046990653}
-  - {fileID: 1017640349}
-  - {fileID: 1777595263}
-  - {fileID: 1751517765}
   - {fileID: 176052365}
   - {fileID: 1257452192}
+  - {fileID: 1777595263}
+  - {fileID: 1017640349}
+  - {fileID: 1751517765}
   - {fileID: 1446669614}
   m_Father: {fileID: 482637338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19913,7 +20007,7 @@ GameObject:
   - component: {fileID: 924836924}
   m_Layer: 7
   m_Name: Craft_Cauldron
-  m_TagString: Blocker
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19927,13 +20021,14 @@ Transform:
   m_GameObject: {fileID: 924836919}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.29999992, z: 1}
+  m_LocalPosition: {x: 0, y: 0.29999992, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 722187099}
   - {fileID: 1077661064}
   - {fileID: 1253369455}
+  - {fileID: 507955698}
   m_Father: {fileID: 902086801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &924836921
@@ -20009,6 +20104,8 @@ MonoBehaviour:
   craftingToolMaterialUI: {fileID: 1410788004}
   craftingToolProgressUI: {fileID: 1303872930}
   cauldronTopPart: {fileID: 1077661064}
+  worldCanvas: {fileID: 1253369458}
+  smashedMaterialDropChecker: {fileID: 507955699}
   raisedSpriteYPosition: 1.8
 --- !u!61 &924836923
 BoxCollider2D:
@@ -20067,7 +20164,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4096
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 1
@@ -20108,6 +20205,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1536508007}
   - {fileID: 1300761280}
   - {fileID: 746040653}
   - {fileID: 586243047}
@@ -33077,7 +33175,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1189835917
   m_SortingLayer: 1
-  m_SortingOrder: 21
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: c55f13082a8b1dc4595a9ff4060a0e38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -36685,7 +36783,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1189835917
-  m_SortingOrder: 22
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!1 &1257452191
 GameObject:
@@ -36804,7 +36902,7 @@ GameObject:
   - component: {fileID: 1264868740}
   - component: {fileID: 1264868738}
   - component: {fileID: 1264868741}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: SmashedMaterial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43473,6 +43571,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528319348}
   m_CullTransparentMesh: 1
+--- !u!1 &1536508006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1536508007}
+  - component: {fileID: 1536508011}
+  - component: {fileID: 1536508010}
+  - component: {fileID: 1536508009}
+  - component: {fileID: 1536508008}
+  m_Layer: 0
+  m_Name: CraftingBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1536508007
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536508006}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 929369880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1536508008
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536508006}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1536508009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536508006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9ea36a6230cb34786383c57cea5539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
+  droppedMaterialPrefab: {fileID: 3213914402225010415, guid: 84aa3ca57ad01c341abc3d50b12615bc, type: 3}
+  parent: {fileID: 902086801}
+  canvasGroup: {fileID: 1536508008}
+  IsVisible: 0
+--- !u!114 &1536508010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536508006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cb347e52368d94c838e974b7aa33ee3d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1536508011
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536508006}
+  m_CullTransparentMesh: 1
 --- !u!1 &1541533550
 GameObject:
   m_ObjectHideFlags: 0
@@ -46522,7 +46726,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 4288
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 1
@@ -52632,7 +52836,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060782579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a9ea36a6230cb34786383c57cea5539, type: 3}
   m_Name: 
@@ -52640,6 +52844,7 @@ MonoBehaviour:
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   droppedMaterialPrefab: {fileID: 3213914402225010415, guid: 84aa3ca57ad01c341abc3d50b12615bc, type: 3}
   parent: {fileID: 902086801}
+  canvasGroup: {fileID: 0}
   IsVisible: 0
 --- !u!114 &2060782583
 MonoBehaviour:
