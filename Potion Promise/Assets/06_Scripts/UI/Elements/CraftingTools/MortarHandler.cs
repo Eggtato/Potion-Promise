@@ -11,6 +11,7 @@ public class MortarHandler : MonoBehaviour
     [Header("Scene Reference")]
     [SerializeField] private SpriteRenderer droppedMaterialSprite;
     [SerializeField] private Transform smashedMaterial;
+    [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform spawnParent;
     [SerializeField] private CraftingToolMaterialUI craftingToolMaterialUI;
     [SerializeField] private CraftingToolMaterialProgressUI craftingToolProgressUI;
@@ -138,7 +139,7 @@ public class MortarHandler : MonoBehaviour
             return;
         }
 
-        GameObject spawnedObject = Instantiate(smashedMaterial.gameObject, smashedMaterial.transform.position, Quaternion.identity, spawnParent);
+        GameObject spawnedObject = Instantiate(smashedMaterial.gameObject, spawnPoint.position, Quaternion.identity, spawnParent);
         spawnedObject.SetActive(true);
 
         if (spawnedObject.TryGetComponent<SmashedMaterialMovement>(out var smashedMaterialMovement))

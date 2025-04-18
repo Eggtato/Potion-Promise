@@ -32,8 +32,25 @@ public class MouseGrab : MonoBehaviour
     void TryGrab(Vector3 mouseWorldPos)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(mouseWorldPos, Vector2.zero);
-        IGrabbable closest = null;
-        float closestDistance = Mathf.Infinity;
+
+        // Sort hits by sorting order (visual priority)
+        System.Array.Sort(hits, (a, b) =>
+        {
+            var srA = a.collider.GetComponent<SpriteRenderer>();
+            var srB = b.collider.GetComponent<SpriteRenderer>();
+
+            int layerCompare = 0;
+            if (srA != null && srB != null)
+            {
+                layerCompare = SortingLayer.GetLayerValueFromID(srB.sortingLayerID).CompareTo(SortingLayer.GetLayerValueFromID(srA.sortingLayerID));
+                if (layerCompare == 0)
+                    return srB.sortingOrder.CompareTo(srA.sortingOrder); // Higher sortingOrder means more in front
+                else
+                    return layerCompare;
+            }
+
+            return 0;
+        });
 
         foreach (var hit in hits)
         {
@@ -42,26 +59,17 @@ public class MouseGrab : MonoBehaviour
                 return;
             }
 
-            var grabbable = hit.collider.GetComponent<IGrabbable>();
-            if (grabbable != null)
+            if (hit.collider.TryGetComponent<IGrabbable>(out var grabbable))
             {
-                float distance = Vector2.Distance(mouseWorldPos, hit.point);
-                if (distance < closestDistance)
-                {
-                    closest = grabbable;
-                    closestDistance = distance;
-                }
+                grabbedTarget = grabbable;
+                grabbedTarget.OnGrab();
+                isGrabbing = true;
+                playerEventSO.Event.OnCursorSetGrab?.Invoke();
+                return;
             }
         }
-
-        if (closest != null)
-        {
-            grabbedTarget = closest;
-            grabbedTarget.OnGrab();
-            isGrabbing = true;
-            playerEventSO.Event.OnCursorSetGrab?.Invoke();
-        }
     }
+
 
     void StopGrab()
     {
@@ -81,6 +89,26 @@ public class MouseGrab : MonoBehaviour
         if (isGrabbing) return;
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(mouseWorldPos, Vector2.zero);
+
+        // Sort hits based on visual priority (sorting layer and order)
+        System.Array.Sort(hits, (a, b) =>
+        {
+            var srA = a.collider.GetComponent<SpriteRenderer>();
+            var srB = b.collider.GetComponent<SpriteRenderer>();
+
+            int layerCompare = 0;
+            if (srA != null && srB != null)
+            {
+                layerCompare = SortingLayer.GetLayerValueFromID(srB.sortingLayerID)
+                    .CompareTo(SortingLayer.GetLayerValueFromID(srA.sortingLayerID));
+                if (layerCompare == 0)
+                    return srB.sortingOrder.CompareTo(srA.sortingOrder);
+                else
+                    return layerCompare;
+            }
+            return 0;
+        });
+
         IGrabbable hovered = null;
 
         foreach (var hit in hits)
@@ -101,11 +129,10 @@ public class MouseGrab : MonoBehaviour
 
         if (hovered != currentHovered)
         {
-            // Hover has changed
             if (currentHovered != null)
             {
                 playerEventSO.Event.OnCursorSetDefault?.Invoke();
-                if (currentHovered != null) currentHovered.DisableOutline();
+                currentHovered.DisableOutline();
             }
 
             currentHovered = hovered;
@@ -113,13 +140,13 @@ public class MouseGrab : MonoBehaviour
             if (currentHovered != null)
             {
                 playerEventSO.Event.OnCursorSetHand?.Invoke();
-                if (currentHovered != null) currentHovered.EnableOutline();
+                currentHovered.EnableOutline();
             }
         }
         else if (currentHovered != null && !isGrabbing)
         {
-            // If we're still hovering over the same object after releasing, set cursor to hand
             playerEventSO.Event.OnCursorSetHand?.Invoke();
         }
     }
+
 }
