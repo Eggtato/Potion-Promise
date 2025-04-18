@@ -60,6 +60,19 @@ public class HUDManager : Singleton<HUDManager>
         SetDefaultSetting();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ShowCraftingRoom();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ShowCustomerRoom();
+        }
+    }
+
     private void RefreshUI()
     {
         coinText.text = GameLevelManager.Instance.EarnedCoin.ToString();
