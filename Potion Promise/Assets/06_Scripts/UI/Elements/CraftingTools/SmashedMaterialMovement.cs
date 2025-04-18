@@ -66,6 +66,7 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 
         offset = transform.position - GetWorldMousePosition();
         isDragging = true;
+        myRigidbody2D.constraints = RigidbodyConstraints2D.None;
         myRigidbody2D.simulated = false;
 
         spriteRenderer.sortingOrder = sortingOrderOnGrab;
@@ -77,6 +78,9 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
         AudioManager.Instance.PlayMaterialReleaseSound();
 
         isDragging = false;
+
+        // Freeze rotation BEFORE enabling physics
+        myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         myRigidbody2D.simulated = true;
 
         TryDropToTrashBin();
@@ -91,30 +95,27 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 
     private void TryDropToTrashBin()
     {
-        PointerEventData pointerData = new(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorldPos);
 
-        List<RaycastResult> results = new();
-        EventSystem.current.RaycastAll(pointerData, results);
-
-        foreach (RaycastResult result in results)
+        foreach (var hit in hits)
         {
-            if (result.gameObject.TryGetComponent<TrashBinUI>(out var trashBin))
+            if (hit.TryGetComponent<TrashBinUI>(out var trashBin))
             {
                 transform.DOScale(0f, gameSettingSO.CraftingMaterialFadeInAnimation)
                          .OnComplete(() =>
                          {
                              AudioManager.Instance.PlayTrashBinSound();
-                             Destroy(gameObject); // Pooling can be used instead
+                             Destroy(gameObject); // You can replace with pooling later
                          });
                 return;
             }
         }
 
+        // Restore original visual state if not dropped into trash bin
         spriteRenderer.sortingOrder = originalSortingOrder;
     }
+
 
     private Vector3 GetWorldMousePosition()
     {
@@ -125,11 +126,11 @@ public class SmashedMaterialMovement : MonoBehaviour, IGrabbable
 
     public void EnableOutline()
     {
-        spriteRenderer.material.EnableKeyword("OUTBASE_ON");
+        if (spriteRenderer) spriteRenderer.material.EnableKeyword("OUTBASE_ON");
     }
 
     public void DisableOutline()
     {
-        spriteRenderer.material.DisableKeyword("OUTBASE_ON");
+        if (spriteRenderer) spriteRenderer.material.DisableKeyword("OUTBASE_ON");
     }
 }

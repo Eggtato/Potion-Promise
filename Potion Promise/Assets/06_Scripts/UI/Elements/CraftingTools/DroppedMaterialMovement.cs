@@ -61,6 +61,7 @@ public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
     private void StartDragging()
     {
         isDragging = true;
+        rb2D.constraints = RigidbodyConstraints2D.None;
         rb2D.simulated = false;
 
         grabOffset = transform.position - GetWorldMousePosition();
@@ -77,6 +78,8 @@ public class DroppedMaterialMovement : MonoBehaviour, IGrabbable
     private void StopDragging()
     {
         isDragging = false;
+        // Freeze rotation BEFORE enabling physics
+        rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb2D.simulated = true;
         spriteRenderer.sortingOrder = originalSortingOrder;
 
