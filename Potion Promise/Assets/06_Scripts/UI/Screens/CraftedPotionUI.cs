@@ -27,6 +27,8 @@ public class CraftedPotionUI : BaseUI
 
     public void DisplayPotionSuccess(PotionData craftedPotion)
     {
+        AudioManager.Instance.PlaySuccessSound();
+
         Show();
 
         // Set potion details
@@ -37,6 +39,8 @@ public class CraftedPotionUI : BaseUI
 
     public void DisplayPotionFailure()
     {
+        AudioManager.Instance.PlayFailSound();
+
         Show();
 
         // Set failure feedback
