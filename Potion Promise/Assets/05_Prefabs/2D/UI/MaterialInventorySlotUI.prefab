@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryMaterialImageUI: {fileID: 2662869665154016178}
   quantityText: {fileID: 2482301644250288174}
+  tooltip: {fileID: 3117561311690614324}
   obtainedMaterialData:
     MaterialType: 0
     Quantity: 0
@@ -306,6 +307,7 @@ GameObject:
   - component: {fileID: 4866944105901849805}
   - component: {fileID: 4814471412706018044}
   - component: {fileID: 2662869665154016178}
+  - component: {fileID: 3117561311690614324}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -400,3 +402,34 @@ MonoBehaviour:
   playerEventSO: {fileID: 11400000, guid: 68d64cc0ef8d9f643b236f2a94e2c848, type: 2}
   droppedMaterial: {fileID: 3213914402225010415, guid: 84aa3ca57ad01c341abc3d50b12615bc, type: 3}
   icon: {fileID: 4866944105901849805}
+--- !u!114 &3117561311690614324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125277467778624331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99a9e0f405bff84884c4884261df263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipStyle: {fileID: 11486272, guid: 170422fe7ead9004e84d1216259b87cc, type: 3}
+  parameterizedTextFields:
+  - name: BodyText
+    placeholder: '%BodyText%'
+    value: This is my first tooltip
+  dynamicImageFields: []
+  dynamicSectionFields: []
+  isRemotelyActivated: 0
+  backgroundTint: {r: 1, g: 1, b: 1, a: 1}
+  shouldOverridePosition: 0
+  overridePositionType: 0
+  overridePositionVector: {x: 0, y: 0, z: 0}
+  overridePositionTransform: {fileID: 0}
+  tipPosition: 8
+  minTextWidth: 100
+  maxTextWidth: 400
+  staysOpen: 0
+  neverRotate: 0
+  isBlocking: 0

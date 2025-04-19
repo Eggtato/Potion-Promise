@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using ModelShark;
 
 public class InventoryMaterialSlotUI : MonoBehaviour, IResettableSlot
 {
     [SerializeField] private InventoryMaterialImageUI inventoryMaterialImageUI;
     [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private TooltipTrigger tooltip;
     public ObtainedMaterialData obtainedMaterialData;
 
     public void Initialize(ObtainedMaterialData obtainedMaterialData, MaterialData MaterialData)
@@ -16,6 +18,8 @@ public class InventoryMaterialSlotUI : MonoBehaviour, IResettableSlot
         this.obtainedMaterialData = obtainedMaterialData;
         inventoryMaterialImageUI.Initialize(MaterialData);
         quantityText.text = "x" + obtainedMaterialData.Quantity;
+
+        if (tooltip) tooltip.SetText("BodyText", MaterialData.Name);
     }
 
     public void AddQuantity()

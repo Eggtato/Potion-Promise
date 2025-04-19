@@ -1534,8 +1534,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 360.4276, y: 49.381866}
-    canvasZoom: 0.83000124
+    canvasScrollPosition: {x: 103.91467, y: 27.35346}
+    canvasZoom: 0.7700013
   - id: 2
     fields:
     - title: Title
@@ -1660,7 +1660,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '...Oh my social battery...I can''t handle it. [pic=10]'
+        value: 'Oh my social battery...I can''t handle it. [pic=10]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1688,7 +1688,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160
+        x: 157.09091
         y: 80
         width: 160
         height: 30
