@@ -22,7 +22,7 @@ MonoBehaviour:
         always!
       InCorrectOrderDescription: I think you mixed up with someone else order.
       OrderedPotion: 0
-    - OrderDescription: I Hope im not the last customer, Same as always dearly, The
+    - OrderDescription: I hope im not the last customer, Same as always dearly, The
         Potion of Healings.
       DeclineDescription: Oh i see, better be early next time then.
       CorrectOrderDescription: Lovely! Thank you so much.
@@ -34,13 +34,34 @@ MonoBehaviour:
       CorrectOrderDescription: I can't thank you enough for this Amazing exilir.
       InCorrectOrderDescription: 'Oh God, you mixed the order with someone elses! '
       OrderedPotion: 2
+  - Sprite: {fileID: 21300000, guid: e766117ec46234b3db77d68ae484abc0, type: 3}
+    Orders:
+    - OrderDescription: Do you know one of those potions that you made? a wine red
+        coloured with heart symbols as a tag
+      DeclineDescription: Oh I see.
+      CorrectOrderDescription: Yes! This exactly what i want.
+      InCorrectOrderDescription: 'This is wrong! '
+      OrderedPotion: 0
+    - OrderDescription: I heard from my fellow maids that this particular shop has
+        a strong potion to have a nice sleep for once, may i have that kind of potion
+      DeclineDescription: Such a let Down! How can I sleep now?
+      CorrectOrderDescription: Now i can catch more zzz! You're my lifesaver!
+      InCorrectOrderDescription: This is not exactly i expected to came out.
+      OrderedPotion: 4
+    - OrderDescription: My significant other is a soldier in the palace and he needs
+        something for boost his strenght . Can i have one of those?
+      DeclineDescription: Oh no. It's out of stock?
+      CorrectOrderDescription: May the heavens helps your business.
+      InCorrectOrderDescription: Are you mixing this up with someone else order?
+        Hmph!
+      OrderedPotion: 3
   - Sprite: {fileID: 21300000, guid: f9593a802ca314a8c94342dd648cefdc, type: 3}
     Orders:
-    - OrderDescription: My Mother sent me here, and she said "Don't forget to bring
+    - OrderDescription: My mother sent me here, and she said "Don't forget to bring
         one wanna those soothing cold liquid Son!"
       DeclineDescription: Oh, i guess there's no cold booster  this time.
-      CorrectOrderDescription: And thats what my mum exactly needs! Thank you.
-      InCorrectOrderDescription: Big Yikes.
+      CorrectOrderDescription: Thats what my mum exactly needs! Thank you.
+      InCorrectOrderDescription: Big yikes.
       OrderedPotion: 1
     - OrderDescription: Again with one of those chilling liquids that will put my
         brain into freeze!
@@ -55,45 +76,158 @@ MonoBehaviour:
         best.
       InCorrectOrderDescription: Woomp Woomp.
       OrderedPotion: 2
+  - Sprite: {fileID: 21300000, guid: 5eeba70bd5d384199b306282e578ca4d, type: 3}
+    Orders:
+    - OrderDescription: Oh, pretty sister! Is one of those Shiny yellow warm bottles
+        still available?
+      DeclineDescription: Such a bummer.
+      CorrectOrderDescription: Shiny, warm and fuzzy, this is what I am looking for!
+      InCorrectOrderDescription: That's...no.
+      OrderedPotion: 2
+    - OrderDescription: 'I accidentally trip on my way here, any solution for this? '
+      DeclineDescription: Ouch, well thanks for nothing
+      CorrectOrderDescription: You're an angel, big sister!
+      InCorrectOrderDescription: Oh dang it, this is not the right one!
+      OrderedPotion: 0
+    - OrderDescription: Hello well I need...uh... i forgot what's the name of it
+        but its the one with the blue liquid, looking pretty chilly and cold from
+        how it looks?
+      DeclineDescription: Awww really?
+      CorrectOrderDescription: Brrr this is the one! The cold potion!
+      InCorrectOrderDescription: It seems im not being clear with my order.
+      OrderedPotion: 1
   - Sprite: {fileID: 21300000, guid: d9df97a983e5548e6b79f61b37d25864, type: 3}
     Orders:
-    - OrderDescription: My Mother sent me here, and she said "Don't forget to bring
-        one wanna those soothing cold liquid Son!"
-      DeclineDescription: Oh, i guess there's no cold booster  this time.
-      CorrectOrderDescription: And thats what my mum exactly needs! Thank you.
-      InCorrectOrderDescription: Big Yikes.
-      OrderedPotion: 1
-    - OrderDescription: Again with one of those chilling liquids that will put my
-        brain into freeze!
-      DeclineDescription: Out of the stock? Really?
-      CorrectOrderDescription: Horray! Cold booster once again!
-      InCorrectOrderDescription: Are your brain freezing up? This is the wrong order.
-      OrderedPotion: 1
-    - OrderDescription: It's me again! I believe you have one of those hot exilir.
-        Right?
-      DeclineDescription: Oh c'mon!
-      CorrectOrderDescription: At least with this, i can feel warmer. You're the
-        best.
-      InCorrectOrderDescription: Woomp Woomp.
+    - OrderDescription: Youre such a quiet young lad, i wondering if you have a exilir
+        that came out from the sun?
+      DeclineDescription: I see, don't forget to take care yourself dearest
+      CorrectOrderDescription: Please accept my half of gold for your future, thank
+        you
+      InCorrectOrderDescription: Oh, I believe this is the wrong one.
       OrderedPotion: 2
+    - OrderDescription: I was once a very healthy young goblin but now i don't even
+        know how to get a nice and enough sleep lately.
+      DeclineDescription: It's ran out of stock? well i can't blame you for doing
+        your job alone dearest
+      CorrectOrderDescription: Oh how lovely, now i can sleep without hearing those
+        lousy neighbours all the time.
+      InCorrectOrderDescription: It seems you exhausted dear, don't worry i will
+        take it.
+      OrderedPotion: 4
+    - OrderDescription: My my, its getting pretty cold in my area, it will be lovely
+        to have some booster to keep me warm.
+      DeclineDescription: Okay then, i will come back later.
+      CorrectOrderDescription: This will be keep me warm for few weeks, thank you
+        kindly.
+      InCorrectOrderDescription: Might getting mixed up with another people's order.
+      OrderedPotion: 2
+  - Sprite: {fileID: 21300000, guid: 2d1a5db41255d42368a3f585e08de6dc, type: 3}
+    Orders:
+    - OrderDescription: 25 years and this shop still looks as how it was, i hope
+        the ingredient for the Cold Brew still the same as always.
+      DeclineDescription: That's such unfortunate, but i make sure i come back again!
+      CorrectOrderDescription: Such a familiar aroma, Thank you young one.
+      InCorrectOrderDescription: Is it me or this might be slightly different appearance
+        than i remember?
+      OrderedPotion: 1
+    - OrderDescription: I need to restock a potion for my son's journey, the one
+        that we called the amour potion might be one.
+      DeclineDescription: Oh well, there's no stock for them this time.
+      CorrectOrderDescription: This will be enough! take this as my gratitude token.
+      InCorrectOrderDescription: This is a wrong one, oh dear me.
+      OrderedPotion: 3
+    - OrderDescription: Hello again, My daughter needs to restock one of a potions
+        to protect her from any kind of harm from any monster.
+      DeclineDescription: I see, alright then.
+      CorrectOrderDescription: This will be fantastic, thank you little witch.
+      InCorrectOrderDescription: No, i believe this is not the right one that she
+        needs.
+      OrderedPotion: 3
   - Sprite: {fileID: 21300000, guid: 9edebc037d05942de8ca35371197fad8, type: 3}
     Orders:
-    - OrderDescription: My Mother sent me here, and she said "Don't forget to bring
-        one wanna those soothing cold liquid Son!"
-      DeclineDescription: Oh, i guess there's no cold booster  this time.
-      CorrectOrderDescription: And thats what my mum exactly needs! Thank you.
-      InCorrectOrderDescription: Big Yikes.
+    - OrderDescription: Pleasant surprise to see young sorcerers like you running
+        these shabby shops that haven't been run for 5 years. i believe that cold
+        brewer shall taste the same.
+      DeclineDescription: Pathetic indeed.
+      CorrectOrderDescription: The freeze of this potions will set my cold heart
+        into the eternal life.
+      InCorrectOrderDescription: You mixed it all! this is not what i wanted.
       OrderedPotion: 1
-    - OrderDescription: Again with one of those chilling liquids that will put my
-        brain into freeze!
-      DeclineDescription: Out of the stock? Really?
-      CorrectOrderDescription: Horray! Cold booster once again!
-      InCorrectOrderDescription: Are your brain freezing up? This is the wrong order.
-      OrderedPotion: 1
-    - OrderDescription: It's me again! I believe you have one of those hot exilir.
-        Right?
-      DeclineDescription: Oh c'mon!
-      CorrectOrderDescription: At least with this, i can feel warmer. You're the
-        best.
-      InCorrectOrderDescription: Woomp Woomp.
+    - OrderDescription: Ohh How miserable I am to be this radiant fabulous, so much
+        so i need something to protect my body from any harm.
+      DeclineDescription: 'Such a disgracefull! '
+      CorrectOrderDescription: Remember, if this is not work, i will be back to collect
+        your soul.
+      InCorrectOrderDescription: So you think my safety is just a joke for you, filthy
+        human.
+      OrderedPotion: 3
+    - OrderDescription: You, the fresh one! I demand you to make a exilir for my
+        beauty sleep!
+      DeclineDescription: Oh what i gonna do for getting this such tragedy answer.
+      CorrectOrderDescription: The smell of fresh zzz's in the air, this will made
+        my skin into perfections.
+      InCorrectOrderDescription: My beautiful skin can't use this nasty potion! such
+        disgrace.
+      OrderedPotion: 4
+  - Sprite: {fileID: 21300000, guid: 89e8fde919e72460484e25a19df7b7c8, type: 3}
+    Orders:
+    - OrderDescription: If it's one thing that I, most gorgeous vampire need is an
+        exilir to protect me from the attack of, filthy humans.
+      DeclineDescription: Oh what a let down more than my own generations.
+      CorrectOrderDescription: Now i will be invisible!
+      InCorrectOrderDescription: Oh, you rather much on the side of those nasty humans
+        then.
+      OrderedPotion: 3
+    - OrderDescription: Oh my poor beautiful skin,  i have obligation to hibernate
+        myself to regenerate my beauty.
+      DeclineDescription: This is unacceptable!
+      CorrectOrderDescription: Excuse me i shall need my long hibernation and isolations.
+      InCorrectOrderDescription: Is this a jokes for you?
+      OrderedPotion: 4
+    - OrderDescription: My fellow young witch, how jealous I am to see your fresh
+        and young you are. i wish i could have something to improve my beauty sleeps
+        every morning.
+      DeclineDescription: How incompetent you are! at least restock your ingredients
+        next time.
+      CorrectOrderDescription: Couple of payments for this amazing exilir.
+      InCorrectOrderDescription: Wrong! This is Wrong.
+      OrderedPotion: 4
+  - Sprite: {fileID: 21300000, guid: 2bcda858da52348f58b38e08e7b1484a, type: 3}
+    Orders:
+    - OrderDescription: 'Oh..hi..um..well..the thing is.. i wonder if you have a
+        potion to heal some animals? '
+      DeclineDescription: Oh...A-Alright then.
+      CorrectOrderDescription: Yes! This is e-exactly what i need.
+      InCorrectOrderDescription: Oh no...this is not the right one.
+      OrderedPotion: 0
+    - OrderDescription: I-I am back again! This time i need something to warm animals!
+      DeclineDescription: That's..kinda let down but okay.
+      CorrectOrderDescription: Finally...thank you.
+      InCorrectOrderDescription: This is not my order.
       OrderedPotion: 2
+    - OrderDescription: I-I feel like getting a potion for my own protection might
+        be a good idea.
+      DeclineDescription: Oh no i think i am late to come over here.
+      CorrectOrderDescription: W-with this i wont feel fragile anymore..thank you.
+      InCorrectOrderDescription: I think you mixed one with other customer.
+      OrderedPotion: 3
+  - Sprite: {fileID: 21300000, guid: 5d41a4761685f41aaa26d478b69584e0, type: 3}
+    Orders:
+    - OrderDescription: O-Oh It' s my turn!? oh my, I not supposed to yell like that,
+        m-my apology. I need to buy potion- pr-probably so i can sleep?
+      DeclineDescription: It's ran out of stock? I see.
+      CorrectOrderDescription: I-I hope i will get a good night sleep tonight!
+      InCorrectOrderDescription: O-oh... this is not exactly what i need.
+      OrderedPotion: 4
+    - OrderDescription: 'I-I have a concern since its getting warmer a-around the
+        library. I need s-something to cool down! '
+      DeclineDescription: O-ow..okay.
+      CorrectOrderDescription: T-Thank you! This is perfect!
+      InCorrectOrderDescription: This...doesn't look the same.
+      OrderedPotion: 1
+    - OrderDescription: The Emergency Kit!! uh, i mean yeah! it's an emergency Kit!
+        I need to restock Healing potions for my library's emergency kit!
+      DeclineDescription: Ah understand, i will comeback l-later.
+      CorrectOrderDescription: This will complete the emergency kit..Thank you.
+      InCorrectOrderDescription: N-no..i think this is the wrong one.
+      OrderedPotion: 0
